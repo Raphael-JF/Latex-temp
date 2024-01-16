@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{changepage}
+
+% physique
+\definecolor{oranges}{RGB}{255, 242, 230}
+\definecolor{rouges}{RGB}{255, 230, 230}
+\definecolor{rose}{RGB}{255, 204, 204}
+
+% maths
+\definecolor{saumon}{RGB}{224, 209, 240}
+
+
+\renewcommand{\labelitemi}{--}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+    \pagecolor{rose}
+    Le travail des forces de pression reçu algébriquement par le système lors d’une transformation d’un système soumis à une pression extérieure $P_{ext}$ l’amenant d’un état d’équilibre initial pour lequel le volume du système est $V_I$ à un état d’équilibre final pour lequel le volume du système est $V_F$ s’écrit :
+    $$ \mathcal{W}_P = \int_{V_I}^{V_F} -P_{ext} \,dV  $$
+    Dans le cas d'une transformation quasi-statique, la pression $P$ du système est définie à chaque instant et est égale, au niveau des parois mobiles, à la pression extérieure $P_{ext}$ à chaque instant. Le travail des forces de pression s'écrit alors :
+    $$ \mathcal{W}_P = \int_{V_I}^{V_F} -P \,dV  $$ 
+
+\end{adjustwidth}
+\end{document}

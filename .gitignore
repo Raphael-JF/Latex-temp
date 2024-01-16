@@ -42,7 +42,7 @@
 
 ## Build tool directories for auxiliary files
 # latexrun
-latex.out/
+# latex.out/
 
 ## Auxiliary and intermediate files from other packages:
 # algorithms
@@ -280,8 +280,8 @@ TSWLatexianTemp*
 *.tps
 
 # auto folder when using emacs and auctex
-./auto/*
-*.el
+# ./auto/*
+# *.el
 
 # expex forward references with \gathertags
 *-tags.tex
