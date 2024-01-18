@@ -1,0 +1,23 @@
+\documentclass{article}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath}
+\usepackage{enumitem}
+\usepackage{changepage}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\ui}{\displaystyle}
+\renewcommand{\labelitemi}{--}
+
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+Soit $(z,z') \in \mathbb{C}$. Alors :
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item $\left\lvert \text{Re}(z)\right\rvert \leq \left\lvert z\right\rvert$ et $\left\lvert \text{Im}(z)\right\rvert \leq \left\lvert z \right\rvert $
+
+\item $\left\lvert \left\lvert z \right\rvert - \left\lvert z' \right\rvert  \right\rvert \leq \left\lvert z-z'\right\rvert \leq\left\lvert z+z'\right\rvert \leq \left\lvert z\right\rvert +\left\lvert z'\right\rvert $  
+\item $(\left\lvert z+z'\right\rvert = \left\lvert z\right\rvert +\left\lvert z'\right\rvert) \Leftrightarrow (z = 0 \text{ ou } \exists \alpha \in \mathbb{R}_+, z' = \alpha z) $
+\end{enumerate}
+
+\end{adjustwidth}
+\end{document}
