@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{changepage}
+
+% physique
+\definecolor{oranges}{RGB}{255, 242, 230}
+\definecolor{rouges}{RGB}{255, 230, 230}
+\definecolor{rose}{RGB}{255, 204, 204}
+
+% maths
+\definecolor{saumon}{RGB}{224, 209, 240}
+
+
+\renewcommand{\labelitemi}{--}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+
+Définition 6.16
+Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
+    \begin{itemize}
+        \item $p \in E$ est un prédécesseur immédiat de $e$ si $p<e$ et il n'existe pas d'élement $a\in e$ tel que $p<a<e$
+        \item $s \in E$ est successeur  immédiat de $e$ si $e<s$ et il n'existe pas d'élement $a\in e$ tel que $e<a<s$
+    \end{itemize}
+Exemple 6.17
+Dans $\mathbb{N}$ muni de l'ordre usuel :
+\begin{itemize}
+    \item $\forall n \in \mathbb{N}$, $n+1$ est le successeur immédiat de $n$.
+    \item $\forall n \in \mathbb{N}^*$, $n+1$ est le prédécesseur immédiat de $n$.
+    \item $0$ n'a pas de prédécesseur (en particulier immédiat).
+\end{itemize}
+
+Exemple 6.18
+Dans $\mathbb{R}$ muni de l'ordre usuel, aucun élément $e$ n'a de prédécesseur (resp.successeur) immédiat puisque si $a<e$ alors en particulier $a<\frac{a+e}{2}<e$.
+
+Définition 6.19
+Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que \begin{itemize}
+    \item $e$ est un élément minimal de $E$ s'il n'admet pas de prédécesseur.
+    \item $e$ est un élément maximal de $E$ s'il n'admet pas de successeur.
+\end{itemize}
+
+Exemple 6.20
+Soit $E$ un ensemble. L'ensemble $A = \mathcal{P}(E)\\ \{\varnothing\}$ des parties non vides de $E$ muni de l'inclusion et ordonné. Si $E \neq \varnothing$, $E$ est l'élément maximal de $A$, et $\forall e \in E$, $\{e\}$ est un élément maximal de $A$.
+
+Remarque 6.21
+L'ensemble précédent montre en particulier qu'un ensemble peut tout à fait avoir plusieurs éléments minimaux ou maximaux.
+
+Définition 6.22
+Soit $E$ un ensemble ordonné non vide et $e\in E$. On dit que :
+\begin{itemize}
+    \item $e$ est le \textbf{plus grand élément} de E si $\forall x \in E, x \leq e$.
+    \item $e$ est le \textbf{plus petit élément} de E si $\forall x \in E, x \geq e$.
+\end{itemize}
+
+Démonstration : (preuve de l'unicité)
+Supposons par l'absurde, qu'il n'y a pas unicité du plus petit élément. 
+Soit $e$ et $e'$ deux plus petits éléments distincts de $E$. 
+Alors, par définition, ($e$ est un plus petit élément $E$, $e \leq e')$. de même, $e' \leq e$. 
+Par antisymétrie de $\leq$, $e=e'$. Absurde.
+On montre de même l'unicité du plus grand élément, s'il existe.
+
+Définition 6.23 : \textit{Ordre bien fondé}
+Soit $(E,\leq)$ un ensemble ordonné.
+On dit que $\leq$ est un ordre bien fondé si toute partie non vide de $E$ admet au moins un élément minimal.
+
+Exemple 6.24 : \textit{Ordres bien fondés}
+    \begin{itemize}
+        \item l'ordre usuel sur l'ensemble $\mathbb{N}$ des entiers naturels est bien fondé.
+        \item l'inclusion sur les parties d'un ensemble fini est bien fondée.
+        \item la relation de divisibilité sur l'ensemble $\mathbb{N}^*$ est un ordre bien fondé.
+    \end{itemize}
+
+    Exemple 6.25 (Ordres non bien fondés)
+    \begin{itemize}
+        \item l'ordre usuel sur $\mathbb{Z}$ ou sur $\mathbb{R_+}$
+        \item L'inclusion sur les parties d'un ensemble infini n'est pas bien fondée.
+    \end{itemize}
+
+    
+
+
+\end{adjustwidth}
+\end{document}
