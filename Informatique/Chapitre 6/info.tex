@@ -4,6 +4,7 @@
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{changepage}
+\usepackage{stmaryrd}
 
 % physique
 \definecolor{oranges}{RGB}{255, 242, 230}
@@ -72,13 +73,59 @@ Exemple 6.24 : \textit{Ordres bien fondés}
         \item la relation de divisibilité sur l'ensemble $\mathbb{N}^*$ est un ordre bien fondé.
     \end{itemize}
 
-    Exemple 6.25 (Ordres non bien fondés)
+    Exemple 6.25 \textit{Ordres non bien fondés}
     \begin{itemize}
         \item l'ordre usuel sur $\mathbb{Z}$ ou sur $\mathbb{R_+}$
         \item L'inclusion sur les parties d'un ensemble infini n'est pas bien fondée.
     \end{itemize}
 
-    
+    Propriété 6.26
+    Soit $(A,\leq_A) et (B,\leq_B)$ deux ensembles ordonnés.
+    Si $\leq_A$ et $\leq_B$ sont bien fondées, l'ordre lexicographique défini sur $A \times B$ est bien fondé.
+
+    Démonstration : 
+    Soit $X$ une partie non vide de $A \times B$. Montrons qu'elle admet un élément minimal.
+    On note $A_X = \{a \in A, \exists b \in B, (a,b) \in X\}$. $X$ est non vide, donc $A_X$ l'est également.
+    De plus, comme $\leq_A$ est bien fondé, $A_X$ admet un élément minimal.
+    Soit donc $a_0 \in A$ un élément minimal de $A_X$. On considère alors l'ensemble $B_0 = \{b \in B, (a_0,b) \in X\}$.
+    Par définition de $a_0$, $B_0$ est non vide, alors, $\leq_B$ étant aussi bien fondé, $B_0$ admet un élément minimal $b_0$. l'élémet $x_0 = (a_0, b_0)$ est alors un élément minimal de $X$.
+    En effet, Soit $(a,b) \in X$ tel que $(a,b) \leq (a_0,b_0)$ i.e. tel que $a < a_0 ou (a = a_0 et b \leq_B b_0)$.
+    $a \in A_X$ donc, par minimalité de $a_0$, $a \nless a_0$, on a donc $a = a_0$ et $b \leq_B b_0$.
+    De même, $b \in B_0$ puisque $(a,b) = (a_0,b)$. Par minimalité de $b_0$ dans $B_0$, on a donc $b = b_0$ d'où $(a,b) = (a_0,b_0)$.
+
+    Propriété 6.27
+    Soit $((E_i,\leq_i))_\{i \in \llbracket 1,n \rrbracket \}$ une famille finie d'ensembles munis d'ordres bien fondés. ($n \geq 2$). L'ordre produit défini sur $\displaystyle \prod_{i=1}^{n}E_i = E_1 \times \ldots \times E_n$ est bien fondé.
+
+    Démonstration Soit $A$ une partie non vide de $E_1 \times \ldots \times E_n$.
+    On pose $A_1 = \{a_1 \in E_1, \exists (x_1,\ldots,x_n) \in A^n, x_1 = a_1\}$. Comme $A$ est non vide, $A_1$ est une partie non vide de $E_1$ qui admet donc un élément minimal $m_1$.
+    On pose $A_2 = \{a_2 \in E_2, \exists (x_1,\ldots,x_n) \in A^n, x_2 = a_2 \text{ et } x_1 = m_1\}$. Comme $A$ est non vide, $A_2$ est une partie non vide de $E_2$ qui admet donc un élément minimal $m_2$. 
+
+    On construit ainsi $n$ ensembles non vides définis pour tout $i \in \mathbb{N}$ par : 
+    $$\begin{cases}
+        A_{i+1} = \{a_{i+1} \in E_{i+1}, \exists (x_1, \ldots, x_n) \in A^n, \forall j \in \llbracket 1, i \rrbracket, x_j = m_j \text{ et } x_{i+1} = a_{i+1}\} \\
+        m_i \text{ est un élément minimal de } A_i, \forall i \in \llbracket 1,n \rrbracket 
+    \end{cases}$$
+    L'élément $m = (m_1, \ldots, m_n)$ est alors, par construction, un élément minimal de $A$.
+
+    Remarque 6.28
+    Si $E$ est muni d'un ordre total et bien fondé, alors toute partie non vide de $E$ admet un plus petit élément. On parle alors de bon ordre et d'ensemble bien ordonné.
+
+    Définition 6.29
+    Soit $E$ un ensemble. On appelle prédicat sur $E$ toute propriété $P$ dépendant d'éléments de $E$.
+    Lorsque $P$ dépend de $n$ paramètres, on dit que $P$ est d'arité $n$. On note alors $\forall (x_1, \ldots, x_n) \in E^n$. \begin{itemize}
+        \item $P(x_1,...,x_n)$ lorsque la propriété est vraie.
+        \item $\lnot P(x_1,...,x_n)$ lorsque la propriété est fausse.
+    \end{itemize}
+
+    Remarque 6.30
+    Une relation bianire est en fait un prédicat d'arité 2.
+
+    Théorème 6.31
+    Soit $(E,\leq)$ un ensemble ordonné. Les propositions suivantes sont équivalentes : \begin{enumerate}
+        \item $\leq$ est un ordre bien fondé.
+        \item Il n'existe pas de suite infinie strictement décroissante d'élements de $E$.
+        \item Pour tout prédicat $P$ sur $E$, si: $$\forall (x,y) \in E^2, x > y \implies P(x)$$
+    \end{enumerate}
 
 
 \end{adjustwidth}
