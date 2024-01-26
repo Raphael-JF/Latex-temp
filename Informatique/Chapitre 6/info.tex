@@ -5,55 +5,211 @@
 \usepackage{multicol}
 \usepackage{changepage}
 \usepackage{stmaryrd}
+\usepackage[framemethod=tikz]{mdframed}
 
 % physique
 \definecolor{oranges}{RGB}{255, 242, 230}
 \definecolor{rouges}{RGB}{255, 230, 230}
 \definecolor{rose}{RGB}{255, 204, 204}
 
-% maths
-\definecolor{saumon}{RGB}{224, 209, 240}
+% maths - info
+\definecolor{rouge_fonce}{RGB}{204, 0, 0}
+\definecolor{bleu_fonce}{RGB}{0, 0, 255}
+\definecolor{vert_fonce}{RGB}{0, 69, 33}
 
+\definecolor{orange_foncee}{RGB}{255, 153, 0}
+\definecolor{myrtille}{RGB}{225, 225, 255}
+\definecolor{mayonnaise}{RGB}{255, 253, 233}
+\definecolor{magenta}{RGB}{224, 209, 240}
+\definecolor{pomme}{RGB}{204, 255, 204}
+\definecolor{mauve}{RGB}{255, 230, 255}
+
+% commandes
+\newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
+
+\newmdenv[
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=mayonnaise,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_definition}
+
+\newmdenv[
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=white,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_exemples}
+
+\newmdenv[
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=magenta,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_proposition}
+
+\newmdenv[
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=pomme,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_démonstration}
+
+\newmdenv[
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=white,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_remarques}
+
+
+\newenvironment{definition}[2]
+{
+    \begin{boite_definition}
+    \textbf{\textcolor{rouge_fonce}{Définition #1}} - \textit{#2} \\ \\
+}
+{
+    \end{boite_definition}
+    \vspace{15pt}
+}
+
+\newenvironment{exemples}[2]
+{
+    \begin{boite_exemples}
+    \textbf{\textcolor{bleu_fonce}{Exemples #1}} - \textit{#2} \\ \\
+    \begin{itemize}[label=$\blacktriangleright$ ]                    
+}
+{   
+    \end{itemize}
+    \end{boite_exemples}
+    \vspace{15pt}
+}
+
+\newenvironment{proposition}[2]
+{
+    \begin{boite_proposition}
+    \textbf{\textcolor{rouge_fonce}{Propriété #1}} - \textit{#2} \\ \\
+}
+{
+    \end{boite_proposition}
+    \vspace{15pt}
+}
+
+\newenvironment{démonstration}
+{
+    \begin{boite_démonstration}
+    \textbf{\textcolor{orange_fonce} Démonstration}\\ \\
+}
+{
+    \end{boite_démonstration}
+    \vspace{15pt}
+}
+
+\newenvironment{remarques}[2]
+{
+    \begin{boite_remarques}
+    \textbf{\textcolor{bleu_fonce}{Remarque #1}} - \textit{#2} \\ \\
+    \begin{itemize}[label=$\blacktriangleright$ ]                    
+}
+{   
+    \end{itemize}
+    \end{boite_remarques}
+    
+}
 
 \renewcommand{\labelitemi}{--}
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
 
-Définition 6.16
+\begin{definition}{6.16}{prédécesseur, successeur immédiats}
 Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
     \begin{itemize}
-        \item $p \in E$ est un prédécesseur immédiat de $e$ si $p<e$ et il n'existe pas d'élement $a\in e$ tel que $p<a<e$
-        \item $s \in E$ est successeur  immédiat de $e$ si $e<s$ et il n'existe pas d'élement $a\in e$ tel que $e<a<s$
+        \item $p \in E$ est un \notion{prédécesseur immédiat} de $e$ si $p<e$ et il n'existe pas d'élement $a\in E$ tel que $p<a<e$
+        \item $s \in E$ est \notion{successeur  immédiat} de $e$ si $e<s$ et il n'existe pas d'élement $a\in E$ tel que $e<a<s$
     \end{itemize}
-Exemple 6.17
-Dans $\mathbb{N}$ muni de l'ordre usuel :
-\begin{itemize}
-    \item $\forall n \in \mathbb{N}$, $n+1$ est le successeur immédiat de $n$.
-    \item $\forall n \in \mathbb{N}^*$, $n+1$ est le prédécesseur immédiat de $n$.
-    \item $0$ n'a pas de prédécesseur (en particulier immédiat).
-\end{itemize}
+\end{definition}
 
-Exemple 6.18
-Dans $\mathbb{R}$ muni de l'ordre usuel, aucun élément $e$ n'a de prédécesseur (resp.successeur) immédiat puisque si $a<e$ alors en particulier $a<\frac{a+e}{2}<e$.
+\begin{exemples}{6.17}{prédécesseur, successeur immédiats}
+    \item $\forall n \in \mathbb{N}$, $n+1$ est le successeur immédiat de $n$ pour l'ordre usuel.
+    \item $\forall n \in \mathbb{N}^*$, $n-1$ est le prédécesseur immédiat de $n$ pour l'ordre usuel.
+    \item $0$ n'a pas de prédécesseur (en particulier immédiat) pour l'ordre usuel.
+\end{exemples}
 
-Définition 6.19
-Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que \begin{itemize}
-    \item $e$ est un élément minimal de $E$ s'il n'admet pas de prédécesseur.
-    \item $e$ est un élément maximal de $E$ s'il n'admet pas de successeur.
-\end{itemize}
 
-Exemple 6.20
-Soit $E$ un ensemble. L'ensemble $A = \mathcal{P}(E)\\ \{\varnothing\}$ des parties non vides de $E$ muni de l'inclusion et ordonné. Si $E \neq \varnothing$, $E$ est l'élément maximal de $A$, et $\forall e \in E$, $\{e\}$ est un élément maximal de $A$.
+\begin{exemples}{6.18}{prédécesseur, successeur immédiats}
+    \item Dans $\mathbb{R}$ muni de l'ordre usuel, aucun élément $e$ n'a de prédécesseur (resp.successeur) immédiat puisque si $a<e$ alors en particulier $a<\frac{a+e}{2}<e$.
+\end{exemples}
 
-Remarque 6.21
-L'ensemble précédent montre en particulier qu'un ensemble peut tout à fait avoir plusieurs éléments minimaux ou maximaux.
 
-Définition 6.22
-Soit $E$ un ensemble ordonné non vide et $e\in E$. On dit que :
-\begin{itemize}
-    \item $e$ est le \textbf{plus grand élément} de E si $\forall x \in E, x \leq e$.
-    \item $e$ est le \textbf{plus petit élément} de E si $\forall x \in E, x \geq e$.
-\end{itemize}
+\begin{definition}{6.19}{éléments minimal, maximal}
+    Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que \begin{itemize}
+        \item $e$ est un \notion{élément minimal} de $E$ s'il n'admet pas de prédécesseur.
+        \item $e$ est un \notion{élément maximal} de $E$ s'il n'admet pas de successeur.
+    \end{itemize}
+
+\end{definition}
+
+\begin{exemples}{6.20}{éléments minimal, maximal}
+    \item Soit $E$ un ensemble. L'ensemble $A = \mathcal{P}(E) \ \{\varnothing\}$ des parties non vides de $E$ muni de l'inclusion et ordonné. Si $E \neq \varnothing$, $E$ est l'élément maximal de $A$, et $\forall e \in E$, $\{e\}$ est un élément maximal de $A$.
+\end{exemples}
+
+\begin{remarques}{6.21}{sur le dernier exemple}
+    \item L'ensemble précédent montre en particulier qu'un ensemble peut tout à fait avoir plusieurs éléments minimaux ou maximaux.
+\end{remarques}
+
+\begin{definition}{6.22}{plus grand, plus petit éléments}
+    Soit $E$ un ensemble ordonné non vide et $e\in E$. On dit que :
+    \begin{itemize}
+        \item $e$ est le \notion{plus grand élément} de E si $\forall x \in E, x \leq e$.
+        \item $e$ est le \notion{plus petit élément} de E si $\forall x \in E, x \geq e$.
+    \end{itemize}
+\end{definition}
+
 
 Démonstration : (preuve de l'unicité)
 Supposons par l'absurde, qu'il n'y a pas unicité du plus petit élément. 
@@ -126,6 +282,25 @@ Exemple 6.24 : \textit{Ordres bien fondés}
         \item Il n'existe pas de suite infinie strictement décroissante d'élements de $E$.
         \item Pour tout prédicat $P$ sur $E$, si: $$\forall (x,y) \in E^2, x > y \implies P(x)$$
     \end{enumerate}
+
+    Démonstration :
+    \begin{itemize}
+        \item (1) $\implies$ (2) : Supposons que $\leq$ est un ordre bien fondé, et par l'absurde, que $(x_n)_{n \in \mathbb{N}}$ est une suite infinie strictement décoissante d'éléments de $E$. Alors l'ensemble non vide $\{x_n, \in \mathbb{N}\} \subset E$ admet un élément minimal $x_k$; Ainsi, par décroissance stricte de $(x_n)$, $x_{k+1} < x_k$, ce qui contredit la minimalité de $x_k$
+        \item (2) $\implies$ (3) : Soit $P$ un prédicat sur $E$. On suppose que $$(\forall (x,y) \in E^2, y < x \implies P(y)) \quad \implies \quad P(x) $$.On note (A) cette propriété. Montrons que $$ \forall x \in E, P(x)$$. Pour cela, on considère l'ensemble $A = \{x \in E, \lnot P(x)\} \subset E$. \\ Supposons, par l'absurde que $A$ est non vide : soit $x_0$ tel que $\lnot P(x_0)$. \\ Alors par contraposée de (A), il existe $x_1 \in E$ tel que $x_1 < x_0$ et $\lnot P(x_1)$. \\En itérant ce raisonnement, on construit une suite infinie, strictement décroissante d'éléments $x_i \in E$ telle que $\forall i, \lnot P(x_i)$, ce qui contredit la propriété (2).
+        \item (3) $\implies$ (1). Soit $A$ une partie non vide de $E$. on note $P(x)$ le prédicat $x \notin A$. Puisque $A \neq \emptyset$, la proposition "$\forall $" "$\forall y \in E, y<m \text{et} P(y)$"
+        
+        Remarque 6.33 : 
+        La proposition (3) définit un principe de récurrence sur n'importe quel ensemble d'un ordre bien fondé. dans le cas où $E = \mathbb{N}$, on retrouve le principe de récurrrence forte.
+
+        % \begin{exemples}{6.34}{Fonction d'Ackermann}
+        %     \item $$\forall (m,n) \in \mathbb{N}^2, \mathcall{A}(m,n) = \begin{cases}
+        %         n+1 \quad \text{ si } m=0 \\
+        %         \mathcall{A}(m-1,1) \quad \text{si } m \geq 1 \text{ et } n=0\\
+        %         \mathcall{A}(m-1,\mathcall{A}) \quad \text{si } m \geq 1 \text{ et } n=0\\
+                
+        %     \end{cases}$$
+        % \end{exemples}
+    \end{itemize}
 
 
 \end{adjustwidth}
