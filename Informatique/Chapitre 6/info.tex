@@ -105,7 +105,7 @@
   innerbottommargin=10pt,
   skipabove=\topsep,
   skipbelow=\topsep,
-]{boite_remarques}
+]{boite_remarque}
 
 
 \newenvironment{definition}[2]
@@ -150,15 +150,15 @@
     \vspace{15pt}
 }
 
-\newenvironment{remarques}[2]
+\newenvironment{remarque}[2]
 {
-    \begin{boite_remarques}
+    \begin{boite_remarque}
     \textbf{\textcolor{bleu_fonce}{Remarque #1}} - \textit{#2} \\ \\
-    \begin{itemize}[label=$\blacktriangleright$ ]                    
+    \begin{itemize}[label=$\blacktriangleright \quad $ ]                    
 }
 {   
     \end{itemize}
-    \end{boite_remarques}
+    \end{boite_remarque}
     
 }
 
@@ -198,9 +198,9 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
     \item Soit $E$ un ensemble. L'ensemble $A = \mathcal{P}(E) \ \{\varnothing\}$ des parties non vides de $E$ muni de l'inclusion et ordonné. Si $E \neq \varnothing$, $E$ est l'élément maximal de $A$, et $\forall e \in E$, $\{e\}$ est un élément maximal de $A$.
 \end{exemples}
 
-\begin{remarques}{6.21}{sur le dernier exemple}
+\begin{remarque}{6.21}{sur le dernier exemple}
     \item L'ensemble précédent montre en particulier qu'un ensemble peut tout à fait avoir plusieurs éléments minimaux ou maximaux.
-\end{remarques}
+\end{remarque}
 
 \begin{definition}{6.22}{plus grand, plus petit éléments}
     Soit $E$ un ensemble ordonné non vide et $e\in E$. On dit que :
@@ -285,10 +285,15 @@ Exemple 6.24 : \textit{Ordres bien fondés}
 
     Démonstration :
     \begin{itemize}
-        \item (1) $\implies$ (2) : Supposons que $\leq$ est un ordre bien fondé, et par l'absurde, que $(x_n)_{n \in \mathbb{N}}$ est une suite infinie strictement décoissante d'éléments de $E$. Alors l'ensemble non vide $\{x_n, \in \mathbb{N}\} \subset E$ admet un élément minimal $x_k$; Ainsi, par décroissance stricte de $(x_n)$, $x_{k+1} < x_k$, ce qui contredit la minimalité de $x_k$
-        \item (2) $\implies$ (3) : Soit $P$ un prédicat sur $E$. On suppose que $$(\forall (x,y) \in E^2, y < x \implies P(y)) \quad \implies \quad P(x) $$.On note (A) cette propriété. Montrons que $$ \forall x \in E, P(x)$$. Pour cela, on considère l'ensemble $A = \{x \in E, \lnot P(x)\} \subset E$. \\ Supposons, par l'absurde que $A$ est non vide : soit $x_0$ tel que $\lnot P(x_0)$. \\ Alors par contraposée de (A), il existe $x_1 \in E$ tel que $x_1 < x_0$ et $\lnot P(x_1)$. \\En itérant ce raisonnement, on construit une suite infinie, strictement décroissante d'éléments $x_i \in E$ telle que $\forall i, \lnot P(x_i)$, ce qui contredit la propriété (2).
-        \item (3) $\implies$ (1). Soit $A$ une partie non vide de $E$. on note $P(x)$ le prédicat $x \notin A$. Puisque $A \neq \emptyset$, la proposition "$\forall $" "$\forall y \in E, y<m \text{et} P(y)$"
+        \item (1) $\implies$ (2) $\quad$: Supposons que $\leq$ est un ordre bien fondé, et par l'absurde, que $(x_n)_{n \in \mathbb{N}}$ est une suite infinie strictement décoissante d'éléments de $E$. Alors l'ensemble non vide $\{x_n, \in \mathbb{N}\} \subset E$ admet un élément minimal $x_k$; Ainsi, par décroissance stricte de $(x_n)$, $x_{k+1} < x_k$, ce qui contredit la minimalité de $x_k$
+        \item (2) $\implies$ (3) $\quad$: Soit $P$ un prédicat sur $E$. On suppose que $$(\forall (x,y) \in E^2, y < x \implies P(y)) \quad \implies \quad P(x) $$.On note (A) cette propriété. Montrons que $$ \forall x \in E, P(x)$$. Pour cela, on considère l'ensemble $A = \{x \in E, \lnot P(x)\} \subset E$. \\ Supposons, par l'absurde que $A$ est non vide : soit $x_0$ tel que $\lnot P(x_0)$. \\ Alors par contraposée de (A), il existe $x_1 \in E$ tel que $x_1 < x_0$ et $\lnot P(x_1)$. \\En itérant ce raisonnement, on construit une suite infinie, strictement décroissante d'éléments $x_i \in E$ telle que $\forall i, \lnot P(x_i)$, ce qui contredit la propriété (2).
+        \item (3) $\implies$ (1) $\quad$ Soit $A$ une partie non vide de $E$. on note $P(x)$ le prédicat $x \notin A$. Puisque $A \neq \emptyset$, la proposition "$\forall x \in E, P(x) $ est fausse. \\ Par contraposée de la proposition (3), on en déduit que : $$\exists m \in E, y<m, P(y) et \lnot P(m)$$ Donc on choisit $m \in A $ tel que $$\forall y \in E, y<m \implies y \notin A$$ $m$ est alors minimal dans $A$ \\ donc $\leq$ est bien fondée.
         
+        
+        \begin{remarque}{6.32}{À propos du théorème 6.31}
+            \item La propriété (2) peut permettre de justifier la terminaison de d'un algorithme en utilisant un ordre produit, par exemple, bien fondé, sur l'ensemble des valeurs que peuvent prendre les variables de l'algorithme (on retrouve la notion de variant).
+        \end{remarque}
+
         Remarque 6.33 : 
         La proposition (3) définit un principe de récurrence sur n'importe quel ensemble d'un ordre bien fondé. dans le cas où $E = \mathbb{N}$, on retrouve le principe de récurrrence forte.
 
@@ -301,6 +306,7 @@ Exemple 6.24 : \textit{Ordres bien fondés}
         %     \end{cases}$$
         % \end{exemples}
     \end{itemize}
+    
 
 
 \end{adjustwidth}
