@@ -28,6 +28,7 @@
 \newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
 
 \newmdenv[
+  nobreak=true,
   topline=true,
   bottomline=true,
   rightline=true,
@@ -44,6 +45,7 @@
 ]{boite_definition}
 
 \newmdenv[
+  nobreak=true,
   topline=true,
   bottomline=true,
   rightline=true,
@@ -60,6 +62,7 @@
 ]{boite_exemples}
 
 \newmdenv[
+  nobreak=true,
   topline=true,
   bottomline=true,
   rightline=true,
@@ -76,22 +79,24 @@
 ]{boite_proposition}
 
 \newmdenv[
+  nobreak=true,
   topline=true,
   bottomline=true,
   rightline=true,
   leftline=true,
   linewidth=0.5pt,
   linecolor=black,
-  backgroundcolor=pomme,
+  backgroundcolor=white,
   innerleftmargin=10pt,
   innerrightmargin=10pt,
   innertopmargin=10pt,
   innerbottommargin=10pt,
   skipabove=\topsep,
   skipbelow=\topsep,
-]{boite_démonstration}
+]{boite_demonstration}
 
 \newmdenv[
+  nobreak=true,
   topline=true,
   bottomline=true,
   rightline=true,
@@ -121,8 +126,8 @@
 \newenvironment{exemples}[2]
 {
     \begin{boite_exemples}
-    \textbf{\textcolor{bleu_fonce}{Exemples #1}} - \textit{#2} \\ \\
-    \begin{itemize}[label=$\blacktriangleright$ ]                    
+    \textbf{\textcolor{bleu_fonce}{Exemples #1}} - \textit{#2} \\
+    \begin{itemize}[label=$\blacktriangleright \quad $]                    
 }
 {   
     \end{itemize}
@@ -140,13 +145,23 @@
     \vspace{15pt}
 }
 
-\newenvironment{démonstration}
+\newenvironment{theoreme}[2]
 {
-    \begin{boite_démonstration}
-    \textbf{\textcolor{orange_fonce} Démonstration}\\ \\
+    \begin{boite_proposition}
+    \textbf{\textcolor{rouge_fonce}{Propriété #1}} - \textit{#2} \\ \\
 }
 {
-    \end{boite_démonstration}
+    \end{boite_proposition}
+    \vspace{15pt}
+}
+
+\newenvironment{demonstration}
+{
+    \begin{boite_demonstration}
+    \textbf{\textcolor{rouge_fonce}{Démonstration}}\\ \\
+}
+{
+    \end{boite_demonstration}
     \vspace{15pt}
 }
 
@@ -211,7 +226,7 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
 \end{definition}
 
 
-Démonstration : (preuve de l'unicité)
+demonstration : (preuve de l'unicité)
 Supposons par l'absurde, qu'il n'y a pas unicité du plus petit élément. 
 Soit $e$ et $e'$ deux plus petits éléments distincts de $E$. 
 Alors, par définition, ($e$ est un plus petit élément $E$, $e \leq e')$. de même, $e' \leq e$. 
@@ -239,7 +254,7 @@ Exemple 6.24 : \textit{Ordres bien fondés}
     Soit $(A,\leq_A) et (B,\leq_B)$ deux ensembles ordonnés.
     Si $\leq_A$ et $\leq_B$ sont bien fondées, l'ordre lexicographique défini sur $A \times B$ est bien fondé.
 
-    Démonstration : 
+    demonstration : 
     Soit $X$ une partie non vide de $A \times B$. Montrons qu'elle admet un élément minimal.
     On note $A_X = \{a \in A, \exists b \in B, (a,b) \in X\}$. $X$ est non vide, donc $A_X$ l'est également.
     De plus, comme $\leq_A$ est bien fondé, $A_X$ admet un élément minimal.
@@ -252,7 +267,7 @@ Exemple 6.24 : \textit{Ordres bien fondés}
     Propriété 6.27
     Soit $((E_i,\leq_i))_\{i \in \llbracket 1,n \rrbracket \}$ une famille finie d'ensembles munis d'ordres bien fondés. ($n \geq 2$). L'ordre produit défini sur $\displaystyle \prod_{i=1}^{n}E_i = E_1 \times \ldots \times E_n$ est bien fondé.
 
-    Démonstration Soit $A$ une partie non vide de $E_1 \times \ldots \times E_n$.
+    demonstration Soit $A$ une partie non vide de $E_1 \times \ldots \times E_n$.
     On pose $A_1 = \{a_1 \in E_1, \exists (x_1,\ldots,x_n) \in A^n, x_1 = a_1\}$. Comme $A$ est non vide, $A_1$ est une partie non vide de $E_1$ qui admet donc un élément minimal $m_1$.
     On pose $A_2 = \{a_2 \in E_2, \exists (x_1,\ldots,x_n) \in A^n, x_2 = a_2 \text{ et } x_1 = m_1\}$. Comme $A$ est non vide, $A_2$ est une partie non vide de $E_2$ qui admet donc un élément minimal $m_2$. 
 
@@ -283,11 +298,15 @@ Exemple 6.24 : \textit{Ordres bien fondés}
         \item Pour tout prédicat $P$ sur $E$, si: $$\forall (x,y) \in E^2, x > y \implies P(x)$$
     \end{enumerate}
 
-    Démonstration :
-    \begin{itemize}
-        \item (1) $\implies$ (2) $\quad$: Supposons que $\leq$ est un ordre bien fondé, et par l'absurde, que $(x_n)_{n \in \mathbb{N}}$ est une suite infinie strictement décoissante d'éléments de $E$. Alors l'ensemble non vide $\{x_n, \in \mathbb{N}\} \subset E$ admet un élément minimal $x_k$; Ainsi, par décroissance stricte de $(x_n)$, $x_{k+1} < x_k$, ce qui contredit la minimalité de $x_k$
-        \item (2) $\implies$ (3) $\quad$: Soit $P$ un prédicat sur $E$. On suppose que $$(\forall (x,y) \in E^2, y < x \implies P(y)) \quad \implies \quad P(x) $$.On note (A) cette propriété. Montrons que $$ \forall x \in E, P(x)$$. Pour cela, on considère l'ensemble $A = \{x \in E, \lnot P(x)\} \subset E$. \\ Supposons, par l'absurde que $A$ est non vide : soit $x_0$ tel que $\lnot P(x_0)$. \\ Alors par contraposée de (A), il existe $x_1 \in E$ tel que $x_1 < x_0$ et $\lnot P(x_1)$. \\En itérant ce raisonnement, on construit une suite infinie, strictement décroissante d'éléments $x_i \in E$ telle que $\forall i, \lnot P(x_i)$, ce qui contredit la propriété (2).
-        \item (3) $\implies$ (1) $\quad$ Soit $A$ une partie non vide de $E$. on note $P(x)$ le prédicat $x \notin A$. Puisque $A \neq \emptyset$, la proposition "$\forall x \in E, P(x) $ est fausse. \\ Par contraposée de la proposition (3), on en déduit que : $$\exists m \in E, y<m, P(y) et \lnot P(m)$$ Donc on choisit $m \in A $ tel que $$\forall y \in E, y<m \implies y \notin A$$ $m$ est alors minimal dans $A$ \\ donc $\leq$ est bien fondée.
+
+    \begin{demonstration}
+        \begin{itemize}
+            \item (1) $\implies$ (2) $\quad$: Supposons que $\leq$ est un ordre bien fondé, et par l'absurde, que $(x_n)_{n \in \mathbb{N}}$ est une suite infinie strictement décoissante d'éléments de $E$. Alors l'ensemble non vide $\{x_n, \in \mathbb{N}\} \subset E$ admet un élément minimal $x_k$; Ainsi, par décroissance stricte de $(x_n)$, $x_{k+1} < x_k$, ce qui contredit la minimalité de $x_k$
+            \item (2) $\implies$ (3) $\quad$: Soit $P$ un prédicat sur $E$. On suppose que $$(\forall (x,y) \in E^2, y < x \implies P(y)) \quad \implies \quad P(x) $$.On note (A) cette propriété. Montrons que $$ \forall x \in E, P(x)$$. Pour cela, on considère l'ensemble $A = \{x \in E, \lnot P(x)\} \subset E$. \\ Supposons, par l'absurde que $A$ est non vide : soit $x_0$ tel que $\lnot P(x_0)$. \\ Alors par contraposée de (A), il existe $x_1 \in E$ tel que $x_1 < x_0$ et $\lnot P(x_1)$. \\En itérant ce raisonnement, on construit une suite infinie, strictement décroissante d'éléments $x_i \in E$ telle que $\forall i, \lnot P(x_i)$, ce qui contredit la propriété (2).
+            \item (3) $\implies$ (1) $\quad$ Soit $A$ une partie non vide de $E$. on note $P(x)$ le prédicat $x \notin A$. Puisque $A \neq \emptyset$, la proposition "$\forall x \in E, P(x) $ est fausse. \\ Par contraposée de la proposition (3), on en déduit que : $$\exists m \in E, y<m, P(y) et \lnot P(m)$$ Donc on choisit $m \in A $ tel que $$\forall y \in E, y<m \implies y \notin A$$ $m$ est alors minimal dans $A$ \\ donc $\leq$ est bien fondée.
+        \end{itemize}
+    \end{demonstration}
+    
         
         
         \begin{remarque}{6.32}{À propos du théorème 6.31}
@@ -305,9 +324,120 @@ Exemple 6.24 : \textit{Ordres bien fondés}
                 
         %     \end{cases}$$
         % \end{exemples}
-    \end{itemize}
-    
 
+        \begin{definition}{6.35}{stabilité}
+            Soit $E$ un ensemble et $f:E^n \rightarrow E$ (pour $n \in \mathbb{N}$) une application. \\ On dit que $X \subset E$ est \notion{stable} par $f$ si $$ \forall x_1,\ldots,x_n \in X, f(x_1,\ldots,x_n) \in X$$
+        \end{definition}
+
+        \begin{definition}{6.36}{constructeurs}
+            Soit $E$ un ensemble. On se donne au plus :  \begin{itemize}
+                \item une partie $B \subset E$ correspondant aux éléments de base
+                \item un ensemble de \notion{constructeurs} $\mathcal{K} \subset \bigcup_{n \in \mathbb{N}^*} \mathcal{F}(E^n,E)$ i.e. un ensemble d'applications $f:E^n \rightarrow E$
+                où $n \in \mathbb{N}^*$ est appelé \notion{arité} de $f$.
+            \end{itemize}
+        L'\notion{ensemble inductif} associé est alors le plus petit ensemble $X \subset E$ contenant $B$ est stable par les constructeurs de $\mathcal{K}$.
+        \end{definition}
+
+        \begin{remarque}{6.37}{}
+            \item L'ensemble $B$ peut être défini par un ensemble d'\notion{assertions} et l'ensemble $\mathcal{K}$ par des \notion{règles d'inférence}
+        \end{remarque}
+
+        \begin{exemples}{6.38}{arithmétique de Péano}
+            \item L'ensemble $\mathbb{N}$ des entiers naturels est défini de manière inductive :\begin{itemize}
+                \item $\{0\} \subset \mathbb{N}$ (assertion)
+                \item si $n \in \mathbb{N}$, alors son successeur $S(n)$ appartient à $\mathbb{N}$ (règle d'inférence)
+            \end{itemize}
+        \end{exemples}
+
+        \begin{remarque}{6.39}{}
+            \item L'ensemble $\mathcal{P}(e)$ des parties d'un ensemble $E$ n'est pas nécessairement bien ordonné, l'existence d'un ensemble inductif n'est alors pas immédiate et découle de la propriété suivante.       
+        \end{remarque}
+
+        \begin{proposition}{6.40}{Caractérisation d'un ensemble inductif}
+            Soit $E$ un ensemble. Soit $B \subset E$ un ensemble d'élements de base et $\mathcal{K}$ un ensemble de constructeurs sur $E$. \\ On note $A$ l'ensemble des parties de $E$ contenant $B$ et stables par les constructeurs de $\mathcal{K}$. L'ensemble inductif défini par $B$ et $\mathcal{K}$ est alors : $$X = \bigcap_{Y \in A}Y$$
+        \end{proposition}
+
+        \begin{demonstration}
+            \begin{itemize}
+                \item On a : $$\forall Y \in A, B \text{ Donc } B \subset \bigcap_{Y \in A} Y$$ 
+                \item Montrons que $\bigcap_{Y \in A} Y$ est stable par les constructeurs de $\mathcal{K}$. \\ Soit $n \in \mathbb{N}^*$, $f:E^N \rightarrow E$ un constructeur de $\mathcal{K}$ et $x_1, \ldots, x_n \in \bigcap_{Y \in A} Y$ \\ Soit $Y \in A$. Alors $x_1, \ldots, x_n \in Y$. Comme, par définition de $A$, $Y$ est stable par $f$, $$f(x_1, \ldots, x_n) \in Y$$ et ce, indépendamment du choix de $Y$. On en déduit que $f(x_1, \ldots, x_n) \in \bigcap_{Y \in A} Y$, i.e. que $\bigcap_{Y \in A} Y$ est stable par $f$. 
+                \item Les deux points précédents justifient que $\bigcap_{Y \in A} Y \in A$.
+            \end{itemize}
+            De plus, pour tout $X \in A, \bigcap_{Y \in A} Y \subset X$. \\ $\bigcap_{Y \in A} Y$ est donc le plus petit élément de $A$, il s'agit ainsi de l'ensemble inductif recherché.
+        \end{demonstration}
+
+        \begin{exemples}{6.41}{}
+            \item On considère l'ensemble $E = \mathcal{P}(\mathbb{R})$. On pose $B = \{[0,2],[1,3]\}$ et $\mathcal{K} = \{\cap, \cup \}$. \\ L'ensemble inductif associé est alors $\{[0,2], [1,3], [0,3], [1,2]\}$.
+        \end{exemples}
+
+        \begin{proposition}{6.42}{}
+            soit $E$ un ensemble, $B \subset E$ un ensemble d'éléments de base et $\mathcal{K}$ un ensemble de constructeurs sur $E$. \\ On définit la suite $(Y_n)$ de parties de $E$ par : $\begin{cases}
+                Y_0 = B \\
+                \forall n \in \mathbb{N}, Y_{n+1} = \mathcal{Y_n \cup \mathcal{K}(Y_n)}
+            \end{cases}$
+            L'ensemble inductif défini par $B$ et $\mathcal{K}$ et alors : $$X = \bigcup_{n \in \mathbb{N}}Y_n$$
+        \end{proposition}
+
+        \begin{demonstration}
+            Soit $X$ l'ensemble inductif défini par $B$ et $\mathcal{K}$. \\ $B = Y_0 \subset \bigcup_{n \in \mathbb{N}}Y_n$. Montrons que $\bigcup_{n \in \mathbb{N}}Y_n$ est stable par les constructeurs de $\mathcal{K}$. Soit $f:E^p \rightarrow E (p \in \mathbb{N}^*)$ un constructeur de $\mathcal{K}$ et $x_1, \ldots, x_p \in \bigcup_{n \in \mathbb{N}}Y_n$. \\ Soit $n_1, \ldots, n_p \in \mathbb{N}$ tels que $$\forall i \in \llbracket 1,p \rrbracket, x_i \in Y_{n_i} $$ On note $n_0 = \max\{n_i, i \in \llbracket 1,p \rrbracket\}$. Alors, $$\forall i \in \llbracket 1,p \rrbracket$$, $x_i \in Y_{n_0}$ ($\supset Y_{n_i}$). \\ Par construction, on a donc $f(x_1,\ldots,x_p) \subset \mathcal{K}(Y_{n_0}) \subset Y_{n_0 + 1} \subset \bigcup_{n \in \mathbb{N}}Y_n$.\\ Par ailleurs, par récurrence immédiate, $$\forall n \in \mathbb{N}, Y_n \subset X$$ $\bigcup_{n \in \mathbb{N}}Y_n$ est donc une partie de $X$, contenant $B$, et stable par les constructeurs de $\mathcal{K}$. Or $X$ est le plus petit ensemble vérifiant cette propriété, on en déduit que $X = \bigcup_{n \in \mathbb{N}}Y_n$.
+        \end{demonstration}
+
+        \begin{remarque}{6.43}{}
+            \item Cette dernière propriété montre que l'ensemble $E$ n'a finalement pas d'importance. En pratique, on définit le plus souvent des objets de manière inductive en indiquant uniquement un ensemble de base et des constructeurs.
+        \end{remarque}
+
+        
+        \begin{exemples}{6.44}{Définition inductive des listes OCaml}
+            \item \texttt{[]} est la liste vide
+            \item si \texttt{e} est un élément \texttt{q} une liste, alors \texttt{e::q} est une liste d'élément en tête \texttt{e}. C'est cette construction qui justifie le filtrage de motif sur les listes OCaml.
+        \end{exemples}
+
+
+        \begin{definition}{6.45}{non ambiguïté d'une définition}
+            Soit $X \subset E$ un ensemble défini de manière inductive par un ensemble de base $B$ et un ensemble de constructeurs $\mathcal{K}$.\\ On dit que la définition de $X$ est \notion{non ambiguë} si es deux propriétés suviantes sont vérifiées : \begin{itemize}
+                \item $\forall f \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p \in X, f(x_1,\ldots, x_p) \notin B$
+                \item $\forall f,g \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p, \quad y_1, \ldots,y_p \in X, (f(x_1,\ldots, x_p) = g(y_1,\ldots,y_p)) \implies (f = g \text{ et } \forall i \in \llbracket 1,p \rrbracket, x_i = y_i)$
+            \end{itemize}
+            La définition non ambiguë d'un ensemble inductif permet de définir des fonctions de manière inductive sur cet ensemble.
+        \end{definition}
+
+        \begin{exemples}{6.46}{Définition inductive de la taille d'une liste OCaml}
+            \item $\begin{cases}
+                |\texttt{[]}| = 0 \\
+                |\texttt{[e::q]}| = 1 + |\texttt{q}|
+
+            \end{cases}$
+            
+        \end{exemples}
+
+\begin{definition}{6.47}{ordre induit}
+    Dans un ensemble inductif $ X \subset E $, l'\notion{ordre induit} $<$ est défini à partir des constructeur (ou règles d'inférence): \\ pour $n \in \mathbb{N}^*$, si $f:E^n \rightarrow E$ est un constructeur et étant donné les éléments $x_1, \ldots, x_n \in E$, alors : $$\forall i \in \llbracket 1,p \rrbracket, x_i < f(x_1,\ldots,x_p)$$
+\end{definition}
+
+\begin{theoreme}{6.48}{preuve par induction structurelle}
+    Soit $X \subset E$ un ensemble défini de manière inductive par un ensemble de base $B$ et un ensemble de constructeurs $\mathcal{K}$. Soit $\mathcal{P}$ un prédicat sur $E$. \\ si on a : \begin{itemize}
+        \item $\forall b \in B, \mathcal{P}$
+        \item $\forall f \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p \in X, (\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)) \implies (\mathcal{P}(f(x_1,\ldots,x_p)))$
+    \end{itemize}
+    Alors, $$\forall x \in X, \mathcal{P}(X)$$
+\end{theoreme}
+
+\begin{demonstration}
+    On définit la suite $(Y_n)$ par $\begin{cases}
+        Y_0 =  B \\
+        \forall n \in \mathbb{N}, Y_{n+1} = Y_n \cup \mathcal{K}(Y_n)
+    \end{cases}$
+    On a vu (6.42) qu'alors $X = \bigcup_{n \in \mathbb{N}}Y_n$. \\ Pour tout $x \in X$, on définit alors la \notion{hauteur} de $x$ : $h(x) = \min \{n \in \mathbb{N}, x \in Y_n\}$
+    On suppose que : \begin{itemize}
+        \item $\forall b \in B, \mathcal{P}$ (1)
+        \item $\forall f \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p \in X, (\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)) \implies (\mathcal{P}(f(x_1,\ldots,x_p)))$ (2)
+    \end{itemize}
+    Montrons par récurrence forte sur la hauteur $n$ des éléments de $X$ que $\forall x \in X, \mathcal{P}(X)$.
+    \begin{itemize}
+        \item Si $n = 0$ : \\Soit $x \in X$ tel que $h(x) = 0$, i.e. tel que $x \in Y_0 = B$. Alors d'après la propriété (1), $\mathcal{P}(x)$
+        \item Hérédité : Soit $n \in \mathbb{N}$ fixé. On suppose que $$\forall y \in X, h(y) \leq n \implies P(y)$$ Soit $x \in X$ tel que $h(x) = n+1$ \\ Montrons que $\mathcal{P}(x)$ est encore vraie.\\Par définition de la hauteur, $x \in Y_{n+1} = Y_{n} \cup \mathcal{K}(Y_n)$. De plus, $x \notin Y_n$ (sinon on aurait $h(x) \leq n$).\\Alors, $x \in \mathcal{K}(Y_n)$. Soit donc $f \in \mathcal{K} (\text{arité }p)$ et $y_1, \ldots, y_p \in Y_n$ tels que $x = f(y_1,\ldots y_p)$.\\ Alors $\forall i \in \llbracket 1,p \rrbracket, h(y_i) \leq n$ donc $P(y_i)$ est vrai par hypothèse de récurrence.\\D'après la proposition (2), on a donc $\mathcal{P}(x)$. Ainsi, par récurrence forte sur $n$, $$\forall n \in \mathbb{N}, \forall x \in X \text{ de hauteur } n, \mathcal{P}(x)$$
+    \end{itemize}
+\end{demonstration}
 
 \end{adjustwidth}
 \end{document}
