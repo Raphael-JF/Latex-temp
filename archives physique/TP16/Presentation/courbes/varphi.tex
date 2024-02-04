@@ -1,0 +1,40 @@
+%!TEX encoding = UTF-8 Unicode
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usetikzlibrary{plotmarks}
+\title{}
+\author{rapha}
+\pgfplotsset{compat=1.15}%ligne que je ne comprends pas trop
+\begin{document}
+\maketitle
+\[ \phi =\pi\cdot 0.00555555555555556\cdot d \]
+\[ G=\frac{U}{Ug} \]
+\[ Phi=-\arctan (2.8\cdot (\frac{f}{2250}-\frac{2250}{f})) \]
+Phi=phi(f)
+\paragraph{Modélisation}
+\[ \phi =-\arctan (2.8\cdot (\frac{f}{2250}-\frac{2250}{f})) \]
+
+\begin{tikzpicture}
+\begin{axis}[
+height=8cm,width=12cm
+,axis x line=bottom,axis y line=left
+,xmin=0,xmax=6.24
+,ymin=-1.49,ymax=1.507
+,grid=major
+,title={}
+,xlabel={f/kHz}
+,ylabel={$\phi$/rad}
+]
+\addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {varphi10.txt};
+\addplot[draw=blue,mark=none,smooth] file {varphi11.txt};
+\addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {varphi12.txt};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

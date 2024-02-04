@@ -1,11 +1,13 @@
 \documentclass{article}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,mathtools}
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{changepage}
 \usepackage{stmaryrd}
+\usepackage{graphicx}
 \usepackage[framemethod=tikz]{mdframed}
+\usepackage{tikz,pgfplots}
 
 % physique
 \definecolor{oranges}{RGB}{255, 242, 230}
@@ -24,11 +26,8 @@
 \definecolor{pomme}{RGB}{204, 255, 204}
 \definecolor{mauve}{RGB}{255, 230, 255}
 
-% commandes
-\newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
-\newcommand{\mb}[1]{\mathbb{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
 
+% Cours
 
 \newmdenv[
   nobreak=true,
@@ -180,11 +179,36 @@
     
 }
 
-\renewcommand{\labelitemi}{--}
+
+
+%Corrections
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=mayonnaise,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_question}
+
+
+\newenvironment{question}[2]
+{
+    \begin{boite_question}
+    \textbf{\textcolor{rouge_fonce}{Question #1}} \textit{#2} \\ \\
+}
+{
+    \end{boite_question}
+    \vspace{15pt}
+}
+
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
-
-
-
-\end{adjustwidth}
-\end{document}

@@ -1,0 +1,37 @@
+%!TEX encoding = UTF-8 Unicode
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usetikzlibrary{plotmarks}
+
+\usepackage{xcolor}
+\definecolor{vert_fonce}{RGB}{0, 69, 33}
+
+\pgfplotsset{compat=1.15}%ligne que je ne comprends pas trop
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+height=8cm,width=12cm
+,axis x line=bottom,axis y line=left
+,xmin=0,xmax=6.24
+,ymin=0,ymax=0.8805
+,grid=major
+,title={Graphe ajusté de $G(f)$}
+,xlabel={$f$/kHz}
+,ylabel={$G$}
+]
+\addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {G10.txt};
+\addplot[draw=blue,mark=none,smooth] file {G11.txt};
+\addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {G12.txt};
+
+\addplot[black,dashed,domain=0:6.5] {0.5982} node [pos=0.8,above right,text=black]{$\displaystyle \frac{G_{max}}{\sqrt{2}}$};
+\draw[vert_fonce] (axis cs:1.884,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:1.884,0.5982) node [pos=0.135,below left]{$f_{c1}$};
+\draw[vert_fonce] (axis cs:2.687,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:2.687,0.5982) node [pos=0.135,below left]{$f_{c2}$};
+\end{axis}
+\end{tikzpicture}
+\end{document}

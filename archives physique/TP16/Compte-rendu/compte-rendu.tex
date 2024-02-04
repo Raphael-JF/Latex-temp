@@ -1,0 +1,179 @@
+\input{../../../stock/commands.tex}
+\input{../../../stock/en-tete.tex}
+
+
+	\centering
+	{\LARGE \textsc{Cours de Physique}\par}
+	\vspace{1cm}
+	{\Large \textsc{TP 16}\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Résonance du circuit RLC série\par}
+	\vspace{2cm}
+	{\Large\itshape Raphaël Jontef \& Romain Van Pradelles de Palmaert\par}
+	
+
+	\vspace{8cm}
+
+
+\begin{question}{1}{ - facteur qualité, pulsation, fréquence, période propres}
+    Nous avons calculé : \\ \\
+    \begin{cases}
+        &\omega_0 = 1,4 \times 10^4 \text{ rad} \cdot \text{ s }^{-1} \\
+        &f_0 = 2,25 \text{ kHz} \\
+        &T_0 = 444 \text{ {$\mu$}s} \\
+        &Q = 2,8
+    \end{cases}
+\end{question}
+
+\begin{question}{2}{ - Lien entre $u_R$ et $i$}
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{RLC.png}
+    \end{center}
+    Par loi d'Ohm, on a \begin{align*}
+        &\forall t, u_R(t) = R \cdot i(t)\\
+        \implies \Aboxed{&\forall t, i(t) = \frac{u_R(t)}{R}}
+    \end{align*}
+    $u_R$ et $i$ diffèrent d'une constante multiplicative, leur allure sera donc la même, celle d'une fonction sinusoïdale :
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width = 0.35\textwidth, height = 90pt,
+                xmax = 1800,
+                xmin = 0,
+                ymax = 10,
+                ymin = 0,
+                samples=150,
+                xtick ={0},
+                ytick ={0},
+                xlabel={$t$},
+                ylabel={$u_R(t)$},
+                axis lines=middle,
+                grid=major,
+                ]
+                \addplot[blue,thick,domain=0:1800] {sin(x)+4};
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+    
+    
+\end{question}
+
+\begin{question}{3}{ - fréquence de résonance par tâtonnement}
+    Cette fréquence $f_r$ vérifie $f_r \approx f_0 = 2,25 \text{ kHz} $.
+\end{question}
+
+\begin{question}{4}{ - Application du modèle de Thévenin}
+    On modélise le GBF par l'association en série d'une source de tension sinusoïdale idéale avec une résistance $R_g$ de 50 ohms.
+    \begin{center}
+        \includegraphics[width=0.4\textwidth]{RRLC.png}
+    \end{center}
+    À présent, la tension $u_g$ vaut :
+       $$\Aboxed{u_g = e(t) - R_g \cdot i(t)} \quad \text{(résistance en convention générateur)}$$
+\end{question}
+
+\begin{question}{5}{ - Au voisinage de $f_r$}
+    Puisque l'amplitude de $u_g$ est maximale en $f_r$, en s'éloignant de cette fréquence, l'amplitude diminuera.
+\end{question}
+
+\begin{question}{6}{ - Mode $XY$}
+    \begin{array}{rr}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width = 0.2\textwidth,
+                title = {En phase},
+                xmax = 5,
+                xmin = 0,
+                ymax = 5,
+                ymin = 0,
+                ytick = {0},
+                xtick = {0},
+                samples=2,
+                xlabel={$X$},
+                ylabel={$Y$},
+                axis lines=middle,
+                grid=major,
+                ]
+                \addplot[purple,thick,domain =1:3] {x};
+            \end{axis}
+        \end{tikzpicture} &
+        \begin{tikzpicture}
+            \begin{axis}[
+                width = 0.2\textwidth,
+                title = {En opposition de phase},
+                xmax = 5,
+                xmin = 0,
+                ymax = 5,
+                ymin = 0,
+                ytick = {0},
+                xtick = {0},
+                samples=2,
+                xlabel={$X$},
+                ylabel={$Y$},
+                axis lines=middle,
+                grid=major,
+                ]
+                \addplot[purple,thick,domain =1:3] {-x + 4};
+            \end{axis}
+        \end{tikzpicture}
+    \end{array}
+\end{question}
+
+\begin{question}{7}{ - fréquence de résonance par mode $XY$}
+    On adapte la fréquence de $e(t)$ de sorte que $u_R$ (et donc $i$) soit en phase avec $u_g$.
+\end{question}
+
+\begin{question}{9}{ - Graphe de $G = \frac{U_R}{U_g}$}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+            ,axis x line=bottom,axis y line=left
+            ,xmin=0,xmax=6.24
+            ,ymin=0,ymax=0.8805
+            ,grid=major
+            ,title={Graphe ajusté de $\displaystyle G(f) = \frac{U_R}{U_g}$}
+            ,xlabel={$f$/kHz}
+            ,ylabel={$G$}
+            ]
+            \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {../Presentation/courbes/G10.txt};
+            \addplot[draw=blue,mark=none,smooth] file {../Presentation/courbes/G11.txt};
+            \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {../Presentation/courbes/G12.txt};
+
+            \addplot[black,dashed,domain=0:6.5] {0.5982} node [pos=0.8,above right,text=black]{$\displaystyle \frac{G_{max}}{\sqrt{2}}$};
+            \draw[vert_fonce] (axis cs:1.884,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:1.884,0.5982) node [pos=0.135,below left]{$f_{c1}$};
+            \draw[vert_fonce] (axis cs:2.687,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:2.687,0.5982) node [pos=0.135,below right]{$f_{c2}$};
+            \end{axis}
+        \end{tikzpicture}
+        \end{center}
+\end{question}
+
+
+\begin{question}{10}{ - Déterminaison de $Q$}
+    Nous trouvons : 
+    \begin{cases}
+        &f_{c1} = 1,884 \text{ kHz} \\
+        &f_{c2} = 2,687 \text{ kHz}
+    \end{cases} \\
+    En prenant, $f_r$ = $2225$ Hz, on obtient $\Aboxed{Q = 2.802}$. C'est tout à fait satisfaisant.
+\end{question}
+
+\begin{question}{11}{ - Graphe de $\varphi_{R/g}$}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+            ,axis x line=bottom,axis y line=left
+            ,xmin=0,xmax=6.24
+            ,ymin=-1.49,ymax=1.507
+            ,grid=major
+            ,title={Graphe ajusté de $\varphi_{R/g}$}
+            ,xlabel={$f$/kHz}
+            ,ylabel={$\varphi_{R/g}$/rad}
+            ]
+            \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {../Presentation/courbes/varphi10.txt};
+            \addplot[draw=blue,mark=none,smooth] file {../Presentation/courbes/varphi11.txt};
+            \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {../Presentation/courbes/varphi12.txt};
+            \end{axis}
+        \end{tikzpicture}
+    \end{center}
+\end{question}
+
+\input{../../../stock/pied.tex}

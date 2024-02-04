@@ -1,0 +1,160 @@
+\documentclass{beamer}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{amsmath,mathtools}
+\usetikzlibrary{plotmarks}
+\usefonttheme[onlymath]{serif}
+
+\title{TP 16 \\ Résonance en intensité du circuit RLC série}
+\author{Raphaël J, Romain}
+
+\beamertemplatenavigationsymbolsempty
+\date{}
+\everymath{\displaystyle}
+\pgfplotsset{compat=1.15}%ligne que je ne comprends pas trop
+
+\definecolor{vert_fonce}{RGB}{0, 69, 33}
+
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Sommaire}
+    \tableofcontents
+\end{frame}
+
+\section{I Déterminer la fréquence de résonance en intensité}
+
+\begin{frame}
+    \frametitle{I Déterminer la fréquence de résonance en intensité}
+    \subsection{I.1 Théorie}
+    \framesubtitle{I.1 Théorie}
+
+        \begin{align*}
+            &\forall f, U_{Rm}(f) = RI_m(f) \\
+            \implies \quad \Aboxed{&U_{Rm}(f)= \frac{E_m}{\sqrt{1+Q^2(\frac{f}{f_0}-\frac{f_0}{f})^2}}}
+        \end{align*} \vspace{15pt}
+        \begin{align*}
+            &U_{Rm}(f_r) = \max(U_{Rm}) \\
+            \implies \quad &f_r=f_0 \\
+            \implies \quad &f_r = \frac{\omega_0}{2\pi} \\
+            \implies \quad \Aboxed{&f_r = \frac{1}{2\pi \sqrt{LC}}}
+        \end{align*}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{I Déterminer la fréquence de résonance en intensité}
+        \subsection{I.2 Pratique}
+        \framesubtitle{I.2 Pratique}
+        \begin{itemize}
+            \item Tâtonnement : Adapter la fréquence de $e(t)$ de sorte que $u_R(t)$ soit maximale ($i(t)$ suivra).
+            \item Mode $XY$ : Adapter la fréquence de $e(t)$ de sorte que $u_R$ (et donc $i$) soit en phase avec $u_g$ :
+        \end{itemize}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[
+                    width = 0.6\textwidth,
+                    xmax = 5,
+                    xmin = 0,
+                    ymax = 5,
+                    ymin = 0,
+                    ytick = {0},
+                    xtick = {0},
+                    samples=2,
+                    xlabel={$u_g$},
+                    ylabel={$u_R$},
+                    axis lines=middle,
+                    grid=major,
+                    ]
+                    \addplot[purple,thick,domain =1:3] {x};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+    \end{frame}
+
+
+    \section{II Déterminer le facteur qualité}
+    \begin{frame}
+        \frametitle{II Déterminer le facteur qualité}
+        \subsection{II.1 Graphe du gain}
+        \framesubtitle{II.1 Graphe du gain}
+
+        \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+            ,axis x line=bottom,axis y line=left
+            ,xmin=0,xmax=6.24
+            ,ymin=0,ymax=0.8805
+            ,grid=major
+            ,title={Graphe ajusté de $\displaystyle G(f) = \frac{U_R}{U_g}$}
+            ,xlabel={$f$/kHz}
+            ,ylabel={$G$}
+            ]
+            \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {courbes/G10.txt};
+            \addplot[draw=blue,mark=none,smooth] file {courbes/G11.txt};
+            \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {courbes/G12.txt};
+
+            \addplot[black,dashed,domain=0:6.5] {0.5982} node [pos=0.8,above right,text=black]{$\displaystyle \frac{G_{max}}{\sqrt{2}}$};
+            \draw[vert_fonce] (axis cs:1.884,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:1.884,0.5982) node [pos=0.135,below left]{$f_{c1}$};
+            \draw[vert_fonce] (axis cs:2.687,\pgfkeysvalueof{/pgfplots/ymin}) -- (axis cs:2.687,0.5982) node [pos=0.135,below right]{$f_{c2}$};
+            \end{axis}
+        \end{tikzpicture}
+        \end{center}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{II Déterminer le facteur qualité}
+        \subsection{II.2 Calculs}
+        \framesubtitle{II.2 Calculs}
+
+        \begin{align*}
+            &\Delta \omega = \frac{\omega_0}{Q} \\
+            \implies &\omega_2 - \omega_1 = \frac{\omega_0}{Q} \\
+            \implies &2\pi(f_{c2} - f_{c1}) = \frac{\omega_0}{Q} \\ 
+            \implies &\begin{cases}
+                Q = \textstyle \frac{\omega_0}{2\pi(f_{c2} - f_{c1})} \\
+                \omega_0 = \omega_r = 2\pi f_r
+            \end{cases} \\
+            \implies \Aboxed{&Q = \frac{f_r}{f_{c2} - f_{c1}}}
+        \end{align*}
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Bonus !}
+        \framesubtitle{Graphe du déphasage $\varphi_{R/g}$ de $u_R(t)$ par rapport à $u_g(t)$}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{axis}[
+                ,axis x line=bottom,axis y line=left
+                ,xmin=0,xmax=6.24
+                ,ymin=-1.49,ymax=1.507
+                ,grid=major
+                ,title={Graphe ajusté de $\varphi_{R/g}$}
+                ,xlabel={$f$/kHz}
+                ,ylabel={$\varphi_{R/g}$/rad}
+                ]
+                \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {courbes/varphi10.txt};
+                \addplot[draw=blue,mark=none,smooth] file {courbes/varphi11.txt};
+                \addplot[draw=black,only marks,mark=*,mark options={fill=black}] file {courbes/varphi12.txt};
+                \end{axis}
+            \end{tikzpicture}
+        \end{center}
+
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{Conclusion}
+        \tableofcontents
+    \end{frame}
+    
+\end{document}

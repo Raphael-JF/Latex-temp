@@ -1,103 +1,30 @@
-\documentclass{article}
-\usepackage{amsmath,amssymb}
-\usepackage{xcolor}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{changepage}
-\usepackage{stmaryrd}
-\usepackage[framemethod=tikz]{mdframed}
-
- \usepackage{verbatim}
-
-% physique
-\definecolor{oranges}{RGB}{255, 242, 230}
-\definecolor{rouges}{RGB}{255, 230, 230}
-\definecolor{rose}{RGB}{255, 204, 204}
-
-% maths - info
-\definecolor{rouge_fonce}{RGB}{204, 0, 0}
-\definecolor{bleu_fonce}{RGB}{0, 0, 255}
-\definecolor{vert_fonce}{RGB}{0, 69, 33}
-
-\definecolor{orange_foncee}{RGB}{255, 153, 0}
-\definecolor{myrtille}{RGB}{225, 225, 255}
-\definecolor{mayonnaise}{RGB}{255, 253, 233}
-\definecolor{magenta}{RGB}{224, 209, 240}
-\definecolor{pomme}{RGB}{204, 255, 204}
-\definecolor{mauve}{RGB}{255, 230, 255}
-
-% commandes
-\newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
-\newcommand{\mb}[1]{\mathbb{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-\newcommand{\cons}[1]{\cons{#1}}
-\newcommand{\ov}[1]{\overline{#1}}
-\newcommand{\abso}[1]{|#1|}
-
-\newmdenv[
-  nobreak=true,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=mayonnaise,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_question}
-
-
-\newenvironment{question}[2]
-{
-    \begin{boite_question}
-    \textbf{\textcolor{rouge_fonce}{Question #1}} \textit{#2} \\ \\
-}
-{
-    \end{boite_question}
-    \vspace{15pt}
-}
-
-
-\renewcommand{\labelitemi}{--}
-
-\begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
+\input{../stock/en-tete.tex}
 
 \begin{question}{I.1) }{Définition inductive de la concaténation en Ocaml}
-    Pour toutes listes \cons{l} et \cons{q}, et tout élément \cons{e} :
+    Pour toutes listes \code{l} et \code{q}, et tout élément \code{e} :
     $\begin{cases}
-        \cons{[]@l = l} \\
-        \cons{(e::q@l = e::(q@l))}
+        \code{[]@l = l} \\
+        \code{(e::q@l = e::(q@l))}
     \end{cases}$
 
 \end{question}
 
 \begin{question}{I.2) }{Rédaction de démonstration par induction structurelle}
-    Soit \cons{l2} une liste.
-    Montrons par récurrence structurelle sur \cons{l1} que $|\cons{l1 @ l2}| = |\cons{l1} + \cons{l2}|$ pour toutes listes \cons{l1} et \cons{l2}.
+    Soit \code{l2} une liste.
+    Montrons par récurrence structurelle sur \code{l1} que $|\code{l1 @ l2}| = |\code{l1} + \code{l2}|$ pour toutes listes \code{l1} et \code{l2}.
    \begin{itemize}
-       \item Si \cons{l1 = []}, $|\cons{l1 @ l2}| = |\cons{l2}| = |\cons{l1}| + |\cons{l2}|$
-       \item Si \cons{l1 = e::q}, \boxed{\text{supposons que}} $|\cons{q @ l2}| = |\cons{q}| + |\cons{l2}|$, pour toute suite l2 (\notion{hypothèse d'induction}) 
+       \item Si \code{l1 = []}, $|\code{l1 @ l2}| = |\code{l2}| = |\code{l1}| + |\code{l2}|$
+       \item Si \code{l1 = e::q}, \hbox{supposons que} $|\code{q @ l2}| = |\code{q}| + |\code{l2}|$, pour toute suite l2 (\notion{hypothèse d'induction}) 
     \end{itemize}
-    % \begin{equation*}
     \begin{align*}
-        |\cons{l1 @ l2}| & = |\cons{(e::q) @ l2}| && \\
-        & = |\cons{e::(q @ l2)}| \quad &&\text{par définition de \cons{@}} \\
-        & = 1 + |\cons{q @ l2}| &&\text{par définition de $\cons{l} \mapsto \cons{l}$} \\
-        & = 1 + |\cons{q}| + |\cons{l2}|  &&\text{par hypothèse d'induction} \\
-        & = |\cons{e::q}| + |\cons{l2}| && \\
-        |\cons{l1 @ l2}| & = |\cons{l1}| + |\cons{l2}| &&
+        |\code{l1 @ l2}| & = |\code{(e::q) @ l2}| && \\
+        & = |\code{e::(q @ l2)}| \quad &&\text{par définition de \code{@}} \\
+        & = 1 + |\code{q @ l2}| &&\text{par définition de $\code{l} \mapsto \code{l}$} \\
+        & = 1 + |\code{q}| + |\code{l2}|  &&\text{par hypothèse d'induction} \\
+        & = |\code{e::q}| + |\code{l2}| && \\
+        |\code{l1 @ l2}| & = |\code{l1}| + |\code{l2}| &&
     \end{align*}
-    % \end{equation*}
-    Ainsi, par induction structurelle, $|\cons{l1 @ l2}| = |\cons{l1}| + |\cons{l2}|$, pour toutes listes \cons{l1} et \cons{l2}, et ce, indépendamment du choix de |\cons{l2}|
+    % Ainsi, par induction structurelle, $|\code{l1 @ l2}| = |\code{l1}| + |\code{l2}|$, pour toutes listes \code{l1} et \code{l2}, et ce, indépendamment du choix de |\code{l2}|
 \end{question}
 
-
-
-\end{adjustwidth}
-\end{document}
+\input{../stock/pied.tex}
