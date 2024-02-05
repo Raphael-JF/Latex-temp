@@ -1,30 +1,60 @@
+\input{../stock/commands.tex}
 \input{../stock/en-tete.tex}
 
 \begin{question}{I.1) }{Définition inductive de la concaténation en Ocaml}
     Pour toutes listes \code{l} et \code{q}, et tout élément \code{e} :
     $\begin{cases}
-        \code{[]@l = l} \\
-        \code{(e::q@l = e::(q@l))}
+        \code{[] @ l = l} \\
+        \code{(e::q @ l = e::(q @ l))}
     \end{cases}$
 
 \end{question}
 
 \begin{question}{I.2) }{Rédaction de démonstration par induction structurelle}
     Soit \code{l2} une liste.
-    Montrons par récurrence structurelle sur \code{l1} que $|\code{l1 @ l2}| = |\code{l1} + \code{l2}|$ pour toutes listes \code{l1} et \code{l2}.
+    Montrons par récurrence structurelle sur \code{l1} que $\ccode{l1 @ l2} = \ccode{l1 + l2}$ pour toutes listes \code{l1} et \code{l2}.
    \begin{itemize}
-       \item Si \code{l1 = []}, $|\code{l1 @ l2}| = |\code{l2}| = |\code{l1}| + |\code{l2}|$
-       \item Si \code{l1 = e::q}, \hbox{supposons que} $|\code{q @ l2}| = |\code{q}| + |\code{l2}|$, pour toute suite l2 (\notion{hypothèse d'induction}) 
+       \item Si \code{l1 = []}, $\ccode{l1 @ l2} = \ccode{l2} = \ccode{l1 + l2}$
+       \item Si $\code{l1} = \code{e::q}$, \hbox{supposons que} $\ccode{q @ l2} = \ccode{q} + \ccode{l2}$, pour toute suite l2 (\notion{hypothèse d'induction}) ()
     \end{itemize}
     \begin{align*}
-        |\code{l1 @ l2}| & = |\code{(e::q) @ l2}| && \\
-        & = |\code{e::(q @ l2)}| \quad &&\text{par définition de \code{@}} \\
-        & = 1 + |\code{q @ l2}| &&\text{par définition de $\code{l} \mapsto \code{l}$} \\
-        & = 1 + |\code{q}| + |\code{l2}|  &&\text{par hypothèse d'induction} \\
-        & = |\code{e::q}| + |\code{l2}| && \\
-        |\code{l1 @ l2}| & = |\code{l1}| + |\code{l2}| &&
+        \ccode{l1 @ l2} & = \ccode{(e::q) @ l2} && \\
+        & = \ccode{e::(q @ l2)} \quad &&\text{par définition de \code{@}} \\
+        & = 1 + \ccode{q @ l2} &&\text{par définition de $\code{l} \mapsto \code{l}$} \\
+        & = 1 + \ccode{q} + \ccode{l2}  &&\text{par hypothèse d'induction} \\
+        & = \ccode{e::q} + \ccode{l2} && \\
+        \ccode{l1 @ l2} & = \ccode{l1} + \ccode{l2} &&
     \end{align*}
-    % Ainsi, par induction structurelle, $|\code{l1 @ l2}| = |\code{l1}| + |\code{l2}|$, pour toutes listes \code{l1} et \code{l2}, et ce, indépendamment du choix de |\code{l2}|
+    Ainsi, par induction structurelle, $\ccode{l1 @ l2} = \ccode{l1} + \ccode{l2}$, pour toutes listes \code{l1} et \code{l2}, et ce, indépendamment du choix de \code{l2}
 \end{question}
 
+
+\begin{question}{I.2) }{}
+    Montrons par induction structurelle sur \code{l1} que pour toute liste \code{l1}, $\crev{l1} = \ccode{l1}$. \begin{itemize}
+        \item Si $\code{l1} = []$, $\rev{l1} = \rev{[]} = \code{[]}  = \code{l1}$
+        \item Si $\code{l1} = \code{e::q}$, on suppose que $\crev{q} = \ccode{q}$ \begin{align*}
+            \crev{l1} &= \crev{e::q} &&\\
+            &= \code{|reverse(q) @ [e]|} && \text{définition de \code{reverse}}\\
+            &= \crev{q} + \ccode{[e]} && \\
+            &= \ccode{q} + \ccode{[e]} && \text{hypothèse d'induction}\\
+            &= \ccode{e::q} && \\
+            \crev{l1} &= \ccode{l1} &&
+        \end{align*}
+    \end{itemize}
+    Ainsi, par induction structurelle, pour toute liste \code{l1}, $\crev{l1} = \ccode{l1}$.
+\end{question}
+
+\begin{question}{I.3) }{}
+    Montrons, par induction structurelle sur \code{l1}, que pour toute liste \code{l1}, $$\rev{l1 @ l2} = \code{\rev{l2} @ \rev{l1}}$$. \begin{itemize}
+        \item Si $\code{l1} = \code{[]}$, alors $\rev{[] @ l2} = \rev{l2} = \code{\rev{l2} @ \rev{[]}}$        
+        \item Si $\code{l1} = \code{e::q}$, supposons que $\rev{q @ l2} = \code{\rev{l2} @ \rev{q}}$. \begin{align*}
+            \text{Alors, } \rev{l1 @ l2} &= \rev{e::q @ l2} && \\
+            &= \code{\rev{q @ l2} @ [e]} && \text{par définition} \\
+            &= \code{\rev{l2} @ \rev{q} @ [e]} && \text{hypothèse d'induction} \\
+            &= \code{\rev{l2} @ \rev{e::q}} && \text{par définition} \\
+            &= \code{\rev{l2} @ \rev{l1}}
+        \end{align*}
+    \end{itemize}
+    Donc, par induction structurelle sur \code{l1}, $\forall \code{l1}, \rev{l1 @ l2} = \code{\rev{l2} @ \rev{l1}}$
+\end{question}
 \input{../stock/pied.tex}
