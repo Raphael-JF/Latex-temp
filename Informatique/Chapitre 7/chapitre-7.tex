@@ -1,0 +1,47 @@
+\input{../../stock/commands.tex}
+\input{../../stock/en-tete.tex}
+Nous avons jusqu'à présent étudié des structures de données séquentielles (piles, files, tables de hachage, etc.). Dans ce chapitre, on étudie des structures de donénes hiérarchiques. \\
+On peut définir la structure d'\notion{arbre} de différentes façons, avec quelques subtilités, ce qui offre une certaine souplesse et permet de s'adapter au problème étudié. \textbf{Il convient d'être particulièrement vigilant à la lecture des sujets proposés pour identifier correctement la structure attendue}.
+\section{Arbres binaires}
+
+\begin{definition}{7.1}{ - Arbre binaire}
+    Un \notion{arbre binaire} est un ensemble (éventuellement vide) de \notion{noeuds} et est défini de manière inductive. Un arbre binaire est : \begin{itemize}
+        \item Ou bien \notion{l'arbre vide}
+        \item Ou bien constitué d'un noeud $R$, appelé \notion{racine}, et de deux \notion{sous-arbres} binaires. Si existence, on appelle \notion{fils gauche} (resp. \notion{fils droit}) du noeud $R$ la racine du sous-arbre gauche (resp. droit). \\ \textit{Voir Figure 1}
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}{7.2}{ - à propos la précédente définition}
+    \item Dans cette définition, si on permute les sous-arbres gauche et droit, on obtient un arbre différent. Ainsi, les deux arbres représentés ci-dessous sont deux arbres distincts : \textit{Voir Figure 2}
+\end{remarque}
+
+\begin{definition}{7.3}{ - feuille, père, arête, taille}
+    \begin{itemize}
+        \item Une \notion{feuille} est un noeud dont les sous-arbres gauche et droit sont l'arbre vide.
+        \item Un noeud est le \notion{père} de ses éventuels fils. La liaison d'un père vers un fils est appelée une \notion{une arête}.
+        \item Tous les noeuds d'un arbre, hormis la racine et les feuilles, sont appelés des \notion{noeuds internes}.
+        \item La \notion{taille} d'un arbre est son nombre de noeuds. On note $\abs{\mc{A}}$ la taille de l'arbre $\mc{A}$
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}{7.4}{ - définition inductive de la taille d'un arbre binaire}
+    \item La taille de l'arbre vide est nulle
+    \item Un arbre binaire comportant un sous-arbre gauche de taille $n_g$ et un sous-arbre droit de taille $n_d$ est de taille $1+n_g+n_d$
+\end{remarque}
+
+\begin{definition}{7.5}{ - hauteur, profondeur}
+    La \notion{hauteur} d'un arbre binaire est définie inductivement : \begin{itemize}
+        \item L'arbre vide est de hauteur : $-1$
+        \item Un arbre binaire comportant un sous-arbre gauche de hauteur $h_g$ et un sous-arbre droit de hauteur $h_d$ est de hauteur $1+\max{h_g,h_d}$.
+    \end{itemize}
+    La \notion{profondeur} d'un noeud est la distance de celui-ci à la racine (si existence). La hauteur d'un arbre est alors la profondeur maximale de ses neuds, et donc la profondeur maximale de ses feuilles.
+\end{definition}
+
+\begin{remarque}{7.6}{ - sur les étiquettes}
+    Les noeuds et les arêtes d'un arbre peuvent porter des \notion{étiquettes} : on leur associe une valeur.
+\end{remarque}
+
+\begin{exemple}{7.7}{}
+    \item Considérons l'arbre binaire suivant.
+\end{exemple}
+\input{../../stock/pied.tex}
