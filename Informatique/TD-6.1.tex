@@ -29,7 +29,7 @@
 \end{question}
 
 
-\begin{question}{I.2) }{}
+\begin{question}{II.1) }{$\crev{l1} = \ccode{l1}$}
     Montrons par induction structurelle sur \code{l1} que pour toute liste \code{l1}, $\crev{l1} = \ccode{l1}$. \begin{itemize}
         \item Si $\code{l1} = []$, $\rev{l1} = \rev{[]} = \code{[]}  = \code{l1}$
         \item Si $\code{l1} = \code{e::q}$, on suppose que $\crev{q} = \ccode{q}$ \begin{align*}
@@ -44,7 +44,7 @@
     Ainsi, par induction structurelle, pour toute liste \code{l1}, $\crev{l1} = \ccode{l1}$.
 \end{question}
 
-\begin{question}{I.3) }{}
+\begin{question}{II.1) }{$\rev{l1 @ l2} = \code{\rev{l2} @ \rev{l1}}$}
     Montrons, par induction structurelle sur \code{l1}, que pour toute liste \code{l1}, $$\rev{l1 @ l2} = \code{\rev{l2} @ \rev{l1}}$$. \begin{itemize}
         \item Si $\code{l1} = \code{[]}$, alors $\rev{[] @ l2} = \rev{l2} = \code{\rev{l2} @ \rev{[]}}$        
         \item Si $\code{l1} = \code{e::q}$, supposons que $\rev{q @ l2} = \code{\rev{l2} @ \rev{q}}$. \begin{align*}
@@ -58,7 +58,72 @@
     Donc, par induction structurelle sur \code{l1}, $\forall \code{l1}, \rev{l1 @ l2} = \code{\rev{l2} @ \rev{l1}}$
 \end{question}
 
-\begin{question}{I.4) }{}
-    
+\begin{question}{II.2) }{}
+    Pour tout $n \in \mb{N}$ on pose $C_n$ la complexité en pire cas d'un appel \code{reverse liste}, où $\ccode{liste} = n$. \\
+    Un appel sur une liste non vide $\code{liste} = \code{e::q}$ engendre un appel récursif sur la liste \code{q}. De plus, l'opérateur \code{@} a une complexité linéaire par rapport à la taille de la première liste. \\ \\ Évaluation de la complexité :\begin{itemize}
+        \item \underline{Version courte} \\ Donc $C_n = \mc{O}(n^2)$
+        \item \underline{Version longue} \\ Soit $A > 0$ (\notion{$A$ est la grandeur qui prend en facteur l'argument du $\mc{O}$}) tel que : $\begin{cases}
+            \forall n \in \mb{N}, C_{n+1} \leq C_n + An \\
+            C_0 \leq A
+        \end{cases}$
+        \begin{align*}
+            \text{Donc} \quad \forall n \in \mb{N}, C_n &= [\sum_{k=0}^{n-1}(C_{k+1}-C_k)] + C_0 \\
+            &\leq [\sum_{k=0}^{n-1}An] + A \\
+            &= A \frac{n(n-1)}{2} + A \\
+            &= A(\frac{n(n-1)}{2} + 1) 
+        \end{align*}
+    \end{itemize}
 \end{question}
+
+\begin{question}{II.3) }{}
+    \begin{verbatim}
+        let renv liste = 
+            let rec transfert l q = match l with 
+            (* renvoie reverse(l) @ q *)
+                | [] -> q
+                | e::t -> transfert t (e::q)
+            in transfert liste []
+    \end{verbatim}
+    \begin{itemize}
+        \item \underline{Correction de la fonction \code{transfert}} \\ On prouve par induction structurelle sur \code{l} que \code{transfert l q} termine et renvoie \code{\rev{l} @ q}, pour toutes listes \code{l} et \code{q}. \begin{itemize}
+            \item Si $\code{l} = \code{[]}$, \code{transfert l q} termine et renvoie \code{q = \rev{[]} @ q}, pour toute liste \code{q}
+            \item Sinon, $\code{l} = \code{e::t}$ : on suppose que pour toute liste \code{q}, \\ \code{transfert t q} termine et renvoie \code{\rev{t} @ q} \\ Pour toute liste \code{q}, l'appel \code{transfert l q} effectue un appel récursif \code{transfert t (e::q)} qui termine et renvoie \code{\rev{t} @ (e::q)} par hypothèse d'induction.\\
+            Or $\ccode{l} = \ccode{e::t} = \code{\rev{t} @ [e]}$ \\
+            Donc \begin{align*}
+                \code{\rev{l} @ q} &= \code{\rev{t} @ [e] @ q} \\
+                &= \code{\rev{t} @ (e::q)}
+            \end{align*}
+            Donc \code{transfert l q} termine et renvoie [...] \\
+            D'où, par induction structurelle sur \code{l}, pour toutes listes \code{l} et \code{q}, \code{transfert l q} termine et renvoie [...]
+            D'où la correction de \code{transfert}. On termine par la correction de \code{renv}.
+        \end{itemize}
+    \end{itemize}
+\end{question}
+
+\begin{question}{II.5 )}{Complexité de \code{transfert}}
+    Un appel \code{transfert (e::t) q} évalue \code{e::q} en temps constant pour effectuer un appel récursif \code{transfert t (e::q)}. \\
+    En notant $C_n$ la complexité d'un appel \code{transfert l q} où \code{l} est une liste de taille $n$ : $$C_{n+1} = C_n + \Theta(1)$$
+    Donc $C_n = \Theta(n)$. Un appel \code{renv l} a donc une complexité $\Theta(\ccode{l})$
+\end{question}
+
+\begin{question}{III.1) }{}
+    \begin{verbatim}
+        let rec separe l l1 l2 = match l with
+            |[] -> (l1,l2)
+            | e::q -> separe q (e::l2) l1
+    \end{verbatim}
+\end{question}
+
+\begin{question}{III.2) }{}
+    À chaque appel récursif, la taille ($\in \mb{N}$) de la première liste passée en argument diminue de $1$, celle-ci constitue donc un variant aux appels issus de l'appel initial \code{separe l l1 l2}, ce qui prouve la terminaison de cet appel. \\ \\
+    On montre par induction structurelle sur \code{l} que pour toutes listes \code{l1} et \code{l2} telles que $\ccode{l1} = \ccode{l2}$ ou $\ccode{l1} = \ccode{l2} + 1$, le couple \code{(L1, L2)} renvoyé par l'appel \code{separe l l1 l2} est tel que \code{L1 @ L2} soit une permutation de \code{l @ l1 @ l2} et ($\ccode{L1} = \ccode{L2}$ ou $\ccode{L1} = \ccode{l2}+1$). \begin{itemize}
+        \item Si $\code{l} = \code{[]}$ : Pour toutes listes \code{l1}, \code{l2}, tq 
+    \end{itemize}
+\end{question}
+
+\begin{question}{III.3) }{}
+
+\end{question}
+
+
 \input{../stock/pied.tex}
