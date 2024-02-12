@@ -1,0 +1,15 @@
+\input{../../stock/commands.tex}
+\input{../../stock/en-tete.tex}
+
+\begin{theoreme}{16.105}{ - propriétés de la $P$-évalutation}
+    Soit $(Q,R) \in (\mb{K}[X])^2$, $P \in \mc{I}_{\mb{K}[X]}$. On a :
+    \begin{enumeratebf}
+        \item $v_P(Q) > 0 \Leftrightarrow P \mid Q$
+        \item $v_P(QR) = v_P(Q) + v_P(R)$
+        \item $v_P(Q + R) \geq \min(v_P(Q),v_P(R))$, avec égalité si les évaluations sont distinctes.
+        \item $Q \mid R \Leftrightarrow \forall I \in mc{I}_{\mb{K}[X]}, v_I(Q) \leq v_I(R)$
+        \item Si $Q$ et $R$ sont non nuls, alors : $$v_P(Q \wedge R) = \min(v_P(Q),v_P(R)) et v_P(Q \vee R) = \max(v_P(Q),v_P(R))$$
+    \end{enumeratebf}
+\end{theoreme}
+
+\input{../../stock/pied.tex}
