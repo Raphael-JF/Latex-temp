@@ -1,0 +1,32 @@
+\input{../../stock/commands.tex}
+\input{../../stock/en-tete.tex}
+\everymath{\displaystyle}
+
+    \begin{definition}{17.1}{ - fraction rationnelle}
+        Dans $\mb{K}[X] \times (\mb{K}[X] \backslash \{0\})$ On définit la relation d'équivalence $\mc{R}$ en posant : \begin{align*}
+            &(P,Q)\mc{R}(R,S) &&\\
+            \Leftrightarrow \quad& P/Q = R/S && \text{(Cette étape n'est qu'à titre explicatif dans la mesure où l'opération / n'est pas définie)} \\
+            \Leftrightarrow \quad& PS = RQ &&\\
+        \end{align*}
+    On appelle \notion{fraction rationnelle} à coefficients dans $\mb{K}$ toute classe d'équivalence pour la relation $\mc{R}$. La classe de $(P,Q)$ est alors notée $\displaystyle \frac{P}{Q}$. On a donc : 
+    $$\frac{P}{Q} = \{(R,S) \in \mb{K}[X] \times (\mb{K}[X] \backslash \{0\}), PS = RQ\}$$
+    On dit que $(P,Q)$ est un \notion{représentant} de la fraction $\displaystyle\frac{P}{Q}$. L'ensemble des fractions rationnelles est noté $\mb{K}(X)$ et la relation $\mc{R}$ est appelée \notion{égalité des fractions rationnelles}.
+
+    \end{definition} 
+
+    \begin{proposition}{16.4}{ - structure de $\mb{K}(X)$}
+        $(\mb{K}(X),+,\times)$ est un corps commutatif et $(\mb{K}(X),+,\times,\cdot)$ (où $\cdot$ est la loi externe) est une $\mb{K}$-algèbre commutative. \\ \\
+        L'application $\varphi : \mb{K}[X] \rightarrow \mb{K}(X)$ définie par $ \varphi(P) = \frac{P}{1}$ est un morphisme d'algèbres injectif.
+    \end{proposition}
+
+    \begin{definition}{17.7}{ - représentant irréductible}
+        Soit $F = \frac{P}{Q}$ une fraction. On dit que $\frac{P}{Q}$ est un \notion{représentant irréductible} lorsque $P \wedge Q = 1$ et que $Q$ est unitaire. Toute fration rationnelle de $\mb{K}(X)$ admet un \underline{unique} (dénominateur unitaire) représentant irréductible.
+    \end{definition}
+
+    \begin{theoreme}{17.34}{ - décomposition en éléments simples}
+        Soit $F = \frac{A}{B}$ une fraction sous forme irréductible, et $B = \prod_{i=1}^{k}P_i^{\alpha_i}$ sa décomposition en produit de polynômes irréductibles. Il existe des polynômes $(U_{i})_{i \in \llbracket 1,k \rrbracket}$ tels que $$F = E + \sum_{i=1}^{k}\frac{U_{i}}{P_i^{\alpha_i}} \quad \text{avec $\deg(\frac{U_{i}}{P_i})<0$} $$ \\
+        De plus, pour $n \in \mb{N}^*$, Si $T \in \mc{I}_{\mb{K}[X]} $ et $\deg(\frac{A}{T^n})<0$, alors il existe des polynômes $V_1,\dots,V_n$ tels que $$\frac{A}{T^n} = \sum_{k=1}^{n}\frac{V_k}{T^k} \quad \text{avec $\deg(\frac{V_k}{T^k})<0$}$$ \\
+        Finalement, Il existe des polynômes $(U_{i,j})_{i \in \llbracket 1,k \rrbracket, j \in \llbracket 1,\alpha_i \rrbracket}$ tels que $$F = E + \sum_{i=1}^{k}\sum_{j=1}^{\alpha_i}\frac{U_{i,j}}{P_i^j} \quad \text{avec $\deg(\frac{U_{i,j}}{P_i})<0$} $$ \\ \\
+        Cette décomposition est unique.
+    \end{theoreme}
+\input{../../stock/pied.tex}

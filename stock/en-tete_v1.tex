@@ -201,6 +201,7 @@
 ]{boite_question}
 
 
+
 \newenvironment{question}[2]
 {
     \begin{boite_question}
@@ -209,6 +210,13 @@
 {
     \end{boite_question}
     \vspace{15pt}
+}
+
+\newenvironment{enumeratebf}{
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+}
+{
+    \end{enumerate}
 }
 
 \begin{document}
