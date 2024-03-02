@@ -1,47 +1,215 @@
 \input{../../stock/commands.tex}
-\input{../../stock/en-tete.tex}
+\input{../../stock/en-tete_v2.tex}
 Nous avons jusqu'à présent étudié des structures de données séquentielles (piles, files, tables de hachage, etc.). Dans ce chapitre, on étudie des structures de donénes hiérarchiques. \\
 On peut définir la structure d'\notion{arbre} de différentes façons, avec quelques subtilités, ce qui offre une certaine souplesse et permet de s'adapter au problème étudié. \textbf{Il convient d'être particulièrement vigilant à la lecture des sujets proposés pour identifier correctement la structure attendue}.
 \section{Arbres binaires}
 
-\begin{definition}{7.1}{ - Arbre binaire}
-    Un \notion{arbre binaire} est un ensemble (éventuellement vide) de \notion{noeuds} et est défini de manière inductive. Un arbre binaire est : \begin{itemize}
+\begin{definition}{7.1}{ - arbre binaire}
+    Un \notion{arbre binaire} est un ensemble (éventuellement vide) de \notion{nœuds} et est défini de manière inductive. Un arbre binaire est : \begin{itemize}
         \item Ou bien \notion{l'arbre vide}
-        \item Ou bien constitué d'un noeud $R$, appelé \notion{racine}, et de deux \notion{sous-arbres} binaires. Si existence, on appelle \notion{fils gauche} (resp. \notion{fils droit}) du noeud $R$ la racine du sous-arbre gauche (resp. droit). \\ \textit{Voir Figure 1}
+        \item Ou bien constitué d'un nœud $R$, appelé \notion{racine}, et de deux \notion{sous-arbres} binaires. Si existence, on appelle \notion{fils gauche} (resp. \notion{fils droit}) du nœud $R$ la racine du sous-arbre gauche (resp. droit). \\ \textit{Voir Figure 1}
     \end{itemize}
 \end{definition}
 
 \begin{remarque}{7.2}{ - à propos la précédente définition}
-    \item Dans cette définition, si on permute les sous-arbres gauche et droit, on obtient un arbre différent. Ainsi, les deux arbres représentés ci-dessous sont deux arbres distincts : \textit{Voir Figure 2}
+    Dans cette définition, si on permute les sous-arbres gauche et droit, on obtient un arbre différent. Ainsi, les deux arbres représentés ci-dessous sont deux arbres distincts : \textit{Voir Figure 2}
 \end{remarque}
 
 \begin{definition}{7.3}{ - feuille, père, arête, taille}
     \begin{itemize}
-        \item Une \notion{feuille} est un noeud dont les sous-arbres gauche et droit sont l'arbre vide.
-        \item Un noeud est le \notion{père} de ses éventuels fils. La liaison d'un père vers un fils est appelée une \notion{une arête}.
-        \item Tous les noeuds d'un arbre, hormis la racine et les feuilles, sont appelés des \notion{noeuds internes}.
-        \item La \notion{taille} d'un arbre est son nombre de noeuds. On note $\abs{\mc{A}}$ la taille de l'arbre $\mc{A}$
+        \item Une \notion{feuille} est un nœud dont les sous-arbres gauche et droit sont l'arbre vide.
+        \item Un nœud est le \notion{père} de ses éventuels fils. La liaison d'un père vers un fils est appelée une \notion{une arête}.
+        \item Tous les nœuds d'un arbre, hormis la racine et les feuilles, sont appelés des \notion{nœuds internes}.
+        \item La \notion{taille} d'un arbre est son nombre de nœuds. On note $\abs{\mc{A}}$ la taille de l'arbre $\mc{A}$
     \end{itemize}
 \end{definition}
 
 \begin{remarque}{7.4}{ - définition inductive de la taille d'un arbre binaire}
-    \item La taille de l'arbre vide est nulle
-    \item Un arbre binaire comportant un sous-arbre gauche de taille $n_g$ et un sous-arbre droit de taille $n_d$ est de taille $1+n_g+n_d$
+    \begin{itemize}
+        \item La taille de l'arbre vide est nulle
+        \item Un arbre binaire comportant un sous-arbre gauche de taille $n_g$ et un sous-arbre droit de taille $n_d$ est de taille $1+n_g+n_d$ 
+    \end{itemize}
+    
 \end{remarque}
 
 \begin{definition}{7.5}{ - hauteur, profondeur}
     La \notion{hauteur} d'un arbre binaire est définie inductivement : \begin{itemize}
         \item L'arbre vide est de hauteur : $-1$
-        \item Un arbre binaire comportant un sous-arbre gauche de hauteur $h_g$ et un sous-arbre droit de hauteur $h_d$ est de hauteur $1+\max{h_g,h_d}$.
+        \item Un arbre binaire comportant un sous-arbre gauche de hauteur $h_g$ et un sous-arbre droit de hauteur $h_d$ est de hauteur $1+\max(h_g,h_d)$.
     \end{itemize}
-    La \notion{profondeur} d'un noeud est la distance de celui-ci à la racine (si existence). La hauteur d'un arbre est alors la profondeur maximale de ses neuds, et donc la profondeur maximale de ses feuilles.
+    La \notion{profondeur} d'un nœud est la distance de celui-ci à la racine (si existence). La hauteur d'un arbre est alors la profondeur maximale de ses neuds, et donc la profondeur maximale de ses feuilles.
 \end{definition}
 
-\begin{remarque}{7.6}{ - sur les étiquettes}
-    \item Les noeuds et les arêtes d'un arbre peuvent porter des \notion{étiquettes} : on leur associe une valeur.
+\begin{remarque}{7.6}{ - notion d'étiquettes}
+    Les nœuds et les arêtes d'un arbre peuvent porter des \notion{étiquettes} : on leur associe une valeur.
 \end{remarque}
 
 \begin{exemple}{7.7}{}
-    \item Considérons l'arbre binaire suivant.
+    Considérons l'arbre binaire suivant. \textit{Voir Figure 3}
+    \begin{itemize}
+        \item il s'agit d'un arbre binaire de taille 7, (il comporte 7 nœuds étiquetés de 1 à 7) et de hauteur 3.
+        \item Sa racine est le nœud 1, de profondeur 0
+        \item Les nœuds 2 et 3 sont de profondeur 1
+        \item Les nœuds 4, 5 et 6 sont de profondeur 2
+        \item Le nœud 7 est de profondeur 3
+        \item Ses feuilles sont les nœuds 4, 5, 7
+        \item Ses nœuds internes sont les nœuds 2, 3 et 5.
+        \item Ses nœuds internes sont les neouds 2, 3 et 5.
+        \item Le nœud 2 comporte 2 fils : le nœud 4 (son fils gauche) et le nœud 5 (son fils droit).
+        \item Le nœud 3 est le père du nœud 6.
+    \end{itemize}
 \end{exemple}
+
+\begin{exemple}{7.8}{ - implémentation en Ocaml}
+    Les arbres binaires étiquetés peuvent être implémentés en Ocaml en définissant le type suivant :
+    \begin{verbatim}
+        type 'a bintree = Vide | Noeud of 'a * 'a bintree 'a * bintree
+    \end{verbatim}
+    On déclare alors l'arbre de l'exemple précédent comme ceci : 
+    \begin{verbatim}
+        let a = Noeud(1,
+            Noeud(2,
+                Noeud(4,Vide,Vide),
+                Noeud(5,
+                    Noeud(7,Vide,Vide),
+                    Vide)),
+            Noeud(3,
+                Vide,
+                Vide, 
+                Noeud(6, Vide, Vide)))
+    \end{verbatim}
+    La fonction suivante permet de déterminer la taille d'un arbre binaire.
+    \begin{verbatim}
+    let taille arbre = match arbre with
+        |Vide -> 0
+        |Noeud (e, g, d) -> 1 + taille g + taille d
+
+    let () = print_int (taille a ; print_string "\n")
+    \end{verbatim}
+\end{exemple}
+
+\begin{definition}{7.9}{ - arbres complets}
+    Un arbre binaire est dit \notion{complet} si l'une des propriétés est vraie : \begin{itemize}
+        \item il est vide
+        \item ses sous-abres gauche et droit sont complets, et de même hauteur.
+    \end{itemize}
+    
+\end{definition}
+
+\begin{proposition}{7.10}{ - lien entre hauteur et taille pour un arbre complet}
+    Tout arbre binaire complet de hauteur $h$ possède exactement $2^{h+1} - 1$ noeuds.
+\end{proposition}
+
+\begin{demonstration}
+    On rappelle que pour tout arbre $\mc{A}$ on note $|\mc{A}|$ sa taille, i.e. son nombre de nœuds. \\ Montrons par récurrence sur $h$ que pour tout arbre complet $\mc{A}$ de hauteur $h$, $|\mc{A}| = 2^{k+1} - 1$. \begin{itemize}
+        \item L'unique arbre de hauteur $-1$ est l'arbre vide, qui est bien de taille $0 = 2^{-1+1} - 1$.
+        \item Soit $h \in \mb{N}$ fixé. On suppose que tout arbre binaire complet de hauteur $h-1$ est de taille $2^k - 1$. \\ On considère un arbre binaire complet $\mc{A}$ de hauteur $h$. Par définition, $\mc{A}$ possède un sous-arbre gauche $\mc{A}_g$ et un sous-arbre droit $\mc{A}_d$, tous deux complets et de hauteur $h-1$. Alors, \begin{align*}
+            |\mc{A}| &= 1 + |\mc{A}_g| + |\mc{A}_d| \\
+            &= 1 + 2^k -1 + 2^k - 1 &&\text{Hypothèse de récurrence} \\
+            &= 2^{k+1} - 1
+        \end{align*}
+    \end{itemize}
+\end{demonstration}
+
+\begin{exemple}{7.11}{implémentation en C}
+    En C, on peut définir une structure d'arbre binaire dans laquelle on stocke la taille de l'arbre :
+    \begin{verbatim}
+        struct Arbrebin{
+            int taille;
+            struct Arbrebin* gauche;
+            struct Arbrebin* droit;
+        };
+        type def struct Arbrebin arbrebin;
+    \end{verbatim}
+    l'arbre vide est représenté par le pointeur \code{NULL}. Pour pouvoir accéder à la taille, y compris de l'arbre vide, on implémente une fonction taille.
+    \begin{verbatim}
+        int taille(arbrebin* a){
+            if (a == NULL){
+                return 0;
+            }
+            return a->taille;
+        }
+    \end{verbatim}
+    On crée alors un abre binaire quelconque en assemblant ses sous-arbres gauche et droit. 
+    \begin{verbatim}
+        arbrebin* assemble_arbrebin(arbrebin* ssArbre_g, arbre* ssArbre_d){
+            arbrebin* a = malloc(sizeof (arbrebin));
+            assert(a != NULL);
+            a->gauche = ssArbre_g;
+            a->droite = ssArbre_d;
+            a->taille = ssArbre_g->taille + ssArbre_d->taille + 1;
+        }
+    \end{verbatim}
+    On pense également à créer un destructeur pour pouvoir libérer la mémoi allouée sur le tas. 
+    \begin{verbatim}
+        void libere_arbre(arbrebin* a){
+            if (a != NULL){
+                libere_arbrebin(a->gauche);
+                libere_arbrebin(a->droit);
+                free(a);
+            }
+        }
+    \end{verbatim}
+    Pour créer une feuille,
+    \begin{verbatim}
+        arbrebin* feuille = assemble_arbrebin(NULL,NULL);
+    \end{verbatim}
+    La fonction suivante permet de tester si un arbre binaire est complet ou non.
+    \begin{verbatim}
+        bool est_complet(arbrebin* a){
+            if (a == NULL){return true;} // arbre vide
+        }
+        return taille(a->gauche) == taille(a->droit) && est_complet(a->gauche) && est_complet(a->droit)
+    \end{verbatim}
+\end{exemple}
+
+\begin{remarque}{7.12}{ - comparaison entre C et Ocaml}
+    Dans ce précédent exemple, on représente des arbres binaires non étiquetés, mais on pouvait tout à fait ajouter un champ étiquette. Par ailleurs, en C, on a naturellement une structure mutable, ce qui permet de modifier la structure d'un arbre ou ses étiquettes. Ce n'est pas le cas en Ocaml.
+\end{remarque}
+
+\begin{exemple}{7.13}{ - autre structure de définition}
+    Dans le cas d'un arbre binaire complet ou \notion{presque complet} (tous les niveaux de profondeur sont remplis sauf éventuellement le dernier qui est rempli de gauche à droite), on peut également utiliser une structure de tableau. Pour cela, il suffit de numéroter les nœuds de haut en bas et de gauche à droite, à partir de 0, en remarquant que : \begin{itemize}
+        \item S'il existe, le fils gauche du nœud d'étiquette $i$ porte le numéro $2i + 1$
+        \item S'il existe, le fils gauche du nœud d'étiquette $i$ porte le numéro $2i + 2$
+        \item Le père du noeud d'étiquette $i$ (sauf pour la racine qui n'a pas de père) porte le numéro $\left\lfloor \frac{i-1}{2}\right\rfloor $
+    \end{itemize}
+    \textit{Voir Figure 4} \\ En C, pour manipuler de tels arbres, on peut utilsier la structure suivante :
+    \begin{verbatim}
+        typedef struct ArbreBC{
+            int taille;
+            int* etiquettes; //ou un autre type, en fonction des étiquettes
+        } arbreBC;
+
+        arbreBC* cree_arbreBC(int nb_noeuds){
+            arbreBC* a = malloc(sizeof (arbreBC));
+            assert(a != NULL); //allocation réussie
+            a->taille = nb_noeuds;
+            a->etiquettes = malloc(nb_noeuds * sizeof (int)); // attention, étiquettes non renseignées.
+            assert(a->etiquettes != NULL);
+            return a;
+        }
+
+        void libere_arbreBC(arbreBC* a){
+            if (a != NULL){
+                free(a->etiquettes);
+                free(a);
+            }
+        }
+    \end{verbatim}
+\end{exemple}
+
+ \begin{remarque}{7.14}{}
+    Dans la littérature on peut trouver plusieurs définitions, parfois contradictoires, d'arbres binaires complets ou parfaits. \textbf{Là encore, il convient de bien lire les énoncés !}
+ \end{remarque}
+
+ \section{Parcours d'arbres binaires}
+ Parcourir un arbre signifie parcourir l'ensemble de ses noeuds (par exemple dans le but de rechercher un élément particulier, éventuellement pour le modifier), une et une seule fois. Il existe plusieurs façons de parcourir un arbre binaire, mais nous allons décrire les parcours en profondeur et en largeur (dans les deux cas, le parcours s'effectue de gauche à droite).
+
+ \subsection{Parcours en profondeur}
+ \begin{definition}{7.15}{}
+    
+ \end{definition}
+
+
+
 \input{../../stock/pied.tex}
