@@ -1,5 +1,5 @@
 \input{../stock/commands.tex}
-\input{../stock/en-tete_v1.tex}
+\input{../stock/en-tete_v2.tex}
 
 \begin{question}{I.1) }{Définition inductive de la concaténation en Ocaml}
     Pour toutes listes \code{l} et \code{q}, et tout élément \code{e} :
@@ -119,10 +119,20 @@
     On montre par induction structurelle sur \code{l} que pour toutes listes \code{l1} et \code{l2} telles que $\ccode{l1} = \ccode{l2}$ ou $\ccode{l1} = \ccode{l2} + 1$, le couple \code{(L1, L2)} renvoyé par l'appel \code{separe l l1 l2} est tel que \code{L1 @ L2} soit une permutation de \code{l @ l1 @ l2} et ($\ccode{L1} = \ccode{L2}$ ou $\ccode{L1} = \ccode{l2}+1$). \begin{itemize}
         \item Si $\code{l} = \code{[]}$ : Pour toutes listes \code{l1}, \code{l2}, tq 
     \end{itemize}
+
+
+    \underline{Correction de la fonction \code{separe}}
+    Montrons par induction structurelle la propriété : $$P(\code{l}) : ""$$
+    - Si $l = []$, pour toutes listes $l1,l2$ tq $\ccode{l1} = \ccode{l2}$ ou $\ccode{l1} = \ccode{l2} + 1$. L'appel \code{separe l l1 l2} renvoie le couple \code{(l1, l2)} avec $\code{l @ l1 @ l2} = \code{l1 @ l2}$. $P(\code{l})$ est donc vérifiée.
+    - Si \code{l = e::q}, on suppose que $P(\code{q})$ est vraie.
+    Soit \code{l1} et \code{l2} tq $\ccode{l1} = \ccode{l2}$ ou $\ccode{l1} = \ccode{l2} + 1$, l'appel \code{separe l l1 l2} évalue l'appel \code{separe q (e::l2) l1}. Or $\ccode{e::l2} = 1 + \ccode{l2} = 1 + \ccode{l1}$
+    Par hypothèse d'induction structurelle, l'appel \code{separe q (e::l2) l1} renvoie (l1,l2) tel que \code{l1 @ l2} est une permutation de \code{q @ (e::l2) @ l1} et ($\ccode{l1} = \ccode{l2}$ ou $\ccode{l1} = \ccode{l2} + 1$). \\ Donc $P(\code{l})$ est vérifiée. \\ \\
+    Par ibduction structurelle sur \code{l}, pour toutes listes \code{l}, \code{l1}, \code{l2} tq \dots, l'appel \code{separe l l1 l2} \dots
 \end{question}
 
 \begin{question}{III.3) }{}
-
+    En notant $C(n)$ la compexité d'un appel \code{separe l l1 l2} où \code{l} est de taille $n$, on a $C(n+1) = C(n) + \mc{O}(1)$. Alors $C(n) = \mc{O}(n)$. \\
+    De plus, \code{separe} étant récursive terminale, elle a une complexité constante sur la pile d'appel. sur le tas en revanche, on construit les deux listes \code{l1} et \code{l2} par ajouts successifs d'un élément en tête, avec une complexité linéaire. Finalement, la complexité spatiale est linéaire en la somme des tailles des listes. \\ \textit{Voir Figure 1 au dos du sujet}
 \end{question}
 
 
