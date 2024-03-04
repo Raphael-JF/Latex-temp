@@ -1,26 +1,23 @@
 \documentclass{article}
-\usepackage{amsmath,amssymb}
-\usepackage{xcolor}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,mathtools}
 \usepackage{enumitem}
-\usepackage{multicol}
 \usepackage{changepage}
-
-% physique
-\definecolor{oranges}{RGB}{255, 242, 230}
-\definecolor{rouges}{RGB}{255, 230, 230}
-\definecolor{rose}{RGB}{255, 204, 204}
-
-% maths
-\definecolor{saumon}{RGB}{224, 209, 240}
-
-
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\ui}{\displaystyle}
 \renewcommand{\labelitemi}{--}
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
-    $\begin{cases}
-        \displaystyle \left\langle \cos^2(x) \right\rangle = \frac{1}{2\pi}\int_{0}^{2\pi} \cos^2(t) dt = \frac{1}{2}\\
-        \displaystyle \left\langle \sin^2(x) \right\rangle = \frac{1}{2\pi}\int_{0}^{2\pi} \sin^2(t) dt = \frac{1}{2} \\
-    \end{cases}$
+
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item Donner et démontrer l'expression de la pulsation de coupure associée à un filtre passe-bas du premier ordre
+        \item Effectuer une étude asymptotique du gain $G(\omega)$, ainsi que son homologue en décibels.
+        \item Effectuer une étude asymptotique du déphasage $\phi(\omega)$ de la tension en sortie du filtre par rapport à la tension en entrée de ce dernier.
+    \end{enumerate}
     
 
 \end{adjustwidth}

@@ -1,5 +1,5 @@
 \input{../../stock/commands.tex}
-\input{../../stock/en-tete.tex}
+\input{../../stock/en-tete_v1.tex}
 \everymath{\displaystyle}
 
     \begin{definition}{17.1}{ - fraction rationnelle}
@@ -29,4 +29,29 @@
         Finalement, Il existe des polynômes $(U_{i,j})_{i \in \llbracket 1,k \rrbracket, j \in \llbracket 1,\alpha_i \rrbracket}$ tels que $$F = E + \sum_{i=1}^{k}\sum_{j=1}^{\alpha_i}\frac{U_{i,j}}{P_i^j} \quad \text{avec $\deg(\frac{U_{i,j}}{P_i})<0$} $$ \\ \\
         Cette décomposition est unique.
     \end{theoreme}
+
+    \begin{proposition}{17.40}{ - cas d'un pôle d'ordre $n \in \mb{N}^*$ pour une fraction de $\mb{C}(X)$}
+        Si $a \in \mb{C}$ est un pôle d'ordre de multiplicité $n \in \mb{N}^*$ de $F \in \mathbb{C}(X)$, alors la partie polaire de $F$ relative à $a$ est, en posant $H = (X-a)^n F$ : $$P_F(a) = \sum_{k=1}^{n}\frac{H^{(k-1)}(a)}{(X-a)^k} = \frac{H(a)}{X-a} + \frac{H'(a)}{(X-a)^2}+\dots + \frac{H^{(n-1)}(a)}{(X-a)^n}$$
+        
+    \end{proposition}
+
+    \begin{remarque}{17.51}{ - primitives d'éléments simples de première espèce}
+        Un élément simple de première espèce est de la forme $\frac{1}{(X-a)^n}$, avec $n \in \mathbb{N}^*$.
+        $$\int^{x} \frac{1}{(t-a)^n}dt = \begin{cases}\ln|x-a| & \text{si $n=1$} \\ \\\frac{-1}{(n-1)(x-a)^{n-1}} & \text{si $n > 1$}\end{cases}$$
+    \end{remarque}
+
+    \begin{remarque}{17.51}{ - primitives d'éléments simples de deuxième espèce}
+        Un élément simple de seconde espèce est de la forme $\frac{aX+b}{(X^2+pX+c)^n}$, avec $n \in \mb{N}^*$. On ne traite que le cas $n=1$ : \\
+        \begin{align*}
+            \frac{aX+b}{X^2+pX+q} &=\frac{\frac{a}{2}2X}{X^2+pX+q} + \frac{b}{X^2+pX+q} \qquad\text{On fait apparaître la dérivée du trinôme au numérateur} \\ \\
+            &=\frac{\frac{a}{2}(2X+p-p)}{X^2+pX+q} + \frac{b}{X^2+pX+q}\qquad \\ \\
+            &=\frac{\frac{a}{2}(2X+p)}{X^2+pX+q} + \frac{b-\frac{a}{2}p}{X^2+pX+q}\qquad\\ \\
+            &=\frac{\frac{a}{2}(2X+p)}{X^2+pX+q} + \frac{b-\frac{a}{2}p}{(X+\frac{p}{2})^2+\frac{4q-p^2}{4}} \qquad \text{On passe le dénominateur sous forme canonique}\\ \\
+            &=\frac{\frac{a}{2}(2X+p)}{X^2+pX+q} + \frac{(b-\frac{ap}{2})(\frac{4}{4q-p^2})}{\frac{4}{4q-p^2}(X+\frac{p}{2})^2+1}\qquad \text{On divise par $4q-p^2>0$ pour avoir une forme $\alpha\frac{u'}{u^2+1}$}\\\\
+            &=\frac{\frac{a}{2}(2X+b)}{X^2+bX+q} + \frac{(b-\frac{ap}{2})(\frac{4}{4q-p^2})}{(\frac{2}{\sqrt{4q-p^2}}X+\frac{p}{\sqrt{4q-p^2}})^2+1}\qquad \text{On fait rentrer $\frac{4}{4q-p^2}>0$ dans $u$ avec $x \mapsto \sqrt{x}$} \\\\
+            \Aboxed{\frac{aX+b}{X^2+pX+q}&=\frac{\frac{a}{2}(2X+b)}{X^2+pX+q} + \frac{\frac{2}{\sqrt{4q-p^2}}}{(\frac{2}{\sqrt{4q-p^2}}X+\frac{p}{\sqrt{4q-p^2}})^2+1}\frac{2b-ap}{\sqrt{4q-p^2}}}
+        \\\end{align*}
+        Passage au calcul intégral :
+            $$\Aboxed{\int^x \frac{at+b}{t^2+pt+q}dt = \frac{a}{2}{\ln|x^2 + px + q|} + \frac{2b-ap}{\sqrt{4q-p^2}}\arctan(\frac{2x+p}{\sqrt{4q-p^2}})}$$
+    \end{remarque}
 \input{../../stock/pied.tex}
