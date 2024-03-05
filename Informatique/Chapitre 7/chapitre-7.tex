@@ -1,21 +1,21 @@
 \input{../../stock/commands.tex}
-\input{../../stock/en-tete_v2.tex}
+\input{../../stock/en-tete_v3.tex}
 Nous avons jusqu'à présent étudié des structures de données séquentielles (piles, files, tables de hachage, etc.). Dans ce chapitre, on étudie des structures de donénes hiérarchiques. \\
 On peut définir la structure d'\notion{arbre} de différentes façons, avec quelques subtilités, ce qui offre une certaine souplesse et permet de s'adapter au problème étudié. \textbf{Il convient d'être particulièrement vigilant à la lecture des sujets proposés pour identifier correctement la structure attendue}.
 \section{Arbres binaires}
 
-\begin{definition}{7.1}{ - arbre binaire}
+\begin{definition}{7.1}{arbre binaire}
     Un \notion{arbre binaire} est un ensemble (éventuellement vide) de \notion{nœuds} et est défini de manière inductive. Un arbre binaire est : \begin{itemize}
         \item Ou bien \notion{l'arbre vide}
         \item Ou bien constitué d'un nœud $R$, appelé \notion{racine}, et de deux \notion{sous-arbres} binaires. Si existence, on appelle \notion{fils gauche} (resp. \notion{fils droit}) du nœud $R$ la racine du sous-arbre gauche (resp. droit). \\ \textit{Voir Figure 1}
     \end{itemize}
 \end{definition}
 
-\begin{remarque}{7.2}{ - à propos la précédente définition}
+\begin{remarque}{7.2}{à propos la précédente définition}
     Dans cette définition, si on permute les sous-arbres gauche et droit, on obtient un arbre différent. Ainsi, les deux arbres représentés ci-dessous sont deux arbres distincts : \textit{Voir Figure 2}
 \end{remarque}
 
-\begin{definition}{7.3}{ - feuille, père, arête, taille}
+\begin{definition}{7.3}{feuille, père, arête, taille}
     \begin{itemize}
         \item Une \notion{feuille} est un nœud dont les sous-arbres gauche et droit sont l'arbre vide.
         \item Un nœud est le \notion{père} de ses éventuels fils. La liaison d'un père vers un fils est appelée une \notion{une arête}.
@@ -24,7 +24,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     \end{itemize}
 \end{definition}
 
-\begin{remarque}{7.4}{ - définition inductive de la taille d'un arbre binaire}
+\begin{remarque}{7.4}{définition inductive de la taille d'un arbre binaire}
     \begin{itemize}
         \item La taille de l'arbre vide est nulle
         \item Un arbre binaire comportant un sous-arbre gauche de taille $n_g$ et un sous-arbre droit de taille $n_d$ est de taille $1+n_g+n_d$ 
@@ -32,7 +32,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     
 \end{remarque}
 
-\begin{definition}{7.5}{ - hauteur, profondeur}
+\begin{definition}{7.5}{hauteur, profondeur}
     La \notion{hauteur} d'un arbre binaire est définie inductivement : \begin{itemize}
         \item L'arbre vide est de hauteur : $-1$
         \item Un arbre binaire comportant un sous-arbre gauche de hauteur $h_g$ et un sous-arbre droit de hauteur $h_d$ est de hauteur $1+\max(h_g,h_d)$.
@@ -40,11 +40,11 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     La \notion{profondeur} d'un nœud est la distance de celui-ci à la racine (si existence). La hauteur d'un arbre est alors la profondeur maximale de ses neuds, et donc la profondeur maximale de ses feuilles.
 \end{definition}
 
-\begin{remarque}{7.6}{ - notion d'étiquettes}
+\begin{remarque}{7.6}{notion d'étiquettes}
     Les nœuds et les arêtes d'un arbre peuvent porter des \notion{étiquettes} : on leur associe une valeur.
 \end{remarque}
 
-\begin{exemple}{7.7}{}
+\begin{exemple}{7.7}{concernant les précédentes définitions}
     Considérons l'arbre binaire suivant. \textit{Voir Figure 3}
     \begin{itemize}
         \item il s'agit d'un arbre binaire de taille 7, (il comporte 7 nœuds étiquetés de 1 à 7) et de hauteur 3.
@@ -60,7 +60,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     \end{itemize}
 \end{exemple}
 
-\begin{exemple}{7.8}{ - implémentation en Ocaml}
+\begin{exemple}{7.8}{implémentation en Ocaml}
     Les arbres binaires étiquetés peuvent être implémentés en Ocaml en définissant le type suivant :
     \begin{verbatim}
         type 'a bintree = Vide | Noeud of 'a * 'a bintree 'a * bintree
@@ -88,7 +88,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     \end{verbatim}
 \end{exemple}
 
-\begin{definition}{7.9}{ - arbres complets}
+\begin{definition}{7.9}{arbres complets}
     Un arbre binaire est dit \notion{complet} si l'une des propriétés est vraie : \begin{itemize}
         \item il est vide
         \item ses sous-abres gauche et droit sont complets, et de même hauteur.
@@ -96,7 +96,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     
 \end{definition}
 
-\begin{proposition}{7.10}{ - lien entre hauteur et taille pour un arbre complet}
+\begin{proposition}{7.10}{lien entre hauteur et taille pour un arbre complet}
     Tout arbre binaire complet de hauteur $h$ possède exactement $2^{h+1} - 1$ noeuds.
 \end{proposition}
 
@@ -163,11 +163,11 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
     \end{verbatim}
 \end{exemple}
 
-\begin{remarque}{7.12}{ - comparaison entre C et Ocaml}
+\begin{remarque}{7.12}{comparaison entre C et Ocaml}
     Dans ce précédent exemple, on représente des arbres binaires non étiquetés, mais on pouvait tout à fait ajouter un champ étiquette. Par ailleurs, en C, on a naturellement une structure mutable, ce qui permet de modifier la structure d'un arbre ou ses étiquettes. Ce n'est pas le cas en Ocaml.
 \end{remarque}
 
-\begin{exemple}{7.13}{ - autre structure de définition}
+\begin{exemple}{7.13}{autre structure de définition}
     Dans le cas d'un arbre binaire complet ou \notion{presque complet} (tous les niveaux de profondeur sont remplis sauf éventuellement le dernier qui est rempli de gauche à droite), on peut également utiliser une structure de tableau. Pour cela, il suffit de numéroter les nœuds de haut en bas et de gauche à droite, à partir de 0, en remarquant que : \begin{itemize}
         \item S'il existe, le fils gauche du nœud d'étiquette $i$ porte le numéro $2i + 1$
         \item S'il existe, le fils gauche du nœud d'étiquette $i$ porte le numéro $2i + 2$
@@ -206,9 +206,31 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
  Parcourir un arbre signifie parcourir l'ensemble de ses noeuds (par exemple dans le but de rechercher un élément particulier, éventuellement pour le modifier), une et une seule fois. Il existe plusieurs façons de parcourir un arbre binaire, mais nous allons décrire les parcours en profondeur et en largeur (dans les deux cas, le parcours s'effectue de gauche à droite).
 
  \subsection{Parcours en profondeur}
- \begin{definition}{7.15}{}
-    
+ \begin{definition}{7.15}{parcours infixe, postfixe, préfixe}
+    On effecue un \notion{parcours en profondeur} lorsqu'on parcourt les noeuds en descendant le plus profondément possible dans l'arbre avant de remonter pour parcourir le reste de l'arbre. \\Il existe 3 parcours classiques en profondeur : \begin{itemize}
+        \item le \notion{parcours préfixe} traite chaque noeud avant de parcourir ses deux sous-arbres (gauche puis droit).
+        \item le \notion{parcours infixe} traite chaque noeud entre le parcours du sous-arbres gauche et celui du sous-arbre droit.
+        \item le \notion{parcours postfixe} traite chaque noeud après avoir parcouru ses deux sous-arbres (le gauche puis le droit).
+    \end{itemize}
  \end{definition}
+
+\begin{exemple}{7.16}
+    \textit{Voir Figure 5} \\
+    Si on parcourt l'arbre binaire ci-dessus pour afficher l'étiquette de chaque noeud, on obtient : \begin{itemize}
+        \item parcours préfixe : ERIOFUAMQTI
+        \item parcours infixe : IRNOFEMAUTQI
+        \item parcours postfixe : INFORMATIQUE
+    \end{itemize}
+    En reprenant le type défini dans l'exemple (7.8), cela donne :
+    \begin{verbatim}
+        let rec affiche_infixe(arbrebin:char bintree) =
+        match arbrebin with
+            | Vide -> ()
+            | Noeud (e,g,d) -> affiche_infixe g;
+            print_char e;
+            affiche_infixe d;
+    \end{verbatim}
+\end{exemple}
 
 
 

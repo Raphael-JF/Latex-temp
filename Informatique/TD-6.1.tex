@@ -130,10 +130,62 @@
     Par ibduction structurelle sur \code{l}, pour toutes listes \code{l}, \code{l1}, \code{l2} tq \dots, l'appel \code{separe l l1 l2} \dots
 \end{question}
 
-\begin{question}{III.3) }{}
+\begin{question}{III.3) }
     En notant $C(n)$ la compexité d'un appel \code{separe l l1 l2} où \code{l} est de taille $n$, on a $C(n+1) = C(n) + \mc{O}(1)$. Alors $C(n) = \mc{O}(n)$. \\
     De plus, \code{separe} étant récursive terminale, elle a une complexité constante sur la pile d'appel. sur le tas en revanche, on construit les deux listes \code{l1} et \code{l2} par ajouts successifs d'un élément en tête, avec une complexité linéaire. Finalement, la complexité spatiale est linéaire en la somme des tailles des listes. \\ \textit{Voir Figure 1 au dos du sujet}
 \end{question}
 
+\begin{question}{III.4) }
+    \begin{verbatim}
+let rec fusionne liste l1 l2 match l1, l2 with
+    | [], l | l, [] -> (rev liste) @ l
+    | e1::q1, e2::q2 -> 
+        if e1 < e2 then fusionne (e1 :: liste) q1 l2
+        else fusionne (e2::liste) l1 q2
+    \end{verbatim}
+\end{question}
 
+\begin{question}{III.5) }
+    Montrons par récurrence sur $n$ $$P(n) : "\text{pour tout $k \in \N, \code{l1}, \code{l2} $ telles que n = $\ccode{l1} + \ccode{l2} = n$, avec \code{l1} et \code{l2} triées dans l'ordre croissant, et \code{l} une liste triée dans l'ordre décroissant dont tous les éléments sont inférieurs à ceux de \code{l1} et \code{l2}, l'appel \code{fusionne l l1 l2} termine et renvoie une permutation triée dans l'ordre croissant de \code{l@l1@ l2}}"$$est vraie pour tout $n \in \N$. \\
+    Initialisation : 
+        Si $\code{l1} + \code{l2} = 0$ et $\code{l1} = \code{[]}$ et $\code{l2} = \code{[]}$ alors l'appel \code{fusionne l l1 l2} termine et renvoie \code{(renv l) qui est bien une permutation triée dans l'ordre croissant de \code{l@[]@[]}. $P(0)$ est vraie. \\
+        Hérédité : On fixe $n \in \N$, on suppose que $P(n)$ est vraie. Montrons que $P(n+1)$ l'est aussi. Soit \code{l1 l2} triées tq $\ccode{l1} + \ccode{l2} = n+1$ pour toute liste \code{l} détriée, dont les éléments\dots \begin{itemize}
+        \item Si $\code{l1} = \code{[]}$ ou $\code{l2} = \code{[]}$, l'appel \code{fusionne l l1 l2} termine et renvoie une permutation triée dans l'ordre croissant de \code{l @ l1 @ l2} car les éléments de \code{l} sont \dots.
+        \item sinon, $\code{l1} = \code{e1::q1}$ et $\code{l2} = \code{e2:q2}$ \begin{itemize}
+            \item si $\code{e1} < \code{e2}$, alors lors de l'appel \codee{fusionne l l1 l2}, on évalue l'appel \code{fusionne (e2::liste) q1 l2} et comme $\ccode{q1} + \ccode{q2} = n$ et les éléments de \code{e1::l} sont inférieurs ou égaux à ceux de \code{q1} et de \code{l2}, car $\code{e1}<\code{e2}$ et \code{e1::l} est triée dans l'ordre croissant car les éléments de \code{l} sont \dots, d'après l'hypothèse de récurrence, cet appel termine et renvoie une permutation triée de \code{e1::l @ q1 @ l2}, i.e. de \code{l @ l1 @ l2}.
+            \item Sinon, on montre de même que l'appel termine et renvoie une permutation triée de \code{l @ l1 @ l2}. Donc $P(n+1)$ est vraie 
+        \end{itemize}
+        \end{itemize}
+        Par récurence, pour tout $n \in \N$, $P(n)$, d'où la correction totale de \code{fusionne}
+\end{question}
+
+\begin{question}{III.6) }
+    Lors d'un appel \code{fusionne liste l1 l2}, les différents appels récursifs se font sur la queue de la deuxième liste, la troisième liste étant identique, ou l'inverse, il y a donc au maximum $\ccode{l1} + \ccode{l2}$ appels récursifs, les autres opérations se font en temps constant sauf lors du dernier appel récursif, de la forme \code{fusionne l' [] l} ou \code{fusionne l' l []} avec $\ccode{l'} \leq \ccode{liste} + \ccode{l1} + \ccode{l2}$.\\Or lors de ce dernier appel on évalue d'abord \code{(renv l ')} en $\mc{O}(\ccode{l'})$ puis on renvoie \code{(renv l') @ l} à nouveau en $\mc{O}(\ccode{l'})$. \\ La complexité d'un appel \code{fusionne liste l1 l2} est donc en $\mc{O}(\ccode{liste} + \ccode{l1} + \ccode{l2})$
+\end{question}
+
+\begin{question}{III.7) }
+    \begin{verbatim}
+        let rec tri_fusion l = match l with
+        | [] | [_] -> l
+        | _ -> let l1, l2 = separe l [] [] in
+            fusionne [] (tri_fusion l1) (tri_fusion l2)
+    \end{verbatim}
+\end{question}
+
+\begin{question}{III.8) }
+    Pour une liste \code{l} de taille $n \geq 2$, l'appel \code{tri_fusion l} effecue : \begin{itemize}
+        \item un appel à la fonction separe en $\mc{O}(n)$
+        \item deux appels récursifs sur des listes de tailles $\lfloor \frac{n}{2} \rfloor $ et $\lceil  \frac{n}{2} \rceil $
+        \item un appel à \code{fusionne} en $\mc{O}(n)$.
+    \end{itemize}
+    En notant, pour tout $n \in \N$, $C(n)$ la complexité dans le pire cas d'un appel \code{tri_fusion l} où $\ccode{l} = n$, $$C(n) = C(\lfloor \frac{n}{2}\rfloor) + C(\lceil \frac{n}{2}) \rceil + \mc{O}(n)$$
+    Pour tout $p \in \N$ on a donc \begin{align*}
+        &C(2^{p+1}) = 2C(2^p) + \mc{O}(2^{p+1}) \\
+        \text{donc}\quad \frac{C(2^{k+1})}{2^{p+1}} &= \frac{C(2^p)}{2^p} + \mc{O}(1) \\
+        \text{d'où}\quad \frac{C(2^p)}{2^p} &= \mc{O}(p) \\
+        \text{puis}\quad C(2^p) = \mc{O}(p2^p) \\
+        \text{De plus, si $n = 2^p$}, p &= \log_2{n}
+    \end{align*}
+    En supposant de plus que la complexité est croissante, on a pour $n$ quelconque $$C(n) = \mc{O}(n \log(n))$$.
+\end{question}
 \input{../stock/pied.tex}
