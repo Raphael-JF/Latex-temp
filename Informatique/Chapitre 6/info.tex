@@ -1,188 +1,6 @@
-\documentclass{article}
-\usepackage{amsmath,amssymb}
-\usepackage{xcolor}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{changepage}
-\usepackage{stmaryrd}
-\usepackage[framemethod=tikz]{mdframed}
+\input{../../stock/commands.tex}
+\input{../../stock/en-tete_v3.tex}
 
-% physique
-\definecolor{oranges}{RGB}{255, 242, 230}
-\definecolor{rouges}{RGB}{255, 230, 230}
-\definecolor{rose}{RGB}{255, 204, 204}
-
-% maths - info
-\definecolor{rouge_fonce}{RGB}{204, 0, 0}
-\definecolor{bleu_fonce}{RGB}{0, 0, 255}
-\definecolor{vert_fonce}{RGB}{0, 69, 33}
-
-\definecolor{orange_foncee}{RGB}{255, 153, 0}
-\definecolor{myrtille}{RGB}{225, 225, 255}
-\definecolor{mayonnaise}{RGB}{255, 253, 233}
-\definecolor{magenta}{RGB}{224, 209, 240}
-\definecolor{pomme}{RGB}{204, 255, 204}
-\definecolor{mauve}{RGB}{255, 230, 255}
-
-% commandes
-\newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
-\newcommand{\mb}[1]{\mathbb{#1}}
-\newcommand{\mc}[1]{\mathcal{#1}}
-
-
-\newmdenv[
-  nobreak=true,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=mayonnaise,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_definition}
-
-\newmdenv[
-  nobreak=true,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=white,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_exemple}
-
-\newmdenv[
-  nobreak=true,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=magenta,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_proposition}
-
-\newmdenv[
-  nobreak=true,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_demonstration}
-
-\newmdenv[
-  nobreak=true,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=white,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_remarque}
-
-
-\newenvironment{definition}[2]
-{
-    \begin{boite_definition}
-    \textbf{\textcolor{rouge_fonce}{Définition #1}} \textit{#2} \\ \\
-}
-{
-    \end{boite_definition}
-    \vspace{15pt}
-}
-
-\newenvironment{exemple}[2]
-{
-    \begin{boite_exemple}
-    \textbf{\textcolor{bleu_fonce}{Exemple #1}} \textit{#2} \\
-    \begin{itemize}[label=$\blacktriangleright \quad $]                    
-}
-{   
-    \end{itemize}
-    \end{boite_exemple}
-    \vspace{15pt}
-}
-
-\newenvironment{proposition}[2]
-{
-    \begin{boite_proposition}
-    \textbf{\textcolor{rouge_fonce}{Proposition #1}} \textit{#2} \\ \\
-}
-{
-    \end{boite_proposition}
-    \vspace{15pt}
-}
-
-\newenvironment{theoreme}[2]
-{
-    \begin{boite_proposition}
-    \textbf{\textcolor{rouge_fonce}{Théorème #1}} \textit{#2} \\ \\
-}
-{
-    \end{boite_proposition}
-    \vspace{15pt}
-}
-
-\newenvironment{demonstration}
-{
-    \begin{boite_demonstration}
-    \textbf{\textcolor{rouge_fonce}{Démonstration}}\\ \\
-}
-{
-    \end{boite_demonstration}
-    \vspace{15pt}
-}
-
-\newenvironment{remarque}[2]
-{
-    \begin{boite_remarque}
-    \textbf{\textcolor{bleu_fonce}{Remarque #1}}\textit{#2} \\ \\
-    \begin{itemize}[label=$\blacktriangleright \quad $ ]                    
-}
-{   
-    \end{itemize}
-    \end{boite_remarque}
-    
-}
-
-\renewcommand{\labelitemi}{--}
-\begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
 
 \begin{definition}{6.16}{- prédécesseur, successeur immédiats}
 Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
@@ -341,7 +159,7 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
             Soit $E$ un ensemble et $f:E^n \rightarrow E$ (pour $n \in \mathbb{N}$) une application. \\ On dit que $X \subset E$ est \notion{stable} par $f$ si $$ \forall x_1,\ldots,x_n \in X, f(x_1,\ldots,x_n) \in X$$
         \end{definition}
 
-        \begin{definition}{6.36}{constructeurs}
+        \begin{definition}{6.36}{ensemble inductif}
             Soit $E$ un ensemble. On se donne au plus :  \begin{itemize}
                 \item une partie $B \subset E$ correspondant aux éléments de base
                 \item un ensemble de \notion{constructeurs} $\mathcal{K} \subset \bigcup_{n \in \mathbb{N}^*} \mathcal{F}(E^n,E)$ i.e. un ensemble d'applications $f:E^n \rightarrow E$
@@ -350,7 +168,7 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
         L'\notion{ensemble inductif} associé est alors le plus petit ensemble $X \subset E$ contenant $B$ est stable par les constructeurs de $\mathcal{K}$.
         \end{definition}
 
-        \begin{remarque}{6.37}{}
+        \begin{remarque}{6.37}{Vocabulaire}
             \item L'ensemble $B$ peut être défini par un ensemble d'\notion{assertions} et l'ensemble $\mathcal{K}$ par des \notion{règles d'inférence}
         \end{remarque}
 
@@ -382,11 +200,12 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
             \item On considère l'ensemble $E = \mathcal{P}(\mathbb{R})$. On pose $B = \{[0,2],[1,3]\}$ et $\mathcal{K} = \{\cap, \cup \}$. \\ L'ensemble inductif associé est alors $\{[0,2], [1,3], [0,3], [1,2]\}$.
         \end{exemple}
 
-        \begin{proposition}{6.42}{}
-            soit $E$ un ensemble, $B \subset E$ un ensemble d'éléments de base et $\mathcal{K}$ un ensemble de constructeurs sur $E$. \\ On définit la suite $(Y_n)$ de parties de $E$ par : $\begin{cases}
+        \begin{proposition}{6.42}{Caractérisation récursive d'un ensemble inductif}
+            Soit $E$ un ensemble, $B \subset E$ un ensemble d'éléments de base et $\mathcal{K}$ un ensemble de constructeurs sur $E$. \\ On définit la suite $(Y_n)$ de parties de $E$ par : 
+            $\begin{cases}
                 Y_0 = B \\
-                \forall n \in \mathbb{N}, Y_{n+1} = \mathcal{Y_n \cup \mathcal{K}(Y_n)}
-            \end{cases}$
+                \forall n \in \mathbb{N}, Y_{n+1} = Y_n \cup \mathcal{K}(Y_n)
+            \end{cases}$ \\
             L'ensemble inductif défini par $B$ et $\mathcal{K}$ et alors : $$X = \bigcup_{n \in \mathbb{N}}Y_n$$
         \end{proposition}
 
@@ -428,8 +247,8 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
 
 \begin{theoreme}{6.48}{preuve par induction structurelle}
     Soit $X \subset E$ un ensemble défini de manière inductive par un ensemble de base $B$ et un ensemble de constructeurs $\mathcal{K}$. Soit $\mathcal{P}$ un prédicat sur $E$. \\ si on a : \begin{itemize}
-        \item $\forall b \in B, \mathcal{P}$
-        \item $\forall f \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p \in X, (\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)) \implies (\mathcal{P}(f(x_1,\ldots,x_p)))$
+        \item $\forall b \in B, \mathcal{P}(b)$
+        \item $\forall f : E^p \rightarrow E \in \mathcal{K}, \forall x_1,\ldots, x_p \in X, \bigl(\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)\bigr) \implies \bigl(\mathcal{P}(f(x_1,\ldots,x_p))\bigr)$
     \end{itemize}
     Alors, $$\forall x \in X, \mathcal{P}(X)$$
 \end{theoreme}
@@ -438,12 +257,12 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
     On définit la suite $(Y_n)$ par $\begin{cases}
         Y_0 =  B \\
         \forall n \in \mathbb{N}, Y_{n+1} = Y_n \cup \mathcal{K}(Y_n)
-    \end{cases}$
-    On a vu (6.42) qu'alors $X = \bigcup_{n \in \mathbb{N}}Y_n$. \\ Pour tout $x \in X$, on définit alors la \notion{hauteur} de $x$ : $h(x) = \min \{n \in \mathbb{N}, x \in Y_n\}$
-    On suppose que : \begin{itemize}
-        \item $\forall b \in B, \mathcal{P}$ (1)
-        \item $\forall f \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p \in X, (\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)) \implies (\mathcal{P}(f(x_1,\ldots,x_p)))$ (2)
-    \end{itemize}
+    \end{cases}$ \\ \\
+    On a vu (6.42) qu'alors $X = \bigcup_{n \in \mathbb{N}}Y_n$. \\ Pour tout $x \in X$, on définit alors la \notion{hauteur} de $x$ : $h(x) = \min \{n \in \mathbb{N}, x \in Y_n\}$. \\
+    On suppose que : \begin{enumeratebf}
+        \item $\forall b \in B, \mathcal{P}$
+        \item $\forall f \in \mathcal{K} (\text{arité }p), \forall x_1,\ldots, x_p \in X, (\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)) \implies (\mathcal{P}(f(x_1,\ldots,x_p)))$
+    \end{enumeratebf}
     Montrons par récurrence forte sur la hauteur $n$ des éléments de $X$ que $\forall x \in X, \mathcal{P}(X)$.
     \begin{itemize}
         \item Si $n = 0$ : \\Soit $x \in X$ tel que $h(x) = 0$, i.e. tel que $x \in Y_0 = B$. Alors d'après la propriété (1), $\mathcal{P}(x)$
@@ -467,3 +286,5 @@ Soit $E$ un ensemble ordonné non vide et $e \in E$. On dit que :
 
 \end{adjustwidth}
 \end{document}
+
+\input{../../stock/pied.tex}

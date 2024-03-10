@@ -1,0 +1,72 @@
+\input{../../../stock/commands.tex}
+\input{../../../stock/en-tete_v3.tex}
+
+\begin{theoreme}{6.31}{caractérisation de la bonne fondation d'un ordre}
+Soit $(E,\leq)$ un ensemble ordonné. Les propositions suivantes sont équivalentes : \begin{enumeratebf}
+    \item $\leq$ est un ordre bien fondé.
+    \item Il n'existe pas de suite infinie strictement décroissante d'élements de $E$.
+    \item Pour tout prédicat $P$ sur $E$, $$\biggl(\forall x \in E, \Bigl(\forall y \in E, x>y \implies P(y)\Bigr) \implies P(x)\biggr) \implies \biggl(\forall x \in E, P(x)\biggr) $$
+\end{enumeratebf}
+\end{theoreme}
+
+
+\begin{demonstration}
+    (1) $\implies$ (2) : $\quad$ Supposons que $\leq$ est un ordre bien fondé, et par l'absurde, que $(x_n)_{n \in \mathbb{N}}$ est une suite infinie strictement décroissante d'éléments de $E$. Alors l'ensemble non vide $\{x_n, n\in \mathbb{N}\} \subset E$ admet un élément minimal $x_k$; Ainsi, par décroissance stricte de $(x_n)$, $x_{k+1} < x_k$, Absurde, $x_k$ est l'élément minimal de $E$.
+\end{demonstration}
+
+\begin{demonstration}
+    (2) $\implies$ (3) : $\quad$ Soit $P$ un prédicat sur $E$. On suppose par l'absurde : \begin{align*}
+        &\text{(2) et } \lnot \text{(3)} \\
+        \Leftrightarrow \quad& \text{(2) et }  \biggl(\forall x \in E, \Bigl(\forall y \in E, x>y \implies P(y)\Bigr) \implies P(x)\biggr) \text{ et } \biggl(\exists x \in E, \lnot P(x)\biggr) \\
+        \Leftrightarrow \quad& \text{(2) et }  \biggl(\forall x \in E,   \lnot P(x) \implies \Bigl(\exists y \in E, x>y \text{ et } \lnot P(y)\Bigr) \biggr) \text{ et } \biggl(\exists x \in E, \lnot P(x)\biggr)  \\
+    \end{align*}
+    Soit $x \in E$ tel que $\lnot P(x)$. On choisit $y \in E$ tel que $x>y$ et $\lnot P(y)$. De même, on peut encore choisir $z \in E$ tel que $y>z$ et $\lnot P(z)$. De par le principe de récurrence, on construit ainsi une suite strictement décroissante $(x_i) \in E^\N$, telle que pour tout $i \in \N, \lnot P(x_i)$. Or on a (2), Absurde.
+\end{demonstration}
+
+\begin{demonstration}
+    \item (3) $\implies$ (1) : Remarquons d'abord que : 
+    \begin{align*}
+        &\text{(3)} \implies \text{(1)} \\
+        \Leftrightarrow  \quad &\Biggl(\Biggl[\biggl(\forall x \in E, \Bigl(\forall y \in E, x>y \implies P(y)\Bigr) \implies P(x)\biggr) \implies \biggl(\forall x \in E, P(x)\biggr) \Biggr] \implies \text{(1)} \Biggr)\\
+        \Leftrightarrow \quad &\Biggl( \Biggl[\biggl(\exists x \in E, \lnot P(x)\biggr) \implies \biggl(\exists x \in E, \Bigl(\forall y \in E, x>y \implies P(y)\Bigr) \text{ et } \lnot P(x)\biggr)\Biggr] \implies \text{(1)}\Biggr)
+    \end{align*}
+    Soit $A \subset E$, tel que $A \neq \varnothing$. On note $P$ le prédicat de $E$ tel que $P(x) : \, \og x \notin A \fg{}$. Nécessairement, il existe $x \in E$ tel que \begin{align*}
+        &x \in A \\
+        \text{donc} \quad &\lnot P(x)
+    \end{align*}
+    On choisit alors $m \in A$ tel que : \begin{align*}
+        &\lnot P(m) \text{ et } \bigl( \forall y \in E, y<m \implies P(y) \bigr)\\
+        \Leftrightarrow \quad &m \in A \text{ et } \bigl( \forall y \in E, y<m \implies y \notin A \bigr)
+    \end{align*}
+    $m$ est alors l'élément minimal de $A$. donc $\leq$ est un ordre bien fondé.
+\end{demonstration}
+
+\begin{theoreme}{6.48}{preuve par induction structurelle}
+    Soit $X \subset E$ un ensemble défini de manière inductive par un ensemble de base $B$ et un ensemble de constructeurs $\mathcal{K}$. Soit $\mathcal{P}$ un prédicat sur $E$. \\ si on a : \begin{enumeratebf}
+        \item $\forall b \in B, \mathcal{P}(b)$
+        \item $\forall f : E^p \rightarrow E \in \mathcal{K}, \, \forall x_1,\ldots, x_p \in X, \quad \Bigl(\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)\Bigr) \implies \Bigl(\mathcal{P}\bigl(f(x_1,\ldots,x_p)\bigr)\Bigr)$
+    \end{enumeratebf}
+    Alors, $$\forall x \in X, \mathcal{P}(X)$$
+\end{theoreme}
+
+\begin{demonstration}
+    On définit la suite $(Y_n)$ par $\begin{cases}
+        Y_0 =  B \\
+        \forall n \in \mathbb{N}, Y_{n+1} = Y_n \cup \mathcal{K}(Y_n)
+    \end{cases}$ \\ \\
+    alors $X = \bigcup_{n \in \mathbb{N}}Y_n$. \\ Pour tout $x \in X$
+    \begin{definition}{temporaire}{hauteur d'un élément d'ensemble inductif défini récursivement}
+        on définit alors la \notion{hauteur} de $x$ par $h(x) = \min \{n \in \mathbb{N}, x \in Y_n\}$.
+    \end{definition}\\
+    On suppose que : \begin{enumeratebf}
+        \item $\forall b \in B, \mathcal{P}(b)$
+        \item $\forall f : E^p \rightarrow E \in \mathcal{K}, \, \forall x_1,\ldots, x_p \in X, \quad \Bigl(\forall i \in \llbracket 1,p \rrbracket, \mathcal{P}(x_i)\Bigr) \implies \Bigl(\mathcal{P}\bigl(f(x_1,\ldots,x_p)\bigr)\Bigr)$
+    \end{enumeratebf}
+    Montrons par récurrence forte sur la hauteur $n$ des éléments de $X$ que $\forall x \in X, \mathcal{P}(X)$.
+    \begin{itemize}
+        \item Si $n = 0$ : \\Soit $x \in X$ tel que $h(x) = 0$, i.e. tel que $x \in Y_0 = B$. Alors d'après la propriété (1), $\mathcal{P}(x)$
+        \item Soit $n \in \mathbb{N}$ fixé. On suppose que $$\forall y \in X, h(y) \leq n \implies \mc{P}(y)$$ Soit $x \in X$ tel que $h(x) = n+1$. Montrons que $\mathcal{P}(x)$ est encore vraie.\\Par définition de la hauteur, $x \in Y_{n+1} = Y_{n} \cup \mathcal{K}(Y_n)$. De plus, $x \notin Y_n$ ($h(x) = n+1$).\\Alors, $x \in \mathcal{K}(Y_n)$.\\Soit donc $f : E^p \rightarrow E \in \mathcal{K}$ et $y_1, \ldots, y_p \in Y_n$ tels que $x = f(y_1,\ldots y_p)$.\\Donc $P(y_i)$ est vraie par hypothèse de récurrence ($\forall i \in \llbracket 1,p \rrbracket, h(y_i) \leq n$).\\D'après la proposition (2), on a donc $\mathcal{P}(x)$. 
+        \item Ainsi, par récurrence forte sur $n$, $$\forall n \in \mathbb{N}, \forall x \in X \text{ de hauteur } n, \mathcal{P}(x)$$
+    \end{itemize}
+\end{demonstration}
+\input{../../../stock/pied.tex}
