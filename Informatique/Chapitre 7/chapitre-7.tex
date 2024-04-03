@@ -1,5 +1,5 @@
-\input{stock/commands}
-\input{stock/en-tete_v4}
+\input{../../stock/commands.tex}
+\input{../../stock/en-tete_v3.tex}
 
 
 \setcounter{section}{6}
@@ -128,11 +128,11 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
 
 \begin{exemple}{7.8}{implémentation en Ocaml}
     Les arbres binaires étiquetés peuvent être implémentés en Ocaml en définissant le type suivant :
-    \begin{minted}{ocaml}
+    \begin{verbatim}
         type 'a bintree = Vide | Noeud of 'a * 'a bintree 'a * bintree
-    \end{minted}
+    \end{verbatim}
     On déclare alors l'arbre de l'exemple précédent comme ceci : 
-    \begin{minted}{ocaml}
+    \begin{verbatim}
         let a = Noeud(1,
             Noeud(2,
                 Noeud(4,Vide,Vide),
@@ -142,15 +142,15 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
             Noeud(3,
                 Vide,
                 Noeud(6, Vide, Vide)))
-    \end{minted}
+    \end{verbatim}
     La fonction suivante permet de déterminer la taille d'un arbre binaire.
-    \begin{minted}{ocaml}
+    \begin{verbatim}
     let taille arbre = match arbre with
         |Vide -> 0
         |Noeud (e, g, d) -> 1 + taille g + taille d
 
     let () = print_int (taille a ; print_string "\n")
-    \end{minted}
+    \end{verbatim}
 \end{exemple}
 
 \begin{definition}{7.9}{arbres complets}
@@ -179,25 +179,25 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
 
 \begin{exemple}{7.11}{implémentation en C}
     En C, on peut définir une structure d'arbre binaire dans laquelle on stocke la taille de l'arbre :
-    \begin{minted}{C}
+    \begin{verbatim}{C}
         struct Arbrebin{
             int taille;
             struct Arbrebin* gauche;
             struct Arbrebin* droit;
         };
         type def struct Arbrebin arbrebin;
-    \end{minted}
+    \end{verbatim}
     L'arbre vide est représenté par le pointeur \code{NULL}. Pour pouvoir accéder à la taille, y compris de l'arbre vide, on implémente une fonction taille : 
-    \begin{minted}{c}
+    \begin{verbatim}{C}
         int taille(arbrebin* a){
             if (a == NULL){
                 return 0;
             }
             return a->taille;
         }
-    \end{minted}
+    \end{verbatim}
     On crée alors un abre binaire quelconque en assemblant ses sous-arbres gauche et droit : 
-    \begin{minted}{c}
+    \begin{verbatim}{C}
         arbrebin* assemble_arbrebin(arbrebin* ssArbre_g, arbre* ssArbre_d){
             arbrebin* a = malloc(sizeof (arbrebin));
             assert(a != NULL);
@@ -205,9 +205,9 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
             a->droite = ssArbre_d;
             a->taille = ssArbre_g->taille + ssArbre_d->taille + 1;
         }
-    \end{minted}
+    \end{verbatim}
     On pense également à créer un destructeur pour pouvoir libérer la mémoi allouée sur le tas : 
-    \begin{minted}{c}
+    \begin{verbatim}{C}
         void libere_arbre(arbrebin* a){
             if (a != NULL){
                 libere_arbrebin(a->gauche);
@@ -215,18 +215,18 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
                 free(a);
             }
         }
-    \end{minted}
+    \end{verbatim}
     Pour créer une feuille,
-    \begin{minted}{c}
+    \begin{verbatim}{C}
         arbrebin* feuille = assemble_arbrebin(NULL,NULL);
-    \end{minted}
+    \end{verbatim}
     La fonction suivante permet de tester si un arbre binaire est complet ou non : 
-    \begin{minted}{c}
+    \begin{verbatim}{C}
         bool est_complet(arbrebin* a){
             if (a == NULL){return true;} // arbre vide
         }
         return taille(a->gauche) == taille(a->droit) && est_complet(a->gauche) && est_complet(a->droit)
-    \end{minted}
+    \end{verbatim}
 \end{exemple}
 
 \begin{remarque}{7.12}{comparaison entre C et Ocaml}
@@ -265,7 +265,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
 \end{center}
     
     En C, pour manipuler de tels arbres, on peut utiliser la structure suivante :
-    \begin{minted}{c}
+    \begin{verbatim}{C}
         typedef struct ArbreBC{
             int taille;
             int* etiquettes; //ou un autre type, en fonction des étiquettes
@@ -286,7 +286,7 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
                 free(a);
             }
         }
-    \end{minted}
+    \end{verbatim}
 \end{exemple}
 
  \begin{remarque}{7.14}{}
@@ -352,14 +352,14 @@ On peut définir la structure d'\notion{arbre} de différentes façons, avec que
         \item parcours \underline{postfixe} : INFORMATIQUE
     \end{itemize}
     En reprenant le type défini dans l'exemple (7.8), cela donne :
-    \begin{minted}{ocaml}
+    \begin{verbatim}
         let rec affiche_infixe(arbrebin:char bintree) =
         match arbrebin with
             | Vide -> ()
             | Noeud (e,g,d) -> affiche_infixe g;
             print_char e;
             affiche_infixe d;
-    \end{minted}
+    \end{verbatim}
 \end{exemple}
 
 \begin{remarque}{7.17}{compatibilité de ces parcours}
@@ -412,7 +412,7 @@ On effectue un \notion{parcours en largeur} lorsqu'on parcourt les noeuds par ni
 
 \begin{exemple}{7.22}{implémentation en OCaml}
     On suppose avoir défini une structure de file ainsi que les opérations élémentaires associées (voir section 5.2.3). La fonction suivante permet alors d'effectuer un parcours en largeur d'un arbre binaire : \\ \\
-    \begin{minted}{ocaml}
+    \begin{verbatim}
         type a' queue = {entrants : 'a list ; sortants : 'a list}
         (* empty_queue : unit -> 'a queue
         is_empty : 'a queue -> bool
@@ -434,7 +434,7 @@ On effectue un \notion{parcours en largeur} lorsqu'on parcourt les noeuds par ni
                             (* les sous-arbres vont au niveau suivant *)
                     end
             in affiche {entrants = [arbrebin]; sortants = []}
-    \end{minted}
+    \end{verbatim}
 \end{exemple}
 
 \begin{remarque}{7.23}{sur l'implémentation d'un arbre quasi-complet ou complet}
@@ -502,8 +502,9 @@ On effectue un \notion{parcours en largeur} lorsqu'on parcourt les noeuds par ni
         \item Si $\mc{A}$ est l'arbre vide, c'est immédiat.
         \item Si $\mc{A}$ est construit à partir d'une racine étiquetée par la valeur $r$, d'un sous-arbre gauche $\mc{A}_g$ et d'un sous-arbre droit $\mc{A}_d$, on suppose la propriété vraie pour les sous-arbres $\mc{A}_g$ et $\mc{A}_d$. \\ On note respectivement \code{lg} et \code{ld} les listes d'étiquettes obtenues par un parcours infixe de $\mc{A}_g$ et $\mc{A}_d$ respectivement. Par définition d'un parcours infixe, la liste \code{l} des étiquettes de $\mc{A}$ das l'ordre infixe est telle que $\code{l} = \code{lg @ [r] @ ld}$.
         \item Si $\mc{A}$ est un ABR, tous les éléments de \code{lg} sont inférieurs à l’étiquette de la racine tandis que ceux de \code{ld} sont supérieurs à \code{r}. D’autre part, $\mc{A}_g$ et $\mc{A}_d$ sont des ABR, par hypothèse d’induction, les listes \code{lg} et \code{lg} sont alors triées et on en déduit que $\code{l}=\code{lg @ [r] @ ld}$ est triée.
-    \end{itemize} \\ \\
-    $\impliedby$
+    \end{itemize}
+    % \end{itemize} \\ \\
+    % $\impliedby$
 \end{demonstration}
 
-\input{stock/pied}
+\input{../../stock/pied}
