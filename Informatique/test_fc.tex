@@ -1,0 +1,25 @@
+\input{../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../stock/commands.tex}
+
+\begin{question}{III.8)}{version longue complexité}
+    Pour une liste \code{l} de taille $ n \in \mathbb{N}^* $, l'appel \code{tri\_fusion l} effectue :
+    \begin{itemize}
+        \item un appel à la fonction \code{separe} en $\mc{O}(n)$
+        \item deux appels récursifs sur des listes de tailles $\lfloor \frac{n}{2} \rfloor $ et $\lceil  \frac{n}{2} \rceil $
+        \item un appel à \code{fusionne} en $\mc{O}(n)$.
+    \end{itemize}
+    En notant, pour tout $n \in \N$, $C(n)$ la complexité dans le pire cas d'un appel \code{tri\_fusion l} où $\ccode{l} = n$, $$C(n) = C\Bigl(\Bigl\lfloor \frac{n}{2}\Bigr\rfloor\Bigr) + C\Bigl(\Bigl\lceil \frac{n}{2} \Bigr\rceil\Bigr) + \mc{O}(n)$$
+    Pour tout $p \in \N$, on a donc :
+    \begin{align*}
+        &C(2^{p+1}) = 2C(2^p) + \mc{O}(2^{p+1}) \\
+        &\text{donc}\qquad \frac{C(2^{p+1})}{2^{p+1}} = \frac{C(2^p)}{2^p} + \mc{O}(1) \\
+        &\text{d'où}\qquad \frac{C(2^p)}{2^p} = \mc{O}(p) \\
+        &\text{puis}\qquad C(2^p) = \mc{O}(p2^p) \\\\
+        &\text{De plus, si $n = 2^p$}, p = \log_2{n}
+    \end{align*}
+    En supposant de plus que la complexité est croissante, on a pour $n$ quelconque $$C(n) = \mc{O}(n \log(n))$$.
+\end{question}
+
+\input{../stock/pied.tex}
