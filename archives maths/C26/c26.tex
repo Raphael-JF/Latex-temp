@@ -1,0 +1,21 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{theoreme}{26.70}{sommation de Riemann (version générale)}
+    Soit $f$ une fonction continue sur $[a;b]$. Soit $\biggr(\Bigr(\sigma_k^{(n)}\Bigl)_{k \in \intint{0,\ell_n}}\biggl)_{n \in \N}$ une suite de subdivisions de $[a;b]$ dont on suppose la suite des pas respectifs vérifier : 
+    $$p(\sigma^{(n)}) \xrightarrow[n \rightarrow +\infty]{} 0 $$
+    et soit pour tout $n \in \N$ et tout $k \in \intint{0, \ell_n - 1}$, $\quad x_{n,k}$ un élément de $\bigr[ \sigma_k^{(n)} ; \sigma_{k+1}^{(n)} \bigl]$. Alors :
+    $$\int_{a}^{b}f(x)dx = \lim_{n \rightarrow + ^\infty} \sum_{k=0}^{\ell_n - 1}\bigr( \sigma_{k+1}^{(n)} - \sigma_{k}^{(n)} \bigl)f(x_{n,k})$$
+\end{theoreme}
+
+\begin{theoreme}{26.71}{sommation de Riemann (cas particulier)}
+    Soit $f$ une fonction continue sur $[a;b]$. Alors :
+    $$\int_{a}^{b}f(x)dx 
+    = \underbrace{\lim_{n \rightarrow +\infty} \frac{b-a}{n}\sum_{k=0}^{n-1}f\biggr( a + k \frac{b-a}{n} \biggl) }_{\text{appui par la gauche}}
+    = \underbrace{\frac{b-a}{n}\sum_{k=1}^{n}f\biggr( a + k \frac{b-a}{n} \biggl)}_{\text{appui par la droite}}$$
+\end{theoreme}
+
+
+\input{../../stock/pied.tex}
