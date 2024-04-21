@@ -70,4 +70,16 @@ Soit $(E,\leq)$ un ensemble ordonné. Les propositions suivantes sont équivalen
         \item Ainsi, par récurrence forte sur $n$, $$\forall n \in \mathbb{N}, \forall x \in X \text{ de hauteur } n, \mathcal{P}(x)$$
     \end{itemize}
 \end{demonstration}
+
+\begin{demonstration}
+    Les fonctions \code{echange} et \code{pere} ont une complexité constante.\\
+    De plus, la fonction \code{percolation\_haut} parcourt chaque niveau de profondeur du tas dans le pire des cas, chaque itération se faisant en temps constant. Sa complexité est donc $\bigO(\log(n))$ (hauteur = $\lfloor \log_2(n) \rfloor$ car arbre quasi-complet).\\
+    La fonction \code{insere}, exécutant un nombre borné d'opérations élémentaires et faisant un appel à \code{percolation\_haut}, a donc une complexité en $\bigO(\log(n))$.
+\end{demonstration}
+
+\begin{demonstration}
+    Les fonctions \code{echange}, et \code{fils\_g} et \code{fils\_d} ont une complexité constante.\\
+    De plus, la fonction \code{insere} exécute un nombre borné d'opérations élémentaires en plus de parcourir chaque niveau de profondeur du tas dans le pire des cas, chaque itération se faisant en temps constant.\\
+    Sa complexité est donc en $\bigO(\log(n))$ (hauteur = $\lfloor \log_2(n) \rfloor$ car arbre quasi-complet).
+\end{demonstration}
 \input{../../../stock/pied.tex}

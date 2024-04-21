@@ -1,0 +1,235 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{25.13}{développement de Taylor de $f$}
+Soit $f \in \mc{D}^{n}(\{x_0\})$. Un \notion{développement de Taylor à l'ordre $n$ de $f$ en $x_0$} est un polynôme $P \in \R_n[X]$ vérifiant :
+$$ \forall i \in \intint{0}{n}, \quad P^{(n)}(x_0) = f^{(n)}(x_0) $$
+donc un polynôme dont la courbe est, en $x_0$, \notion{tangente à l'ordre $n$} à celle de $f$. Ce polynôme existe, est unique et donné par : 
+$$P = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
+\end{definition}
+
+\begin{definition}{25.16}{reste de Taylor à l'ordre $n$}
+    Soit $f:I \to \R$ de classe $\mc{D}^{n}$ sur $\{x_0\}$. On appelle \notion{reste de Taylor à l'ordre $n$ de $f$ en $x_0$} la fonction : 
+    $$R_{n,x_0} : I \to \R \quad ; \quad x \mapsto f(x) - \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
+\end{definition}
+
+\begin{proposition}{25.18}{fonction développable en série de Taylor}
+    Soit $f:I \to \R$ de classe $\mc{C}^{\infty}$ sur $I$ (ou sur $\{x_0\}$ ?). Alors : 
+    $$\Bigr(\forall x \in I, \, \lim_{n \to +\infty} R_{n,x_0}(x) = 0\Bigl) \quad \implies \quad \Bigr(\forall x \in I, \, f(x) = \sum_{k=0}^{+\infty}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k\Bigl)$$
+    Dans ce cas, on dit que $f$ est \notion{développable en série de Taylor en $x_0$}.
+\end{proposition}
+
+\begin{theoreme}{25.20}{formule de Taylor avec reste intégral à l'ordre $n$ au point $a$}
+    Soit $a<b$ et $f:\seg{a}{b} \to \R$ de classe $\mc{C}^{n+1}$ sur $\seg{a}{b}$. Alors
+    $$\forall x \in \seg{a}{b},\, R_{n,a}(x) = \int_{a}^{x} \frac{f^{n+1}(t)}{n!}(x-t)^n\, \text{d}t $$
+
+\end{theoreme}
+
+\begin{theoreme}{25.27}{formule de Taylor-Young à l'ordre $n$ en $x_0$}
+    Soit $I$ ouvert, $x_0 \in I$ et $f:I \to \R$ de classe $\mc{C}^{n}$ au voisinage de $x_0$. Alors : 
+    $$f(x) \underset{x \to x_0}{=} \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k \, + o\bigl((x-x_0)^n\bigr)$$
+\end{theoreme}
+
+\begin{proposition}{25.34}{formule de Taylor pour les polynômes}
+    Pour tous $n \in \N$ et $x_0 \in \R$, on a :
+    $$\forall P \in \R_n[X],\, P = \sum_{k=0}^{n}\frac{P^{(k)}(x_0)}{k!}(x-x_0)^k$$
+\end{proposition}
+
+\begin{definition}{25.36}{développement limité}
+    Soit $I$ ouvert, $x_0 \in I$ et $f:I \to \R$. On dit que le polynôme $ \displaystyle P = \sum_{k=0}^{n}a_k(X - x_0)^k \in \R_n[X]$ est un \notion{développement limité à l'ordre $n$ de $f$ en $x_0$} si on a :\\
+    $$f(x) \underset{x \to x_0}{=}  P(x) + o\bigl((x-x_0)^n\bigr)$$ \\
+    Si $f$ est de classe $\mc{C}^{n}$ au voisinage de $x_0$, un tel polynôme existe, est unique et donné par la formule de Taylor-Young:
+    $$P = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
+\end{definition}
+
+\begin{proposition}{25.41}{DL de fonctions paires ou impaires}
+    Soit $I$ ouvert tel que $0 \in I$ et $f:I \to \R$. \begin{itemize}
+        \item Si $f$ est paire, alors si existence, ses développements limités en 0 ne présentent que des monômes de degré pair.
+        \item Si $f$ est impaire, alors si existence, ses développements limités en 0 ne présentent que des monômes de degré impair.
+    \end{itemize}
+\end{proposition}
+
+\begin{proposition}{25.42}{classe d'une fonction admettant un DL}
+    Soit $I$ ouvert, $x_0 \in I$ et $f:I \to \R$.
+    \begin{itemize}
+        \item Si $f$ admet un DL à l’ordre $0$ en $x_0$, alors $f$ est continue en $x_0$.
+        \item Si $f$ admet un DL à l’ordre $1$ en $x_0$, alors $f$ est dérivable en $x_0$.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}{25.44}{DL au sens fort}
+    Soit $I$ ouvert, $x_0 \in I$ et $f:I \to \R$. On dit que le polynôme $ \displaystyle P = \sum_{k=0}^{n}a_k(X - x_0)^k \in \R_n[X]$ est un \notion{développement limité au sens fort à l'ordre $n$ de $f$ en $x_0$} si on a :\\
+    $$f(x) \underset{x \to x_0}{=}  P(x) + \bigO\bigl((x-x_0)^{n+1}\bigr)$$
+\end{definition}
+
+\begin{definition}{25.46}{troncature}
+    Soit $m\leq n$ dans $\N$, et $\displaystyle P = \sum_{k=0}^{n}a_k(X - x_0)^k \in \R_n[X]$. La troncature de $P$ à l'ordre $m$ au voisinage de $x_0$ est le polynôme : 
+    $$T_{m,x_0}(P) = \sum_{k=0}^{m}a_k(X - x_0)^k$$\\
+    Ainsi, si : 
+    $$f(x) \underset{x \to x_0}{=} P(x) \, + o\bigl((x-x_0)^n\bigr)$$
+    alors,
+    $$f(x) \underset{x \to x_0}{=} T_{m,x_0}(P)(x) \, + o\bigl((x-x_0)^m\bigr)$$
+\end{definition}
+
+\begin{proposition}{25.55}{somme de DL}
+    Soit $I$ et $J$ ouverts tel que $(0,0) \in I\times J$, $f:I \to \R$,  $g:J \to \R$ et $(P,Q) \in \R_n[X]^2$. Si on a :
+    $$\begin{cases}
+        f(x) \underset{x \to 0}{=} P(x)  + o\bigl(x^n\bigr)\\
+        g(x) \underset{x \to 0}{=} Q(x)  + o\bigl(x^n\bigr)
+    \end{cases}$$
+    Alors,
+    $$(f+g)(x) \underset{x \to 0}{=} P(x) + Q(x) + o\bigl(x^n\bigr)$$
+\end{proposition}
+
+\begin{proposition}{25.56}{produit de DL}
+    Soit $I$ et $J$ ouverts tel que $(0,0) \in I\times J$, $f:I \to \R$,  $g:J \to \R$ et $(P,Q) \in \R_n[X]^2$. Si on a :
+    $$\begin{cases}
+        f(x) \underset{x \to 0}{=} P(x)  + o\bigl(x^n\bigr)\\
+        g(x) \underset{x \to 0}{=} Q(x)  + o\bigl(x^n\bigr)
+    \end{cases}$$
+    Alors,
+    $$(fg)(x) \underset{x \to 0}{=} T_{n,0}(PQ)(x) + o\bigl(x^n\bigr)$$
+\end{proposition}
+
+\begin{proposition}{25.59}{composition de DL}
+    Soit $I$ et $J$ ouverts tel que $(0,0) \in I\times J$, $f:I \to \R$ telle que $f(0) = 0$,  $g:J \to \R$ et $(P,Q) \in \R_n[X]^2$. Si on a :
+    $$\begin{cases}
+        f(x) \underset{x \to 0}{=} P(x)  + o\bigl(x^n\bigr)\\
+        g(x) \underset{x \to 0}{=} Q(x)  + o\bigl(x^n\bigr)
+    \end{cases}$$
+    Alors,
+    $$g \circ f(x) \underset{x \to 0}{=} T_{n,0}(Q\circ P)(x) + o\bigl(x^n\bigr)$$
+\end{proposition}
+
+\begin{proposition}{25.62}{DL d'une réciproque}
+    Soit $I$ ouvert tel que $0 \in I$, $f:I \to \R$, $P \in \R_n[X]$ tels que :
+    $$f(0) = 0 \quad \text{et} \quad   f(x) \underset{x \to 0}{=} P(x)  + o\bigl(x^n\bigr)$$ \\
+    Si $f$ est bijective (ou au moins injective) au voisinage de $0$, alors il existe $Q \in \R_n[X]$ tel que :
+    $$f(x) \underset{x \to 0}{=} Q(x)  + o\bigl(x^n\bigr)$$
+    Ce polynôme $Q$ s'identifie en résolvant :
+    $$x \underset{x \to 0}{=} f^{-1} \circ f(x) + o\bigl(x^n\bigr)$$
+\end{proposition}
+
+\begin{proposition}{25.65}{DL d'un inverse}
+    Soit $I$ ouvert tel que $0 \in I$, $f:I \to \R$, $ \displaystyle P = \sum_{k=0}^{n}a_kX^k \in \R_n[X]$ tels que : 
+    $$f(0) \neq 0 \quad \text{et} \quad   f(x) \underset{x \to 0}{=} P(x)  + o\bigl(x^n\bigr)$$
+    Comme $f(0) \neq 0$, on a également $P(0) \neq 0$. On peut alors écrire :
+    $$P = a_0(1 +  Q ) \qquad \text{avec} \quad Q = a_0^{-1} \sum_{k=1}^{n}a_kX_k$$
+    où ici $Q(0) = 0$. En remarquant que pour tout $x \in \R$, 
+    $$\frac{1}{P(x)} = \frac{1}{a_0(1+Q(x))}$$
+    on peut appliquer la formule de composition des développements limités sur $h \circ Q$ avec $h:x \mapsto \frac{1}{1+x} $ ($Q(0) = 0$), on a :\\
+    $$\frac{1}{f(x)} \underset{x \to 0}{=} \frac{1}{a_0} \times T_{n,0}\Biggl(\sum_{k=0}^{n}(-1)^k Q^k\Biggr) \, + o\bigl(x^n\bigr)$$
+\end{proposition}
+
+\begin{proposition}{25.65}{primitive de DL}
+    Soit $I$ ouvert tel que $0 \in I$, $f \in \mc{D}^1(I,\R) $, $ \displaystyle P = \sum_{k=0}^{n-1}a_kX^k \in \R_{n-1}[X]$ tels que :
+    $$f'(x) \underset{x \to 0}{=} P(x)  + o\bigl(x^{n-1}\bigr)$$\\
+    Alors $f$ admet un développement limité à l'ordre $n$, en $0$, donné par :
+    \begin{align*}
+        f(x) &\underset{x \to 0}{=} f(0) + \sum_{k=1}^{n} \frac{a_{k-1}}{k} x^k \, + o(x^n) \\
+        &\underset{x \to 0}{=} f(0) + a_0x + \frac{a_1}{2}x^2 + \frac{a_2}{3}x^3 + \dots + \frac{a_{n-1}}{n}x^n + o(x^n)
+     \end{align*}
+\end{proposition}
+
+
+
+
+
+\begin{proposition}{25.87 (1)}{DL de $x \mapsto e^x$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto e^x$ en $0$ est :
+    \begin{align*}
+        e^x &\underset{x \to 0}{=} \sum_{k=0}^{n} \frac{x^k}{k!} \, + o(x^n) \\
+        &\underset{x \to 0}{=} 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots + \frac{x^n}{n!} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (2)}{DL de $x \mapsto \ln(1+x)$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \ln(1+x)$  en $0$ est :
+    \begin{align*}
+        \ln(1+x) &\underset{x \to 0}{=} \sum_{k=1}^{n} \frac{(-1)^{k+1}x^k}{k} \, + o(x^n) \\
+        &\underset{x \to 0}{=} x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots + \frac{(-1)^{n+1}x^n}{n!} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (3)}{DL de $x \mapsto \cos(x)$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \cos(x)$ en $0$ est :
+    \begin{align*}
+        \cos(x) &\underset{x \to 0}{=} \sum_{k=0}^{\lfloor \frac{n}{2} \rfloor} \frac{(-1)^{k}x^{2k}}{(2k)!} \, + o(x^n) \\
+        &\underset{x \to 0}{=} 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots + \frac{(-1)^{\lfloor \frac{n}{2}\rfloor} x^{(2\lfloor\frac{n}{2}\rfloor)}}{(2\lfloor\frac{n}{2}\rfloor)!} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (4)}{DL de $x \mapsto \sin(x)$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \sin(x)$ en $0$ est :
+    \begin{align*}
+        \sin(x) &\underset{x \to 0}{=} \sum_{k=0}^{\lfloor \frac{n-1}{2} \rfloor} \frac{(-1)^{k}x^{2k+1}}{(2k+1)!} \, + o(x^n) \\
+        &\underset{x \to 0}{=} x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots + \frac{(-1)^{\lfloor \frac{n-1}{2}\rfloor} x^{(2\lfloor\frac{n-1}{2}\rfloor)}}{(2\lfloor\frac{n-1}{2}\rfloor)!} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (5)}{DL de $x \mapsto \tan(x)$}
+    Le développement limité au rang $10$ de $x \mapsto \tan(x)$ en $0$ est :
+    \begin{align*}
+        \tan(x) \underset{x \to 0}{=} x + \frac{1}{3}x^3 + \frac{2}{15}x^5 + \frac{17}{315}x^7 + \frac{63}{2835} x^9+ o(x^{10})
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (6)}{DL de $x \mapsto \arctan(x)$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \arctan(x)$ en $0$ est :
+    \begin{align*}
+        \arctan(x) &\underset{x \to 0}{=} \sum_{k=0}^{\lfloor \frac{n-1}{2} \rfloor} \frac{(-1)^{k}x^{2k+1}}{2k+1} \, + o(x^n) \\
+        &\underset{x \to 0}{=} x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \dots + \frac{(-1)^{\lfloor \frac{n-1}{2}\rfloor} x^{(2\lfloor\frac{n-1}{2}\rfloor)}}{(2\lfloor\frac{n-1}{2}\rfloor)} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (7)}{DL de $x \mapsto \cosh(x)$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \cosh(x)$ en $0$ est :
+    \begin{align*}
+        \cosh(x) &\underset{x \to 0}{=} \sum_{k=0}^{\lfloor \frac{n}{2} \rfloor} \frac{x^{2k}}{(2k)!} \, + o(x^n) \\
+        &\underset{x \to 0}{=} 1 + \frac{x^2}{2!} + \frac{x^4}{4!} + \frac{x^6}{6!} + \dots + \frac{x^{(2\lfloor\frac{n}{2}\rfloor)}}{(2\lfloor\frac{n}{2}\rfloor)!} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (8)}{DL de $x \mapsto \sinh(x)$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \sinh(x)$ en $0$ est :
+    \begin{align*}
+        \sinh(x) &\underset{x \to 0}{=} \sum_{k=0}^{\lfloor \frac{n-1}{2} \rfloor} \frac{x^{2k+1}}{(2k+1)!} \, + o(x^n) \\
+        &\underset{x \to 0}{=} x + \frac{x^3}{3!} + \frac{x^5}{5!} + \frac{x^7}{7!} + \dots + \frac{x^{(2\lfloor\frac{n-1}{2}\rfloor)}}{(2\lfloor\frac{n-1}{2}\rfloor)!} + o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (9)}{DL de $x \mapsto \tanh(x)$}
+    Le développement limité au rang $10$ de $x \mapsto \tanh(x)$ en $0$ est :
+    \begin{align*}
+        \tanh(x) \underset{x \to 0}{=} x - \frac{1}{3}x^3 + \frac{2}{15}x^5 - \frac{17}{315}x^7 + \frac{62}{2835} x^9+ o(x^{10})
+    \end{align*}
+\end{proposition}
+
+
+\begin{proposition}{25.87 (10)}{DL de $x \mapsto (1+x)^{\alpha}$}
+    Soit $\alpha \in \R$. Le développement limité au rang $n \in \N$ de $x \mapsto (1+x)^{\alpha}$ en $0$ est :
+    \begin{align*}
+        (1+x)^{\alpha} &\underset{x \to 0}{=} \sum_{k=0}^{n} \frac{x^k}{k!} \prod_{i=0}^{k-1}(\alpha-i) \, + o(x^n) \\
+        &\underset{x \to 0}{=} 1 + \alpha x + \alpha(\alpha-1) \frac{x^2}{2} + \alpha(\alpha-1)(\alpha-2)\frac{x^3}{3} + \dots + \frac{x^n}{n!}\prod_{i=0}^{n-1}(\alpha-i) \,+  o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (11)}{DL de $x \mapsto \frac{1}{1+x}$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \frac{1}{1+x}$ en $0$ est :
+    \begin{align*}
+        \frac{1}{1+x} &\underset{x \to 0}{=} \sum_{k=0}^{n} (-1)^k x^k \, + o(x^n) \\
+        &\underset{x \to 0}{=} 1 - x + x^2 - x^3 + \dots + (-1)^n x^n +  o(x^n)
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{25.87 (12)}{DL de $x \mapsto \frac{1}{1-x}$}
+    Le développement limité au rang $n \in \N$ de $x \mapsto \frac{1}{1-x}$ en $0$ est :
+    \begin{align*}
+        \frac{1}{1-x} &\underset{x \to 0}{=} \sum_{k=0}^{n} x^k \, + o(x^n) \\
+        &\underset{x \to 0}{=} 1 + x + x^2 + x^3 + \dots + x^n +  o(x^n)
+    \end{align*}
+\end{proposition}
+
+\input{../../stock/pied.tex}

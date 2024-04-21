@@ -1,0 +1,23 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{remarque}{7.25}{méthode de variation de la constante}
+    On considère l'équation différentielle sur $X$ : $$(\mc{E}) : \forall t \in X,\, a(t)y' - b(t)y = c(t) $$ où $(a,b,c) \in (\mc{C}^1(X))^3$, et $y$ une fonction dérivable, inconnue. On note $S(\mc{E})$ l'ensemble des solutions de $(\mc{E})$. \\
+    On se place sur un intervalle $I \subset X$ où $a$ ne s'annule pas. On recherche une solution particulière sous la forme : $$y_P : t \mapsto \lambda(t)e^{F(t)}\text{, où } \begin{cases}
+        \text{$F$ est une primitive de $\frac{-b}{a}$ sur $I$} \\
+        \text{$\lambda$ est une fonction dérivable sur $I$}
+    \end{cases}$$
+    Ensuite on trouve par équivalence une condition sur $\lambda$ :
+    \begin{align*}
+        y_P \in S(\mc{E}) &\Leftrightarrow ay_P' - by_P = c \\
+        &\Leftrightarrow a\biggl(\lambda'e^{F}-\frac{b}{a}\lambda e^{F}\biggr) + b\lambda e^{F} = c \\
+        &\Leftrightarrow a\lambda'e^{F} - b\lambda e^{F} + b\lambda e^{F} = c \\
+        &\Leftrightarrow a\lambda'e^{F} = c \\
+        &\Leftrightarrow \lambda' = \frac{c}{a}e^{-F}
+    \end{align*}
+    Donc $\lambda$ Doit être une primitive de la fonction $\displaystyle \frac{c}{a}e^{-F}$. Un solution de $(\mc{E})$ est donc :$$y_P : t \mapsto \int_{t_0}^{t}\frac{c(s)}{a(s)}e^{-F(s)} \,\text{d}s \times e^{F(t)} \qquad \text{où }t_0 \in I$$
+
+\end{remarque}
+\input{../../stock/pied.tex}
