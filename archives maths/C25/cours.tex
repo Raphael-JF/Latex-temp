@@ -12,7 +12,7 @@ $$P = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
 
 \begin{definition}{25.16}{reste de Taylor à l'ordre $n$}
     Soit $f:I \to \R$ de classe $\mc{D}^{n}$ sur $\{x_0\}$. On appelle \notion{reste de Taylor à l'ordre $n$ de $f$ en $x_0$} la fonction : 
-    $$R_{n,x_0} : I \to \R \quad ; \quad x \mapsto f(x) - \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
+    $$R_{n,x_0} : I \to \R \quad ; \quad x \mapsto f(x) - \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$$
 \end{definition}
 
 \begin{proposition}{25.18}{fonction développable en série de Taylor}
@@ -23,7 +23,7 @@ $$P = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
 
 \begin{theoreme}{25.20}{formule de Taylor avec reste intégral à l'ordre $n$ au point $a$}
     Soit $a<b$ et $f:\seg{a}{b} \to \R$ de classe $\mc{C}^{n+1}$ sur $\seg{a}{b}$. Alors
-    $$\forall x \in \seg{a}{b},\, R_{n,a}(x) = \int_{a}^{x} \frac{f^{n+1}(t)}{n!}(x-t)^n\, \text{d}t $$
+    $$\forall x \in \seg{a}{b},\, f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k + \int_{a}^{x} \frac{f^{(n+1)}(t)}{n!}(x-t)^n\, \text{d}t $$
 
 \end{theoreme}
 
@@ -53,10 +53,10 @@ $$P = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
 
 \begin{proposition}{25.42}{classe d'une fonction admettant un DL}
     Soit $I$ ouvert, $x_0 \in I$ et $f:I \to \R$.
-    \begin{itemize}
+    \begin{enumeratebf}
         \item Si $f$ admet un DL à l’ordre $0$ en $x_0$, alors $f$ est continue en $x_0$.
         \item Si $f$ admet un DL à l’ordre $1$ en $x_0$, alors $f$ est dérivable en $x_0$.
-    \end{itemize}
+    \end{enumeratebf}
 \end{proposition}
 
 \begin{definition}{25.44}{DL au sens fort}
