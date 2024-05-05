@@ -13,12 +13,47 @@
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
 
+
+\newenvironment{enumeratebf}{
     \begin{enumerate}[label=\textbf{\arabic*.}]
-        \item Donner et démontrer l'expression de la pulsation de coupure associée à un filtre passe-bas du premier ordre
-        \item Effectuer une étude asymptotique du gain $G(\omega)$, ainsi que son homologue en décibels.
-        \item Effectuer une étude asymptotique du déphasage $\phi(\omega)$ de la tension en sortie du filtre par rapport à la tension en entrée de ce dernier.
+}
+{
     \end{enumerate}
-    
+}
+
+% commandes
+\newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\ccode}[1]{\texttt{|#1|}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\rev}[1]{\texttt{reverse(#1)}}
+\newcommand{\crev}[1]{\texttt{|reverse(#1)|}}
+
+\newcommand{\ie}{\textit{i.e.} }
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\bigO}{\mathcal{O}}
+
+\newcommand{\intint}[2]{\llbracket #1,#2 \rrbracket}
+\newcommand{\seg}[2]{[#1\, ; \, #2]}
+\newcommand{\mat}[1]{\text{Mat}_{#1}}
+\newcommand{\matrice}[1]{\mathcal{M}_{#1}}
+
+
+\begin{enumeratebf}
+    \item Pour tout $b \in \C$, l'application $z \mapsto z + b$ correspond à la translation de vecteur d'affixe $b$.
+    \item Pour tout $\theta \in \R$, l'application $z \mapsto e^{i\theta}z$ correspond à la rotation d'angle $\theta$.
+    \item Pour tout $a \in \C^*\backslash\{1\}$. L'application $z \mapsto az+b$ correspond à la similitude directe de centre $\Omega(\omega)$, de rapport $\abs{a}$ et d'angle $\text{Arg}(a)$.
+\end{enumeratebf}
+
 
 \end{adjustwidth}
 \end{document}

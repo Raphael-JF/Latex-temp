@@ -1,22 +1,54 @@
 \documentclass{article}
-\usepackage{amsmath,amssymb}
-\usepackage{xcolor}
+\special{papersize=3in,5in}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,mathtools}
 \usepackage{enumitem}
-\usepackage{multicol}
 \usepackage{changepage}
-
-% physique
-\definecolor{oranges}{RGB}{255, 242, 230}
-\definecolor{rouges}{RGB}{255, 230, 230}
-\definecolor{rose}{RGB}{255, 204, 204}
-
-% maths
-\definecolor{saumon}{RGB}{224, 209, 240}
-
-
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\pagestyle{empty}
+\setlength{\parindent}{0in}
+\newcommand{\ui}{\displaystyle}
 \renewcommand{\labelitemi}{--}
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
+
+
+\newenvironment{enumeratebf}{
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+}
+{
+    \end{enumerate}
+}
+
+% commandes
+\newcommand{\notion}[1]{\textcolor{vert_fonce}{\textit{#1}}}
+\newcommand{\mb}[1]{\mathbb{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\ccode}[1]{\texttt{|#1|}}
+\newcommand{\ov}[1]{\overline{#1}}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\rev}[1]{\texttt{reverse(#1)}}
+\newcommand{\crev}[1]{\texttt{|reverse(#1)|}}
+
+\newcommand{\ie}{\textit{i.e.} }
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\bigO}{\mathcal{O}}
+
+\newcommand{\intint}[2]{\llbracket #1,#2 \rrbracket}
+\newcommand{\seg}[2]{[#1\, ; \, #2]}
+\newcommand{\mat}[1]{\text{Mat}_{#1}}
+\newcommand{\matrice}[1]{\mathcal{M}_{#1}}
+
+
+
 
 
 \end{adjustwidth}
