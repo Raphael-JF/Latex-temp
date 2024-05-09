@@ -15,13 +15,68 @@ Soit $E$ et $F$ deux espaces vectoriels de dimensions finies non nulles $p$ et $
 On appelle \notion{matrice de $u$ dans les bases $\mc{B}$ et $\mc{B}'$} et on note $\mat{e,f}(u)$ la matrice de la famille $u(\mc{B})$ dans la base $\mc{B}'$. \\\\\\\\\\\\\\\\\\
 \end{definition}
 
-\begin{theoreme}{18.21 (1)}{lien entre applications linéaires et matrices}
+\begin{theoreme}{28.21 (1)}{lien entre applications linéaires et matrices}
     Soit $E$ de base $e$ et $F$ de base $f$ deux $\K$-ev de dimensions finies non nulles $p$ et $n$ respectivement.\\
     $\mc{L}(E,F)$ et $\matrice{n,p}(\K)$ sont isomorphes. En effet, $u : \mc{L}(E,F) \to \matrice{n,p}(\K)\quad; \quad u\mapsto \mat{e,f}(u)$ convient.
 \end{theoreme}
 
-\begin{theoreme}{18.22 (2)}{lien entre applications linéaires et matrices}
+\begin{theoreme}{28.22 (2)}{lien entre applications linéaires et matrices}
     Soit $E$ de base $e$, $F$ de base $f$, $G$ de base $g$ trois $\K$-ev de dimensions finies. Soit $\mat{e,g}(v \circ u) = \mat{f,g}(v) \times $ \\
     $\mc{L}(E,F)$ et $\matrice{n,p}(\K)$ sont isomorphes. En effet, $u : \mc{L}(E,F) \to \matrice{n,p}(\K)\quad; \quad u\mapsto \mat{e,f}(u)$ convient.
 \end{theoreme}
+
+\begin{definition}{25.50}{matrices extraites}
+    On appelle matrice extraite d'une matrice $A$ toute matrice obtenue à partir de $A$ en supprimant des lignes et colonnes.
+\end{definition}
+
+\begin{proposition}{25.52}{rang d'une matrice extraite}
+    Pour toute matrice $B$ extraite de $A$, 
+    \begin{enumeratebf}
+        \item $\text{rg}(B) \leq \text{rg}(A)$
+        \item tout matrice inversible que l'on peut extraire de $A$ est de taille au plus $\text{rg}(A)$.
+    \end{enumeratebf}
+\end{proposition}
+
+
+\begin{definition}{28.65}{matrice d'opération élémentaire}
+    Une matrice d'opération élémentaire $E \in \matrice{n}(\K)$ est une matrice obtenue en appliquant une seule opération élémentaire sur les lignes de la matrice identité. Il en existe trois types : \\
+    \begin{enumeratebf}
+        \item la \notion{matrice de permutation de deux lignes}, par exemple des lignes 2 et 3 de la matrice $I_3$ : \\
+        \begin{center}
+            \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & 0 & 1\\
+            0 & 1 & 0
+            \end{pmatrix}
+        \end{center}
+        \item la \notion{matrice de dilation d'un scalaire d'une ligne}, \ie de multiplication d'une ligne par un scalaire, par exemple de la ligne 2 par 5 de la matrice $I_3$ : \\
+        \begin{center}
+            \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & 5 & 0\\
+            0 & 0 & 1
+            \end{pmatrix}
+        \end{center}
+        \item la \notion{matrice de transvection d'une ligne sur un autre}, \ie d'ajout d'une ligne à une autre, par exemple de la ligne 2 à la ligne 3 de la matrice $I_3$ : \\
+        \begin{center}
+            \begin{pmatrix}
+            1 & 0 & 0\\
+            0 & 1 & 0\\
+            0 & 1 & 1
+            \end{pmatrix}
+        \end{center}
+    \end{enumeratebf} \\
+    Toutes ces matrices sont évidemment inversibles.
+\end{definition}
+
+
+\begin{proposition}{28.66}{opérations élémentaires sur une matrice}
+    \vspace{-1.5em}
+    \begin{enumeratebf}
+        \item Multiplier à gauche une matrice $A$ par une matrice élémentaire revient à effectuer l'opération correspondante sur les lignes de $A$.
+        \item Multiplier à droite une matrice $A$ par une matrice élémentaire revient à effectuer l'opération correspondante sur les colonnes de $A$.
+    \end{enumeratebf}
+    
+\end{proposition}
+
 \input{../../stock/pied.tex}
