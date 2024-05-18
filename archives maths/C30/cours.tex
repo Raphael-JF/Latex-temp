@@ -1,0 +1,17 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{theoreme}{30.22}{unique forme $n$-linéaire alternée envoyant une base finie sur le neutre de $\K$}
+    Soit $E \neq \{0\}$ un $\K$-ev de dimension finie et de base $(e_1,\dots,e_n)$.
+    Il existe une unique application $\varphi \in \mc{L}_n(E)$ alternée telle que $\varphi(e_1,\dots, e_n) = 1$. Cette forme $n$-linéaire est entièrement déterminée par : \begin{enumeratebf}
+        \item son caractère alterné :
+        $$ \varphi (e_{i_1},\dots, e_{i_n}) = 0\quad \text{s'il existe $j\neq k$ tel que $i_j = i_k$ }$$
+        \item son antisymétrie :
+        $$ \forall \sigma \in \mc{S}_n, \varphi(e_{\sigma(1)},\dots,e_{\sigma(n)}) = \epsilon (\sigma) $$
+    \end{enumeratebf} 
+    Toute autre forme $n$-linéaire alternée sur $E$ est de la forme $\lambda \varphi$, où $\lambda \in \K$.
+\end{theoreme}
+
+\input{../../stock/pied.tex}
