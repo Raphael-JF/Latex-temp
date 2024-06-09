@@ -25,4 +25,48 @@
     \end{align*}
 \end{definition}
 
+\begin{proposition}{34.15}{identité de polarisation}
+    Soit $E$ un espace vectoriel. Si existence, le produit vectoriel associé à une norme sur $E$ vérifie :\\
+    $$\forall (x,y) \in E^2,\, \scal{x}{y} = \frac{\norme{x+y}^2 - \norme{x}^2 - \norme{y}^2}{2}$$
+\end{proposition}
+
+\begin{theoreme}{34.16 (0)}{inégalité de Cauchy-Schwarz}
+    Soit $E$ un espace préhilbertien réel, $(x,y) \in E^2$.
+    $$\abs{\scal{x}{y}} \leq \norme{x} \times \norme{y}$$
+    avec égalité si et seulement si $x$ et $y$ sont colinéaires.
+\end{theoreme}
+
+\begin{theoreme}{34.16 (1)}{inégalité triangulaire}
+    Soit $E$ un espace préhilbertien réel, $(x,y) \in E^2$.
+    $$\abs{\norme{x}-{\norme{y}}} \leq \norme{x+y} \leq \norme{x} + \norme{y}$$
+    De plus, 
+    $$\norme{x+y} = \norme{x} + \norme{y} \Leftrightarrow \exists \alpha \in \R_+, \,x = \alpha y$$
+\end{theoreme}
+
+\begin{definition}{34.19 (1)}{vecteurs orthogonaux}
+    Soit $E$ un espace préhilbertien réel, $(x,y) \in E^2$.
+    On dit que $x$ et $y$ sont \notion{orthogonaux} si $\scal{x}{y} = 0$. On note alors $x \perp y$.
+\end{definition}
+
+\begin{definition}{34.19 (2)}{parties orthogonales}
+    Soit $E$ un espace préhilbertien réel, $(X,Y) \in \mc{P}(E)^2$.
+    On dit que $X$ et $Y$ sont \notion{orthogonales} si :
+    $$\forall (x,y) \in X \times Y, \,\scal{x}{y} = 0$$
+    On note alors $X \perp Y$.
+\end{definition}
+
+\begin{definition}{34.19 (3)}{famille orthogonale}
+    Soit $E$ un espace préhilbertien réel, $(x_i)_{i \in I}$ une famille d'éléments de $E$.
+    On dit que $(x_i)_{i \in I}$ est \notion{orthogonale} si :
+    $$\forall (i,j) \in I^2,\, i \neq j \implies \scal{x_i}{x_j} = 0$$
+\end{definition}
+
+\begin{definition}{34.19 (4)}{famille orthonormée}
+    Soit $E$ un espace préhilbertien réel, $(x_i)_{i \in I}$ une famille d'éléments de $E$.
+    On dit que $(x_i)_{i \in I}$ est \notion{orthonormée} si elle est \underline{orthogonale} et \underline{constituée de vecteur unitaire}, \ie :
+    $$\forall (i,j) \in I^2, \,\scal{x_i}{x_j} = \delta_{ij}$$
+\end{definition}
+
+
+
 \input{../../stock/pied.tex}
