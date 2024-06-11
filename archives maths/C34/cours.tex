@@ -63,10 +63,39 @@
 
 \begin{definition}{34.19 (4)}{famille orthonormée}
     Soit $E$ un espace préhilbertien réel, $(x_i)_{i \in I}$ une famille d'éléments de $E$.
-    On dit que $(x_i)_{i \in I}$ est \notion{orthonormée} si elle est \underline{orthogonale} et \underline{constituée de vecteur unitaire}, \ie :
+    On dit que $(x_i)_{i \in I}$ est \notion{orthonormée} si elle est \underline{orthogonale} et \underline{constituée de vecteurs unitaires}, \ie :
     $$\forall (i,j) \in I^2, \,\scal{x_i}{x_j} = \delta_{ij}$$
 \end{definition}
 
+\begin{proposition}{34.bonus}{caractérisation de norme}
+    Soit $E$ un espace préhilbertien réel. Une application $\varphi : E \to \R_+$ est une norme sur $E$ si et seulement si elle vérifie pour tout $(x,y) \in E^2$ :  
+    \begin{enumeratebf}
+        \item $\forall \lambda \in \K,\, \varphi(\lambda x) = \abs{\lambda} \varphi(x)$
+        \item $\varphi(x) = 0 \Leftrightarrow x = 0$
+        \item $\varphi(x) + \varphi(y) \geq \varphi(x + y)$
+    \end{enumeratebf}
+    
+\end{proposition}
 
+\begin{theoreme}{34.25}{CS de liberté}
+    Soit $E$ un espace préhilbertien réel. Toute famille orthogonale de vecteurs non nuls de $E$ est libre.
+\end{theoreme}
+
+\begin{theoreme}{34.26}{coordonnées dans une base orthonormale}
+    Soit $E$ un espace euclidien de dimension $n \neq 0$ et $(e_1, \dots, e_n)$ une base orthonormale de $E$ (une famille orthonormale de $n$ éléments).\\
+    Les coordonnées de tout vecteur $x \in E$  dans la base $(e_1, \dots, e_n)$ sont $(\scal{x}{e_1}, \dots, \scal{x}{e_n})$.
+\end{theoreme}
+
+\begin{theoreme}{34.27}{expression du produit scalaire dans une base orthonormale}
+    Soit $E$ un espace euclidien de dimension $n \neq 0$. Soit $x,y \in E$ de coordonnées respectives $X = (x_1, \dots, x_n)$ et $Y = (y_1, \dots, y_n)$ dans une certaine base orthonormale de $E$. On a alors :
+    $$\scal{x}{y} = \som{k=1}{n}x_k y_k$$
+\end{theoreme}
+
+\begin{theoreme}{34.28}{algorithme d'orthonormalisation de Gram-Schmidt}
+    Soit $E$ un espace préhilbertien réel et $F = (f_1, \dots, f_n)$ une famille libre de $E$. À partir de $F$, il est possible de construire une famille orthonormale $(u_1, \dots u_k)$, telle que :
+    $$\forall k \in \intint{1}{n},\, \text{Vect}(f_1, \dots, f_k) = \text{Vect}(u_1, \dots, u_k)$$
+    Pour tout $k \in \intint{1}{n}$, le vecteur $u_k$ est donné par :
+    $$  u_k = \pm \frac{\displaystyle f_k - \som{i=1}{k-1}\scal{f_k}{u_i}u_i}{\displaystyle \norme{f_k - \som{i=1}{k-1}\scal{f_k}{u_i}u_i}}$$
+\end{theoreme}
 
 \input{../../stock/pied.tex}
