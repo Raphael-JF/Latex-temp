@@ -92,10 +92,21 @@
 \end{theoreme}
 
 \begin{theoreme}{34.28}{algorithme d'orthonormalisation de Gram-Schmidt}
-    Soit $E$ un espace préhilbertien réel et $F = (f_1, \dots, f_n)$ une famille libre de $E$. À partir de $F$, il est possible de construire une famille orthonormale $(u_1, \dots u_k)$, telle que :
+    Soit $E$ un espace préhilbertien réel et $F = (f_1, \dots, f_n)$ une famille libre de $E$. À partir de $F$, il est possible de construire une famille orthonormale $(u_1, \dots u_n)$, telle que :
     $$\forall k \in \intint{1}{n},\, \text{Vect}(f_1, \dots, f_k) = \text{Vect}(u_1, \dots, u_k)$$
     Pour tout $k \in \intint{1}{n}$, le vecteur $u_k$ est donné par :
     $$  u_k = \pm \frac{\displaystyle f_k - \som{i=1}{k-1}\scal{f_k}{u_i}u_i}{\displaystyle \norme{f_k - \som{i=1}{k-1}\scal{f_k}{u_i}u_i}}$$
+\end{theoreme}
+
+\begin{theoreme}{34.38 (0)}{supplémentaire orthogonal d’un sev de dimension finie}
+    Soit $E$ un espace préhilbertien réel et $F$ un sev de dimension finie de $E$.\\
+    $F^\bot$ est l'unique supplémentaire de $F$ dans $E$, orthogonal à $E$. On l'appelle le \notion{supplémentaire orthogonal} de $F$ dans $E$.
+\end{theoreme}
+
+
+\begin{theoreme}{34.38 (1)}{supplémentaire orthogonal d’un sev de dimension finie}
+    Soit $E$ un espace préhilbertien réel et $F$ un sev de dimension finie de $E$. On a :
+    $$F = F^{\bot \bot}$$
 \end{theoreme}
 
 \input{../../stock/pied.tex}
