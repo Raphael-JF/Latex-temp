@@ -73,12 +73,15 @@
     $$\forall (i,j) \in I^2, \,\scal{x_i}{x_j} = \delta_{ij}$$
 \end{definition}
 
-\begin{proposition}{34.bonus}{caractérisation de norme}
-    Soit $E$ un espace préhilbertien réel. Une application $\varphi : E \to \R_+$ est une norme sur $E$ si et seulement si elle vérifie pour tout $(x,y) \in E^2$ :  
+\begin{proposition}{34.bonus}{caractérisation de norme sur un $\R$-espace vectoriel}
+    Soit $E$ un $\R$-espace vectoriel. Une application $\varphi : E \to \R$ est une norme sur $E$ si et seulement si elle vérifie pour tout $(x,y) \in E^2$ :  
     \begin{enumeratebf}
-        \item $\forall \lambda \in \K,\, \varphi(\lambda x) = \abs{\lambda} \varphi(x)$
-        \item $\varphi(x) = 0 \Leftrightarrow x = 0$
-        \item $\varphi(x) + \varphi(y) \geq \varphi(x + y)$
+        \item \notion{Séparation} : 
+            $$\varphi(x) = 0 \implies x = 0$$
+        \item \notion{Absolue homogénéité} : 
+            $$\forall \lambda \in \R,\, \varphi(\lambda x) = \abs{\lambda} \varphi(x)$$
+        \item \notion{Inégalité triangulaire} :
+            $$\varphi(x) + \varphi(y) \geq \varphi(x + y)$$
     \end{enumeratebf}
     
 \end{proposition}
