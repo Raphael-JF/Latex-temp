@@ -3,6 +3,13 @@
 \begin{adjustwidth}{-3cm}{-3cm}
 \input{../../stock/commands.tex}
 
+\begin{theoreme}{25.5}{caractérisations métriques de domination et négligeabilité}
+    Soit $f$ et $g$ définies sur $X$ et $x_0 \in \overline{X}$. Ainsi,
+    \begin{enumeratebf}
+        \item $\displaystyle f(x) \underset{x \to x_0}{=} o\bigr(g(x)\bigl) \quad \Leftrightarrow \quad \forall \epsilon > 0,\, \exists \eta > 0,\, \forall x \in X,\, \abs{x-x_0}<\eta \implies \abs{f(x)}\leq \epsilon \abs{g(x)}$ 
+        \item $\displaystyle f(x) \underset{x \to x_0}{=} \bigO \bigr(g(x)\bigl) \quad \Leftrightarrow \quad \exists M \in \R,\, \exists \eta > 0,\, \forall x \in X,\, \abs{x-x_0}<\eta \implies \abs{f(x)}\leq M \abs{g(x)}$ 
+    \end{enumeratebf}
+\end{theoreme}
 \begin{definition}{25.13}{développement de Taylor de $f$}
 Soit $f \in \mc{D}^{n}(\{x_0\})$. Un \notion{développement de Taylor à l'ordre $n$ de $f$ en $x_0$} est un polynôme $P \in \R_n[X]$ vérifiant :
 $$ \forall i \in \intint{0}{n}, \quad P^{(n)}(x_0) = f^{(n)}(x_0) $$

@@ -1,0 +1,24 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{theoreme}{18.13}{CS pour l'existence d'un point critique}
+    Soit $f$ une fonction définie au voisinage d'un réel $x_0$. Si $f$ est dérivable en $x_0$ et admet un extremum local en $x_0$, alors $f'(x_0) = 0$.
+\end{theoreme}
+
+\begin{theoreme}{18.30}{caractérisation du caractère lipschitzien par la dérivée}
+    Soit $f$ une fonction dérivable sur un intervalle $I$. $f$ est lipschitzienne sur $I$ si et seulement si $f'$ est bornée sur $I$. \\ \\
+    Le cas échéant, si $k \in \R$ est un majorant de $|f'|$ sur $I$, alors $f$ est $k$-lipschitzienne.
+\end{theoreme}
+\begin{theoreme}{18.39}{de la limite de la dérivée}
+    Soit $I$ un intervalle de $\R$, $x_0 \in I$ et $f$ définie et continue sur $I$, dérivable sur $I\backslash\{x_0\}$. \\ Si $\displaystyle \lim_{\substack{x \to x_0 \\ x \neq x_0}} f'(x)$ existe dans $\overline{\R}$, alors :
+    $$\lim_{\substack{x \to x_0 \\ x \neq x_0}} f'(x) = \lim_{\substack{x \to x_0 \\ x \neq x_0}} \frac{f(x)-f(x_0)}{x-x_0}$$
+\end{theoreme}
+
+\begin{theoreme}{18.42}{de prolongement par la classe $\mc{C}^n$}
+    Soit $I$ un intervalle et $x_0 \in I$. Soit $f\in\mc{C}^n(I \backslash \{x_0\})$. Si $\displaystyle \lim_{x \to x_0} f^{(n)}(x) \in \mb{R}$, alors $f$ est prolongeable en une fonction de classe $\mc{C}^n$ sur $I$.\\
+    Si de plus pour tout $k \in \llbracket 0,n \rrbracket$, $\displaystyle \lim_{x \to x_0} f^{(k)}(x) \in \mb{R}$, alors $f$ peut être prolongée sur $I$ en une fonction $\tilde{f}$ de classe $\mc{C}^n$ sur $I$ vérifiant alors :$$\forall k \in \llbracket 0,n\rrbracket, \tilde{f}^{(k)}(x_0) = \lim_{x \to x_0} f^{(k)}(x)$$ 
+\end{theoreme}
+
+\input{../../stock/pied.tex}
