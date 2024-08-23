@@ -1,0 +1,15 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{theoreme}{11.57}{structure de l'ensemble des solutions d'un système linéaire}
+    Soit $A \in \matrice{n,p}(\K)$ et $B \in \K^n$. Le système $AX = B$ d'inconnue $X \in \K^p$ peut~:
+    \begin{itemize}
+        \item n'avoir aucune solution, auquel cas il est dit \notion{incompatible}~;
+        \item avoir une solution $X_0$, auquel cas il est dit \notion{compatible}. L'ensemble $\mc{S}$ des solutions du système est alors un sous-espace affine de $\K^p$ de vecteur $X_0$, de direction $\ker(A)$~:
+        $$\mc{S} = X_0 + \ker(A) = \{X_0 + X,\, X \in \ker(A)\}$$
+    \end{itemize}
+\end{theoreme}
+
+\input{../../stock/pied.tex}

@@ -468,6 +468,20 @@
     
 }
 
+\newenvironment{corollaire}[2]
+{
+    \vspace{15pt}
+    \begin{boite_demonstration}
+    \textbf{\textcolor{rouge}{Corollaire #1}}
+    \if\relax\detokenize{#2}\relax
+    \else
+        \textit{ - #2}
+    \fi \\ \\   
+}
+{
+    \end{boite_demonstration}
+    
+}
 
 
 %Corrections

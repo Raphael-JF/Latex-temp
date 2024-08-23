@@ -1,0 +1,37 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{proposition}{16.43}{caractérisation classique des PGCD et PPCM}
+    Soit $A$ et $B$ deux polynômes non nuls, $M$ et $D$ deux polynômes. Alors :
+    \begin{enumeratebf}
+        \item 
+        $D = A \wedge B \Leftrightarrow 
+        \begin{cases*}
+            \text{$D$ est unitaire} \\
+            \exists \, U,V \in \K[X],\, 
+            \begin{cases*}
+                U \wedge V = 1 \\
+                A = DU \\
+                B = DV
+            \end{cases*}
+        \end{cases*}$
+            
+        \item 
+        $M = A \vee B \Leftrightarrow 
+        \begin{cases*}
+            \text{$M$ est unitaire} \\
+            \exists \, U,V \in \K[X],\, 
+            \begin{cases*}
+                U \wedge V = 1 \\
+                M = AU \\
+                M = BV \\
+            \end{cases*}
+        \end{cases*}$
+    \end{enumeratebf}
+\end{proposition}
+
+\input{../../stock/pied.tex}
+\end{adjustwidth}
+\end{document}

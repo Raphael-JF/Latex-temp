@@ -1,0 +1,26 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{proposition}{22.30}{base de $\mc{L}(E,F)$}
+    Soit $E$ et $F$ deux espaces vectoriels de dimension finie. Soit $(b_i)_{i \in I}$ une base de E et $(c_j)_{j \in J}$ une base de F. \\Alors pour tout $(i,j) \in I \times J$ il existe une unique application linéaire $u_{i,j}$ telle que $u_{i,j}(b_i) = c_j$ et pour tout $k\neq i$, $u_{i,j}(b_k) = 0$, soit : $$\forall k \in I, u_{i,j}{b_k} = \delta_{i,k}c_j$$
+    Cette famille $(u_{i,j})_{(i,j) \in I \times J}$ est alors une base de $\mc{L}(E,F)$
+\end{proposition}
+
+\begin{theoreme}{22.40}{effet de la composition sur le rang}
+    Soit $u \in \L(E,F)$ et $v \in \L(F,G)$. Alors :
+    \begin{enumeratebf}
+        \item $\rg(v \circ u) \leq \min(\rg(u,\, \rg(v)))$
+        \item si $v$ est injective, alors $\rg(v \circ u) = \rg(u)$
+        \item si $u$ est surjective, alors $\rg(v \circ u) = \rg(v)$  
+    \end{enumeratebf}
+\end{theoreme}
+
+
+\begin{corollaire}{22.42}{restriction de $u$ à un supplémentaire de $\ker (u)$}
+    Soit $E$ un $\mb{K}$-ev de dimension finie et $S$ un supplémentaire de $\ker(u)$ dans $E$. Alors $u$ induit un isomorphisme de $S$ sur $\text{Im}(u)$
+
+\end{corollaire}
+
+\input{../../stock/pied.tex}

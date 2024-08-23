@@ -155,7 +155,7 @@ $$P = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(X-x_0)^k$$
 \begin{proposition}{25.87 (2)}{DL de $x \mapsto \ln(1+x)$}
     Le développement limité au rang $n \in \N$ de $x \mapsto \ln(1+x)$  en $0$ est :
     \begin{align*}
-        \ln(1+x) &\underset{x \to 0}{=} \sum_{k=1}^{n} \frac{(-1)^{k+1}x^k}{k} \, + o(x^n) \\
+        \ln(1+x) &\underset{x \to 0}{=} \sum_{k=1}^{n} (-1)^{k+1}\frac{x^k}{k} \, + o(x^n) \\
         &\underset{x \to 0}{=} x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots + \frac{(-1)^{n+1}x^n}{n!} + o(x^n)
     \end{align*}
 \end{proposition}
