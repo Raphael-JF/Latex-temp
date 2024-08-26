@@ -1,0 +1,26 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{27.00}{reste d'ordre $n$}
+    Si la série $\sum u_n$ est convergente et de somme $S$, le nombre $r_n$ défini par $r_n = S - S_n$ est appelé reste d'ordre $n$ de la série $\sum u_n$.
+\end{definition}
+
+\begin{theoreme}{27.44}{critère d'Abel, HP}
+    Soit $(a_n)_{n \in \N}$ une suite réelle, positive, décroissante et de limite nulle.\\
+    Soit $(b_n)_{n \in \N}$ une suite complexe telle que la suite $\displaystyle B = \biggl(\somme{k=0}{n}b_k\biggr)_{n \in \N}$ soit bornée.\\
+    La série $\displaystyle \sum a_n b_n$ converge.
+\end{theoreme}
+
+\begin{proposition}{27.45}{séries dont la suite des sommes partielles est bornée}
+    Soit $a \in \R\setminus\{2n\pi,\, n \in \mb{Z}\}$. Les séries suivantes ont leur suite des sommes partielles bornée :
+    \begin{enumeratebf}
+        \item $\displaystyle \sum e^{ina}$
+        \item $\displaystyle \sum \cos(an)$
+        \item $\displaystyle \sum \sin(an)$
+    \end{enumeratebf}
+    
+\end{proposition}
+
+\input{../../stock/pied.tex}

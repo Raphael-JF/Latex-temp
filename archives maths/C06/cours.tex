@@ -1,0 +1,26 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{proposition}{6.11}{partie réelle, partie imaginaire}
+    On a~:
+    \begin{enumeratebf}
+        \item $\re$ et $\im$ sont des endomorphismes du $\mb{R}$-espace vectoriel $\mb{C}$.
+        \item $ \displaystyle \forall z \in \mb{C},\,
+        \begin{cases*}
+            \re(z) = \frac{z+\overline{z}}{2} \\
+            \im(z) = \frac{z-\overline{z}}{2i}
+        \end{cases*}$
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{proposition}{6.80}{translations, rotations, similitudes directes}
+    \begin{enumeratebf}
+        \item Pour tout $b \in \C$, l'application $z \mapsto z + b$ correspond à la translation de vecteur d'affixe $b$.
+        \item Pour tout $\theta \in \R$, l'application $z \mapsto e^{i\theta}z$ correspond à la rotation d'angle $\theta$.
+        \item Pour tout $a \in \C^*\backslash\{1\}$. L'application $z \mapsto az+b$ correspond à la similitude directe de centre $\Omega(\omega)$, de rapport $\abs{a}$ et d'angle $\text{Arg}(a)$.
+    \end{enumeratebf}
+\end{proposition}
+
+\input{../../stock/pied.tex}
