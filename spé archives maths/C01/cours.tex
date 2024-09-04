@@ -22,4 +22,20 @@ Dans ce cas tout élément $g \in G$ tel que $G = \sgEngendre{g}$ est appelé \n
     Un groupe est dit cyclique s'il est fini et monogène.
 \end{definition}
 
+\begin{definition}{1.59}{classe d'équivalence, représentant}
+    Soit $\mc{R}$ une relation d'équivalence sur un ensemble $E$. On appelle \notion{classe d’équivalence d’un élément} l’ensemble des éléments qui sont en relation avec lui :
+    $$\cl(x) = \overline{x} = \{y \in E,\, x \mc{R} y\}$$
+On appelle \notion{représentant} de la classe $\cl(x)$ tout élément $y$ tel que $y \in \cl(x)$.
+\end{definition}
+
+\begin{theoreme}{1.61}{partition d'un ensemble par les classes d'équivalence}
+    Soit $\mc{R}$ une relation d'équivalence sur un ensemble $E$. Les classes d’équivalence de $\mc{R}$ forment une partition de $E$ :
+    \begin{enumeratebf}
+        \item Aucune classe n’est vide : pour tout $x\in E$, $\cl(x) \neq \varnothing$.
+        \item Deux classes distinctes sont disjointes : si $\cl(x) \neq \cl(y)$ alors $\cl(x) \cap \cl(y) = \varnothing$.
+        \item La réunion de toutes les classes est égale à $E$.
+    \end{enumeratebf}
+\end{theoreme}
+
+
 \input{../../stock/pied.tex}
