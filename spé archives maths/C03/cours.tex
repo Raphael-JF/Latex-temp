@@ -1,0 +1,72 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{3.1}{caractérisation de norme sur un $\K$-espace vectoriel}
+    $\K = \R$ ou $\K = \mb{C}$.\\
+    Soit $E$ un $\K$-espace vectoriel. une \notion{norme sur $E$} est une application $\norme{.} : E \to \R$ vérifiant pour tout $(x,y) \in E^2$~:  
+    \begin{enumeratebf}
+        \item \notion{positivité} :
+            $$\norme{x} \geq 0$$
+        \item \notion{Axiome de séparation} : 
+            $$\norme{x} = 0 \implies x = 0$$
+        \item \notion{Absolue homogénéité} : 
+            $$\forall \lambda \in \K,\, \norme{\lambda x} = \abs{\lambda} \cdot \norme{x}$$
+        \item \notion{Inégalité triangulaire} :
+            $$\norme{x} + \norme{y} \geq \norme{x + y}$$
+    \end{enumeratebf}
+    
+\end{definition}
+
+\begin{exemple}{3.3 (1)}{normes de $\K^n$}
+    Les applications suivantes sont des normes sur $\K^n$~:
+    \begin{enumeratebf}
+        \item $\displaystyle \norme{.}_1 : (x_1,\, \dots,\, x_n) \mapsto \somme{i=1}{n}\abs{x_i}$
+        \item la \notion{norme euclidienne associée au produit scalaire canonique sur $\K^n$}~:
+        $$\norme{.}_2 : (x_1,\, \dots,\, x_n) \mapsto \sqrt{\somme{i=1}{n} \abs{x_i}^2}$$
+        \item la \notion{norme infinie} $\displaystyle \norme{.}_\infty : (x_1,\, \dots,\, x_n) \mapsto \max_{i \in \intint{1}{n}}(\abs{x_i})$
+    \end{enumeratebf}
+\end{exemple}
+
+\begin{exemple}{3.3 (2)}{normes de $\mc{C}^0(\seg{a}{b}, \R)$}
+    Les applications suivantes sont des normes sur $\mc{C}^0(\seg{a}{b}, \R)$~:
+    \begin{enumeratebf}
+        \item la \notion{norme de la convergence en moyenne} $\displaystyle \norme{.}_1 : f \mapsto \inte{a}{b}\abs{f(t)}\d{t}$
+        \item la \notion{norme euclidienne associée au produit scalaire canonique sur $\mc{C}^0(\seg{a}{b}, \R)$}~: 
+        $$\norme{.}_2 : f \mapsto \sqrt{\inte{a}{b}f(t)^2\d{t}}$$
+        \item la \notion{norme infinie} $\displaystyle \norme{.}_\infty : f \mapsto \sup_{x \in \seg{a}{b}}(\abs{f(x)})$
+    \end{enumeratebf}
+\end{exemple}
+
+\begin{theoreme}{3.7}{norme euclidienne associée à un produit scalaire}
+    Soit $(E, \scal{.}{.})$ un espace préhilbertien réel. L'application $\norme{.}:x \mapsto \sqrt{\scal{x}{x}}$ est une norme, appelée \notion{norme euclidienne associée à $\scal{.}{.}$}.
+\end{theoreme}
+
+\begin{definition}{3.12}{espace métrique}
+    Soit $E$ un ensemble. Une application $d : E \times E \to \R$ est appelée \notion{distance} si elle vérifie ces propriétés~:
+    \begin{enumeratebf}
+        \item $\forall (x,y) \in E^2,\, \distance{x}{y} \geq 0$
+        \item $\forall (x,y) \in E^2,\, \distance{x}{y} = 0 \implies x = y$
+        \item $\forall (x,y) \in E^2,\, \distance{x}{y} = d(y,\,x)$
+        \item $\forall (x,y,z) \in E^3,\, \distance{x}{z} \leq \distance{x}{y} + \distance{y}{z}$
+    \end{enumeratebf}
+    Une telle application munit $E$ d'une structure d'\notion{espace métrique}. 
+\end{definition}
+
+\begin{definition}{3.14}{distance d'un point à une partie non vide}
+    Soit $(E, \text{d})$ un espace métrique. Étant donnée une partie $A$ de $E$ et $x$ un élément de $E$, on appelle \notion{distance de $x$ à $A$} la borne inférieure des distances de $x$ à tous les éléments de $A$~:
+    $$\distance{x}{A} = \inf_{a \in A} \distance{x}{a}$$
+\end{definition}
+
+\begin{definition}{3.15}{sphère d'un espace vectoriel normé}
+    Soit $E$ un espace vectoriel normé. On appelle \notion{sphère de centre $a \in E$ et de rayon $r \geq 0$} de $E$ l’ensemble $\mc{S}(a,\, r) = \{ x \in E,\, \norme{x - a} = r\}$.
+\end{definition}
+
+\begin{definition}{3.16}{partie bornée d'un espace vectoriel normé}
+    Soit $E$ un espace vectoriel normé. On dit qu'une partie $A$ de $E$ est \notion{bornée} lorsqu'il existe une boule fermée la contenant~: 
+    $$\exists a \in E,\, \exists r \geq 0,\, A \subset \overline{B}(a,\, r)$$
+    Soit : 
+    $$\exists r \geq 0,\, \forall x \in A,\, \norme{x} \leq r$$
+\end{definition}
+\input{../../stock/pied.tex}
