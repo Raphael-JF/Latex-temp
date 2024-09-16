@@ -69,4 +69,21 @@
     Soit : 
     $$\exists r \geq 0,\, \forall x \in A,\, \norme{x} \leq r$$
 \end{definition}
+
+\begin{definition}{3.19}{application bornée}
+    Soit $E$ un espace vectoriel normé et $X$ un ensemble fini. Une application $\varphi : X \to E$ est dite bornée lorsque l'ensemble $\im(\varphi)    $ est borné.
+\end{definition}
+
+\begin{definition}{3.20}{applications bornées sur un espace vecotriel normé}
+    Soit $E$ un $\K$-espace vectoriel normé et $X$ un ensemble fini. L'ensemble $\mc{B}(X,\,E)$ est un $\K$-espace vectoriel et l'application : 
+    $$f \mapsto \sup_{x \in X}\norme{f(x)}$$
+    est une norme sur $\mc{B}(X,\,E)$, appelée \notion{norme infinie}.
+\end{definition}
+
+\begin{definition}{3.21}{application lipschitzienne}
+    Soit $E$ et $F$ deux espaces vectoirles normés, $A \subset E$ et $k \geq 0$. Une application $f : A \to F$ est dite $k$-lipschitzienne sur $A$ lorsque~:
+    $$\forall (x,y) \in A^2,\, \norme{f(x) -  f(y)}_F \leq k\norme{x-y}_E$$
+    L'ensemble des applications $k$-lipschitziennes de $A$ dans $F$ est noté $\text{Lip}_k(A,\, F)$.
+\end{definition}
+
 \input{../../stock/pied.tex}
