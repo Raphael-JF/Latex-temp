@@ -37,7 +37,7 @@
 \end{definition}
 
 \begin{definition}{2.6}{état co-accessible}
-    Un état $q$ d'un automate fini $\mc{A}$ est dit co-accessible lorsqu'il existe un chemin de $\mc{A}$ $q$ vers un état final de $\mc{A}$.
+    Un état $q$ d'un automate fini $\mc{A}$ est dit co-accessible lorsqu'il existe un chemin de $\mc{A}$ reliant $q$ à un état final de $\mc{A}$.
 \end{definition}
 
 \begin{definition}{2.7}{état utile}
@@ -54,10 +54,10 @@
     \begin{enumeratebf}
         \item $Q_{\text{D}} = \mc{P}(Q)$ ;
         \item $q_{0,\text{D}} = I$ ;
-        \item $F_{\text{D}} = \{P \in \Q_{\text{D}},\, P\cap F \neq \varnothing\}$, l'ensemble des états de $\mc{A}_{\text{D}}$ contenant au moins un état final de $\mc{A}_{\text{ND}}$.
+        \item $F_{\text{D}} = \{P \in Q_{\text{D}},\, P\cap F \neq \varnothing\}$, l'ensemble des états de $\mc{A}_{\text{D}}$ contenant au moins un état final de $\mc{A}_{\text{ND}}$.
         \item $ \displaystyle \delta_{\text{D}} : \begin{array}{rcl}
             Q_{\text{D}} \times \Sigma &  \to & Q_{\text{D}} \\
-            (P,a) & \mapsto & \{q \in Q,\, \exists p \in P,\, q \in \delta(p,a)\} = \bigcup_{p \in P} \{q\in Q,\, \delta(p,a) = q\}
+            (P,a) & \mapsto & \{q \in Q,\, \exists p \in P,\, q \in \delta(p,a)\} = \bigcup_{p \in P} \{q\in Q,\, q \in \delta(p,a)\}
             \end{array}$
     \end{enumeratebf}
     Pour $P \in Q_{\text{D}}$ et $a \in \Sigma$, $\delta_{\text{D}}(P,a)$ est l'ensemble des états de $Q$ accessibles en lisant $a$ depuis un élément de $P$.\\
@@ -65,5 +65,8 @@
 
 \end{definition}
 
+\begin{definition}{2.10}{$\epsilon$-fermeture d'un état d'un $\epsilon$-AFND}
+    Soit $(\Sigma, Q, I, F, \delta)$ un $\epsilon$-AFND. On appelle $\epsilon$-fermeture d'un état $q$ est l'ensemble des états accessibles depuis un chemin dont l'étiquette est le mot vide. On la note $\epsilon$-$F(q)$.
+\end{definition}
 
 \input{../../stock/pied.tex}
