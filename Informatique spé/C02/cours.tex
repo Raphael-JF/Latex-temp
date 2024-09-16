@@ -1,0 +1,69 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{2.1}{automate fini déterministe}
+    Un automate fini déterministe ${\mc{A}}$ est défini par un quintuplet $(\Sigma, Q, q_0, F, \delta)$, où~:
+    \begin{enumeratebf}
+        \item $\Sigma$ est un alphabet fini ;
+        \item $Q$ est un \notion{ensemble fini d'états} ;
+        \item $q_0 \in Q$ est l'\notion{état initial} ;
+        \item $\mc{F} \subset Q$ est un \notion{ensemble d'états finaux} ;
+        \item $\delta$ est une application d'une partie de $Q \times \Sigma$ dans $Q$ est la \notion{fonction de transition}.
+    \end{enumeratebf}
+    Il est commun de représenter par un tableau à double entrées, dit \notion{table de transition}, les valeurs prises par $\delta$.
+\end{definition}
+
+\begin{definition}{2.2}{chemin, étiquette d'un chemin}
+    Un \notion{chemin} dans un automate est une suite finie d'états $(q_1,\, \dots,q_n)$ telle qu'il existe $a_1,\, \dots,\, a_{n-1}$ dans $\Sigma$, tel que~:
+    $$\forall i \in \intint{1}{n},\, \delta(q_i,\, a_i) = q_{i+1}$$ 
+    Assertion que l'on notera~:
+    $$q_1 \xrightarrow{a_1} q_2 \xrightarrow{a_2} \dots \xrightarrow{a_{n-1}} q_n$$
+    L'\notion{étiquette du chemin} est alors le mot $a_1 \dots a_{n-1}$.
+\end{definition}
+
+\begin{definition}{2.3}{chemin acceptant}
+    Un chemin $(q_1,\, \dots,q_n)$ d'un automate $\mc{A}$ est \notion{acceptant} lorsque $q_1$ est l'état initial (ou un état initial si AFND) de $\mc{A}$ et $q_n$ est un état final de $\mc{A}$.\\
+    On dit alors que l'étiquette de $(q_1,\, \dots,q_n)$, qui est un mot, \notion{est reconnue par $\mc{A}$}.
+\end{definition}
+
+\begin{definition}{2.4}{langage reconnu}
+    L'ensemble des mots reconnus par $\mc{A}$ un automate fini est noté $\mc{L}(\mc{A})$ et est appelé \notion{langage reconnu par $\mc{A}$}.
+\end{definition}
+
+\begin{definition}{2.5}{état accessible}
+    Un état $q$ d'un automate fini $\mc{A}$ est dit accessible lorsqu'il existe un chemin de $\mc{A}$ de l'état initial (ou d'un état initial) de $\mc{A}$ menant à $q$.
+\end{definition}
+
+\begin{definition}{2.6}{état co-accessible}
+    Un état $q$ d'un automate fini $\mc{A}$ est dit co-accessible lorsqu'il existe un chemin de $\mc{A}$ $q$ vers un état final de $\mc{A}$.
+\end{definition}
+
+\begin{definition}{2.7}{état utile}
+    Un état d'un automate fini est dit utile s'il est accessible et co-accessible.
+\end{definition}
+
+\begin{definition}{2.8}{automate fini émondé}
+    La présence d'états non utiles (non accessibles ou non co-accessibles) n'altère pas le langage reconnu par un automate fini $\mc{A}$. \\
+    On dit alors qu'un automate $\mc{A}'$ est \notion{émondé} s'il ne contient que des états utiles.
+\end{definition}
+
+\begin{definition}{2.9}{automate des parties d'un AFND}
+    Soit $\mc{A}_{\text{ND}} = (\Sigma, Q, I, F, \delta)$ un automate fini non déterministe. On appelle \notion{automate des parties de $\mc{A}_{\text{ND}}$},\, noté $\mc{A}_{\text{D}} = (\Sigma, Q_{\text{D}}, q_{0,\text{D}}, F_{\text{D}}, \delta_{\text{D}})$ tel que~:
+    \begin{enumeratebf}
+        \item $Q_{\text{D}} = \mc{P}(Q)$ ;
+        \item $q_{0,\text{D}} = I$ ;
+        \item $F_{\text{D}} = \{P \in \Q_{\text{D}},\, P\cap F \neq \varnothing\}$, l'ensemble des états de $\mc{A}_{\text{D}}$ contenant au moins un état final de $\mc{A}_{\text{ND}}$.
+        \item $ \displaystyle \delta_{\text{D}} : \begin{array}{rcl}
+            Q_{\text{D}} \times \Sigma &  \to & Q_{\text{D}} \\
+            (P,a) & \mapsto & \{q \in Q,\, \exists p \in P,\, q \in \delta(p,a)\} = \bigcup_{p \in P} \{q\in Q,\, \delta(p,a) = q\}
+            \end{array}$
+    \end{enumeratebf}
+    Pour $P \in Q_{\text{D}}$ et $a \in \Sigma$, $\delta_{\text{D}}(P,a)$ est l'ensemble des états de $Q$ accessibles en lisant $a$ depuis un élément de $P$.\\
+    $\mc{A}_{\text{D}}$ est alors un automate fini déterministe.
+
+\end{definition}
+
+
+\input{../../stock/pied.tex}
