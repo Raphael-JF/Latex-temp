@@ -100,4 +100,12 @@
     Deux normes sur un espace vectoriel sont équivalentes si et seulement si toute boule pour l'une contient une boule pour l'autre.
 \end{proposition}
 
+\begin{definition}{3.37}{valeur d'adhérence d'une suite}
+    Un élément $a \in E$ est appelé valeur d'adhérence de la suite $(x_n)_{n \in \N} \in E^\N$ s'il existe une suite extraite de $(x_n)_{n \in \N}$ convergeant vers $a$.
+\end{definition}
+
+\begin{proposition}{3.38}{caractérisation de l'adhérence}
+    Soit $E$ un espace vectoriel normé. L’élément $a$ est une valeur d’adhérence de $(u_n)_{n \in \N} \in E^\N$  si et seulement si pour tout $n_0 \in \N$, toute boule centrée en $a$ contient au moins un terme de la suite de rang supérieur ou égal à $n_0$~:
+    $$\forall n_0 \in \N,\, \forall r > 0,\, \exists N \geq n_0,\, \norme{u_N - a} < r$$
+\end{proposition}
 \input{../../stock/pied.tex}
