@@ -13,6 +13,17 @@
     Soit $(G, \star)$ un groupe et $A$ une partie de $G$. Alors $\sgEngendre{A}$ est, au sens de l’inclusion, le plus petit sous-groupe de $G$ contenant $A$.
 \end{proposition}
 
+\begin{proposition}{1.34}{description du sous-groupe engendré par une partie}
+    Soit $(G,\star)$ un groupe et $A$ une partie de $G$.
+    \begin{enumeratebf}
+        \item Si $A = \varnothing$, alors $\sgEngendre{A} = \{1_G\}$
+        \item Sinon, alors $\sgEngendre{A}$ est l’ensemble des éléments de $G$ qui sont des produits finis d’éléments de $A$ ou d’inverses
+        d’éléments de $A$~:
+        $$\sgEngendre{A} = \bigl\{x \in G,\, \exists n \in \N^*,\, \exists (\alpha_1,\, \dots,\, \alpha_n) \in (A \cup A^{-1})^n,\, x = \alpha_1 \star \dots \star \alpha_n \bigr\}$$
+    \end{enumeratebf}
+\end{proposition}
+
+
 \begin{definition}{1.35}{groupe monogène}
     Un groupe $(G, \star)$ est \notion{monogène} lorsqu’il est engendré par un seul de ses éléments. En d’autres termes, s'il existe $g \in G$ tel que $ G = \sgEngendre{\{g\}}$ (ou $\sgEngendre{g}$).\\
 Dans ce cas tout élément $g \in G$ tel que $G = \sgEngendre{g}$ est appelé \notion{générateur} de $G$.
