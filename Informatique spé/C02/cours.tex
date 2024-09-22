@@ -69,4 +69,60 @@
     Soit $(\Sigma, Q, I, F, \delta)$ un $\epsilon$-AFND. On appelle $\epsilon$-fermeture d'un état $q$ est l'ensemble des états accessibles depuis un chemin dont l'étiquette est le mot vide. On la note $\epsilon$-$F(q)$.
 \end{definition}
 
+\begin{definition}{2.11}{langage local}
+    Soit $\Sigma$ un alphabet fini et $L \in \Sigma^*$ un langage. On dit que \notion{$L$ est local} s'il existe $P \in \Sigma$, $S \in \Sigma$ et $F \in \Sigma_2$ telles que :
+    $$L\setminus \{\epsilon\} = (P\Sigma^* \cap \Sigma^*S) \setminus (\Sigma^*(\Sigma_2 \setminus F)\Sigma^*)$$
+\end{definition} 
+
+\begin{definition}{2.11}{langages locaux d'un langage}
+    Soit $\Sigma$ un alphabet fini et $L \in \Sigma^*$ un langage. On définit les \notion{langages locaux de $L$}~:
+    \begin{enumeratebf}
+        \item $\epsilon \mr{-} (L) = \{\epsilon\} \cap L$ ;
+        \item $P(L) = \{a \in \Sigma,\, \{a\}\Sigma^* \cap L \neq \varnothing\}$ ;
+        \item $P(L) = \{a \in \Sigma,\, \Sigma^*\{a\} \cap L \neq \varnothing\}$ ;
+        \item $F(L) = \{ab \in \Sigma_2,\, \Sigma^*\{ab\}\Sigma^* \cap L \neq \varnothing\}$.
+    \end{enumeratebf}
+\end{definition} 
+
+\begin{proposition}{2.12}{caractérisation par les langages locaux}
+    Soit $\Sigma$ un alphabet fini et $L \in \Sigma^*$ un langage. $L$ est local si et seulement si l'égalité suivante est vérifiée~:
+    $$L = \Biggl( \Bigl( P(L) \Sigma^* \cap \Sigma^* S(L)\Bigr) \setminus \Bigl( \Sigma^* \bigl( \Sigma_2 \setminus F(L) \bigr) \Sigma^* \Bigr) \Biggr) \cup \epsilon (L) $$
+\end{proposition}
+
+\begin{definition}{2.13}{expression régulière linéaire}
+    Une expression régulière dans laquelle chaque lettre apparaît au plus une fois est dite \notion{linéaire}.
+\end{definition}
+
+\begin{proposition}{2.14}{concernant les expressions régulières linéaires}
+    Tout langage local régulier est dénoté par une expression régulière linéaire.
+\end{proposition}
+
+\begin{definition}{2.15}{automate local}
+    Un automate fini déterministe est \notion{local} lorsque seules des transitions de même étiquette arrivent au même état.
+\end{definition}
+
+\begin{definition}{2.16}{automate standard}
+    Un automate fini déterministe est dit \notion{standard} si aucune transition n'arrive en son état initial.
+\end{definition}
+
+\begin{proposition}{2.17}{concernant les automates locaux standards}
+    Tout langage local régulier est reconnu par un automate local standard.
+\end{proposition}
+
+\begin{definition}{2.16}{automate fini généralisé}
+    Un \notion{automate fini généralisé} ${\mc{A}}$ est d'abord défini par un quintuplet $(\Sigma, Q, q_0, f_0, \delta)$, avec~:
+    \begin{enumeratebf}
+        \item $\Sigma$ est un alphabet fini ;
+        \item $Q$ est un \notion{ensemble fini d'états} ;
+        \item $q_0 \in Q$ est l'\notion{état initial} ;
+        \item $q_f \in Q$ est l'\notion{état final} ;
+        \item $\delta$, la \notion{fonction de transition}, est une application d'une partie de $Q \times E(\Sigma)$ dans $\mc{P}(Q)$. Ici, $E(\Sigma)$ désigne l'ensemble des expressions régulières sur $\Sigma$.
+    \end{enumeratebf}
+    Puis~:
+    \begin{enumeratebf}
+        \item dont aucune transition n'arrive en $q_0$ ;
+        \item dont aucune transition ne part de $q_f$.
+    \end{enumeratebf}
+\end{definition}
+
 \input{../../stock/pied.tex}
