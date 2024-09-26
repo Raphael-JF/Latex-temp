@@ -1,0 +1,43 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{3.1}{opérateur $\vnabla$}
+    $\vnabla$ est un \notion{opérateur différentiel vectoriel}.
+    \begin{enumeratebf}
+        \item dans la base cartésienne : $$ \displaystyle \vnabla = \frac{\partial}{\partial x}\vec{u_x} + \frac{\partial}{\partial y}\vec{u_y} + \frac{\partial}{\partial z}\vec{u_z}$$
+        \item dans la base polaire : $$ \vnabla =  \displaystyle {\partial \over \partial r}\overrightarrow u_r
+        + {1 \over r}{\partial \over \partial \theta }\overrightarrow u_\theta
+        + {\partial \over \partial z} \overrightarrow u_z$$
+        \item dans la base sphérique : $$ \vnabla = \displaystyle {\partial \over \partial r}\overrightarrow u_r
+        + {1 \over r}  {\partial \over \partial \theta}\overrightarrow u_\theta
+        + {1 \over r\sin\theta} {\partial \over \partial \varphi}\overrightarrow u_\varphi$$
+    \end{enumeratebf}
+\end{definition}
+
+\begin{definition}{3.2}{gradient d'une fonction scalaire}
+    le \notion{gradient d'une fonction scalaire} $f$ correspond au produit du vecteur $\vnabla$ par $f$~:
+    $$\grad f = \vnabla f$$
+\end{definition}
+
+\begin{definition}{3.3}{divergence d'une fonction vectorielle}
+    la \notion{divergence d'une fonction vectorielle} $\vec{A}$ correspond au produit scalaire de $\vnabla$ par $\vec{A}$~:
+    $$\div \vec{A} = \vnabla \cdot \vec{A}$$
+\end{definition}
+
+\begin{definition}{3.4}{rotationnel d'une fonction vectoriel}
+    Le \notion{rotationnel d'une fonction vectorielle} $\vec{A}$ correspond au produit vectoriel de $\vnabla$ par $\vec{A}$~:
+    $$\rot \vec{A} = \vnabla \wedge \vec{A}$$
+\end{definition}
+
+\begin{theoreme}{3.5}{Équation locale de Maxwell-Gauss}
+    En tout point $M$ de l'espace~:
+    $$\div \vec{E} = \frac{\rho}{\epsilon_0}$$
+    avec $\begin{cases*}
+        $\epsilon_0$ \text{ la permittivité diélectrique du vide} \\
+        $\rho$ \text{ la densité volumique de charge}
+    \end{cases*}$
+\end{theoreme}
+
+\input{../../stock/pied.tex}
