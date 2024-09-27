@@ -125,6 +125,63 @@
     \end{enumeratebf}
 \end{definition}
 
+\begin{definition}{2.19}{automate reconnaissant l'union de deux langages reconnaissables}
+    Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ et $A_2 = (\Sigma,\, Q_2,\, q_{0,2},\, F_2,\, \delta_2 )$ deux automates finis déterministes. Un \notion{automate fini déterministe reconnaissant le langage $\mc{L}(A_1) \cup \mc{L}(A_2)$} est l'automate produit $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$, où~:
+    \begin{enumeratebf}
+        \item $Q = Q_1 ;\times Q_2 $
+        \item $q_0 = (q_{0,1},\, q_{0,2})$ ;
+        \item $F = Q_1 \times F_2 \cup F_1 \times Q_2$ ;
+        \item $\delta\Bigl((q,p),\, a\Bigr) = \Bigl(\delta_1(q,a),\, \delta_2(p,a)\Bigr)$.
+    \end{enumeratebf}
+\end{definition}
 
+\begin{definition}{2.20}{automate reconnaissant l'intersection de deux langages reconnaissables}
+    Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ et $A_2 = (\Sigma,\, Q_2,\, q_{0,2},\, F_2,\, \delta_2 )$ deux automates finis déterministes. \notion{Un automate fini déterministe reconnaissant le langage $\mc{L}(A_1) \cap \mc{L}(A_2)$} est l'automate produit $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$, où~:
+    \begin{enumeratebf}
+        \item $Q = Q_1 ;\times Q_2 $
+        \item $q_0 = (q_{0,1},\, q_{0,2})$ ;
+        \item $F = F_1 \times F_2$ ;
+        \item $\delta\Bigl((q,p),\, a\Bigr) = \Bigl(\delta_1(q,a),\, \delta_2(p,a)\Bigr)$.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{definition}{2.21}{automate reconnaissant le complémentaire d'un langage reconnaissable}
+    Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ un automate fini déterministe et \textbf{complet}. Un \notion{automate fini déterministe reconnaissant $\complement_{\Sigma^*}\mc{L}(A_1)$} est l'automate $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$ où~:
+    \begin{enumeratebf}
+        \item $Q = Q_1$ ;
+        \item $q_0 = q_{0,1}$ ;
+        \item $F = Q_1 \setminus F_1$ ;
+        \item $\delta = \delta_1$.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{definition}{2.21}{automate reconnaissant le complémentaire d'un langage reconnaissable}
+    Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ un automate fini déterministe et \textbf{complet}. Un \notion{automate fini déterministe reconnaissant $\complement_{\Sigma^*}\mc{L}(A_1)$} est l'automate $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$ où~:
+    \begin{enumeratebf}
+        \item $Q = Q_1$ ;
+        \item $q_0 = q_{0,1}$ ;
+        \item $F = Q_1 \setminus F_1$ ;
+        \item $\delta = \delta_1$.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{question}{2.22}{D'après Mines-Telecom 2023}
+    Soit $L$ un langage régulier sur un alphabet $\Sigma$ et $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$ un automate fini déterministe complet reconnaissant le langage $L$.
+    \begin{enumeratebf}
+        \item Soit $q,q' \in Q$ et $L_{q,q'} = \{\omega \in \Sigma^*,\, \delta^*(q,\omega) = q'\}$. Montrer que $L_{q,q'}$ est rationnel.
+        \item En déduire que $\sqrt{L} = \{\omega,\,  \omega^2 \in L\}$ est régulier.
+    \end{enumeratebf}
+    
+\end{question}
+
+\begin{theoreme}{2.23}{lemme de l'étoile}
+    Soit $L$ un langage régulier. Il existe $N \in \N$ tel que~ :
+    $$\forall u \in L,\, \abs{u} \geq N \implies \exists (x,y,z) \in (\Sigma^*)^3,\, \begin{cases*}
+        u = xyz \\
+        y \neq \epsilon \\
+        \abs{xy} \leq N \\
+        \{x\}\{y\}^*\{z\} \subset L
+    \end{cases*}$$
+\end{theoreme}
 
 \input{../../stock/pied.tex}
