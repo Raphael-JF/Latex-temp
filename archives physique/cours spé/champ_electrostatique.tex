@@ -31,12 +31,32 @@
     $$\rot \vec{A} = \vnabla \wedge \vec{A}$$
 \end{definition}
 
-\begin{theoreme}{3.5}{Équation locale de Maxwell-Gauss}
+\begin{theoreme}{3.5}{équation locale de Maxwell-Gauss}
     En tout point $M$ de l'espace~:
     $$\div \vec{E} = \frac{\rho}{\epsilon_0}$$
     avec $\begin{cases*}
         $\epsilon_0$ \text{ la permittivité diélectrique du vide} \\
         $\rho$ \text{ la densité volumique de charge}
+    \end{cases*}$
+\end{theoreme}
+
+\begin{definition}{3.6}{surface de Gauss}
+    On appelle \notion{surface de Gauss} un objet topologique~:
+    \begin{enumeratebf}
+        \item fermé ;
+        \item comportant le point $M$ d'étude ;
+        \item facilitant les calculs sachant les symétries et variance de la distribution des charges.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{theoreme}{3.7}{théorème de Gauss}
+    Le flux $\Phi$ du champ électrostatique sortant d’une surface de Gauss $\Sigma_G$ est relié à la charge $Q_\mr{int}$ contenue à l’intérieur de cette surface~:
+    $$\Phi = \oiint_{\Sigma_G} \vec{E} \cdot \d{\vec{S}} = \frac{Q_\mr{int}}{\epsilon_0}$$
+    avec $\begin{cases*}
+        $\epsilon_0$ \text{ la permittivité diélectrique du vide} \\
+        $Q_\mr{int} = \iiint_{V(\Sigma_G)} \rho \d{\tau}$ \text{ la charge contenue à l’intérieur de $\Sigma_G$}\\
+        $\rho$ \text{ la densité volumique de charge}
+
     \end{cases*}$
 \end{theoreme}
 
