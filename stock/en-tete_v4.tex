@@ -1,7 +1,8 @@
 \documentclass{article}
 \usepackage{amsmath,amssymb,mathtools}
-\usepackage{esint}
+\usepackage{esint} % intégrale avec un round
 \usepackage{xcolor}
+\usepackage{listings}
 % \usepackage{minted}
 \usepackage{enumitem}
 \usepackage{fourier-orns}
@@ -18,9 +19,16 @@
 \usepackage{hyperref}
 
 % physique
-\renewcommand*{\overrightarrow}[1]{\vbox{\halign{##\cr 
-  \tiny\rightarrowfill\cr\noalign{\nointerlineskip\vskip1pt} 
-  $#1\mskip2mu$\cr}}}
+% \renewcommand*{\overrightarrow}[1]{\vbox{\halign{##\cr 
+%   \tiny\rightarrowfill\cr\noalign{\nointerlineskip\vskip1pt} 
+%   $#1\mskip2mu$\cr}}}
+
+  \newenvironment{enumeratebf}{
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+}
+{
+    \end{enumerate}
+}
   
 \definecolor{oranges}{RGB}{255, 242, 230}
 \definecolor{rouges}{RGB}{255, 230, 230}
@@ -60,6 +68,22 @@
   skipbelow=\topsep,
 ]{boite_definition}
 
+
+\newenvironment{definition}[2]
+{
+    \vspace{15pt}
+    \begin{boite_definition}
+    \textbf{\textcolor{rouge}{Définition #1}}
+    \if\relax\detokenize{#2}\relax
+    \else
+        \textit{ - #2}
+    \fi \\ \\
+}
+{
+    \end{boite_definition}
+    
+}
+
 \newmdenv[
   nobreak=true,
   topline=true,
@@ -76,6 +100,23 @@
   skipabove=\topsep,
   skipbelow=\topsep,
 ]{boite_exemple}
+
+
+\newenvironment{exemple}[2]
+{
+    \vspace{15pt}
+    \begin{boite_exemple}
+    \textbf{\textcolor{bleufonce}{Exemple #1}}
+    \if\relax\detokenize{#2}\relax
+    \else
+        \textit{ - #2}
+    \fi \\ \\ 
+}
+{   
+    \end{boite_exemple}
+    
+}
+
 
 \newmdenv[
   nobreak=true,
@@ -94,6 +135,55 @@
   skipbelow=\topsep,
 ]{boite_proposition}
 
+\newenvironment{proposition}[2]
+{
+    \vspace{15pt}
+    \begin{boite_proposition}
+    \textbf{\textcolor{rouge}{Proposition #1}}
+    \if\relax\detokenize{#2}\relax
+    \else
+        \textit{ - #2}
+    \fi \\ \\
+}
+{
+    \end{boite_proposition}
+}
+
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=magenta,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_theoreme}
+
+
+\newenvironment{theoreme}[2]
+{
+    \vspace{15pt}
+    \begin{boite_theoreme}
+    \textbf{\textcolor{rouge}{Théorème #1}} 
+    \if\relax\detokenize{#2}\relax
+    \else
+        \textit{ - #2}
+    \fi \\ \\
+}
+{
+    \end{boite_theoreme}
+    
+}
+
+
 \newmdenv[
   nobreak=true,
   topline=true,
@@ -110,6 +200,19 @@
   skipabove=\topsep,
   skipbelow=\topsep,
 ]{boite_demonstration}
+
+
+\newenvironment{demonstration}
+{
+    \vspace{15pt}
+    \begin{boite_demonstration}
+    \textbf{\textcolor{rouge}{Démonstration}}\\ \\
+}
+{
+    \end{boite_demonstration}
+    
+}
+
 
 \newmdenv[
   nobreak=true,
@@ -128,94 +231,6 @@
   skipbelow=\topsep,
 ]{boite_remarque}
 
-\newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=bleufonce,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_implementation}
-
-
-\newenvironment{definition}[2]
-{
-    \vspace{15pt}
-    \begin{boite_definition}
-    \textbf{\textcolor{rouge}{Définition #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_definition}
-    
-}
-
-\newenvironment{exemple}[2]
-{
-    \vspace{15pt}
-    \begin{boite_exemple}
-    \textbf{\textcolor{bleufonce}{Exemple #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\ 
-}
-{   
-    \end{boite_exemple}
-    
-}
-
-\newenvironment{proposition}[2]
-{
-    \vspace{15pt}
-    \begin{boite_proposition}
-    \textbf{\textcolor{rouge}{Proposition #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_proposition}
-    
-}
-
-\newenvironment{theoreme}[2]
-{
-    \vspace{15pt}
-    \begin{boite_proposition}
-    \textbf{\textcolor{rouge}{Théorème #1}} 
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_proposition}
-    
-}
-
-\newenvironment{demonstration}
-{
-    \vspace{15pt}
-    \begin{boite_demonstration}
-    \textbf{\textcolor{rouge}{Démonstration}}\\ \\
-}
-{
-    \end{boite_demonstration}
-    
-}
 
 \newenvironment{remarque}[2]
 {
@@ -232,19 +247,59 @@
     
 }
 
-\newenvironment{implementation}
-{
-    \vspace{15pt}
-    \begin{boite_implementation}
-    \textbf{\textcolor{bleufonce}{Implémentation}}
-}
-{  
-    \end{boite_implementation}
-    \vspace{15pt}
-}
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=bleufonce,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=\topsep,
+  skipbelow=\topsep,
+]{boite_OCaml}
 
 
-%Corrections
+\definecolor{keywordcolor}{RGB}{133, 153, 0}  % les mots-clés
+\definecolor{commentcolor}{RGB}{147, 161, 161} % les commentaires
+\definecolor{stringcolor}{RGB}{42, 161, 152}  % les chaînes de caractères
+\newenvironment{OCaml}[2]
+{   
+    \vspace{15pt}
+    \begin{boite_OCaml}
+    \textbf{\textcolor{bleufonce}{Implémentation #1}}
+    \if\relax\detokenize{#2}\relax
+    \else
+        \textit{ - #2}
+    \fi \\ \\   
+
+    \lstset{
+    language=[Objective]Caml,
+    basicstyle=\ttfamily,          % Police par défaut pour le code
+    keywordstyle=\color{keywordcolor}, % Mots-clés en bleu doux
+    commentstyle=\color{commentcolor}, % Commentaires en vert pâle
+    stringstyle=\color{stringcolor},   % Chaînes en orange léger
+    backgroundcolor=\color{white},   % Fond très clair
+    numbers=left,                  % Numérotation à gauche
+    numberstyle=\ttfamily,             % Taille des numéros de ligne
+    stepnumber=1,                  % Numérotation de chaque ligne
+    frame=single,                  % Cadre autour du code
+    breaklines=true,               % Retour à la ligne automatique
+    tabsize=2,                        % Taille des tabulations          
+    }
+
+    \begin{lstlisting}
+}
+{      
+    \end{lstlisting}
+    \end{boite_OCaml}
+}
+
 \newmdenv[
   nobreak=true,
   topline=true,
@@ -278,61 +333,8 @@
     
 }
 
-% Cours
-
 \newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=mayonnaise,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_definitionBreak}
-
-\newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=white,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_exempleBreak}
-
-\newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=magenta,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_propositionBreak}
-
-\newmdenv[
-  nobreak=false,
+  nobreak=true,
   topline=true,
   bottomline=true,
   rightline=true,
@@ -346,133 +348,14 @@
   innerbottommargin=5pt,
   skipabove=\topsep,
   skipbelow=\topsep,
-]{boite_demonstrationBreak}
-
-\newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=white,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_remarqueBreak}
-
-\newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor= bleufonce,
-  backgroundcolor=white,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_implementationBreak}
+]{boite_corollaire}
 
 
-\newenvironment{definitionBreak}[2]
-{   
-    \vspace{15pt}
-    \begin{boite_definitionBreak}
-    \textbf{\textcolor{rouge}{Définition #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_definitionBreak}
-    
-}
-
-\newenvironment{exempleBreak}[2]
-{
-    \vspace{15pt}
-    \begin{boite_exempleBreak}
-    \textbf{\textcolor{bleufonce}{Exemple #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\ 
-}
-{   
-    \end{boite_exempleBreak}
-    
-}
-
-\newenvironment{propositionBreak}[2]
-{
-    \vspace{15pt}
-    \begin{boite_propositionBreak}
-    \textbf{\textcolor{rouge}{Proposition #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_propositionBreak}
-    
-}
-
-\newenvironment{theoremeBreak}[2]
-{
-    \vspace{15pt}
-    \begin{boite_propositionBreak}
-    \textbf{\textcolor{rouge}{Théorème #1}} 
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_propositionBreak}
-    
-}
-
-\newenvironment{demonstrationBreak}
-{   
-    \vspace{15pt}
-    \begin{boite_demonstrationBreak}
-    \textbf{\textcolor{rouge}{Démonstration}}\\ \\
-}
-{
-    \end{boite_demonstrationBreak}
-    
-}
-
-\newenvironment{remarqueBreak}[2]
-{
-    \vspace{15pt}
-    \begin{boite_remarqueBreak}
-    \textbf{\textcolor{bleufonce}{Remarque #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\   
-}
-{  
-    \end{boite_remarqueBreak}
-    
-}
 
 \newenvironment{corollaire}[2]
 {
     \vspace{15pt}
-    \begin{boite_demonstration}
+    \begin{boite_corollaire}
     \textbf{\textcolor{rouge}{Corollaire #1}}
     \if\relax\detokenize{#2}\relax
     \else
@@ -480,48 +363,6 @@
     \fi \\ \\   
 }
 {
-    \end{boite_demonstration}
+    \end{boite_corollaire}
     
-}
-
-
-%Corrections
-\newmdenv[
-  nobreak=false,
-  topline=true,
-  bottomline=true,
-  rightline=true,
-  leftline=true,
-  linewidth=0.5pt,
-  linecolor=black,
-  backgroundcolor=mayonnaise,
-  innerleftmargin=10pt,
-  innerrightmargin=2.5em,
-  innertopmargin=5pt,
-  innerbottommargin=5pt,
-  skipabove=\topsep,
-  skipbelow=\topsep,
-]{boite_questionBreak}
-
-
-\newenvironment{questionBreak}[2]
-{
-    \vspace{15pt}
-    \begin{boite_questionBreak}
-    \textbf{\textcolor{rouge}{Question #1}}
-    \if\relax\detokenize{#2}\relax
-    \else
-        \textit{ - #2}
-    \fi \\ \\
-}
-{
-    \end{boite_questionBreak}
-    
-}
-
-\newenvironment{enumeratebf}{
-    \begin{enumerate}[label=\textbf{\arabic*.}]
-}
-{
-    \end{enumerate}
 }

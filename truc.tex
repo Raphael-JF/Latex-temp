@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{keywordcolor}{RGB}{133, 153, 0}  % les mots-clés
+\definecolor{commentcolor}{RGB}{147, 161, 161} % les commentaires
+\definecolor{stringcolor}{RGB}{42, 161, 152}  % les chaînes de caractères
+
+\begin{document}
+
+\lstset{
+  language=[Objective]Caml,
+  basicstyle=\ttfamily,          % Police par défaut pour le code
+  keywordstyle=\color{keywordcolor}, % Mots-clés en bleu doux
+  commentstyle=\color{commentcolor}, % Commentaires en vert pâle
+  stringstyle=\color{stringcolor},   % Chaînes en orange léger
+  backgroundcolor=\color{white},   % Fond très clair
+  numbers=left,                  % Numérotation à gauche
+  numberstyle=\ttfamily,             % Taille des numéros de ligne
+  stepnumber=1,                  % Numérotation de chaque ligne
+  frame=single,                  % Cadre autour du code
+  breaklines=true,               % Retour à la ligne automatique
+  tabsize=2,                        % Taille des tabulations          
+}
+
+\begin{lstlisting}
+
+
+(* Exemple de fonction en OCaml *)
+let rec fact n =
+  if n = 0 then 1
+  else n * fact (n - 1);;
+  
+let result = fact 5;;
+\end{lstlisting}
+
+
+\end{document}
