@@ -262,42 +262,118 @@
   innerbottommargin=5pt,
   skipabove=\topsep,
   skipbelow=\topsep,
-]{boite_OCaml}
+]{boite_implementation}
 
 
 \definecolor{keywordcolor}{RGB}{133, 153, 0}  % les mots-clés
 \definecolor{commentcolor}{RGB}{147, 161, 161} % les commentaires
 \definecolor{stringcolor}{RGB}{42, 161, 152}  % les chaînes de caractères
-\newenvironment{OCaml}[2]
+
+\lstnewenvironment{lstOCaml}
+{\lstset{
+    language=[Objective]Caml,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    backgroundcolor=\color{white},
+    numbers=left,
+    numberstyle=\ttfamily,
+    numbersep=-1.5em,
+    stepnumber=1,
+    frame=l,
+    framexleftmargin=-2.25em,
+    tabsize=2,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ä}{{\"{a}}}1
+    {ë}{{\"{e}}}1
+    {ï}{{\"{i}}}1
+    {ö}{{\"{o}}}1
+    {ü}{{\"{u}}}1
+    {û}{{\^{u}}}1
+    {â}{{\^{a}}}1
+    {Â}{{\^{A}}}1
+    {Î}{{\^{I}}}1
+}}{}
+
+\lstdefinelanguage{LNat}{
+    morekeywords={tant,que,pour,tout,si,sinon,initialiser},
+    sensitive=false,
+    morecomment=[l]{//},
+}
+
+\lstnewenvironment{lstLNat}
+{\lstset{
+    language=LNat,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    backgroundcolor=\color{white},
+    numbers=left,
+    numberstyle=\ttfamily,
+    numbersep=-1.5em,
+    stepnumber=1,
+    frame=l,
+    mathescape=true,
+    framexleftmargin=-2.25em,
+    tabsize=2,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ä}{{\"{a}}}1
+    {ë}{{\"{e}}}1
+    {ï}{{\"{i}}}1
+    {ö}{{\"{o}}}1
+    {ü}{{\"{u}}}1
+    {û}{{\^{u}}}1
+    {â}{{\^{a}}}1
+    {Â}{{\^{A}}}1
+    {Î}{{\^{I}}}1}
+}{}
+
+\newenvironment{implementation}[2]
 {   
     \vspace{15pt}
-    \begin{boite_OCaml}
+    \begin{boite_implementation}
     \textbf{\textcolor{bleufonce}{Implémentation #1}}
     \if\relax\detokenize{#2}\relax
     \else
         \textit{ - #2}
-    \fi \\ \\   
-
-    \lstset{
-    language=[Objective]Caml,
-    basicstyle=\ttfamily,          % Police par défaut pour le code
-    keywordstyle=\color{keywordcolor}, % Mots-clés en bleu doux
-    commentstyle=\color{commentcolor}, % Commentaires en vert pâle
-    stringstyle=\color{stringcolor},   % Chaînes en orange léger
-    backgroundcolor=\color{white},   % Fond très clair
-    numbers=left,                  % Numérotation à gauche
-    numberstyle=\ttfamily,             % Taille des numéros de ligne
-    stepnumber=1,                  % Numérotation de chaque ligne
-    frame=single,                  % Cadre autour du code
-    breaklines=true,               % Retour à la ligne automatique
-    tabsize=2,                        % Taille des tabulations          
-    }
-
-    \begin{lstlisting}
+    \fi \\ \\
 }
-{      
-    \end{lstlisting}
-    \end{boite_OCaml}
+{    
+    \end{boite_implementation}
 }
 
 \newmdenv[
