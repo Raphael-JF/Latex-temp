@@ -29,8 +29,8 @@
     let n = Array.length g in (*nb sommets*)
     let non_vus = Array.make n true in
     let rec visite x voisins = 
-        if non_vus.(x) then (
-            print_int x;
+        if non_vus.(x) then
+            (print_int x;
             non_vus.(x) <- false);
         match voisins with
         | [] -> () (*plus de voisins à traiter*)
@@ -51,7 +51,7 @@
     let non_vus = Array.make n true in
     let rec visite x voisins = 
         if non_vus.(x) then 
-        non_vus.(x) <- false;
+            non_vus.(x) <- false;
         match voisins with
         | [] -> print_int x (*plus de voisins à traiter*)
         | v::q when non_vus.(v) ->

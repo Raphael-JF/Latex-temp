@@ -20,4 +20,46 @@
     Soit $E$ un espace vectoriel normé. On appelle fermé de $E$ \notion{le complémentaire dans $E$ d'un ouvert $O$ de $E$}.
 \end{definition}
 
+
+\begin{definition}{4.9}{point adhérent à une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Un point $x \in E$ est dit \notion{adhérent à $A$} si tout voisinage de $x$ rencontre $A$~:
+    $$\forall V \in \mc{V}_E(x),\, V \cap A \neq \varnothing$$
+    On appelle \notion{adhérence de $A$ l'ensemble $\adh{A}$ des éléments de $E$ adhérents à $A$}.
+\end{definition}
+
+\begin{proposition}{4.10}{caractérisation de l'adhérence d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Pour tout $x \in E$, les propriétés suivantes sont équivalentes.
+    \begin{enumeratebf}
+        \item $x$ est adhérent à $A$ ;
+        \item Toute boule ouverte de centre $x$ contient au moins un élément de $A$ ;
+        \item la distance de $x$ à $A$ est nulle.
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{definition}{4.12 (1)}{point d'accumulation d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Un point $x$ est un \notion{point d'accumulation de $A$} si tout voisinage de $x$ rencontre $A$ en au moins un autre point que $x$~:
+    $$\forall V \in \mc{V}_E(x),\, (V\setminus\{x\}) \cap A \neq \varnothing$$
+\end{definition}
+
+\begin{definition}{4.12 (2)}{point isolé d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Un point $x$ est un \notion{point isolé de $A$} s'il existe un voisinage de $x$ qui ne rencontre $A$ qu'en $x$~:
+    $$\exists V \in \mc{V}_E(x),\, V \cap A = \{x\}$$
+\end{definition}
+
+\begin{definition}{4.15}{partie dense}
+    Soit $E$ un espace vectoriel normé et $A$ et $B$ des parties de $E$. On dit que \notion{$A$ est dense dans $B$} si $\adh{A} = B$
+\end{definition} 
+
+\begin{theoreme}{4.17}{caractérisation de l'adhérence par l'inclusion}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est le plus petit fermé de $E$ contenant $A$.
+\end{theoreme}
+
+\begin{theoreme}{4.18}{caractérisation de l'adhérence par l'intersection}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est l'intersection de tous les fermés de $E$ contenant $A$.
+\end{theoreme}
+
+\begin{theoreme}{4.20}{caractérisation séquentielle de l'adhérence}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est l'ensemble des limites des suites convergentes d'éléments de $A$.
+\end{theoreme}
+
 \input{../../stock/pied.tex}
