@@ -1,0 +1,36 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{implementation}{1}{tri par fusion}
+    \begin{lstOCaml}
+    let rec casser l =
+        match l with
+        | [] -> [], []
+        | [e1] -> [e1], []
+        | e1::e2::q -> 
+            let l1, l2 = casser q in
+            e1::l1, e2::l2
+
+    let rec fusion l1 l2 = 
+        match l1, l2 with
+        | [], _ -> l2
+        | _, [] -> l1
+        | e1::q1, e2::q2 ->
+            if e2 > e1 then
+                e1::(fusion q1 l2)
+            else
+                e2::(fusion l1 q2)
+
+    let rec tri_fusion l =
+        match l with
+        | [] -> []
+        | [e1] -> [e1]
+        | _ -> 
+            let l1, l2 = casser l in
+            fusion (tri_fusion l1) (tri_fusion l2)
+    \end{lstOCaml}
+\end{implementation}
+
+\input{../../stock/pied.tex}
