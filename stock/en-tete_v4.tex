@@ -406,14 +406,14 @@
     {Î}{{\^{I}}}1}
 }{}
 
-\newenvironment{implementation}[2]
+\newenvironment{implementation}[1]
 {   
     \vspace{15pt}
     \begin{boite_implementation}
-    \textbf{\textcolor{bleufonce}{Implémentation #1}}
+    \textbf{\textcolor{bleufonce}{Implémentation}}
     \if\relax\detokenize{#2}\relax
     \else
-        \textit{ - #2}
+        \textit{ - #1}
     \fi \\ \\
 }
 {    
