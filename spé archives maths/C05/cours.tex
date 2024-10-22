@@ -86,4 +86,34 @@ De plus l’égalité est vérifiée si et seulement si la somme est directe.
     Soit $E$ un $\K$-espace vectoriel, $u \in \mc{L}(E)$ et $\lambda$ une valeur propre de $u$. On appelle \notion{sous-espace propre associé à $\lambda$} l'espace $\ker(u - \lambda \mr{id}_E)$, supposément non réduit à $\{0_E\}$, sans quoi $\lambda$ ne serait valeur propre.
 \end{definition}
 
+\begin{theoreme}{5.52}{lien entre valeurs propres et racines du polynôme caractéristique}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u \in \mc{L}(E)$. Les valeurs propres de $u$ sont exactement les racines de $\chi_u$~:
+    $$\mr{Sp}(u) = Z(\chi_u)$$
+\end{theoreme}
+
+\begin{definition}{5.53}{multiplicité d'une valeur propre}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u \in \mc{L}(E)$. La \notion{multiplicité $m_\lambda$ d'une valeur propre $\lambda$} de $u$ est sa multiplicité en tant que racine de $\chi_u$.
+\end{definition}
+
+\begin{theoreme}{5.63}{spectres de $u$ et $P(u)$}
+    Soit $E$ un $\K$-espace vectoriel, $u \in \mc{L}(E)$ et $P \in \K[X]$. pour toute valeur propre $\lambda$ de $u$, $P(\lambda)$ est valeur propre de $P(u)$~:
+    $$P\big(\mr{Sp}(u)\big) \subset \mr{Sp}\big(P(u)\big)$$
+\end{theoreme}
+
+\begin{proposition}{5.64}{lien entre valeurs propres et racines d'un polynôme annulateur}
+    Soit $E$ un $\K$-espace vectoriel, $u \in \mc{L}(E)$ et $P \in \K[X]$ annulateur de $u$. Les valeurs propres de $u$ sont à rechecher parmi les racines de $P$~:
+    $$\mr{Sp}(u) \subset Z(P)$$
+    Ce résultat ne tient pas compte de la multiplicité.
+\end{proposition}
+
+\begin{proposition}{5.64}{lien entre valeurs propres et racines du polynôme minimal}
+    Soit $E$ un $\K$-espace vectoriel et $u \in \mc{L}(E)$. Les valeurs propres de $u$ sont exactement les racines de $\mu_u$~:
+    $$\mr{Sp}(u) = Z(\mu_u)$$
+    Ce résultat ne tient pas compte de la multiplicité.
+\end{proposition}
+
+\begin{theoreme}{5.70}{de Cayley-Hamilton}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et $u \in \mc{L}(E)$. $\chi_u$ est annulateur de $u$.
+\end{theoreme}
+
 \input{../../stock/pied.tex}
