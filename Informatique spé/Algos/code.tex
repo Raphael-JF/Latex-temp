@@ -33,4 +33,71 @@
     \end{lstOCaml}
 \end{implementation}
 
+\begin{implementation}{2}{parcours en largeur d'un graphe}
+    \begin{lstOCaml}
+        type file = {e:int list; s:int list}
+            
+        let file_vide = {e=[]; s=[]}             
+        
+        let rec ajoute f liste = match liste with
+            | [] -> f
+            | elt::q -> ajoute {e=(elt::f.e); s=f.s} q 
+                
+        let pop_opt f = 
+            let rec retourne sub_f =
+                match sub_f.e with
+                | [] -> sub_f
+                | elt::q -> retourne {e=q; s=elt::sub_f.s}   
+            in let new_f = 
+                if f.s = [] then
+                    retourne f 
+                else f 
+            in match new_f.s with 
+            | [] -> file_vide, None
+            | elt::q -> {e=new_f.e; s=q}, Some elt
+                        
+          
+                           
+        type graphe = int list array 
+            
+        let parcours_largeur g s =
+            let n = Array.length g in
+            let non_vus = Array.make n true in
+            let rec parcours f =
+                match (pop_opt f) with
+                | _, None -> ()
+                | new_f, Some v when non_vus.(v) ->
+                    non_vus.(v) <- false;
+                    print_int v;
+                    parcours (ajoute new_f g.(v))
+                | new_f, Some v ->
+                    parcours new_f
+            in parcours {e=[]; s=[s]} 
+    \end{lstOCaml}
+\end{implementation}
+
+\begin{implementation}{3}{file d'entiers}
+    \begin{lstC}
+    struct Maillon{
+        int val;
+        struct Maillon* suivant;
+    };
+    typedef struct Maillon maillon;
+
+    struct File{
+        maillon* e; //maillon d'entrée
+        maillon* s; //maillon de sortie
+    };
+    typedef struct File file;
+
+    file* file_vide(){
+        file* res = malloc(sizeof(file));
+        assert(res != NULL);
+        res->e = NULL;
+        res->s = NULL;
+        return res;
+    }
+    \end{lstC}
+\end{implementation}
+
 \input{../../stock/pied.tex}

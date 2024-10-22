@@ -1,0 +1,89 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{5.1}{vecteur élémentaire}
+    Soit $n \in \N$. On appelle vecteur élémentaire d'indice $i\in \intint{1}{n}$ le vecteur~:
+    $$E_i =
+    \begin{pmatrix}
+    0 \\
+    \vdots \\
+    0 \\
+    1 \\
+    0 \\
+    \vdots \\
+    0
+    \end{pmatrix}
+    \begin{array}{c}
+     \\
+     \\
+     \xleftarrow{\text{indice } i} \\
+     \\
+     \\
+    \end{array}$$
+    La famille $(E_i)_{i \in \intint{i}{n}}$ est alors la base canonique de $\R^n$. Puis, en remarquant que~:
+    $$\forall (i,j) \in \intint{1}{n}^2,\, E_i \times E_j^\top = E_{i,j},$$
+    On retrouve la base canonique de $\matrice{n}(\R)$.
+\end{definition}
+
+\begin{proposition}{5.2}{produit de matrices élémentaires}
+    Soit $(i,j,k,l) \in \intint{1}{n}^4$. On a~:
+    $$E_{i,j} \times E_{k,l} = \delta_{j,k} E_{i,l} $$
+\end{proposition}
+
+\begin{definition}{5.3}{somme directe d'espaces vectoriels}
+    Soit $E$ un $\K$-espace vectoriel et $(F_1, \dots , F_p)$ une famille d'au moins deux sous-espaces vectoriels de $E$. La \notion{somme $\somme{i=1}{p}F_i$ est directe} lorsque la décomposition d'un élément de cette somme en somme d'élements de chaque sous-espace vectoriel existe et est unique~:
+    $$\bigoplus_{i=1}^{p} F_i = \{x \in E,\, \exists!(x_1,\, \dots,\, x_p),\, x = x_1 + \dots + x_p\}$$
+\end{definition}
+
+\begin{proposition}{5.4}{caractérisation du caractère direct par la décomposition du neutre additif}
+    Soit $E$ un $\K$-espace vectoriel et $(F_1, \dots , F_p)$ une famille d'au moins deux sous-espaces vectoriels de $E$. La somme $\somme{i=1}{p}F_i$ est directe si et seulement si $0_E$ se décompose de manière unique en la somme des neutres additifs des sous-espaces vectoriels (qui sont tous $0_E$)~:
+    $$\forall (x_1,\, \dots,\, x_p) \in F_1 \times \dots \times F_p,\, \somme{i=1}{p}x_i = 0_E \implies x_1 = \dots = x_p = 0_E$$
+\end{proposition}
+
+\begin{proposition}{5.5}{caractérisation du caractère direct}
+    Soit $E$ un $\K$-espace vectoriel et $(F_1, \dots , F_p)$ une famille d'au moins deux sous-espaces vectoriels de $E$. La somme $ \displaystyle  \somme{i=1}{p}F_i$ est directe si et seulement si~:
+    \begin{cases*}
+        \displaystyle \somme{i=1}{p-1} F_i \text{ est directe ;}\\
+        \displaystyle \bigg( \bigoplus_{i=1}^{p-1} F_i \bigg) \cap F_p = \{0_E\}.
+    \end{cases*}
+\end{proposition}
+
+\begin{proposition}{5.9}{dimension d'une somme d'espaces vectoriels de dimiension finie}
+    Soit $E$ un $\K$-espace vectoriel et $(F_1, \dots , F_p)$ une famille d'au moins deux sous-espaces vectoriels de dimension finie de $E$. Alors~:
+    $$\dim\bigg(\somme{i=1}{p}F_i\bigg) \leq \somme{i=1}{p}\dim(F_i)$$
+De plus l’égalité est vérifiée si et seulement si la somme est directe.
+\end{proposition}
+
+\begin{proposition}{5.38}{stabilité des sous-algèbres de $\matrice{n}(\K)$ par prise d'inverse}
+    Soit $\mc{A}$ une sous-algèbre de $\matrice{n}(\K)$. Toute matrice $M$ inversible de $\mc{A}$ a pour inverse un élément de $\mc{A}$.
+\end{proposition}
+
+\begin{definition}{5.41}{sous-algèbre engendrée par un endomorphisme}
+    Soit $E$ un $\K$-espace vectoriel et $u \in \mc{L}(E)$. L'image du morphisme d'algèbres $P \mapsto P(u)$ est appelée \notion{sous-algèbre engendrée par $u$} et notée $\K[u]$.
+\end{definition}
+
+\begin{definition}{5.42}{polynôme caractéristique d'un endomorphisme}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u \in \mc{L}(E)$. On appelle \notion{polynôme caractéristique de $u$} le polynôme~:
+    $$\chi_u = \det(X \mr{id}_E - u)$$
+    On dispose d'une définition tout à fait analogue pour une matrice $A \in \matrice{n}(\K)$~:
+    $$\chi_u = \det(X I_n - A)$$
+\end{definition}
+
+\begin{proposition}{5.44}{expression du polynôme caractéristique d'un endomorphisme}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u \in \mc{L}(E)$. On a~:
+    $$\chi_u = X^n - \mr{tr}(u)X^{n-1} + \dots + (-1)^n\det(A)$$
+    
+\end{proposition}
+
+\begin{theoreme}{5.47}{de décomposition des noyaux}
+    Soit $E$ un $\K$-espace vectoriel, $u \in \mc{L}(E)$ et $(P,Q) \in \K[X]^2$ tel que $P \wedge Q = 1$. On a~:
+    $$\ker\big(A(u)\big) \oplus \ker\big(B(u) \big) = \ker\big(AB(u)\big) $$
+\end{theoreme}
+
+\begin{definition}{5.49}{sous-espace propre associé à une valeur propre}
+    Soit $E$ un $\K$-espace vectoriel, $u \in \mc{L}(E)$ et $\lambda$ une valeur propre de $u$. On appelle \notion{sous-espace propre associé à $\lambda$} l'espace $\ker(u - \lambda \mr{id}_E)$, supposément non réduit à $\{0_E\}$, sans quoi $\lambda$ ne serait valeur propre.
+\end{definition}
+
+\input{../../stock/pied.tex}
