@@ -1,0 +1,30 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{7.1}{endomorphisme diagonalisable}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. On dit que \notion{$u$ est diagonalisable} s'il existe une base $\mc{B}$ de $E$ dans laquelle la matrice de $u$ est diagonale.
+
+\end{definition}
+
+\begin{proposition}{7.2}{CNS de diagonalisabilité}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. Les assertions suivantes sont équivalentes.
+    \begin{enumeratebf}
+        \item Il existe une base de $E$ constituée de vecteurs propres de $u$.
+        \item L'endomorphisme $u$ est diagonalisable.
+        \item Les sous-espaces propres de $u$ sont supplémentaires dans $E$ : $\displaystyle E = \bigoplus_{\lambda \in \spectre(u)}E_\lambda (u)$
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{theoreme}{7.6}{caractérisation de la diagonalisabilité par la dimension des sous-espaces propres}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est diagonalisable si et seulement si la somme des dimensions des sous-espaces propres de $u$ vaut la dimension de $E$~:
+    $$\somme{\lambda \in \spectre(u) }{}\dim\big(E_\lambda(u)\big) = \dim(E)$$ 
+\end{theoreme}
+
+\begin{theoreme}{7.7}{caractérisation de la diagonalisabilité par la multiplicité de ses valeurs propres}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est diagonalisable si et seulement si $\chi_u$ est scindé et si la dimension de chaque sous-espace propre associé à la valeur propre $\lambda$ vaut la multiplicité de $\lambda$~:
+    $$\forall \lambda \in \spectre(u),\, \dim\big(E_\lambda(u)\big) = m_\lambda$$
+\end{theoreme}
+
+\input{../../stock/pied.tex}
