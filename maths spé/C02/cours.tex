@@ -1,0 +1,74 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{2.8}{éléments associés}
+    Deux un éléments d'un anneaux sont dits \notion{associés} lorsqu'ils sont égaux à multiplication près par un élément inversible.
+\end{definition}
+
+\begin{definition}{2.20 (1)}{diviseurs de zéro}
+    Soit $(A,\, +,\, \times)$ un anneau. on appelle \notion{diviseurs de zéro} deux éléments $a$ et $b$ de $A$,tels que $ab = 0_A$
+\end{definition}
+
+\begin{definition}{2.20 (2)}{anneau intègre}
+    Soit $(A,\, +,\, \times)$ un anneau. on dit que \notion{$A$ est intègre} lorsque~:
+    \begin{enumeratebf}
+        \item $A \neq \{0_A\}$
+        \item $\times$ est commutative
+        \item $A$ n'admet pas de diviseur zéro~: $\forall (a,b) \in A^2,\, a \neq 0 \mr{ et } b\neq \implies ab \neq 0$
+    \end{enumeratebf}
+\end{definition}
+
+\begin{theoreme}{2.23}{caractérisation de la structure de corps}
+    Soit $(\K,\, +,\, \times)$ un ensemble muni de deux lois de composition internes. $\K$ est un corps si et seulement si~:
+    \begin{enumeratebf}
+        \item $(\K,\, +)$ est un groupe abélien
+        \item $(\K \setminus \{0_\K\},\, \times)$ est un groupe abélien
+        \item $\times$ est distributive sur $+$
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{theoreme}{2.26}{caractérisation de sous-corps}
+     Soit $(\K,\, +,\, \times)$ un corps et $L \subset \K$. $L$ est un sous-corps de $\K$ si et seulement si~:
+     \begin{enumeratebf}
+        \item $L$ est un sous-anneau de $\K$
+        \item tout élément non nul de $L$ est inversible dans $L$
+     \end{enumeratebf}
+\end{theoreme}
+
+\begin{proposition}{2.29}{condition suffisante de caractère de corps}
+    Tout anneau intègre fini est un corps.
+\end{proposition}
+
+\begin{definition}{2.30}{structure d'idéal}
+    Soit $(A,\, +,\, \times)$ un anneau commutatif. On appelle \notion{idéal de $A$} une partie $I$ de $A$ telle que~:
+    \begin{enumeratebf}
+        \item $(I,+)$ est un sous-groupe de $(A,+)$
+        \item $I$ est attracteur pour $\times$~: $\forall i \in I,\, \forall a \in A,\, ai = ia \in I$
+    \end{enumeratebf}
+\end{definition}
+
+\begin{proposition}{2.32}{images directe et réciproque d'un idéal}
+    Soit $A$ et $B$ deux anneaux commutatifs, $f:A\to B$ un morphisme d'anneaux.
+    \begin{enumeratebf}
+        \item L'image directe d'un idéal de $A$ par $f$ est un idéal de $B$
+        \item L'image réciproque d'un idéal de $B$ par $f$ est un idéal de $A$
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{definition}{2.34}{idéal engendré par un élément}
+    Soit $(A,\, +,\, \times)$ un anneau commutatif. Soit $x \in A$
+    L'ensemble $xA$ des multiples de $x$ dans $A$ est un idéal de $A$, appelé \notion{idéal engendré par $x$}. On le note $(x)$.
+\end{definition}
+
+\begin{theoreme}{2.36}{idéaux de $(\Z,\, +,\, \times)$}
+    L'ensemble des idéaux de $(\Z,\, +,\, \times)$ est $\{n\Z,\, n \in \Z\}~: $\Z$ est principal (car intègre aussi).
+\end{theoreme}
+
+\begin{definition}{2.37}{plus grand commun diviseur de deux entiers}
+    Étant donnés deux entiers $a$ et $b$, l'ensemble $a\Z + b\Z$ est un idéal de $Z$, son unique générateur positif est appellé \notion{le plus grand diviseur commun de $a$ et $b$}. Ainsi,\, 
+    $$a\Z + b\Z = (a\wedge b) \Z$$
+\end{definition}
+
+\input{../../stock/pied.tex}
