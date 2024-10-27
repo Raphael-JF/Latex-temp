@@ -43,5 +43,30 @@
     Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est trigonalisable si et seulement si ses polynômes caractéristique et minimal sont scindés (c'est équivalent).
 \end{theoreme}
 
-$$\fonction{f}{\Z/np\Z}{\Z/n\Z \times \Z /p\Z}{\mr{cl}_{np}(x)}{\big(\mr{cl}_n(x),\, \mr{cl}_p(x)\big)}$$
+\begin{proposition}{7.31}{caractérisation de la nilpotence}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est nilpotent si et seulement s'il est trigonalisable avec pour seule valeur propre $0$.
+\end{proposition}
+
+\begin{proposition}{7.32}{famille libre impliquant un endomorphisme nilpotent}
+    Soit $E$ un $\K$-espace vectoriel. Soit $u \in \mc{L}(E)$ nilpotente d'indice $p$ et $x \in E$ tel que $u^{p-1}(x) \neq 0$. Alors la famille $\big(x,\, u(x),\, \dots u^{p-1}(x)\big)$ est libre.
+\end{proposition}   
+
+\begin{theoreme}{7.33}{majoration de l'indice de nilpotence en dimension finie}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme nilpotent d'indice $p$ de $E$. On a les résultat suivants~:
+    \begin{enumeratebf}
+        \item $p \leq n$
+        \item Si $p = n$, alors dans une certaine base de $E$ la matrice de $u$ est \notion{la matrice de Jordan de taille $n$}~:
+        $$J_n = \begin{pmatrix}
+             0 & 1 & 0 & \dots & 0 \\
+            \vdots & \ddots & \ddots & \ddots & \vdots\\ 
+            \vdots &  & \ddots & \ddots & 0\\
+            \vdots &  &  & \ddots & 1\\
+            0 & \hdots & \hdots &\hdots & 0 \\
+        \end{pmatrix}$$
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{proposition}{7.37 (1,2,3)}{concernant les sous-espaces caractéristiques}
+    
+\end{proposition}
 \input{../../stock/pied.tex}
