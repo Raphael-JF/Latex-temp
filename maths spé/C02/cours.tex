@@ -63,12 +63,97 @@
 \end{definition}
 
 \begin{theoreme}{2.36}{idéaux de $(\Z,\, +,\, \times)$}
-    L'ensemble des idéaux de $(\Z,\, +,\, \times)$ est $\{n\Z,\, n \in \Z\}~: $\Z$ est principal (car intègre aussi).
+    L'ensemble des idéaux de $(\Z,\, +,\, \times)$ est $\{n\Z,\, n \in \Z\}$~: $\Z$ est principal (car intègre aussi).
 \end{theoreme}
 
 \begin{definition}{2.37}{plus grand commun diviseur de deux entiers}
-    Étant donnés deux entiers $a$ et $b$, l'ensemble $a\Z + b\Z$ est un idéal de $Z$, son unique générateur positif est appellé \notion{le plus grand diviseur commun de $a$ et $b$}. Ainsi,\, 
+    Étant donnés deux entiers $a$ et $b$, l'ensemble $a\Z + b\Z$ est un idéal de $\Z$, son unique générateur positif est appelé \notion{le plus grand diviseur commun de $a$ et $b$}. Ainsi,\, 
     $$a\Z + b\Z = (a\wedge b) \Z$$
+\end{definition}
+
+\begin{definition}{2.39}{plus petit commun multiple de deux entiers}
+    Étant donnés deux entiers $a$ et $b$, l'ensemble $a\Z \cap b\Z$ est un idéal de $\Z$, son unique générateur positif est appelé \notion{plus petit commun multiple de $a$ et $b$}. Ainsi,\, 
+    $$a\Z \cap b\Z = (a \vee b) \Z$$
+\end{definition}
+
+\begin{theoreme}{2.44}{produit d'anneaux quotients}
+    Soit $(n,p)\in \N^2$. Si $n$ et $p$ sont premiers entre eux, alors les anneaux $\Z/np\Z$ et $\Z/n\Z \times \Z/p\Z$ sont isomorphes.
+\end{theoreme}
+
+\begin{theoreme}{2.45}{inversibles de $(\Z /n\Z,\, +,\,  \times)$}
+    Soit $k \in \Z$. la classe $\cl(k)$ est inversible dans $(\Z /n\Z,\, +,\,  \times)$ si et seulement si $k \wedge n = 1$.
+\end{theoreme}
+
+\begin{definition}{2.48}{fonction indicatrice d'Euler}
+    On appelle \notion{fonction indicatrice d'Euler} la fonction $\varphi:\N^*\to\N$ qui à $n$ associe le nombre $\varphi(n)$ d'entiers de l'intervalle $\intint{1}{n}$ premiers avec $n$. En fait,
+    $$\forall n \in \N^*,\,  \varphi(n) = \mc{U}\Big((\Z/n\Z,\, +,\, \times)\Big)$$
+\end{definition}
+
+\begin{proposition}{2.48 bis}{image de la fonction indicatrice d'Euler par un entier premier}
+    Soit $p \in \mb{P}$. On a~:
+    $$\varphi(p) = p-1$$
+\end{proposition}
+
+\begin{proposition}{2.49}{théorème d'Euler}
+    Soit $k$ et $n$ deux entiers premiers entre eux. Alors on a~:
+    \begin{align*}
+            &k^{\varphi(n)} \equiv 1 \, [n]\\
+        \text{et donc} \quad &k^{\varphi(n)+1} \equiv k \, [n]
+    \end{align*}
+\end{proposition}
+
+\begin{proposition}{2.50}{caractérisation du caractère de corps de $\gpquotient{n}$}
+    $\gpquotient{n}$ est un corps si et seulement si $n$ est premier.
+\end{proposition}
+
+\begin{theoreme}{2.51}{petit théorème de Fermat}
+    Soit $p \in \mb{P}$. Pour tout entier $x$, $$x^p \equiv x \,[p]$$
+\end{theoreme}
+
+\begin{theoreme}{2.52}{groupe des inversibles de $\gpquotient{p}$, $p \in \mb{P}$}
+    Soit $p \in \mb{P}$. Alors le groupe multiplicatif $\mc{U}(\gpquotient{p})$ est isomorphe au groupe additif $\gpquotient{(p-1)}$
+\end{theoreme}
+
+\begin{proposition}{2.54}{indicatrice d'Euler du produit de premiers entre eux}
+    Soit $m$ et $n$ premiers entre eux. Alors~:
+    $$\varphi(mn) = \varphi(m)\varphi(n)$$
+\end{proposition}
+
+\begin{proposition}{2.55}{indicatrice d'Euler d'une puissance d'un premier}
+    Soit $p$ un nombre premier et $\alpha \in \N^*$. Alors~:
+    $$\varphi(p^\alpha) = p^\alpha - p^{\alpha -1}$$
+\end{proposition}
+
+\begin{definition}{2.72}{stucture d'algèbre}
+    Un ensemble $(\mc{A},\, +,\, \times,\, \cdot)$ :  muni de deux lois de composition internes $+$ et $\times$, et d’une loi $\cdot$ externe sur $\K$, est une \notion{$\K$-algèbre} si~:
+    \begin{enumeratebf}
+        \item $(\mc{A},\, +,\, \times)$ est un anneau.
+        \item $(\mc{A},\, +,\, \cdot)$ est un $\K$-espace vectoriel.
+        \item $\times$ et $\cdot$ sont compatibles~:
+        $$\forall (a,b) \in \mc{A}^2,\, \forall (\lambda, \mu) \in \K^2,\, (a \cdot x) \times (b \cdot y) = (ab) \cdot (x \times y)$$
+    \end{enumeratebf}
+\end{definition}
+
+\begin{definition}{2.74}{sous-algèbre}
+    Un ensemble $\mc{B}$ est une  \notion{sous-algèbre} d'une algèbre $\mc{A}$ si~:
+    \begin{enumeratebf}
+        \item $\mc{B}$ est un sous-anneau de $\mc{A}$.
+        \item $\mc{B}$ est un sous-espace vectoriel de $\mc{A}$.
+    \end{enumeratebf}
+    mais il suffit d'avoir~:
+    \begin{enumeratebf}
+        \item $1_\mc{A} \in \mc{B}$
+        \item $\mc{B}$ stable par $\times$
+        \item $\mc{B}$ stable par combinaison linéaire
+    \end{enumeratebf}
+\end{definition}
+
+\begin{definition}{2.76}{morphisme d'algèbre}
+    Soit $(\mc{A},\, +_\mc{A},\, \times_\mc{A},\, \cdot_\mc{A})$ et $(\mc{B},\, +_\mc{B},\, \times_\mc{B},\, \cdot_\mc{B})$ deux $\K$-algèbres. $f:A\to B$ est un \notion{morphisme de $\K$-algèbres} si~:
+    \begin{enumeratebf}
+        \item $f$ est linéaire.
+        \item $f$ respecte le produit.
+    \end{enumeratebf}
 \end{definition}
 
 \input{../../stock/pied.tex}

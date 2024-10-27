@@ -209,9 +209,8 @@
 \begin{implementation}{file de priorité : \texttt{pop} (2/3)}
     \begin{lstOCaml}
     let tbmin_pop tbmin =
-        (*formalité*)
-        assert (tbmin.nb_elts > 0); 
-    
+        if tbmin.nb_elts = 0 then None else
+        
         (*remplacement de la première case par la dernière*)
         let res =  tbmin.data.(0) in 
         tbmin.data.(0) <- tbmin.data.(tbmin.nb_elts-1);
@@ -246,7 +245,7 @@
                     percole_bas fils_g
                 end;
         in if tbmin.nb_elts > 0 then percole_bas 0;
-        res
+        Some res
     \end{lstOCaml}
 \end{implementation}
 
