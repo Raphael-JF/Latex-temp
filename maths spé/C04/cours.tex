@@ -58,8 +58,72 @@
     Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est l'intersection de tous les fermés de $E$ contenant $A$.
 \end{theoreme}
 
+\begin{theoreme}{4.19}{caractérisation du caractère fermé}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $A$ est fermée si et seulement si elle contient tous ses points adhérents~:
+    $$\ov{A} = A$$
+\end{theoreme}
+
 \begin{theoreme}{4.20}{caractérisation séquentielle de l'adhérence}
     Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est l'ensemble des limites des suites convergentes d'éléments de $A$.
 \end{theoreme}
+
+\begin{definition}{4.22}{intérieur d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. \notion{$x\in A$ est intérieur à $A$} lorsque $A$ est un voisinage de $x$~:
+    $$\exists \epsilon >0,\, \mc{B}(x,\epsilon) \subset A$$
+    l'ensemble des éléments de $E$ intérieurs à $A$ est appelé \notion{intérieur $\mathring{A}$ de $A$}.
+\end{definition}
+
+\begin{theoreme}{4.24}{caractérisation de l'intérieur d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\mathring{A}$ est le plus grand ouvert de $E$ inclus dans $A$.
+\end{theoreme}
+
+\begin{theoreme}{4.25}{lien entre adhérence et intérieur}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$.
+    \begin{enumeratebf}
+        \item Le complémentaire de l’adhérence de $A$ est l’intérieur du complémentaire de $A$~: $\complement_E \ov{A} = \mathring{\Big(\complement_E A \Big)}$
+        \item Le complémentaire de l’intérieur de $A$ est l’adhérence du complémentaire de $A$~: $\complement_E \mathring{A} = \ov{\Big(\complement_E A \Big)}$
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{definition}{4.26}{frontière d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. On appelle \notion{point frontière de $A$} un point adhérent à $A$ qui n’est pas intérieur à $A$. L’ensemble des points frontières
+est appelé \notion{frontière $\mr{Fr}(A)$ de $A$}~:
+$$\mr{Fr}(A) = \ov{A}  \setminus \mathring{A} = \ov{A} \cap \ov{\Big(\complement_E A\Big)}$$
+\end{definition}
+
+\begin{definition}{4.29}{voisinage relatif à une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. On appelle \notion{voisinage de $a \in \ov{A}$ relatif à $A$} l'intersection de $A$ avec un voisinage de $a$.
+\end{definition}
+
+\begin{definition}{4.30}{ouvert, fermé relatifs à une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. 
+    \begin{enumeratebf}
+        \item On appelle \notion{ouvert relatif de $A$} l'intersection de $A$ avec un ouvert de $E$.
+        \item On appelle \notion{fermé relatif de $A$} l'intersection de $A$ avec un fermé de $E$.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{theoreme}{4.46}{caractérisation séquentielle de la limite d'une fonction}
+    Soit $E$, $F$ deux espaces vectoriels normés, $A$ une partie de $E$ et $f : A \to F$. $f$ admet une limite $l\in F$ en $a \in \ov{A}$ si et seulement si pour toute suite $(u_n)_{n\in \N}$ d’éléments de $A$ convergeant vers $a$, la suite $\big(f(u_n)\big)_{n\in \N}$ converge vers $l$.
+\end{theoreme}
+
+\begin{theoreme}{4.47}{caractérisation séquentielle de la continuité d'une fonction}
+    Soit $E$, $F$ deux espaces vectoriels normés, $A$ une partie de $E$ et $f : A \to F$. $f$ est continue en $a \in \ov{A}$ si et seulement si pour toute suite $(u_n)_{n\in \N}$ d’éléments de $A$ convergeant vers $a$, la suite $\big(f(u_n)\big)_{n\in \N}$ converge vers $f(a)$.
+\end{theoreme}
+
+\begin{theoreme}{4.55}{applications coïncidant sur une partie dense}
+    Soit $E$ et $F$ deux espaces vectoriels normés et $A$ une partie de $E$. Deux applications continues de $A$ dans $F$ qui coïncident sur une partie $B$ dense dans $A$ sont égales.
+\end{theoreme}
+
+\begin{theoreme}{4.56}{caractérisation de la continuité par l'image réciproque}
+    Soit $E$, $F$ deux espaces vectoriels normés, $A$ une partie de $E$ et $f : A \to F$. Les trois propriétés suivantes sont équivalentes :
+    \begin{enumeratebf}
+        \item $f$ est continue.
+        \item L’image réciproque par $f$ de tout fermé de $F$ est un fermé relatif de $A$.
+        \item  L’image réciproque par $f$ de tout ouvert de $F$ est un ouvert relatif de $A$.
+    \end{enumeratebf}
+\end{theoreme}
+
+
 
 \input{../../stock/pied.tex}
