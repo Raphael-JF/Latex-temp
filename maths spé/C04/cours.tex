@@ -124,6 +124,67 @@ $$\mr{Fr}(A) = \ov{A}  \setminus \mathring{A} = \ov{A} \cap \ov{\Big(\complement
     \end{enumeratebf}
 \end{theoreme}
 
+\begin{definition}{4.59}{homéomorphisme}
+    Soit $E$ et $F$ deux espaces vectoriels normés. On appelle \notion{homéomorphisme de $E$ dans $F$} une application continue et bijective de $E$ dans $F$ dont la bijection réciproque est aussi continue.
+\end{definition}
 
+\begin{theoreme}{4.65}{caractérisation des applications linéaires continues}
+    Soit $E$ et $F$ deux espaces vectoriels normés et $f$ une application linéaire de $E$ dans $F$. Les propositions suivantes sont équivalentes~:
+    \begin{enumeratebf}
+        \item $f$ est continue sur $E$.
+        \item $f$ est continue en $0_E$.
+        \item $f$ est bornée sur la boule unité fermée.
+        \item $\exists K \in \R_+,\, \forall x \in E,\, \norme{f(x)}_F \leq K\norme{x}_E$.
+        \item $f$ est lipschitzienne sur $E$.
+        \item $f$ est uniformément continue sur $E$.
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{theoreme}{4.69}{continuité des applications linéaires de source de dimension finie}
+    Soit $E$ et $F$ deux espaces vectoriels normés. Si $E$ est de dimension finie, alors toute application linéaire de $E$ dans $F$ est continue.
+\end{theoreme}
+
+\begin{theoreme}{4.71}{caractérisation des applications bilinéaires continues}
+    Soit $E$, $F$ et $G$ trois espaces vectoriels normés et $\varphi$ une application bilinéaire de $E \times F$ dans $G$. Alors l’application $\varphi$ est continue sur $E \times F$ si et seulement si~:
+    $$\exists K \in \R_+,\, \forall (x,y) \in E \times F,\, \norme{\varphi(x,\, y)}_G \leq K \norme{x}_E \norme{y}_F$$
+\end{theoreme}
+
+\begin{definition}{4.75}{norme subordonnée d'une application linéaire continue}
+    Soit $E$ et $F$ deux espaces vectoriels normés. Pour toute application linéaire continue de $E$ dans $F$, l’ensemble des normes des images des éléments de la boule unité fermée de $E$ est une partie non vide et majorée de $\R$ : elle admet une borne supérieure, notée~:
+    $$\normet{f} = \sup_{\norme{x} \leq 1} \norme{f(x)}$$
+    On appelle \notion{norme subordonnée aux normes de $E$ et $F$} l'application ~: 
+    $$\fonction{\normet{\cdot}}{\mc{L}\mc{C}(E,F)}{\R_+}{f}{\normet{f}}$$
+    C'est une norme.
+\end{definition}
+
+\begin{theoreme}{4.77}{caractérisation de la norme triple}
+    Soit $f \in \mc{L}\mc{C}(E,F)$, où $E$ et $F$ sont deux espaces vectoriels normés. La norme triple de $f$ est le plus petit réel $K>0$ tel que pour tout $x\E$, $\norme{f(x)}_F \leq K \norme{x}_E$~:
+    $$\normet{f} = \inf \{K>0,\, \forall x \in E,\, \norme{f(x)}_F \leq K \norme{x}_E \}$$
+    On a aussi~:
+    $$\normet{f} = \sup_{\norme{x}_E \neq 0_E} \frac{\norme{f(x)}_F}{\norme{x}_E}$$
+\end{theoreme}
+
+\begin{theoreme}{4.78}{sous-multiplicativité de la norme triple}
+    Soit $E$, $F$ et $G$ trois espaces vectoriels normés. Si $f$ est une application linéaire continue de $E$ dans $F$ et $g$ une application linéaire continue de $F$ dans $G$, alors $g \circ f$ est une application linéaire continue de $E$ dans $G$ et :
+    $$\normet{g \circ f} \leq \normet{f} \times \normet{g}$$
+\end{theoreme}
+
+\begin{definition}{4.79}{algèbre normée unitaire}
+    On appelle \notion{algèbre normée unitaire} une algèbre $\mc{A}$ munie d’une norme $\norme{\cdot}$ telle que~:
+    $$\begin{cases*}
+        \norme{e} = 1\\
+        \forall (x,y) \in \mc{A}^2,\, \norme{x \times y} \leq \norme{x} \norme{y}
+    \end{cases*}$$
+\end{definition}
+
+
+Bonsoir monsieur,
+
+À la suite d'un exercice de topologie (3.15 : densité de $\mathcal{G}\mathcal{L}_n(\mathbb{C})$ dans $\mathcal{M}_n(\mathbb{C})$), vous nous aviez expliqué qu'il était possible de montrer qu'il existe une base de $\mathcal{M}_n(\mathbb{C})$ constituée d'éléments de $\mathcal{G}\mathcal{L}_n(\mathbb{C})$. Vous nous aviez alors montré que $\overline{\mathrm{Vect}(\mathcal{G}\mathcal{L}_n(\mathbb{C}))} = \mathcal{M}_n(\mathbb{C})$. Cependant même après relecture, je n'ai pas réussi à comprendre votre démonstration aboutissant à l'égalité $\mathrm{Vect}(\mathcal{G}\mathcal{L}_n(\mathbb{C})) = \mathcal{M}_n(\mathbb{C})$. Auriez-vous un indice ?
+Pardonnez-moi pour ce message maculé de symboles dollar, il est difficile de parler de ces ensemble en français.
+
+Merci d'avance, bonne soirée.
+
+Raphaël JONTEF
 
 \input{../../stock/pied.tex}
