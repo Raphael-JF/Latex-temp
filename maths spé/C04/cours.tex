@@ -1,0 +1,190 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{proposition}{4.2 (6)}{intersection finie de voisinage}
+    Soit $E$ un espace vectoriel normé. L'intersection finie de voisinages d'un élément $x \in E$ est un voisinage de $x$.
+\end{proposition}
+
+\begin{definition}{4.4}{ouvert}
+    Soit $E$ un espace vectoriel normé. On appelle ouvert de $E$ une partie $O$ de $E$ qui est un \notion{voisinage de chacun de ses points}, \ie~:
+    $$\forall x \in O,\, \exists r > 0,\, \mc{B}(x,r) \subset O$$
+\end{definition}
+
+\begin{proposition}{4.5 (5)}{intersection finie de voisinage}
+    Soit $E$ un espace vectoriel normé. L'intersection finie d'ouverts de $E$ est un ouvert de $E$.
+\end{proposition}
+
+\begin{definition}{4.6}{fermé}
+    Soit $E$ un espace vectoriel normé. On appelle fermé de $E$ \notion{le complémentaire dans $E$ d'un ouvert $O$ de $E$}.
+\end{definition}
+
+
+\begin{definition}{4.9}{point adhérent à une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Un point $x \in E$ est dit \notion{adhérent à $A$} si tout voisinage de $x$ rencontre $A$~:
+    $$\forall V \in \mc{V}_E(x),\, V \cap A \neq \varnothing$$
+    On appelle \notion{adhérence de $A$ l'ensemble $\adh{A}$ des éléments de $E$ adhérents à $A$}.
+\end{definition}
+
+\begin{proposition}{4.10}{caractérisation de l'adhérence d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Pour tout $x \in E$, les propriétés suivantes sont équivalentes.
+    \begin{enumeratebf}
+        \item $x$ est adhérent à $A$ ;
+        \item Toute boule ouverte de centre $x$ contient au moins un élément de $A$ ;
+        \item la distance de $x$ à $A$ est nulle.
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{definition}{4.12 (1)}{point d'accumulation d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Un point $x$ est un \notion{point d'accumulation de $A$} si tout voisinage de $x$ rencontre $A$ en au moins un autre point que $x$~:
+    $$\forall V \in \mc{V}_E(x),\, (V\setminus\{x\}) \cap A \neq \varnothing$$
+\end{definition}
+
+\begin{definition}{4.12 (2)}{point isolé d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. Un point $x$ est un \notion{point isolé de $A$} s'il existe un voisinage de $x$ qui ne rencontre $A$ qu'en $x$~:
+    $$\exists V \in \mc{V}_E(x),\, V \cap A = \{x\}$$
+\end{definition}
+
+\begin{definition}{4.15}{partie dense}
+    Soit $E$ un espace vectoriel normé et $A$ et $B$ des parties de $E$. On dit que \notion{$A$ est dense dans $B$} si $\adh{A} = B$
+\end{definition} 
+
+\begin{theoreme}{4.17}{caractérisation de l'adhérence par l'inclusion}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est le plus petit fermé de $E$ contenant $A$.
+\end{theoreme}
+
+\begin{theoreme}{4.18}{caractérisation de l'adhérence par l'intersection}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est l'intersection de tous les fermés de $E$ contenant $A$.
+\end{theoreme}
+
+\begin{theoreme}{4.19}{caractérisation du caractère fermé}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $A$ est fermée si et seulement si elle contient tous ses points adhérents~:
+    $$\ov{A} = A$$
+\end{theoreme}
+
+\begin{theoreme}{4.20}{caractérisation séquentielle de l'adhérence}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\adh{A}$ est l'ensemble des limites des suites convergentes d'éléments de $A$.
+\end{theoreme}
+
+\begin{definition}{4.22}{intérieur d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. \notion{$x\in A$ est intérieur à $A$} lorsque $A$ est un voisinage de $x$~:
+    $$\exists \epsilon >0,\, \mc{B}(x,\epsilon) \subset A$$
+    l'ensemble des éléments de $E$ intérieurs à $A$ est appelé \notion{intérieur $\mathring{A}$ de $A$}.
+\end{definition}
+
+\begin{theoreme}{4.24}{caractérisation de l'intérieur d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. $\mathring{A}$ est le plus grand ouvert de $E$ inclus dans $A$.
+\end{theoreme}
+
+\begin{theoreme}{4.25}{lien entre adhérence et intérieur}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$.
+    \begin{enumeratebf}
+        \item Le complémentaire de l’adhérence de $A$ est l’intérieur du complémentaire de $A$~: $\complement_E \ov{A} = \mathring{\Big(\complement_E A \Big)}$
+        \item Le complémentaire de l’intérieur de $A$ est l’adhérence du complémentaire de $A$~: $\complement_E \mathring{A} = \ov{\Big(\complement_E A \Big)}$
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{definition}{4.26}{frontière d'une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. On appelle \notion{point frontière de $A$} un point adhérent à $A$ qui n’est pas intérieur à $A$. L’ensemble des points frontières
+est appelé \notion{frontière $\mr{Fr}(A)$ de $A$}~:
+$$\mr{Fr}(A) = \ov{A}  \setminus \mathring{A} = \ov{A} \cap \ov{\Big(\complement_E A\Big)}$$
+\end{definition}
+
+\begin{definition}{4.29}{voisinage relatif à une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. On appelle \notion{voisinage de $a \in \ov{A}$ relatif à $A$} l'intersection de $A$ avec un voisinage de $a$.
+\end{definition}
+
+\begin{definition}{4.30}{ouvert, fermé relatifs à une partie}
+    Soit $E$ un espace vectoriel normé et $A$ une partie de $E$. 
+    \begin{enumeratebf}
+        \item On appelle \notion{ouvert relatif de $A$} l'intersection de $A$ avec un ouvert de $E$.
+        \item On appelle \notion{fermé relatif de $A$} l'intersection de $A$ avec un fermé de $E$.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{theoreme}{4.46}{caractérisation séquentielle de la limite d'une fonction}
+    Soit $E$, $F$ deux espaces vectoriels normés, $A$ une partie de $E$ et $f : A \to F$. $f$ admet une limite $l\in F$ en $a \in \ov{A}$ si et seulement si pour toute suite $(u_n)_{n\in \N}$ d’éléments de $A$ convergeant vers $a$, la suite $\big(f(u_n)\big)_{n\in \N}$ converge vers $l$.
+\end{theoreme}
+
+\begin{theoreme}{4.47}{caractérisation séquentielle de la continuité d'une fonction}
+    Soit $E$, $F$ deux espaces vectoriels normés, $A$ une partie de $E$ et $f : A \to F$. $f$ est continue en $a \in \ov{A}$ si et seulement si pour toute suite $(u_n)_{n\in \N}$ d’éléments de $A$ convergeant vers $a$, la suite $\big(f(u_n)\big)_{n\in \N}$ converge vers $f(a)$.
+\end{theoreme}
+
+\begin{theoreme}{4.55}{applications coïncidant sur une partie dense}
+    Soit $E$ et $F$ deux espaces vectoriels normés et $A$ une partie de $E$. Deux applications continues de $A$ dans $F$ qui coïncident sur une partie $B$ dense dans $A$ sont égales.
+\end{theoreme}
+
+\begin{theoreme}{4.56}{caractérisation de la continuité par l'image réciproque}
+    Soit $E$, $F$ deux espaces vectoriels normés, $A$ une partie de $E$ et $f : A \to F$. Les trois propriétés suivantes sont équivalentes :
+    \begin{enumeratebf}
+        \item $f$ est continue.
+        \item L’image réciproque par $f$ de tout fermé de $F$ est un fermé relatif de $A$.
+        \item  L’image réciproque par $f$ de tout ouvert de $F$ est un ouvert relatif de $A$.
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{definition}{4.59}{homéomorphisme}
+    Soit $E$ et $F$ deux espaces vectoriels normés. On appelle \notion{homéomorphisme de $E$ dans $F$} une application continue et bijective de $E$ dans $F$ dont la bijection réciproque est aussi continue.
+\end{definition}
+
+\begin{theoreme}{4.65}{caractérisation des applications linéaires continues}
+    Soit $E$ et $F$ deux espaces vectoriels normés et $f$ une application linéaire de $E$ dans $F$. Les propositions suivantes sont équivalentes~:
+    \begin{enumeratebf}
+        \item $f$ est continue sur $E$.
+        \item $f$ est continue en $0_E$.
+        \item $f$ est bornée sur la boule unité fermée.
+        \item $\exists K \in \R_+,\, \forall x \in E,\, \norme{f(x)}_F \leq K\norme{x}_E$.
+        \item $f$ est lipschitzienne sur $E$.
+        \item $f$ est uniformément continue sur $E$.
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{theoreme}{4.69}{continuité des applications linéaires de source de dimension finie}
+    Soit $E$ et $F$ deux espaces vectoriels normés. Si $E$ est de dimension finie, alors toute application linéaire de $E$ dans $F$ est continue.
+\end{theoreme}
+
+\begin{theoreme}{4.71}{caractérisation des applications bilinéaires continues}
+    Soit $E$, $F$ et $G$ trois espaces vectoriels normés et $\varphi$ une application bilinéaire de $E \times F$ dans $G$. Alors l’application $\varphi$ est continue sur $E \times F$ si et seulement si~:
+    $$\exists K \in \R_+,\, \forall (x,y) \in E \times F,\, \norme{\varphi(x,\, y)}_G \leq K \norme{x}_E \norme{y}_F$$
+\end{theoreme}
+
+\begin{definition}{4.75}{norme subordonnée d'une application linéaire continue}
+    Soit $E$ et $F$ deux espaces vectoriels normés. Pour toute application linéaire continue de $E$ dans $F$, l’ensemble des normes des images des éléments de la boule unité fermée de $E$ est une partie non vide et majorée de $\R$ : elle admet une borne supérieure, notée~:
+    $$\normet{f} = \sup_{\norme{x} \leq 1} \norme{f(x)}$$
+    On appelle \notion{norme subordonnée aux normes de $E$ et $F$} l'application ~: 
+    $$\fonction{\normet{\cdot}}{\mc{L}\mc{C}(E,F)}{\R_+}{f}{\normet{f}}$$
+    C'est une norme.
+\end{definition}
+
+\begin{theoreme}{4.77}{caractérisation de la norme triple}
+    Soit $f \in \mc{L}\mc{C}(E,F)$, où $E$ et $F$ sont deux espaces vectoriels normés. La norme triple de $f$ est le plus petit réel $K>0$ tel que pour tout $x\E$, $\norme{f(x)}_F \leq K \norme{x}_E$~:
+    $$\normet{f} = \inf \{K>0,\, \forall x \in E,\, \norme{f(x)}_F \leq K \norme{x}_E \}$$
+    On a aussi~:
+    $$\normet{f} = \sup_{\norme{x}_E \neq 0_E} \frac{\norme{f(x)}_F}{\norme{x}_E}$$
+\end{theoreme}
+
+\begin{theoreme}{4.78}{sous-multiplicativité de la norme triple}
+    Soit $E$, $F$ et $G$ trois espaces vectoriels normés. Si $f$ est une application linéaire continue de $E$ dans $F$ et $g$ une application linéaire continue de $F$ dans $G$, alors $g \circ f$ est une application linéaire continue de $E$ dans $G$ et :
+    $$\normet{g \circ f} \leq \normet{f} \times \normet{g}$$
+\end{theoreme}
+
+\begin{definition}{4.79}{algèbre normée unitaire}
+    On appelle \notion{algèbre normée unitaire} une algèbre $\mc{A}$ munie d’une norme $\norme{\cdot}$ telle que~:
+    $$\begin{cases*}
+        \norme{e} = 1\\
+        \forall (x,y) \in \mc{A}^2,\, \norme{x \times y} \leq \norme{x} \norme{y}
+    \end{cases*}$$
+\end{definition}
+
+
+Bonsoir monsieur,
+
+À la suite d'un exercice de topologie (3.15 : densité de $\mathcal{G}\mathcal{L}_n(\mathbb{C})$ dans $\mathcal{M}_n(\mathbb{C})$), vous nous aviez expliqué qu'il était possible de montrer qu'il existe une base de $\mathcal{M}_n(\mathbb{C})$ constituée d'éléments de $\mathcal{G}\mathcal{L}_n(\mathbb{C})$. Vous nous aviez alors montré que $\overline{\mathrm{Vect}(\mathcal{G}\mathcal{L}_n(\mathbb{C}))} = \mathcal{M}_n(\mathbb{C})$. Cependant même après relecture, je n'ai pas réussi à comprendre votre démonstration aboutissant à l'égalité $\mathrm{Vect}(\mathcal{G}\mathcal{L}_n(\mathbb{C})) = \mathcal{M}_n(\mathbb{C})$. Auriez-vous un indice ?
+Pardonnez-moi pour ce message maculé de symboles dollar, il est difficile de parler de ces ensemble en français.
+
+Merci d'avance, bonne soirée.
+
+Raphaël JONTEF
+
+\input{../../stock/pied.tex}

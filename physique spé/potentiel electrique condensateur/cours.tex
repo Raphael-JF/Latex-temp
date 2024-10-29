@@ -1,0 +1,43 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{theoreme}{4.1}{équation locale de Maxwell-Faraday}
+    En tout point $M$ de l'espace~:
+    $$\rot \vec{E} = - \derivepar{}{\vec{B}}{t}$$
+    Et dans le cas particulier du régime stationnaire~: $\rot \vec{E} = \vec{0}$
+\end{theoreme}
+
+\begin{definition}{4.2}{potentiel électrostatique}
+    On appelle \notion{potentiel électrostatique} le champ scalaire $V$ tel que, \underline{en régime stationnaire}, $\vec{E}$ en dérive~:
+    $$\vec{E} = - \grad V$$
+\end{definition}
+
+\begin{definition}{4.3}{circulation d'une fonction vectorielle le long d'un chemin}
+    Soit $\vec{A}$ une fonction vectorielle et $AB$ un chemin de l'espace. On appelle \notion{circulation de $A$ le long du chemin $AB$} l'intégrale~:
+    $$\mc{C} = \inte{M \in AB}{}\vec{A}(M) \cdot \d{\vec{OM}}$$
+\end{definition}
+
+\begin{theoreme}{4.4}{équation de Poisson}
+    Dans un milieu de densité volumique de charge $\rho$, en régime stationnaire, le potentiel électrostatique vérifie en tout point $M$ de l'espace~:
+    $$\Delta V = - \frac{\rho(M)}{\epsilon_0}$$
+    L’équation de Poisson est une équation locale qui relie directement le potentiel à la distribution de charges.
+\end{theoreme}
+
+\begin{definition}{4.5}{ligne de champ}
+    Une \notion{ligne de champ} est une courbe tangente en tout point au champ étudié, orientée dans le sens de ce champ.
+\end{definition}
+
+\begin{definition}{4.6}{surface équipotentielle}
+    Une \notion{surface équipotentielle} est une surface sur laquelle le potentiel électrostatique est le même en tout point.
+\end{definition}
+
+\begin{proposition}{4.7}{lien entre surfaces équipotentielles et lignes de champs}
+    Les lignes de champ électrostatique sont orthogonales aux équipotentielles. 
+\end{proposition}
+
+
+
+
+\input{../../stock/pied.tex}

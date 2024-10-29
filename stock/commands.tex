@@ -30,12 +30,14 @@
 \renewcommand{\div}[0]{\mathrm{div}\,}
 \newcommand{\rot}[0]{\vec{\mathrm{rot}}\,}
 \newcommand{\vnabla}[0]{\vec{\nabla}}
+\newcommand{\spectre}[0]{\mathrm{Sp}}
 \renewcommand{\vec}[1]{\overrightarrow{#1}}
 \newcommand{\mat}[1]{\mathrm{Mat}_{#1}}
 \newcommand{\matrice}[1]{\mathcal{M}_{#1}}
 \newcommand{\sgEngendre}[1]{\left\langle #1 \right\rangle}
 \newcommand{\gpquotient}[1]{\mathbb{Z} / #1\mathbb{Z}}
-\newcommand{\norme}[1]{||#1||}
+\newcommand{\norme}[1]{\lVert#1\rVert}
+\newcommand{\normet}[1]{||| #1 |||}
 \renewcommand{\d}[1]{\,\mathrm{d}#1}
 \newcommand{\adh}[1]{\overline{#1}}
 \newcommand{\intint}[2]{\llbracket #1 ,\, #2 \rrbracket}
@@ -44,8 +46,14 @@
 \newcommand{\distance}[2]{\mathrm{d}(#1,\,#2)}
 \newcommand{\inte}[2]{\int_{#1}^{#2}}
 \newcommand{\somme}[2]{\sum_{#1}^{#2}}
-\newcommand{\deriveref}[4]{\biggl( \frac{\text{d}^{#1}#2}{\text{d}#3^{#1}} \biggr)_{#4}}
-
+\newcommand{\derive}[3]{\frac{\text{d}^{#1}#2}{\text{d}#3^{#1}}}
+\newcommand{\derivepar}[3]{\frac{\partial^{#1}#2}{\partial#3^{#1}}}
+\newcommand{\fonction}[5]{%
+  \begin{align*}
+    #1 :\ & #2 \longrightarrow #3 \\
+          & #4 \longmapsto #5
+  \end{align*}
+}
 
 
 

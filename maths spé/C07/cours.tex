@@ -1,0 +1,72 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{7.1}{endomorphisme diagonalisable}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. On dit que \notion{$u$ est diagonalisable} s'il existe une base $\mc{B}$ de $E$ dans laquelle la matrice de $u$ est diagonale.
+
+\end{definition}
+
+\begin{proposition}{7.2}{CNS de diagonalisabilité}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. Les assertions suivantes sont équivalentes.
+    \begin{enumeratebf}
+        \item Il existe une base de $E$ constituée de vecteurs propres de $u$.
+        \item L'endomorphisme $u$ est diagonalisable.
+        \item Les sous-espaces propres de $u$ sont supplémentaires dans $E$ : $\displaystyle E = \bigoplus_{\lambda \in \spectre(u)}E_\lambda (u)$
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{theoreme}{7.6}{caractérisation de la diagonalisabilité par la dimension des sous-espaces propres}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est diagonalisable si et seulement si la somme des dimensions des sous-espaces propres de $u$ vaut la dimension de $E$~:
+    $$\somme{\lambda \in \spectre(u) }{}\dim\big(E_\lambda(u)\big) = \dim(E)$$ 
+\end{theoreme}
+
+\begin{theoreme}{7.7}{caractérisation de la diagonalisabilité par la multiplicité de ses valeurs propres}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est diagonalisable si et seulement si $\chi_u$ est scindé et si la dimension de chaque sous-espace propre associé à la valeur propre $\lambda$ vaut la multiplicité de $\lambda$~:
+    $$\forall \lambda \in \spectre(u),\, \dim\big(E_\lambda(u)\big) = m_\lambda$$
+\end{theoreme}
+
+\begin{theoreme}{7.9}{caractérisation de la diagonalisabilité par le polynôme minimal}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est diagonalisable si et seulement si $\mu_u$ est scindé à racines simples.
+\end{theoreme}
+
+\begin{definition}{7.14}{endomorphisme trigonalisable}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. On dit que \notion{$u$ est trigonalisable} s'il existe une base $\mc{B}$ de $E$ dans laquelle la matrice de $u$ est triangulaire supérieure.
+\end{definition}
+
+\begin{proposition}{7.17}{point commun entre polynômes caractéristique et minimal}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $\chi_u$ est scindé si et seulement si $\mu_u$ est scindé.
+\end{proposition}
+
+\begin{theoreme}{7.18}{caractérisation de la trigonalisabilité}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est trigonalisable si et seulement si ses polynômes caractéristique et minimal sont scindés (c'est équivalent).
+\end{theoreme}
+
+\begin{proposition}{7.31}{caractérisation de la nilpotence}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme de $E$. $u$ est nilpotent si et seulement s'il est trigonalisable avec pour seule valeur propre $0$.
+\end{proposition}
+
+\begin{proposition}{7.32}{famille libre impliquant un endomorphisme nilpotent}
+    Soit $E$ un $\K$-espace vectoriel. Soit $u \in \mc{L}(E)$ nilpotente d'indice $p$ et $x \in E$ tel que $u^{p-1}(x) \neq 0$. Alors la famille $\big(x,\, u(x),\, \dots u^{p-1}(x)\big)$ est libre.
+\end{proposition}   
+
+\begin{theoreme}{7.33}{majoration de l'indice de nilpotence en dimension finie}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u$ un endomorphisme nilpotent d'indice $p$ de $E$. On a les résultat suivants~:
+    \begin{enumeratebf}
+        \item $p \leq n$
+        \item Si $p = n$, alors dans une certaine base de $E$ la matrice de $u$ est \notion{la matrice de Jordan de taille $n$}~:
+        $$J_n = \begin{pmatrix}
+             0 & 1 & 0 & \dots & 0 \\
+            \vdots & \ddots & \ddots & \ddots & \vdots\\ 
+            \vdots &  & \ddots & \ddots & 0\\
+            \vdots &  &  & \ddots & 1\\
+            0 & \hdots & \hdots &\hdots & 0 \\
+        \end{pmatrix}$$
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{proposition}{7.37 (1,2,3)}{concernant les sous-espaces caractéristiques}
+    
+\end{proposition}
+\input{../../stock/pied.tex}
