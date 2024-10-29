@@ -141,62 +141,14 @@
     \end{lstC}
 \end{implementation}
 
-\begin{implementation}{file de priorité : \texttt{vide} et \texttt{ajoute} (1/2) }
-    \begin{lstOCaml}
-    type tas_binaire_min = {
-        mutable nb_elts: int; 
-        mutable data: (char*int) array
-    }
-
-    let tbmin_vide () = {nb_elts = 0; data = [||]}
-
-    let prio couple = 
-        let _,b = couple in b
-
-    let redim tbmin new_taille cur_taille = 
-        assert (new_taille >= tbmin.nb_elts);
-        let new_data = Array.make new_taille ('\000',0) in
-        for i=0 to tbmin.nb_elts - 1 do
-            new_data.(i) <- tbmin.data.(i)
-        done;
-        tbmin.data <- new_data
-    \end{lstOCaml}
-\end{implementation}
-
-\begin{implementation}{file de priorité : \texttt{vide} et \texttt{ajoute} (2/2)}
-    \begin{lstOCaml}
-    let tbmin_ajoute tbmin x p  =
-        (*redimensionnement*)
-        let n = Array.length tbmin.data in
-        if tbmin.nb_elts >= n then 
-            redim tbmin (2*n+1) n;
-
-        (*ajout et percolations vers le haut*)
-        tbmin.data.(tbmin.nb_elts) <- (x,p);
-        tbmin.nb_elts <- tbmin.nb_elts + 1;
-        let rec percole_haut i =
-            let daron = if (i-1)/2 < 0 then 0 else (i-1)/2 in
-            if prio tbmin.data.(daron) > prio tbmin.data.(i) then begin
-                let temp = tbmin.data.(i) in
-                tbmin.data.(i) <- tbmin.data.(daron);
-                tbmin.data.(daron) <- temp;
-                percole_haut daron;
-            end;
-        in percole_haut (tbmin.nb_elts - 1)
-    \end{lstOCaml}
-\end{implementation}
-
-\begin{implementation}{file de priorité : \texttt{pop} (1/3)}
+\begin{implementation}{file de priorité : type et fonction $\code{redim}$}
     \begin{lstOCaml}
     type tas_binaire_min = {
         mutable nb_elts:int; 
         mutable data: (char*int) array
     }
 
-    let prio couple = 
-        let _,b = couple in b
-
-    let redim tbmin new_taille cur_taille = 
+    let redim tbmin new_taille = 
         assert (new_taille >= tbmin.nb_elts);
         let new_data = Array.make new_taille ('\000',0) in
         for i=0 to tbmin.nb_elts - 1 do
@@ -206,27 +158,26 @@
     \end{lstOCaml}
 \end{implementation}
 
-\begin{implementation}{file de priorité : \texttt{pop} (2/3)}
+\begin{implementation}{file de priorité : fonction $\code{percole\_haut}$}
     \begin{lstOCaml}
-    let tbmin_pop tbmin =
-        if tbmin.nb_elts = 0 then None else
-        
-        (*remplacement de la première case par la dernière*)
-        let res =  tbmin.data.(0) in 
-        tbmin.data.(0) <- tbmin.data.(tbmin.nb_elts-1);
-        tbmin.nb_elts <- tbmin.nb_elts - 1;
-    
-        (*redimensionnement*)
-        let n = Array.length tbmin.data in
-        if tbmin.nb_elts <= n/2 then 
-            redim tbmin (n/2) n;
+    let percole_haut tbmin i_depart =
+        let rec percole i =
+            let daron = if (i-1)/2 < 0 then 0 else (i-1)/2 in
+            if prio tbmin.data.(daron) > prio tbmin.data.(i) then begin
+                let temp = tbmin.data.(i) in
+                tbmin.data.(i) <- tbmin.data.(daron);
+                tbmin.data.(daron) <- temp;
+                percole daron;
+            end
+        in if tbmin.nb_elts <> 0 then
+            percole i_depart
     \end{lstOCaml}
 \end{implementation}
 
-\begin{implementation}{file de priorité : \texttt{pop} (3/3)}
+\begin{implementation}{file de priorité : fonction $\code{percole\_bas}$}
     \begin{lstOCaml}
-        (*percolations du nouveau premier élément*)
-        let rec percole_bas i =
+    let percole_bas tbmin i_depart =
+        let rec percole i =
             let max = tbmin.nb_elts - 1 in
             let fils_g = if 2*i+1 <= max then 2*i+1 else max in
             let fils_d = if 2*i+2 <= max then 2*i+2 else max in
@@ -237,14 +188,77 @@
                     let temp = tbmin.data.(fils_d) in
                     tbmin.data.(fils_d) <- tbmin.data.(i);
                     tbmin.data.(i) <- temp;
-                    percole_bas fils_d
+                    percole fils_d
                 else 
                     let temp = tbmin.data.(fils_g) in
                     tbmin.data.(fils_g) <- tbmin.data.(i);
                     tbmin.data.(i) <- temp;
-                    percole_bas fils_g
-                end;
-        in if tbmin.nb_elts > 0 then percole_bas 0;
+                    percole fils_g
+            end
+        in if tbmin.nb_elts <> 0 then
+            percole i_depart        
+    \end{lstOCaml}
+\end{implementation}
+
+\begin{implementation}{file de priorité : type et fonction $\code{file\_vide}$}
+    \begin{lstOCaml}
+    type tas_binaire_min = {
+        mutable nb_elts:int; 
+        mutable data: (char*int) array
+    }
+
+    let tbmin_vide () = {nb_elts = 0; data = [||]}
+    \end{lstOCaml}
+\end{implementation}
+
+\begin{implementation}{file de priorité : fonction $\code{ajoute}$ (qui remplace aussi)}
+    \begin{lstOCaml}
+    let tbmin_ajoute tbmin x p  =
+        (*redimensionnement*)
+        let n = Array.length tbmin.data in
+        if tbmin.nb_elts >= n then 
+            redim tbmin (2*n+1);
+    
+        (*vérification de la présence éventuelle de x*)
+        let deja_present = ref false in (*indice de x si existence, sinon -1*)
+        for i=0 to tbmin.nb_elts-1 do
+            match tbmin.data.(i) with
+            | (elt,prio) when elt = x -> 
+                tbmin.data.(i) <- (x, p); 
+                deja_present := true;
+                if prio > p then 
+                percole_bas tbmin i
+                else if prio < p then
+                percole_haut tbmin i
+            | _ -> ()
+        done;
+    
+        (*ajout et percolations vers le haut*)
+        if not !deja_present then begin
+            tbmin.data.(tbmin.nb_elts) <- (x,p);
+            tbmin.nb_elts <- tbmin.nb_elts + 1;
+            percole_haut tbmin (tbmin.nb_elts - 1)
+        end
+    \end{lstOCaml}
+\end{implementation}
+
+\begin{implementation}{file de priorité : fonction $\code{pop\_opt}$}
+    \begin{lstOCaml}
+    let tbmin_pop tbmin =
+        if tbmin.nb_elts = 0 then None else
+    
+        (*remplacement de la première case par la dernière*)
+        let res =  tbmin.data.(0) in 
+        tbmin.data.(0) <- tbmin.data.(tbmin.nb_elts-1);
+        tbmin.nb_elts <- tbmin.nb_elts - 1;
+    
+        (*redimensionnement*)
+        let n = Array.length tbmin.data in
+        if tbmin.nb_elts <= n/2 then 
+            redim tbmin (n/2);
+    
+        (*percolations du nouveau premier élément*)
+        percole_bas tbmin 0;
         Some res
     \end{lstOCaml}
 \end{implementation}
