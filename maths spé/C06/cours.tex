@@ -1,0 +1,29 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{6.16}{ensemble $\ell^1(E)$}
+    Si $E$ est un $\K$-espace vectoriel normé,\, on note $\ell^1(E)$ l'ensemble des séries à termes dans $E^\N$ absolument convergentes. L'application suivante est alors une norme de $\ell^1(E)$~:
+    $$\fonction{N_1}{\ell^1(E)}{\R_+}{u}{\somme{n=0}{+\infty}\norme{u_n}_E}$$
+\end{definition}
+
+\begin{definition}{6.19}{série géométrique en algèbre normée unitaire}
+    Soit $\mc{A}$ une algèbre normée unitaire de dimension finie. Pour tout élément $u$ de $\mc{A}$ tel que $\norme{u}_{\mc{A}}<1$,  la série $\sum_n u^n$ est appelée \notion{série géométrique}. Cette série est absolument convergente et sa somme vaut~:
+    $$\sum_{n=0}^{+\infty}u^n = (1_\mc{A} - u)^{-1}$$
+\end{definition}
+
+\begin{definition}{6.22}{série exponentielle}
+   Soit $\mc{A}$ une algèbre normée unitaire de dimension finie. Pour tout élément $u$ de $\mc{A}$, la série $\displaystyle \sum_{n} \frac{u^n}{n!}$ est absolument convergente et appelée \notion{série exponentielle}. On note sa somme~:
+    $$\exp(u) = \sum_{n=0}^{+\infty}\frac{u^n}{n!}$$
+\end{definition}
+
+\begin{definition}{6.26}{série alternée}
+    On appelle \notion{série alternée} tout série $\displaystyle \sum_{n} u_n$ dont le terme général s'écrit $u_n = (-1)^na_n$, où $(a_n)_{n \in \N}$ est une suite de signe constant.
+\end{definition}
+
+\begin{theoreme}{6.27}{critère spécial des séries alternées}
+    Soit $\displaystyle \sum_{n} u_n$ une série alternée. Si $(|u_n|)_{n \in \N}$ est décroissante et converge vers $0$, alors la série $\displaystyle \sum_{n} u_n$ converge.
+\end{theoreme}
+
+\input{../../stock/pied.tex}

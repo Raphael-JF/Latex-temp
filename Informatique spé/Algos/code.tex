@@ -33,51 +33,44 @@
     \end{lstOCaml}
 \end{implementation}
 
-\begin{implementation}{parcours en largeur d'un graphe (1/3)}
+\begin{implementation}{parcours en largeur d'un graphe (1/2)}
     \begin{lstOCaml}
-    type file = {e:int list; s:int list}
-    type graphe = int list array 
+    type graphe = int list array
+    type file = {entrants:int list; sortants:int list}
         
-    let file_vide = {e=[]; s=[]}             
-    
-    let rec ajoute f liste = match liste with
-        | [] -> f
-        | elt::q -> ajoute {e=(elt::f.e); s=f.s} q 
-    \end{lstOCaml}
-\end{implementation}
-
-\begin{implementation}{parcours en largeur d'un graphe (2/3)}
-    \begin{lstOCaml}
+    let file_vide () = {entrants = []; sortants = []}
+                        
     let pop_opt f = 
-        let rec retourne sub_f =
-            match sub_f.e with
-            | [] -> sub_f
-            | elt::q -> retourne {e=q; s=elt::sub_f.s}   
-        in let new_f = 
-            if f.s = [] then
-                retourne f 
-            else f 
-        in match new_f.s with 
-        | [] -> file_vide, None
-        | elt::q -> {e=new_f.e; s=q}, Some elt
+        let rec retourne f1 =
+            match f1.entrants with 
+            | [] -> f1
+            | e::q -> retourne {entrants=q; sortants = e::f1.sortants}
+        in let f2 = if f.sortants = [] then retourne f else f
+        in match f2.sortants with
+        | [] -> file_vide (), None (* file vide *)
+        | e::q -> {entrants=f2.entrants; sortants=q}, Some e
     \end{lstOCaml}
 \end{implementation}
 
-\begin{implementation}{parcours en largeur d'un graphe (3/3)}
+\begin{implementation}{parcours en largeur d'un graphe (2/2)}
     \begin{lstOCaml}
-    let parcours_largeur g s =
+    let rec ajoute f liste = 
+        match liste with 
+        | [] -> f
+        | e::q -> ajoute {entrants = e::f.entrants; sortants = f.sortants} q            
+        
+    let parcours_largeur g s = 
         let n = Array.length g in
         let non_vus = Array.make n true in
-        let rec parcours f =
-            match (pop_opt f) with
-            | _, None -> ()
-            | new_f, Some v when non_vus.(v) ->
+        let rec parcours f = 
+            match pop_opt f with 
+            | _, None -> []
+            | f1, Some v when non_vus.(v) ->
                 non_vus.(v) <- false;
-                print_int v;
-                parcours (ajoute new_f g.(v))
-            | new_f, Some v ->
-                parcours new_f
-        in parcours {e=[]; s=[s]} 
+                v::(parcours (ajoute f1 g.(v)))
+            | f1, Some v ->
+                parcours f1
+        in parcours {entrants=[s]; sortants=[]}
     \end{lstOCaml}
 \end{implementation}
 
