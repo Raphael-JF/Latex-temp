@@ -26,4 +26,25 @@
     Soit $\displaystyle \sum_{n} u_n$ une série alternée. Si $(|u_n|)_{n \in \N}$ est décroissante et converge vers $0$, alors la série $\displaystyle \sum_{n} u_n$ converge.
 \end{theoreme}
 
+\begin{definition}{6.30}{produit de Cauchy de suites}
+    Soit $\mc{A}$ une $\K$-algèbre normée unitaire de dimension finie. On appelle \notion{produit de Cauchy $u \star v$ de deux suites $(u_n)_{n\in\N}$ et $(v_n)_{n\in \N}$ de $\mc{A}^\N$} la suite $(w_n)_{n \in \N}$ définie par~:
+    $$\forall n \in \N,\, w_n = \sum_{k=0}^{n}u_kv_{n-k} = \sum_{i+j = n}u_i v_j$$
+   bien dans $\mc{A}^\N$, qui est alors muni d'une structure de $\K$-algèbre.
+\end{definition}
+
+\begin{proposition}{6.32}{convergence du produit de Cauchy de STP}
+    Soit $\sum_n u_n$ et $\sum_n v_n$ deux séries réelles à termes positifs. Si $\sum_n u_n$ et $\sum_n v_n$ convergent, alors il en est de même pour la série de terme général $(u \star v)_n$. De plus~:
+    $$\sum_{n=0}^{+\infty}\sum_{i+j=n}u_i v_j = \Bigg( \sum_{n=0}^{+\infty}u_n \Bigg)\Bigg( \sum_{n=0}^{+\infty}v_n \Bigg)$$
+\end{proposition}
+
+\begin{proposition}{6.32}{convergence du produit de Cauchy de séries d'élements d'une algèbre normée}
+    Soit $\mc{A}$ une $\K$-algèbre normée unitaire de dimension finie. Soit $\sum_n u_n$ et $\sum_n v_n$ deux séries à termes dans $\mc{A}$. Si $\sum_n u_n$ et $\sum_n v_n$ convergent absolument, alors il en est de même pour la série de terme général $(u \star v)_n$. De plus~:
+    $$\sum_{n=0}^{+\infty}\sum_{i+j=n}u_i v_j = \Bigg( \sum_{n=0}^{+\infty}u_n \Bigg)\Bigg( \sum_{n=0}^{+\infty}v_n \Bigg)$$
+\end{proposition}
+
+\begin{theoreme}{6.34}{propriété fondamentale de l'exponentielle}
+   Soit $\mc{A}$ une $\K$-algèbre normée unitaire de dimension finie. Si $u$ et $v$ sont deux éléments de $\mc{A}$ qui commutent, alors :
+    $$\exp(u+v) = \exp(u)\star \exp(v)$$
+\end{theoreme}
+
 \input{../../stock/pied.tex}
