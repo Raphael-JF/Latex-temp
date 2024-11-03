@@ -62,4 +62,19 @@
     \end{lstOCaml}
 \end{implementation}
 
+\begin{definition}{3.4}{fonction heuristique admissible}
+    Soit $G = (S,A,w)$ un graphe orienté pondéré. Dans le cadre de l'algorithme A* appliqué à $G$ d'un sommet $s$ à un sommet $t$, une \notion{heuristique $h:S \to \R_+$ est dite admissible} lorsque~:
+    $$\forall v \in S, h(v) \leq \mr{d}(v,t) = \inf\Big\{\sum_{i=1}^{p-1} w(s_i, s_{i+1}),\, (s_1, \dots, s_p) \text{ chemin de }v=s_1 \text{ à } t = s_p\Big\}$$
+    Autrement dit losque $h$ sous-estime la distance au sommet cible.
+\end{definition}
+
+\begin{definition}{3.5}{fonction heuristique monotone}
+    Soit $G = (S,A,w)$ un graphe orienté pondéré. Dans le cadre de l'algorithme A* appliqué à $G$ d'un sommet $s$ à un sommet $t$, une \notion{heuristique $h:S \to \R_+$ est dite monotone} lorsque~:
+    $$\begin{cases*}
+    \forall (u,v) \in A,\, h(u) \leq w(u,v) + h(v) \\
+    h(t) = 0
+    \end{cases*}$$
+    Par récurrence, on a également $h$ admissible.
+\end{definition}
+
 \input{../../stock/pied.tex}
