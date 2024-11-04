@@ -291,16 +291,16 @@
                 pred.(int_of_char v) <- u;
                 traitement u q
             | (v,w)::q -> traitement u q
-
         in let rec parcours () = 
             match tbmin_pop file_p with
             | None -> failwith "chemin inexistant"
             | Some (u,_) when u=t -> reconstruire [] u
-            | Some (u,p) when non_vus.(int_of_char u) ->
+            | Some (u,_) when non_vus.(int_of_char u) ->
                 non_vus.(int_of_char u) <- false;
                 traitement u g.(int_of_char u);
                 parcours ()
             | Some _ -> parcours ()
+        in parcours ()
     \end{lstOCaml}
 \end{implementation}
 

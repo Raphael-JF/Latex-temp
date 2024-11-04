@@ -77,4 +77,24 @@
     Par récurrence, on a également $h$ admissible.
 \end{definition}
 
+\begin{implementation}{algorithme de Kruskal}
+    On exploite la structue Unir et Trouver pour la relation d'accessibilité, \underline{les classes sont alors les composantes connexes}.
+    \begin{itemize}
+        \item \textbf{Entrée}~: un graphe non orienté pondéré $G = (S,A,w)$
+        \item \textbf{Sortie}~: un arbre couvrant de poids minimal de $G$
+    \end{itemize}
+    \begin{lstLNat}
+    initialiser MST = $\varnothing$ //Minimal Spanning Tree
+    pour tout $s \in S$ :
+        créer la classe de représentant $s$
+        
+    trier la liste $A$ des arêtes par ordre croissant des poids
+    pour tout $\{u,v\} \in A$ :
+        si la classe de $u$ n'est pas la classe de $v$ :
+            ajouter $\{u,v\}$ à MST
+            unir les classes de $u$ et $v$
+    renvoyer MST
+    \end{lstLNat}
+\end{implementation}
+
 \input{../../stock/pied.tex}
