@@ -304,4 +304,47 @@
     \end{lstOCaml}
 \end{implementation}
 
+\begin{implementation}{structure Unir et Trouver avec forêt, doublement optimisée (1/2)}
+    \begin{lstOCaml}
+    type pile_spaghetti = { 
+        mutable parent: pile_spaghetti option; 
+        mutable rang: int;
+        valeur: int;
+    }
+    let creer x =
+     (* création d'une classe d'équivalence *)
+        {parent=None; rang=0; valeur=x}
+    
+    let rec trouver x =
+     (* recherche du représentant
+        on fait de la COMPRESSIONS DE CHEMIN *)
+        match x.parent with
+        | None -> x
+        | Some e -> 
+            let res = trouver e in
+            x.parent <- Some res; (* applatissement de l'arbre *)
+            res
+    \end{lstOCaml}
+\end{implementation}
+
+\begin{implementation}{structure Unir et Trouver avec forêt, doublement optimisée (2/2)}
+    \begin{lstOCaml}
+    let unir x y =
+     (* réunion de deux classes d'équivalence 
+        on fait de l'UNION PAR RANG *)
+        let parent_x = trouver x in
+        let parent_y = trouver y in
+        if parent_x <> parent_y then begin
+            match parent_x, parent_y with
+            | a,b when a.rang = b.rang ->
+                a.parent <- Some b;
+                b.rang <- b.rang + 1
+            | a,b when a.rang < b.rang -> a.parent <- Some b
+            | a,b when a.rang > b.rang -> b.parent <- Some a
+            | _ -> () (* ne sert à rien *)
+        end
+    \end{lstOCaml}
+\end{implementation}
+
+
 \input{../../stock/pied.tex}
