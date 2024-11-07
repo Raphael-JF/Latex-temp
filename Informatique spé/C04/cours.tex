@@ -1,0 +1,36 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{4.1}{jeu sans mémoire}
+    On appelle \notion{jeu sans mémoire} un jeu dans lequel à tout instant de la partie, il est possible de déterminer si un joueur a gagné ou si un coup est valide, \notion{indépendament des précédents coups joués}.
+\end{definition}
+
+\begin{definition}{4.2}{jeu à information complète}
+    On appelle \notion{jeu à information complète} un jeu dans lequel il n'y \notion{aucune information cachée} que les joueurs ne puissent \notion{savoir ou prévoir}.
+\end{definition}
+
+\begin{definition}{4.3}{graphe associé à un jeu à deux joueurs}
+    Un jeu à deux joueurs $J_1$ et $J_2$, sans mémoire, à information complète peut être \notion{représenté par un graphe orienté biparti}~:
+    $$G = (S,A) \quad \text{ où } S = S_1 \sqcup S_2,\, A \subset (S_1 \times S_2) \cup (S_2 \times S_1) $$
+    Les sommets de $S_1$ sont appelés les \notion{états contrôlés par $J_1$} et ceux de $S_2$ les \notion{états conrôlés par $J_2$}.
+\end{definition}
+
+\begin{definition}{4.4}{coup possible pour un joueur}
+    Soit un jeu à deux joueurs $J_1$ et $J_2$, sans mémoire, à information complète, de graphe associé $G=(S_1 \sqcup S_2,A)$. Pour $a \neq b$ dans $\{1;2\}$, on appelle l'arc \notion{$(s_a,s_b) \in A \cap (S_a \times S_b)$ un coup possible pour $J_a$ depuis l'état $s_a$ vers un état $s_b$ contrôlé par $J_b$}.
+\end{definition}
+
+\begin{definition}{4.5}{jeu d'accessiblité}
+    Un jeu à deux joueurs $J_1$ et $J_2$, sans mémoire, à information complète de graphe associé $G=(S_1 \sqcup S_2,A)$ est dit \notion{d'accessibilité} s'il est possible de définir pour chaque joueur $J_a$ ($a \in \{1;2\}$), \notion{un ensemble $F_a \subset S_a$ d'états gagnants pour $J_a$}. \\$F_a$ est alors appelé \notion{condition de gain du joueur $J_a$.}
+\end{definition}
+
+\begin{definition}{4.6}{état final d'un jeu d'accessiblité}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité de conditions de gain $F_1$ et $F_2$. Un \notion{état $s \in S$ final du jeu} est un \notion{état depuis lequel il n'existe aucun coup possible}, \textit{i.e.} $\deg_+(s) = 0$.
+\end{definition}
+
+\begin{definition}{4.7}{partie partielle}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité..
+\end{definition}
+
+\input{../../stock/pied.tex}
