@@ -1,0 +1,41 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{1.1}{avancement d'une réaction}
+    Soit une réaction chimique débutant à l'instant $t=0$, impliquant les espèces chimiques $(A_1, \dots, A_n)$ avec les coefficients stœchiométriques respectifs $(\overline{\nu_1}, \dots, \overline{\nu_n})$. On peut décrire l'évolution de la réaction via une fonction temporelle appelée \notion{avancement $\xi$ de la réaction} telle que~:
+    $$\forall i \in \intint{1}{n},\, \forall t > 0,\,  n_{A_i}(t) = n_{A_i}(t=0) + \overline{\nu_i} \xi(t)$$
+\end{definition}
+
+\begin{definition}{7.2}{solvant d'une solution}
+    le \notion{solvant d'une solution} est l'espèce majoritairement présente par rapport aux autre, on dit que \notion{le solvant est en excès}. L'activité $a$ d'un solvant est~:
+    $$a = 1$$
+\end{definition}
+
+\begin{definition}{7.3}{soluté dans une solution}
+    Un \notion{soluté dans une solution} est une espèce dissoute dans le solvant de la solution. L'activité $a$ d'un soluté $s$ vaut~:
+    $$a = \frac{[s]}{C^0},\,  \text{où } \begin{cases*}
+    [s] &désigne la concentration en soluté $s$ dans la solution\\
+    [C^0]= 1 \,\mr{bar} &désigne la concentration neutre, servant à neutraliser la dimension de $a$
+    \end{cases*}$$
+    \underline{L'activité d'un soluté dépend du temps}.
+\end{definition}
+
+\begin{definition}{7.4}{quotient réactionnel d'une réaction partielle}
+    Soit une réaction chimique partielle, impliquant les espèces chimiques $(A_1, \dots, A_n)$ avec les coefficients stœchiométriques respectifs $(\overline{\nu_1}, \dots, \overline{\nu_n})$ et d'activités respectives $(a_1,\dots a_n)$. \notion{On définit à tout instant $t$ de la transformation le quotient $Q(t)$ de la réaction} défini par~:
+    $$Q(t) = \prod_{i=1}^{n}a_i^{\overline{\nu_i}} = \frac{\displaystyle \prod_{\substack{i=1\\A_i \,\mr{produit}}}^{n} a_i^{\nu_i}}{\displaystyle \prod_{\substack{i=1\\A_i \,\mr{réactif}}}^{n} a_i^{\nu_i}}$$
+\end{definition}
+
+\begin{proposition}{7.5}{concernant le quotient réactionnel}
+    Le quotient réactionnel est strictement croissant du temps.
+\end{proposition}
+
+\begin{theoreme}{7.6}{Loi d'actions de masses, ou de Gudberg-Waage}
+    En l'instant $t_{\mr{eq}}$ d'équilibre, on peut définir \notion{une constante de réaction $K^\circ$} telle que~:
+    $$Q(t_{\mr{eq}}) = K^\circ$$
+\end{theoreme}
+
+
+
+\input{../../stock/pied.tex}
