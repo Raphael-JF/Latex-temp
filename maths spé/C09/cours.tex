@@ -1,0 +1,20 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{9.1}{convergence simple d'une suite de fonctions}
+    Soit $E$ un $\K$ espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$. On dit que \notion{la suite $(f_n)_{n \in \N}$ converge simplement} si pour tout $x \in A$, la suite $\big(f_n(x)\big)_{n \in \N} \in \K^\N$ converge. Ainsi la fonction~:
+    $$\fonction{f}{A}{\K}{x}{\lim_{n \to +\infty}f_n(x)}$$
+    est appelée \notion{limite simple de la suite $(f_n)_{n\in \N}$}. Ainsi,
+    $$\forall x \in A,\, \forall \epsilon >0,\, \exists N\in \N,\, \forall n \geq N,\, \abs{f_n(x) - f(x)} < \epsilon$$
+\end{definition}
+
+\begin{definition}{9.4}{convergence uniforme d'une suite de fonctions}
+    Soit $E$ un $\K$ espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$. On dit que \notion{la suite $(f_n)_{n \in \N}$ converge simplement} si pour tout $x \in A$, la suite $\big(f_n(x)\big)_{n \in \N} \in \K^\N$ converge. Ainsi la fonction~:
+    $$\fonction{f}{A}{\K}{x}{\lim_{n \to +\infty}f_n(x)}$$
+    est appelée \notion{limite uniforme de la suite $(f_n)_{n\in \N}$}. Ainsi,
+    $$\forall x \in A,\, \forall \epsilon >0,\, \exists N\in \N,\, \forall n \geq N,\, \abs{f_n(x) - f(x)} < \epsilon$$
+\end{definition}
+
+\input{../../stock/pied.tex}
