@@ -44,4 +44,39 @@
     Une \notion{famille $(u_i)_{i \in I}$ est sommable} si la famille $(\abs{u_i})_{i \in I}$ l'est.
 \end{definition}
 
+\begin{proposition}{8.21}{inégalité triangulaire}
+    Soit $(u_i)_{i \in I}$ un famille sommable de nombres complexes. On a~:
+    $$\Bigg\vert \somme{i \in I}{}u_i \Bigg\vert \leq \somme{i \in I}{}\abs{u_i}$$
+\end{proposition}
+
+\begin{theoreme}{8.17}{de Fubini complexe}
+    Soit $(u_i)_{i\in I}$ une famille de nombres complexes et $\displaystyle I = \bigsqcup_{n\in \N} I_n$ une partition dénombrable de $I$. La famille $(u_i)_{i\in I}$ est sommable si et seulement si~:
+    $$\begin{cases*}
+        \forall n \in \N,\, (u_i)_{i \in I_n}& est sommable \\
+        \sum_n\bigg( \sum_{i\in I_n} \abs{u_i} \bigg) & est convergente
+    \end{cases*}$$
+
+    Le cas échéant,
+    $$\sum_{n=0}^{+ \infty}\bigg( \sum_{i\in I_n} u_i \bigg) = \sum_{i\in I}u_i$$
+\end{theoreme}
+
+\begin{theoreme}{8.28}{interversion des sommations de complexes}
+    Soit $(u_{p,q})_{(p,q) \in \N^2}$ est une famille nombres complexes. La famille $(u_{p,q})_{(p,q) \in \N^2}$ est sommable si et seulement si~:
+    $$\begin{cases*}
+        \displaystyle \forall q \in \N,\, \somme{p}{}\abs{u_{p,q}} &est convergente \\
+        \displaystyle \somme{q}{}\somme{p=0}{+ \infty}\abs{u_{p,q}} &est convergente
+    \end{cases*}$$
+    si et seulement si~:
+    $$\begin{cases*}
+        \displaystyle \forall p \in \N,\, \somme{q}{}\abs{u_{p,q}} &est convergente \\
+        \displaystyle \somme{p}{}\somme{q=0}{+ \infty}\abs{u_{p,q}} &est convergente
+    \end{cases*}$$
+    et le cas échéant~:
+    $$\sum_{(p,q) \in \N^2}u_{p,q} = \somme{p=0}{+\infty}\somme{q=0}{+\infty}u_{p,q} = \somme{q=0}{+\infty}\somme{p=0}{+\infty}u_{p,q}$$
+\end{theoreme}
+
+\begin{proposition}{8.29}{produit de familles sommables de nombres complexes}
+    Soit $(a_p)_{p \in \N}$ et $(b_q)_{q \in \N}$ deux familles sommables de nomnbres complexes. Alors la famille $(a_pb_q)_{(p,q) \in \N^2}$ est sommable et~:
+    $$\sum_{(p,q) \in \N^2}a_pb_q = \Bigg(\sum_{p=0}^{+\infty} a_p \Bigg) \times \Bigg( \sum_{q=0}^{+\infty} b_q \Bigg) $$
+\end{proposition}
 \input{../../stock/pied.tex}

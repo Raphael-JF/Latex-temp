@@ -30,7 +30,22 @@
 \end{definition}
 
 \begin{definition}{4.7}{partie partielle}
-    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité..
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. On appelle \notion{partie partielle du jeu} tout chemin de $G$ partant de l'état inital de $G$ à un état quelconque de $G$. \notion{L'ensemble des parties partielles du jeu est noté $S^w$}.
 \end{definition}
 
+\begin{definition}{4.8}{stratégie}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Une stratégie est une \notion{application $\varphi : S^w \to S$ qui à une partie partielle $(s_0, \dots, s_p)$ associe un sommet la prolongeant} : $\Big(s_p,\,  \varphi\big((s_0, \dots, s_p)\big)\Big) \in A$. On dit alors qu'\notion{un joueur suit une stratégie}. \\
+    Pour un jeu sans mémoire, \underline{l'image d'une stratégie ne dépend que du dernier sommet de la partie partielle}~: $\varphi\big((s_0, \dots, s_p)\big) = \varphi(s_p)$ moralement.
+\end{definition}
+
+\begin{definition}{4.9}{stratégie gagnante}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Une \notion{stratégie $\varphi$ est gagnante depuis un état $s$} lorsque depuis $s$, le joueur qui la suit gagne peu importe le choix de l'adversaire.
+\end{definition}
+
+\begin{definition}{4.10}{suite convergeant vers l'attracteur}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Pour $i \in \{1;2\}$, on définit $(\attracteur{i}{j})_{j \in \N}$ l'\notion{ensemble des positions permettant au joueur $J_i$ de gagner en au plus $j$ coups}. On a bien sûr $\attracteur{i}{0} = F_i$ et pour $j \in \N^*$~:
+    \begin{enumeratebf}
+        \item 
+    \end{enumeratebf}
+\end{definition}
 \input{../../stock/pied.tex}
