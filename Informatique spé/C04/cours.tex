@@ -43,9 +43,27 @@
 \end{definition}
 
 \begin{definition}{4.10}{suite convergeant vers l'attracteur}
-    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Pour $i \in \{1;2\}$, on définit $(\attracteur{i}{j})_{j \in \N}$ l'\notion{ensemble des positions permettant au joueur $J_i$ de gagner en au plus $j$ coups}. On a bien sûr $\attracteur{i}{0} = F_i$ et pour $j \in \N^*$~:
-    \begin{enumeratebf}
-        \item 
-    \end{enumeratebf}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Pour $a \neq b$ dans $\{1;2\}$, on définit \notion{$(\attracteur{a}{j})_{j \in \N}$ l'ensemble des positions permettant au joueur $J_a$ de gagner en au plus $j$ coups}. On a bien sûr $\attracteur{a}{0} = F_a$, puis pour gagner en au plus $j \in \N^*$ coups~:
+    \begin{itemize}
+        \item ou bien $J_a$ peut gagner en au plus $j-1$ coups,
+        \item ou bien $J_a$ dispose d'un coup le permettant ensuite de gagner en au plus $j-1$ coups,
+        \item ou bien enfin, $J_b$ se trouvant sur une position non finale, ne dispose que de coups permettant ensuite à $J_a$ de gagner en au plus $j-1$ coups.
+    \end{itemize}
+    En conclusion :
+    \begin{align*}
+        \attracteur{a}{j} = \,&\attracteur{a}{j-1} \,\cup \\
+        &\Big\{s \in S_a,\, \exists t \in \attracteur{a}{j-1},\,  (s,t) \in A\Big\} \, \cup\\
+        &\Big\{s \in S_b,\,s \text{ non final et } \forall t \in S,\, (s,t) \in A \implies t \in \attracteur{a}{j-1}\Big\}
+    \end{align*} 
 \end{definition}
+
+\begin{definition}{4.11}{attracteur d'un joueur}
+    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Pour $a \neq b$ dans $\{1;2\}$, la suite $(\attracteur{a}{j})_{j \in \N}$ est croissante pour l'inclusion ($\attracteur{a}{0} \subset \attracteur{a}{1} \subset \dots$) et majorée par $S$. C'est d'après le théorème de la limite monotone une suite convergente, on note \notion{$\attracteur{a}{}$ sa limite, appelée attracteur du joueur $J_a$}~:
+    $$\attracteur{a}{} = \lim_{j \to + \infty} \attracteur{a}{j}$$
+    Il s'agit de l'ensemble des positions gagnantes pour le joueur $J_a$.
+\end{definition}
+
+\begin{theoreme}{4.12}{de Zermelo}
+    Dans un jeu à \textbf{deux joueurs} \textbf{fini} (à parties finies), à \textbf{information complète} et \textbf{sans match nul}, pour tout état du jeu, il existe une stratégie gagnante pour l'un des joueurs partant de cet état. 
+\end{theoreme}
 \input{../../stock/pied.tex}

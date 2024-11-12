@@ -1,0 +1,54 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{7.1}{moment magnétique}
+    Le \notion{moment magnétique d’une spire plane} de surface $S$ et de normale $\vec{n}$ orientée relativement à l’intensité $i$ la traversant vaut~:
+    $$\vec{m} = iS\vec{n}$$
+\end{definition}
+
+\begin{definition}{7.2}{approximation des régimes quasi-stationnaires}
+    L’\notion{approximation des régimes quasi-stationnaires} consiste à négliger le temps $\tau$ de propagation de l’onde électromagnétique au travers du système devant le temps caractéristique $T$ de variation des sources de champ~:
+    $$\tau \ll T$$
+\end{definition}
+
+\begin{definition}{7.3}{approximation magnétique des régimes quasi-stationnaires}
+    L’\notion{approximation magnétique des régimes quasi-stationnaires} consiste en plus de l'ARQS simple, à supposer que l'effet des charges est négligeable devant celui des courants~:
+    $$\Big\vvert \derivepar{}{\vec{E}}{t} \Big\vvert \ll \norme{\vec{j}}$$
+\end{definition}
+
+\begin{definition}{7.3}{densité volumique de courant}
+    Étant donné un conducteur traversé par un courant, \notion{le vecteur densité volumique de courant $\vec{j}$} représente le courant électrique par unité de surface traversant une section $S$ de conducteur~:
+    $$I = \iint_S \vec{j} \cdot \d{\vec{S}} $$
+\end{definition}
+
+\begin{theoreme}{7.4}{équation de Maxwell-Ampère}    
+    En tout point $M$ de l'espace~:
+    $$\rot \vec{B} = \mu_0 \vec{j} + \epsilon_0 \mu_0 \derivepar{}{\vec{E}}{t}$$
+    Dans le cas particulier du régime stationnaire, ou bien dans l'ARQS magnétique~:
+    $$\rot \vec{B} = \mu_0 \vec{j}$$
+\end{theoreme}
+
+\begin{theoreme}{7.5}{de Stokes}
+    Soit $\mc{S}$ une surface ouverte dont on note $\mc{C}$ un contour orienté fermé. Pour toute fonction vectorielle $\vec{A}$~:
+    $$\iint_\mc{S} (\rot \vec{A})\cdot \d{S} = \oint_\mc{C} \vec{A}\cdot \d{\vec{OM}} $$
+\end{theoreme}
+
+\begin{definition}{7.6}{contour d'Ampère}
+    On appelle \notion{contour d'Ampère} un objet topologique~:
+    \begin{enumeratebf}
+        \item orienté ;
+        \item fermé ;
+        \item comportant le point $M$ d'étude ;
+        \item facilitant les calculs sachant les symétries et variance de la distribution des charges.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{theoreme}{7.7}{d'Ampère}
+    En régime stationnaire, la circulation du champ magnétique le long d’un contour d’Ampère $\mc{C}_A$ est reliée au courant algébrique $I_\mr{enl}$ enlacé par ce contour~:
+    $$\oint_{\mc{C}_A} \vec{B} \cdot \d{\vec{OM}} = \mu_0I_\mr{enl}$$
+\end{theoreme}
+
+
+\input{../../stock/pied.tex}
