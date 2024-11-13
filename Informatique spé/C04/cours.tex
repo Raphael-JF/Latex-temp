@@ -22,27 +22,29 @@
 \end{definition}
 
 \begin{definition}{4.5}{jeu d'accessiblité}
-    Un jeu à deux joueurs $J_1$ et $J_2$, sans mémoire, à information complète de graphe associé $G=(S_1 \sqcup S_2,A)$ est dit \notion{d'accessibilité} s'il est possible de définir pour chaque joueur $J_a$ ($a \in \{1;2\}$), \notion{un ensemble $F_a \subset S_a$ d'états gagnants pour $J_a$}. \\$F_a$ est alors appelé \notion{condition de gain du joueur $J_a$.}
+    Un jeu à deux joueurs $J_1$ et $J_2$, sans mémoire, à information complète de graphe associé $G=(S_1 \sqcup S_2,A)$ est dit \notion{d'accessibilité} si toute partie du jeu prend fin dès lors qu'un joueur atteint un état dit \notion{final} : il en existe trois types~:
+    \begin{enumeratebf}
+        \item les états gagnants pour $J_1$, dont l'ensemble est appelé \notion{condition de gain $F_1$}
+        \item les états gagnants pour $J_2$, dont l'ensemble est appelé \notion{condition de gain $F_2$}
+        \item les états de match nul, dont l'ensemble est appelé $F_0$
+    \end{enumeratebf}
+    Nécessairement, ces trois ensembles sont deux à deux disjoints.
 \end{definition}
 
-\begin{definition}{4.6}{état final d'un jeu d'accessiblité}
-    Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité de conditions de gain $F_1$ et $F_2$. Un \notion{état $s \in S$ final du jeu} est un \notion{état depuis lequel il n'existe aucun coup possible}, \textit{i.e.} $\deg_+(s) = 0$.
-\end{definition}
-
-\begin{definition}{4.7}{partie partielle}
+\begin{definition}{4.6}{partie partielle}
     Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. On appelle \notion{partie partielle du jeu} tout chemin de $G$ partant de l'état inital de $G$ à un état quelconque de $G$. \notion{L'ensemble des parties partielles du jeu est noté $S^w$}.
 \end{definition}
 
-\begin{definition}{4.8}{stratégie}
+\begin{definition}{4.7}{stratégie}
     Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Une stratégie est une \notion{application $\varphi : S^w \to S$ qui à une partie partielle $(s_0, \dots, s_p)$ associe un sommet la prolongeant} : $\Big(s_p,\,  \varphi\big((s_0, \dots, s_p)\big)\Big) \in A$. On dit alors qu'\notion{un joueur suit une stratégie}. \\
     Pour un jeu sans mémoire, \underline{l'image d'une stratégie ne dépend que du dernier sommet de la partie partielle}~: $\varphi\big((s_0, \dots, s_p)\big) = \varphi(s_p)$ moralement.
 \end{definition}
 
-\begin{definition}{4.9}{stratégie gagnante}
+\begin{definition}{4.8}{stratégie gagnante}
     Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Une \notion{stratégie $\varphi$ est gagnante depuis un état $s$} lorsque depuis $s$, le joueur qui la suit gagne peu importe le choix de l'adversaire.
 \end{definition}
 
-\begin{definition}{4.10}{suite convergeant vers l'attracteur}
+\begin{definition}{4.9}{suite convergeant vers l'attracteur}
     Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Pour $a \neq b$ dans $\{1;2\}$, on définit \notion{$(\attracteur{a}{j})_{j \in \N}$ l'ensemble des positions permettant au joueur $J_a$ de gagner en au plus $j$ coups}. On a bien sûr $\attracteur{a}{0} = F_a$, puis pour gagner en au plus $j \in \N^*$ coups~:
     \begin{itemize}
         \item ou bien $J_a$ peut gagner en au plus $j-1$ coups,
@@ -57,13 +59,110 @@
     \end{align*} 
 \end{definition}
 
-\begin{definition}{4.11}{attracteur d'un joueur}
+\begin{definition}{4.10}{attracteur d'un joueur}
     Soit $G = (S,A)$ le graphe associé à un jeu d'accessiblité. Pour $a \neq b$ dans $\{1;2\}$, la suite $(\attracteur{a}{j})_{j \in \N}$ est croissante pour l'inclusion ($\attracteur{a}{0} \subset \attracteur{a}{1} \subset \dots$) et majorée par $S$. C'est d'après le théorème de la limite monotone une suite convergente, on note \notion{$\attracteur{a}{}$ sa limite, appelée attracteur du joueur $J_a$}~:
     $$\attracteur{a}{} = \lim_{j \to + \infty} \attracteur{a}{j}$$
     Il s'agit de l'ensemble des positions gagnantes pour le joueur $J_a$.
 \end{definition}
 
-\begin{theoreme}{4.12}{de Zermelo}
+\begin{theoreme}{4.11}{de Zermelo}
     Dans un jeu à \textbf{deux joueurs} \textbf{fini} (à parties finies), à \textbf{information complète} et \textbf{sans match nul}, pour tout état du jeu, il existe une stratégie gagnante pour l'un des joueurs partant de cet état. 
 \end{theoreme}
+
+\begin{definition}{4.12}{heuristique pour MinMax}
+    Dans le cadre de l'algorithme MinMax appliqué à un jeu d'accessibilité de joueurs $J_1$ et $J_2$ de graphe associé $G = (S,A)$, \notion{une fonction heuristique pour faire gagner $J_1$} doit vérifier~:
+
+    $$\fonction{h}{S}{\Z}{s}{\begin{cases*}
+    M & si $s \in F_1$ \\
+    -M & si $s \in F_2$ \\
+    h(s) \in \intint{-M+1}{M-1} & sinon
+    \end{cases*}}$$
+    où $M$ est un entier naturel assez grand pour modéliser l'infini.
+\end{definition}
+
+\begin{implementation}{MinMax classique - obtention du score}
+    \begin{itemize}
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item $\mc{A}$ l'arbre associé au jeu
+            \item $n$ un noeud de $\mc{A}$ (état du jeu)
+            \item $p$ la profondeur d'exploration
+            \item $h:S\to \Z$ une heuristique
+        \end{itemize}
+        \item \textbf{Sortie}~: score du sommet $n$ 
+    \end{itemize}
+    \begin{lstLNat}
+    MinMax($\mc{A}$, $n$, $p$, $h$) :
+        si $n$ est final ou $p=0$ :
+            renvoyer $h(n)$
+        sinon :
+            si $n \in S_1$:
+                res = $-\infty$ // ou tout minorant de $h$
+                pour tout fils $f$ de $n$:
+                    v = MinMax($\mc{A}$, $f$, $p-1$, $h$)
+                    res = max(v,res)
+                renvoyer res
+            si $n \in S_2$:
+                res = $+\infty$ // ou tout majorant de $h$
+                pour tout fils $f$ de $n$:
+                    v = MinMax($\mc{A}$, $f$, $p-1$, $h$)
+                    res = min(v,res)
+                renvoyer res
+    \end{lstLNat}
+\end{implementation}
+
+\begin{implementation}{MinMax - meilleur coup possible}
+    \begin{itemize}
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item $\mc{A}$ l'arbre associé au jeu
+            \item $n$ un noeud de $\mc{A}$ (état \textbf{non final} du jeu)
+            \item $p$ la profondeur d'exploration
+            \item $h:S\to \Z$ une heuristique
+        \end{itemize}
+        \item \textbf{Sortie}~: $f$ le fils de $n$ correspondant au meilleur coup (au score le plus souhaitable)
+    \end{itemize}
+    \begin{lstLNat}
+    score = MinMax($\mc{A}$, $n$, $p$, $h$)
+    pour tout $f$ fils de $n$ :
+        v = MinMax($\mc{A}$, $f$, $p-1$, $h$)
+        si v == score :
+        renvoyer $f$
+    \end{lstLNat}
+\end{implementation}
+
+\begin{implementation}{MinMax avec élagage Alpha-Bêta - obtention du score}
+    L'appel initial se fait avec $\alpha = - \infty$ et $\beta = + \infty$.
+    \begin{itemize}
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item $\mc{A}$ l'arbre associé au jeu
+            \item $n$ un noeud de $\mc{A}$ (état du jeu)
+            \item $p$ la profondeur d'exploration
+            \item $h:S\to \Z$ une heuristique
+            \item $\alpha$ et $\beta$ bornant le score de $n$
+        \end{itemize}
+        \item \textbf{Sortie}~: score de $n$
+    \end{itemize}
+    \begin{lstLNat}
+    AlphaBeta($\mc{A}$, $n$, $p$, $h$, $\alpha$, $\beta$) :
+        si $n$ est final ou $p=0$ :
+            renvoyer $h(n)$
+        sinon :
+            si $n \in S_1$:
+                a = $\alpha$
+                pour tout fils $f$ de $n$:
+                    v = AlphaBeta($\mc{A}$, $f$, $p-1$, $h$, a, $\beta$)
+                    a = max(v,a)
+                    si a >= $\beta$ // $\intint{\alpha}{\beta}$ est vide ou un singleton : on élague
+                        renvoyer a
+                renvoyer a
+            si $n \in S_2$:
+                b = $\beta$
+                pour tout fils $f$ de $n$:
+                    v = AlphaBeta($\mc{A}$, $f$, $p-1$, $h$, $\alpha$, b)
+                    b = min(v,b)
+                    si b <= $\alpha$ // $\intint{\alpha}{\beta}$ est vide ou un singleton : on élague
+                        renvoyer b
+                renvoyer b
+        \end{lstLNat}
+\end{implementation}
+
 \input{../../stock/pied.tex}
