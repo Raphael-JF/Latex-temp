@@ -1,0 +1,68 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{5.1}{apprentissage}
+    L'\notion{apprentissage} en informatique permet l'approche de différents problèmes~:
+    \begin{itemize}
+        \item la \notion{classification}, par exemple déterminer un objet sur une image, ou un son sur un flux audio ;
+        \item la \notion{régression}, par exemple prévoir la valeur du cours de la bourse.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{5.2}{apprentissage supervisé}
+    L'\notion{apprentissage supervisé} consiste à entraîner un modèle ou un algorithme à l'aide d'un \notion{ensemble d'apprentissage}~:
+    $$S = \{(x_i,\,  y_i),\, i \in \intint{1}{n}\} \subset X \times Y \quad \text{avec}\,\begin{cases*}
+        X &l'ensemble des \notion{objets} manipulés par le modèle ou l'algorithme\\
+        Y &l'ensemble des \notion{classes} ou \notion{valeurs} associées aux objets de $X$
+    \end{cases*}$$
+    $(x,\, y) \in S$ signifie que \notion{l'objet $x$ est dans la classe $y$} ou \notion{a pour valeur $y$}.\\ 
+    On cherche pour un objet inconnu $x$ à déterminer une classe ou une valeur $y$ convenable en s'appuyant sur l'ensemble d'apprentissage $S$.
+\end{definition}
+
+\begin{definition}{5.3}{fonction de prédiction}
+    À tout modèle ou algorithme d'apprentissage supervisé on peut associer une \notion{fonction $f:X \to Y$ dite de prédiction} qui à un objet associe la \notion{classe estimée raisonnable par le modèle ou l'algorithme}.
+\end{definition}
+
+\begin{definition}{5.4}{fonction de perte}
+    À tout modèle ou algorithme d'apprentissage supervisé on peut associer une fonction $L:Y^2 \to \R_+$ qui à une prédiction associe une \notion{valeur mesurant son inexactitude}. On a~:
+    $$\forall y \in Y,\, L(y,\, y) = 0$$
+\end{definition}
+
+\begin{definition}{5.5}{fonction de risque empirique}
+    Pour tout modèle ou algorithme d'apprentissage supervisé on peut associer à toute fonction $f$ de prédiction une espérance appelée \notion{risque $R$} par~:
+    \begin{align*}
+        R(f) &= \mb{E}_{X,Y}\Big( L\big( Y,\, f(X) \big) \Big) \\
+        &= \sum_{(x,y) \in X\times Y} L \big( y, f(x) \big) \mb{P}_{X,Y}(x,y)
+    \end{align*}
+    En pratique, on n'a jamais accès à $\mb{P}_{X,Y}$. On définit alors le \notion{risque empirique comme étant la moyenne des pertes sur l'ensemble d'apprentissage}. Lui est calculable~:
+    $$R_\mr{emp}(f) = \frac{1}{\abs{S}} \sum_{(x,y) \in S}L(y,f(x))$$
+    Dès lors, un algorithme d'apprentissage supervisé mettra en œuvre des algorithmes d'optimisation afin de trouver une fonction $f$ qui minimise le risque empirique.
+\end{definition}
+
+\begin{implementation}{algorithme de classification des $k$ plus proches voisins - classique}
+    \begin{itemize}
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item un ensemble d'apprentissage $S \subset X\times Y$ indexé sur $\intint{0}{n}$
+            \item une distance $\mr{d} : X^2 \to \R_+$
+            \item un objet $x$ de classe inconnue
+            \item $k$ le nombre de voisins à considérer
+            
+        \end{itemize}
+        \item \textbf{Sortie}~: la classe $y$ du voisin majoritairement présent parmi les $k$ plus proches de $x$
+    \end{itemize}
+    \begin{lstLNat}
+    file = file de priorité max vide
+    pour tout $i \in \intint{0}{n}$ :
+        si $\abs{\code{file}}$ < $k$ :
+            ajouter $x_i$ à file avec la priorité $\mr{d}(x,x_i)$
+        sinon :
+            si $d(x,x_i)$ < file[0] :
+                supprimer le maximum de file
+                ajouter $x_i$ à file avec la priorité $\mr{d}(x,x_i)$
+    renvoyer la classe majoritaire parmi les éléments de file
+    \end{lstLNat}
+\end{implementation}
+
+\input{../../stock/pied.tex}
