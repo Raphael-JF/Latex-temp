@@ -13,4 +13,12 @@
     $$\Big(B(f,g)\Big)' = B(f',g) + B(f,g')$$
 \end{theoreme}
 
+
+\begin{theoreme}{10.29}{construction de l'intégrale d'une fonction continue par morceaux}
+    Soit $E$ un espace vectoriel normé de dimension finie, $f \in \mc{C}\mc{M}(\seg{a}{b}, E)$. Si $(\varphi_n)_{n \in \N}$ est une suite de fonctions en escalier convergeant uniformément vers $f$, alors la suite $\displaystyle \Big( \int_{\seg{a}{b}} \varphi_n \Big)_{n \in \N}$ est convergente.
+\end{theoreme}
+
+\begin{definition}{10.30}{intégrale d'une fonction continue par morceaux}
+    Soit $E$ un espace vectoriel normé de dimension finie, $f \in \mc{C}\mc{M}(\seg{a}{b}, E)$. Il existe par densité de $\mc{E}(\seg{a}{b}, E)$ dans $\mc{C}\mc{M}(\seg{a}{b}, E)$ une suite $(\varphi_n)_{n \in \N}$ de fonctions de $\mc{E}(\seg{a}{b})$ convergeant uniformément vers $f$. On appelle \notion{intégrale de $f$ sur $\seg{a}{b}$}, notée $\displaystyle\int_{\seg{a}{b}} f$ le vecteur $\displaystyle\lim_{n \to + \infty} \int_{\seg{a}{b}}\varphi_n$. Cette intégrale ne dépend pas de la suite de $\mc{E}(\seg{a}{b})^\N$ choisie.
+\end{definition}
 \input{../../stock/pied.tex}
