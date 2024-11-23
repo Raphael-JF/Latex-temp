@@ -65,4 +65,82 @@
     \end{lstLNat}
 \end{implementation}
 
+\begin{implementation}{construction d'un arbre $d$-dimensionnel}
+    Cet algorithme constitue un prétraîtement de l'ensemble d'apprentissage, pour "faciliter" la recherche des $k$ plus proches voisins en aval. Attention, si $d$ est trop grand, on fait face au fléau de la dimension qui rend la méthode trop peu efficace.
+    \begin{itemize}
+        \item \textbf{Entrée initiale}~: \begin{itemize}
+            \item l'ensemble $X_S \subset X$ pour lequel on connaît la classe de chaque objet
+            \item $d$ la dimension de $X_S$
+        \end{itemize}
+        \item \textbf{Sortie}~: un arbre $d$-dimensionnel décrivant les positions relatives de chaque objet de $X_S$
+    \end{itemize}
+    \begin{lstLNat}
+    Construit($i$, X_courant) :
+        n = $\abs{\code{X\_courant}}$
+        si n == 0 :
+            renvoyer Vide
+        sinon :
+            X_courant = tri de X_courant dans l'ordre croissant de 
+                    la $i$-ème coordonnée
+            val = X_courant[$\lfloor \frac{n}{2} \rfloor$]
+            X_g, X_d = séparer strictement X_courant en deux listes, 
+                    en l'indice $\lfloor \frac{n}{2} \rfloor$
+            g = Construit($d$, $i+1 \mod d$, X_g)
+            d = Construit($d$, $i+1 \mod d$, X_d)
+            renvoyer Noeud(val, g, d)
+    \end{lstLNat}
+\end{implementation}
+
+\begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $d$-dimensionnel (1/2)}
+    \begin{itemize}
+        \item \textbf{Entrée initiale}~: \begin{itemize}
+            \item un arbre $d$-dimensionnel décrivant les positions relatives de chaque objet de $X_S$
+            \item un objet $x$ de classe inconnue
+            \item $k$ le nombre de voisins à considérer
+            
+        \end{itemize}
+        \item \textbf{Sortie}~: une pile contenant le chemin de la racine vers une feuille de $\mc{A}$ modélisant le plus proche voisin de $x$.
+    \end{itemize}
+    \begin{lstLNat}
+    explore($\mc{A}$, $i$, $x$) :
+        si $\mc{A}$ est Vide :
+            renvoyer []
+        sinon :
+            on identifie $\mc{A}$ = Noeud(val, g, d)
+            $x_i$ = $i$-ème coordonnée de $x$
+            $v_i$ = $i$-ème coordonnée de val
+            si $x_i$ <= $v_i$ :
+                renvoyer $\mc{A}$ :: explore(g, $i+1 \mod d$, $x$)
+            sinon : 
+                renvoyer $\mc{A}$ :: explore(d, $i+1 \mod d$, $x$)
+    \end{lstLNat}
+\end{implementation}
+
+\begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $d$-dimensionnel (2/2)}
+    \begin{itemize}
+        \item \textbf{Entrée initiale}~: \begin{itemize}
+            \item une distance $\mr{d} : X^2 \to \R_+$
+            \item \code{l} la pile du chemin parcouru vers le plus proche de $x$, contenant des sommets de $\mc{A}$ un arbre $d$-dimensionnel
+            \item un objet $x$ de classe inconnue
+            \item $k$ le nombre de voisins à considérer
+            
+        \end{itemize}
+        \item \textbf{Sortie}~: la classe $y$ du voisin majoritairement présent parmi les $k$ plus proches de $x$
+    \end{itemize}
+    \begin{lstLNat}
+    file = file de priorité max vide
+    kPPV(l, $i$, $x$, $k$) :
+        Noeud(val, g, d), q = depiler l
+        $x_{i}$ = $i$-ème coordonnée de $x$
+        $v_{i}$ = $i$-ème coordonnée de val
+        si file[0].prio < $\mr{d}(x_{i}E_{i},v_{i}E_{i})$ // distance unidimensionnelle : 
+                // dépend de $\mr{d}$ mais souvent égal à $\,\abs{x_{i} - v_{i}}$
+            si besoin, ajouter/remplacer $x$ à file avec la priorité $\mr{d}(x,\code{val})$
+        sinon :
+            chemin = explore(Noeud(val, g, d), $i \mod d$, $x$)
+            kPPV(chemin, $\abs{\code{chemin}} + i \mod d$, $x$, $k$)
+        renvoyer la classe majoritaire parmi les éléments de file
+    \end{lstLNat}
+\end{implementation}
+
 \input{../../stock/pied.tex}
