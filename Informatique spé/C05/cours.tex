@@ -68,38 +68,36 @@
 \begin{implementation}{construction d'un arbre $d$-dimensionnel}
     Cet algorithme constitue un prétraîtement de l'ensemble d'apprentissage, pour "faciliter" la recherche des $k$ plus proches voisins en aval. Attention, si $d$ est trop grand, on fait face au fléau de la dimension qui rend la méthode trop peu efficace.
     \begin{itemize}
-        \item \textbf{Entrée initiale}~: \begin{itemize}
-            \item l'ensemble $X_S \subset X$ pour lequel on connaît la classe de chaque objet
-            \item $d$ la dimension de $X_S$
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item l'ensemble $X_S \subset X \subset \R^D$ pour lequel on connaît la classe de chaque objet
+            \item $i \in \intint{0}{D-1}$ la coordonnée selon laquelle on trie
         \end{itemize}
-        \item \textbf{Sortie}~: un arbre $d$-dimensionnel décrivant les positions relatives de chaque objet de $X_S$
+        \item \textbf{Sortie finale}~: un arbre $D$-dimensionnel décrivant les positions relatives de chaque objet de $X_S$
     \end{itemize}
     \begin{lstLNat}
-    Construit($i$, X_courant) :
-        n = $\abs{\code{X\_courant}}$
+    Construit($i$, $X_S$) :
+        n = $\abs{X_S}$
         si n == 0 :
             renvoyer Vide
         sinon :
-            X_courant = tri de X_courant dans l'ordre croissant de 
+            $X_S$ = tri de $X_S$ dans l'ordre croissant de 
                     la $i$-ème coordonnée
-            val = X_courant[$\lfloor \frac{n}{2} \rfloor$]
-            X_g, X_d = séparer strictement X_courant en deux listes, 
-                    en l'indice $\lfloor \frac{n}{2} \rfloor$
-            g = Construit($d$, $i+1 \mod d$, X_g)
-            d = Construit($d$, $i+1 \mod d$, X_d)
+            val = $X_S$[$\lfloor \frac{n}{2} \rfloor$]
+            $X_g$, $X_d$ = séparer strictement $X_S$ en l'indice $\lfloor \frac{n}{2} \rfloor$
+            g = Construit($d$, $i+1 \mod D$, $X_g$)
+            d = Construit($d$, $i+1 \mod D$, $X_d$)
             renvoyer Noeud(val, g, d)
     \end{lstLNat}
 \end{implementation}
 
-\begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $d$-dimensionnel (1/2)}
+\begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $D$-dimensionnel (1/2)}
     \begin{itemize}
-        \item \textbf{Entrée initiale}~: \begin{itemize}
-            \item un arbre $d$-dimensionnel décrivant les positions relatives de chaque objet de $X_S$
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item un arbre $D$-dimensionnel décrivant les positions relatives de chaque objet de $S \subset X \times Y$, avec $X \subset \R^D$
+            \item $i \in \intint{0}{D-1}$ la coordonnée courante
             \item un objet $x$ de classe inconnue
-            \item $k$ le nombre de voisins à considérer
-            
         \end{itemize}
-        \item \textbf{Sortie}~: une pile contenant le chemin de la racine vers une feuille de $\mc{A}$ modélisant le plus proche voisin de $x$.
+        \item \textbf{Sortie}~: une pile contenant le chemin de la racine (en queue) vers une feuille de $\mc{A}$ modélisant le plus proche voisin de $x$ (en tête).
     \end{itemize}
     \begin{lstLNat}
     explore($\mc{A}$, $i$, $x$) :
@@ -110,17 +108,18 @@
             $x_i$ = $i$-ème coordonnée de $x$
             $v_i$ = $i$-ème coordonnée de val
             si $x_i$ <= $v_i$ :
-                renvoyer $\mc{A}$ :: explore(g, $i+1 \mod d$, $x$)
+                renvoyer $\mc{A}$ :: explore(g, $i+1 \mod D$, $x$)
             sinon : 
-                renvoyer $\mc{A}$ :: explore(d, $i+1 \mod d$, $x$)
+                renvoyer $\mc{A}$ :: explore(d, $i+1 \mod D$, $x$)
     \end{lstLNat}
 \end{implementation}
 
-\begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $d$-dimensionnel (2/2)}
+\begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $D$-dimensionnel (2/2)}
+    On munit $X \subset R^D$ d'une distance $\mr{d} : X^2 \to \R_+$
     \begin{itemize}
         \item \textbf{Entrée initiale}~: \begin{itemize}
-            \item une distance $\mr{d} : X^2 \to \R_+$
-            \item \code{l} la pile du chemin parcouru vers le plus proche de $x$, contenant des sommets de $\mc{A}$ un arbre $d$-dimensionnel
+            \item une pile contenant le chemin de la racine (en queue) vers une feuille de $\mc{A}$ modélisant le plus proche voisin de $x$ (en tête)
+            \item $i \in \intint{0}{D-1}$ la coordonnée courante
             \item un objet $x$ de classe inconnue
             \item $k$ le nombre de voisins à considérer
             
@@ -130,17 +129,76 @@
     \begin{lstLNat}
     file = file de priorité max vide
     kPPV(l, $i$, $x$, $k$) :
-        Noeud(val, g, d), q = depiler l
+        Noeud(val, g, d), new_l = depiler l
         $x_{i}$ = $i$-ème coordonnée de $x$
         $v_{i}$ = $i$-ème coordonnée de val
         si file[0].prio < $\mr{d}(x_{i}E_{i},v_{i}E_{i})$ // distance unidimensionnelle : 
                 // dépend de $\mr{d}$ mais souvent égal à $\,\abs{x_{i} - v_{i}}$
-            si besoin, ajouter/remplacer $x$ à file avec la priorité $\mr{d}(x,\code{val})$
-        sinon :
-            chemin = explore(Noeud(val, g, d), $i \mod d$, $x$)
-            kPPV(chemin, $\abs{\code{chemin}} + i \mod d$, $x$, $k$)
+            si $\abs{\code{file}}$ < k :
+                ajouter $x$ à la file avec la priorité $\mr{d}(x,\code{val})$
+            sinon :
+                si file[0].prio > $\mr{d}(x,\code{val})$ :
+                    supprimer l'élément de priorité maximale de file
+                    ajouter $x$ à la file avec la priorité $\mr{d}(x,\code{val})$
+
+        sinon : // risque de voisins plus proches, 
+                // par lesquels on ne passerait pas : on va regarder
+            chemin = explore(Noeud(val, g, d), $i \mod D$, $x$)
+            kPPV(chemin, $\abs{\code{chemin}} + i \mod D$, $x$, $k$)
+         
+        si $\abs{\code{file}}$ < k : // besoin d'encore des voisins ?
+            kPPV(new_l, $i-1 \mod D$, $x$, $k$) // on remonte l'arbre
+
         renvoyer la classe majoritaire parmi les éléments de file
     \end{lstLNat}
 \end{implementation}
+
+\begin{definition}{5.6}{entropie de Shannon}
+    Soit $S = \{(x_i,y_i),\, i \in \intint{1}{n}\} \subset X \times Y$ un ensemble d'apprentissage. Pour $y \in Y$, on définit \notion{$C_y = \{x \in X,  (x,y) \in S\}$ l'ensemble des objets de classe $y$}.\\
+    L'\notion{entropie de Shannon} de $S$ est~:
+    $$H(S) = - \sum_{\substack{y \in Y\\C_y \neq \varnothing}}\frac{\abs{C_y}}{n} \ln\Big(\frac{\abs{C_y}}{n}\Big)$$
+    L'entropie de Shannon mesure le désordre dans la distribution des classes de $S$.
+\end{definition}
+
+\begin{definition}{5.7}{gain d'information}
+    Soit $S \subset X \times Y$ un ensemble d'apprentissage, avec $X \subset A_1 \times \dots \times A_m \times X'$. Pour $i \in \intint{1}{m}$, On considère le critère $A_i$ pouvant prendre les valeurs $v_1,\, \dots,\, v_k$. On écrit alors~:
+        \begin{align*}S &= \bigsqcup_{j=1}^k \big\{(x,y) \in S,\, \underbrace{x_i}_{\substack{\text{valeur du critère} \\A_i \text{ pour } x}} = v_j\big\} \\
+            &= \bigsqcup_{j=1}^k S_j \quad \text{(notation)}
+        \end{align*}
+    On définit \notion{le gain d'information du critère $A_i$} comme~:
+    $$G(S,A_i) = H(S) - \sum_{j=1}^{k} \frac{\abs{S_j}}{\abs{S}} H(S_j)$$
+    Le gain d'information \notion{renseigne sur la pertinence du critère $A_i$ pour discriminer les objets de $S$}.
+\end{definition}
+
+\begin{definition}{5.8}{apprentissage non supervisé}
+    L'apprentissage non supervisé repose des méthodes de \notion{clustering} ou (ou \notion{méthode de classifcation non supervisée}). Étant donné un ensemble $z = \{x_i,\, i \in \intint{1}{n}\}$, on en cherche une partition~:
+    $$z = \bigsqcup_{i=1}^kP_i$$
+    Les $(P_i)_{i \in \intint{1}{k}}$ sont appelés \notion{classes} ou \notion{clusters}. L'objectif est que ces clusters vérifient~:
+    \begin{itemize}
+        \item petite variabilité intra-classe
+        \item grande variabilité inter-classe
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{5.9}{relation de finesse}
+    Soit $z$ un ensemble d'objets, de partitions en clusters $(P_i)_{i\in\intint{1}{k}}$ et $(P_j')_{j\in\intint{1}{k'}}$. On dit que  \notion{$(P_i)_{i\in\intint{1}{k}}$ est plus fine que $(P_j')_{j\in\intint{1}{k'}}$} lorsque \notion{tout cluster $P_j'$ est l'union de clusters $P_i$}.
+\end{definition}
+
+\begin{definition}{5.10}{variance d'une partition}
+    Soit $z$ un ensemble d'objets d'un espace métrique $(E, \mr{d})$, de partition en clusters $(P_i)_{i\in\intint{1}{k}}$. \notion{La variance de la partition $(P_i)_{i\in\intint{1}{k}}$} est~:
+    $$V\Big((P_i)_{i\in\intint{1}{k}}\Big) = \sum_{i=1}^{k}\sum_{x \in P_i}\mr{d}(x,g_i)$$
+    où, pour tout $i \in \intint{1}{k}$, \notion{$g_i$ est le barycentre du cluster $P_i$}~:
+    $$g_i = \frac{1}{\abs{P_i}}\sum_{x \in P_i}x$$
+\end{definition}
+
+\begin{definition}{5.11}{hiérarchie d'un ensemble d'objets}
+    Soit $z$ un ensemble d'objets. On \notion{appelle hiérarchie de $z$} toute famille finie $(\pi_i)_{i \in \intint{1}{n}}$ de partitions de $z$ telle que~:
+    \begin{enumeratebf}
+        \item $\forall i\in \intint{1}{n-1},\, \pi_i \text{ est plus fine que } \pi_{i+1}$
+        \item $\pi_1$ est celle des singletons de $z$
+        \item $\pi_n = \{z\}$
+    \end{enumeratebf}
+    On représente une hiérarchie à l'aide d'un \notion{dendrogramme}.
+\end{definition}
 
 \input{../../stock/pied.tex}

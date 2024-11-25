@@ -1,38 +1,30 @@
 \documentclass{article}
-\usepackage{listings}
-\usepackage{xcolor}
-
-\definecolor{keywordcolor}{RGB}{133, 153, 0}  % les mots-clés
-\definecolor{commentcolor}{RGB}{147, 161, 161} % les commentaires
-\definecolor{stringcolor}{RGB}{42, 161, 152}  % les chaînes de caractères
+\usepackage[utf8]{inputenc}
+\usepackage{array}
 
 \begin{document}
 
-\lstset{
-  language=[Objective]Caml,
-  basicstyle=\ttfamily,          % Police par défaut pour le code
-  keywordstyle=\color{keywordcolor}, % Mots-clés en bleu doux
-  commentstyle=\color{commentcolor}, % Commentaires en vert pâle
-  stringstyle=\color{stringcolor},   % Chaînes en orange léger
-  backgroundcolor=\color{white},   % Fond très clair
-  numbers=left,                  % Numérotation à gauche
-  numberstyle=\ttfamily,             % Taille des numéros de ligne
-  stepnumber=1,                  % Numérotation de chaque ligne
-  frame=single,                  % Cadre autour du code
-  breaklines=true,               % Retour à la ligne automatique
-  tabsize=2,                        % Taille des tabulations          
-}
-
-\begin{lstlisting}
-
-
-(* Exemple de fonction en OCaml *)
-let rec fact n =
-  if n = 0 then 1
-  else n * fact (n - 1);;
-  
-let result = fact 5;;
-\end{lstlisting}
-
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{temps} & \textbf{température} & \textbf{humidité} & \textbf{vent} & \textbf{jouer} \\ \hline
+ensoleillé & chaude & haute    & non & non \\ \hline
+ensoleillé & chaude & haute    & oui & non \\ \hline
+nuageux    & chaude & haute    & non & oui \\ \hline
+pluvieux   & douce  & haute    & non & non \\ \hline
+pluvieux   & fraîche & normale & non & oui \\ \hline
+pluvieux   & fraîche & normale & oui & oui \\ \hline
+nuageux    & fraîche & normale & oui & oui \\ \hline
+ensoleillé & douce  & haute    & non & non \\ \hline
+ensoleillé & fraîche & normale & non & oui \\ \hline
+pluvieux   & douce  & normale & non & oui \\ \hline
+ensoleillé & douce  & normale & oui & oui \\ \hline
+nuageux    & douce  & haute    & oui & oui \\ \hline
+nuageux    & chaude & normale  & non & oui \\ \hline
+pluvieux   & douce  & haute    & oui & non \\ \hline
+\end{tabular}
+\caption{Tableau des données météorologiques et activité}
+\end{table}
 
 \end{document}
