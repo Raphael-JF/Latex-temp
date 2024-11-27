@@ -1,0 +1,29 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{11.1}{série entière}
+    On appelle \notion{série entière }de la variable complexe $x$ de coefficients $(a_n)_{n \in \N}$ la série de fonctions $\sum_{n}a_n x^n$.
+\end{definition}
+
+\begin{theoreme}{11.3}{lemme d'Abel}
+    Soit $\sum_n a_nz^n$ une série entière et $z_0$ un nombre complexe non nul tel que $(a_nz_0^n)_{n \in \N}$ est bornée. Pour tout $z \in \C$ tel que $\abs{z} < \abs{z_0}$, la série $\sum_n a_n z^n$ est absolument convergente.
+\end{theoreme}
+
+\begin{definition}{11.4}{rayon de convergence d'une série entière}
+    On appelle \notion{rayon de convergence de la série entière $\sum_n a_n z^n$} la borne supérieure (au sens large) de cet intervalle~:
+    $$R = \sup\{r \geq 0,\, (a_nr^n)_{n \in \N}\text{ est bornée}\}$$
+
+\end{definition}
+
+\begin{theoreme}{11.5}{propagation sur le cercle de convergence des caractères forts}
+    Soit $\sum_n a_nz^n$ une série entière de rayon de convergence. 
+    \begin{enumeratebf}
+        \item  Si la série converge absolument en un point du cercle, alors elle converge absolument sur tout le cercle.
+        \item Si la série diverge grossièrement en un point du cercle, alors elle diverge grossièrement sur tout le cercle.
+    \end{enumeratebf}
+    
+\end{theoreme}
+
+\input{../../stock/pied.tex}

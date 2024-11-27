@@ -11,10 +11,23 @@
 \end{definition}
 
 \begin{definition}{9.4}{convergence uniforme d'une suite de fonctions}
-    Soit $E$ un $\K$ espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$. On dit que \notion{la suite $(f_n)_{n \in \N}$ converge simplement} si pour tout $x \in A$, la suite $\big(f_n(x)\big)_{n \in \N} \in \K^\N$ converge. Ainsi la fonction~:
+    Soit $E$ un $\K$ espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$. On dit que \notion{la suite $(f_n)_{n \in \N}$ converge uniformément} si pour tout $x \in A$, la suite $\big(f_n(x)\big)_{n \in \N} \in \K^\N$ converge. Ainsi la fonction~:
     $$\fonction{f}{A}{\K}{x}{\lim_{n \to +\infty}f_n(x)}$$
     est appelée \notion{limite uniforme de la suite $(f_n)_{n\in \N}$}. Ainsi,
     $$\forall x \in A,\, \forall \epsilon >0,\, \exists N\in \N,\, \forall n \geq N,\, \abs{f_n(x) - f(x)} < \epsilon$$
 \end{definition}
+
+\begin{theoreme}{9.15}{propriétés conservées par la limite uniforme}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$ convergeant uniformément vers $f:A\to E$.
+    \begin{enumeratebf}
+        \item Si les $(f_n)_{n \in \N}$ sont bornées, alors il en est de même pour $f$.
+        \item Si les $(f_n)_{n \in \N}$ sont continues, alors il en est de même pour $f$.
+    \end{enumeratebf}
+\end{theoreme}\begin{theoreme}{9.17}{de la double limite}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$ convergeant uniformément vers $f:A\to E$. Soit $a \adh{a}$.\\
+    Si pour tout $n \in \N$, $f_n$ admet en $a$ limite $l_n$, alors la suite $(l_n)_{n \in \N}$ converge et $f$ converge en $a$ vers sa limite~:
+    $$\lim_{x \to a} \bigg(\lim_{n \to + \infty} f_n(x)\bigg) = \lim_{n \to + \infty} \bigg(\lim_{x \to a} f_n(x)\bigg)$$
+\end{theoreme}
+
 
 \input{../../stock/pied.tex}
