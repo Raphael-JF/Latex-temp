@@ -201,4 +201,41 @@
     On représente une hiérarchie à l'aide d'un \notion{dendrogramme}.
 \end{definition}
 
+\begin{implementation}{algorithme de classification hiérarchique ascencendante}
+    L'algorithme de CHA permet de renvoyer une partition en un nombre raisonnable de clusters d'un ensemble $Z$ d'objets. On utilise Unir & Trouver pour modéliser la relation "appartenir au même ensemble que".
+    \begin{itemize}
+        \item \textbf{Entrée}~: \begin{itemize}
+            \item $Z$ le tableau des objets considérés
+            \item $\mb{D}:\mc{P}(Z)^2 \to \R_+$ un écart sur $Z$
+        \end{itemize}
+        \item \textbf{Sortie}~: une partition de $H$ en un nombre raisonnable de clusters
+    \end{itemize}
+    \begin{lstLNat}
+    CHA($Z$,$\mb{D}$):
+        H = tableau de taille $\abs{Z}$ rempli de $\varnothing$
+        P = tableau de taille $\abs{Z}$ contenant les structures Unir & Trouver singletons de chaque objet.
+        H[0] = copier P profondément
+        ecarts = tableau de taille $\abs{Z} - 1$ rempli de $-1$
+        
+        // construction de la hiérarchie
+        pour p allant de 1 à $\abs{Z}-1$ :
+            (i,j) = (0,1)
+            pour k allant de 0 à $\abs{Z}-1$ :
+                pour l allant de k+1 à $\abs{Z}-1$ :
+                    si $\mb{D}$(P[i].val, P[j].val) < $\mb{D}$(P[k].val, P[l].val) :
+                        (i,j) = (k,l) 
+            unir P[i] avec P[j]
+            H[p] = copier P profondément
+            ecarts[p-1] = $\mb{D}$(P[i].val, P[j].val)
+
+        // parcours de la hiérarchie
+        i_ecart_max = 0
+        pour p allant de 1 à $\abs{Z}-2$ :
+            si ecarts[i_ecart_max] <= ecarts[p] :
+                i_ecart_max = p
+        
+        renvoyer H[i_ecart_max]
+    \end{lstLNat}
+\end{implementation}
+
 \input{../../stock/pied.tex}

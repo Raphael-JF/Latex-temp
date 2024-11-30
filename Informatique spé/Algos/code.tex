@@ -219,9 +219,9 @@
             | (elt,prio) when elt = x -> 
                 tbmin.data.(i) <- (x, p); 
                 deja_present := true;
-                if prio > p then 
+                if prio < p then 
                 percole_bas tbmin i
-                else if prio < p then
+                else if prio > p then
                 percole_haut tbmin i
             | _ -> ()
         done;
