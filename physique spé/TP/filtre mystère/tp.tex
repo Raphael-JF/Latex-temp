@@ -1,0 +1,49 @@
+%!TEX encoding = UTF-8 Unicode
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usetikzlibrary{plotmarks}
+
+\author{Raphaël JONTEF} 
+\maketitle{}
+\pgfplotsset{compat=1.15}%ligne que je ne comprends pas trop
+\begin{document}
+\vspace{2em}
+
+\begin{tikzpicture}
+\begin{semilogxaxis}[
+height=8cm,width=12cm
+,axis x line=bottom,axis y line=left
+,xmin=0,xmax=10e5   
+,ymin=-91.4,ymax=81.4
+,grid=major
+,title={Diagramme de Bode en phase}
+,xlabel={f/Hz}
+,ylabel={$\Delta$$\varphi$/\degres}
+]
+\addplot[draw=blue,mark=x] file {phase.txt};
+\end{semilogxaxis}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+\begin{semilogxaxis}[
+height=8cm,width=12cm
+,axis x line=bottom,axis y line=left
+,xmin=0,xmax=10e5
+,ymin=-22.82,ymax=0
+,grid=major
+,title={Diagramme de Bode en gain}
+,xlabel={f/Hz}
+,ylabel={$G_\mr{dB}$}
+]
+\addplot[draw=red,mark=o] file {gdb.txt};
+\end{semilogxaxis}
+\end{tikzpicture}
+
+\end{document}
