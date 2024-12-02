@@ -1,0 +1,23 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\newcommand{\intsemi}[2]{[#1;\,#2[}
+
+
+\begin{definition}{12.1}{intégrale impropre}
+    Soit $f:\intsemi{a}{b} \to \C$ un fonction continue par morceaux. On dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ converge} lorsque la fonction~:
+    \fonction{F_a}{\intsemi{a}{b}}{\C}{x}{\int_a^xf(t) \d{t}}
+    possède une limite en $b$. Le cas échéant, la limite est notée~:
+    $$F_a(x) \xrightarrow{x \to b}f(t)\d{t}$$
+    Autrement, on dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ diverge}.
+\end{definition}
+
+\begin{definition}{12.5}{reste d'une intégrale impropre convergente}
+    Soit $f:\intsemi{a}{b} \to \C$ un fonction continue par morceaux. L'application de $\intsemi{a}{b}$ dans $\C$ définie par~:
+    $$x \mapsto \int_x^b f(t) \d{t}$$
+    est appelée \notion{reste de l'intégrale impropre convergente}.
+\end{definition}
+
+\input{../../stock/pied.tex}
