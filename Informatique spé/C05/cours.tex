@@ -202,7 +202,7 @@
 \end{definition}
 
 \begin{implementation}{algorithme de classification hiérarchique ascencendante}
-    L'algorithme de CHA permet de renvoyer une partition en un nombre raisonnable de clusters d'un ensemble $Z$ d'objets. On utilise Unir & Trouver pour modéliser la relation "appartenir au même ensemble que".
+    L'algorithme de CHA permet de renvoyer une partition en un nombre raisonnable de clusters d'un ensemble $Z$ d'objets. On utilise Unir \& Trouver pour modéliser la relation "appartenir au même ensemble que".
     \begin{itemize}
         \item \textbf{Entrée}~: \begin{itemize}
             \item $Z$ le tableau des objets considérés
@@ -213,29 +213,43 @@
     \begin{lstLNat}
     CHA($Z$,$\mb{D}$):
         H = tableau de taille $\abs{Z}$ rempli de $\varnothing$
-        P = tableau de taille $\abs{Z}$ contenant les structures Unir & Trouver singletons de chaque objet.
+        P = structure Unir & Trouver des singletons de $Z$
         H[0] = copier P profondément
         ecarts = tableau de taille $\abs{Z} - 1$ rempli de $-1$
         
-        // construction de la hiérarchie
         pour p allant de 1 à $\abs{Z}-1$ :
-            (i,j) = (0,1)
-            pour k allant de 0 à $\abs{Z}-1$ :
-                pour l allant de k+1 à $\abs{Z}-1$ :
-                    si $\mb{D}$(P[i].val, P[j].val) < $\mb{D}$(P[k].val, P[l].val) :
-                        (i,j) = (k,l) 
-            unir P[i] avec P[j]
+            x,y = classes de P de distance minimale
+            unir x y
             H[p] = copier P profondément
             ecarts[p-1] = $\mb{D}$(P[i].val, P[j].val)
-
-        // parcours de la hiérarchie
-        i_ecart_max = 0
-        pour p allant de 1 à $\abs{Z}-2$ :
-            si ecarts[i_ecart_max] <= ecarts[p] :
-                i_ecart_max = p
-        
-        renvoyer H[i_ecart_max]
+        i = indice de l'élément maximal de ecarts
+        renvoyer H[i]
     \end{lstLNat}
 \end{implementation}
+
+\newcommand{\ecart}[0]{\mb{D}}
+
+
+\begin{definition}{5.12}{écart par lien minimal}
+    On suppose que $(Z,\mr{d})$ est muni d'une structure d'espace métrique. L'écart suivant est appelé \notion{écart par lien minimal}~:
+    \fonction{\mb{D}}{\mc{P}(Z)^2}{\R_+}{(A,B)}{\min_{\substack{x \in A \\ y \in B}}\mr{d}(x,y)} 
+    Pour $A$, $B$ $C$ trois parties deux à deux disjointes de $Z$~:
+    $$\mb{D}(A\sqcup B, C) = \min\Big(\mb{D}(A,C),\, \mb{D}(B,C)\Big)$$
+\end{definition}
+
+
+\begin{definition}{5.13}{écart par lien maximal}
+    On suppose que $(Z,\mr{d})$ est muni d'une structure d'espace métrique. L'écart suivant est appelé \notion{écart par lien maximal}~:
+    \fonction{\mb{D}}{\mc{P}(Z)^2}{\R_+}{(A,B)}{\max_{\substack{x \in A \\ y \in B}}\mr{d}(x,y)} 
+    Pour $A$, $B$ $C$ trois parties deux à deux disjointes de $Z$~:
+    $$\mb{D}(A\sqcup B, C) = \max\Big(\mb{D}(A,C),\, \mb{D}(B,C)\Big)$$
+\end{definition}
+
+\begin{definition}{5.14}{écart par lien moyen}
+    On suppose que $(Z,\mr{d})$ est muni d'une structure d'espace métrique. L'écart suivant est appelé \notion{écart par lien moyen}~:
+    \fonction{\mb{D}}{\mc{P}(Z)^2}{\R_+}{(A,B)}{\frac{1}{\abs{A}\abs{B}}\sum_{x \in A}\sum_{y \in B} \mr{d}(x,y)} 
+    Pour $A$, $B$ $C$ trois parties deux à deux disjointes de $Z$~:
+    $$\mb{D}(A\sqcup B, C) = \frac{1}{\abs{A} + \abs{B}} \bigg(\abs{A}\mb{D}(A,C) +  \abs{B}\mb{D}(B,C)\bigg)$$
+\end{definition}
 
 \input{../../stock/pied.tex}
