@@ -115,7 +115,7 @@
 \end{implementation}
 
 \begin{implementation}{algorithme de classification des $k$ plus proches voisins - avec arbre $D$-dimensionnel (2/2)}
-    On munit $X \subset R^D$ d'une distance $\mr{d} : X^2 \to \R_+$
+    On munit $X \subset \R^D$ d'une distance $\mr{d} : X^2 \to \R_+$
     \begin{itemize}
         \item \textbf{Entrée initiale}~: \begin{itemize}
             \item une pile contenant le chemin de la racine (en queue) vers une feuille de $\mc{A}$ modélisant le plus proche voisin de $x$ (en tête)
@@ -132,8 +132,7 @@
         Noeud(val, g, d), new_l = depiler l
         $x_{i}$ = $i$-ème coordonnée de $x$
         $v_{i}$ = $i$-ème coordonnée de val
-        si file[0].prio < $\mr{d}(x_{i}E_{i},v_{i}E_{i})$ // distance unidimensionnelle : 
-                // dépend de $\mr{d}$ mais souvent égal à $\,\abs{x_{i} - v_{i}}$
+        si file[0].prio < $\abs{x_{i} - v_{i}}$ 
             si $\abs{\code{file}}$ < k :
                 ajouter $x$ à la file avec la priorité $\mr{d}(x,\code{val})$
             sinon :
@@ -251,5 +250,25 @@
     Pour $A$, $B$ $C$ trois parties deux à deux disjointes de $Z$~:
     $$\mb{D}(A\sqcup B, C) = \frac{1}{\abs{A} + \abs{B}} \bigg(\abs{A}\mb{D}(A,C) +  \abs{B}\mb{D}(B,C)\bigg)$$
 \end{definition}
+
+\begin{implementation}{algorithme d'apprentissage non supervisé des $k$-moyennes}
+    \begin{lstLNat}
+    k_mean($k$, $Z$):
+        // précondition : $k \leq Z$
+        pour tout $i \in \intint{1}{k}$:
+            $c_i$ = élément aléatoire de $Z$, différent des précédents centres
+        initialiser $(c_i)_{i \in \intint{1}{k}}$ les $k$ centres des clusters comme 
+                etant des éléments aléatoires de $Z$
+
+        tant que les centres sont modifiés:
+            décomposer $ Z = \bigsqcup_{i=1}^kP_i$ où $P_i$ est 
+                    l'ensemble des plus proches de $c_i$ que des autres centres
+            pour tout $i \in \intint{1}{k}$:
+                $c_i$ = $ \frac{1}{\abs{P_i}} \sum_{z \in P_i} z$
+        renvoyer $(P_i)_{i \in \intint{1}{k}}$
+
+
+    \end{lstLNat}
+\end{implementation}
 
 \input{../../stock/pied.tex}

@@ -1,0 +1,63 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{6.1}{algorithme probabiliste}
+    Un algorithme est dit \notion{probabiliste} s'il effectue au moins un \notion{choix aléatoire entraînant une variation comportementale}.
+\end{definition}
+
+\begin{definition}{6.2}{algorithme déterministe}
+    Un algorithme est dit \notion{déterministe} s'il est non probabiliste : son comportement est toujours le même pour une même entrée.
+\end{definition}
+
+\begin{definition}{6.3}{algorithme de Las Vegas}
+    Un algorithme probabiliste est dit \notion{de Las Vegas} si : 
+    \begin{itemize}
+        \item il renvoie toujours une solution correcte ;
+        \item son temps d'exécution est régi par une variable aléatoire.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{6.4}{loi géométrique}
+    Une \notion{loi géométrique de paramètre $p$} est une loi modélisant le \notion{nombre d'essais nécessaires jusqu'au premier succès} dans une suite d'expériences indépendantes identiques. Si $X$ suit une loi géométrique, alors~:
+    $$\forall k \in \N^*,\, \mb{P}(X = k) = (1-p)^{k-1} p$$
+    On a alors $\displaystyle \mb{E}(X) = \frac{1}{p}$ et $\displaystyle \mb{V}(X) = \frac{1-p}{p^2}$.
+\end{definition}
+
+\begin{implementation}{exemple d'algorithme de Las Vegas}
+    \begin{lstC}
+    int las_vegas(int* t, int taille){
+        while(true) {
+            int k = rand() % taille;
+            if (t[k] == 1){
+                return k;
+            }
+        }
+    }
+    \end{lstC}
+\end{implementation}
+
+\begin{definition}{6.5}{algorithme de Monte-Carlo}
+    Un algorithme probabiliste est dit \notion{de Monte-Carlo} si~: 
+    \begin{itemize}
+        \item il renvoie sous une certaine probabilité une solution correcte ;
+        \item son temps d'exécution est constant, indépendant des choix aléatoires. 
+    \end{itemize}
+\end{definition}
+
+\begin{implementation}{exemple d'algorithme de Monte-Carlo}
+    \begin{lstC}
+    int monte_carlo(int* t, int taille) {
+        for (int i = 0; i < 300; i++){
+            int k = rand() % taille;
+            if (t[k] == 1){
+                return k;
+            }
+        }
+        return -1;
+    }
+    \end{lstC}
+\end{implementation}
+
+\input{../../stock/pied.tex}
