@@ -74,42 +74,42 @@
     $$L\setminus \{\epsilon\} = (P\Sigma^* \cap \Sigma^*S) \setminus (\Sigma^*(\Sigma_2 \setminus F)\Sigma^*)$$
 \end{definition} 
 
-\begin{definition}{2.11}{langages locaux d'un langage}
+\begin{definition}{2.12}{langages locaux d'un langage}
     Soit $\Sigma$ un alphabet fini et $L \in \Sigma^*$ un langage. On définit les \notion{langages locaux de $L$}~:
     \begin{enumeratebf}
-        \item $\epsilon \mr{-} (L) = \{\epsilon\} \cap L$ ;
+        \item $\epsilon(L) = \{\epsilon\} \cap L$ ;
         \item $P(L) = \{a \in \Sigma,\, \{a\}\Sigma^* \cap L \neq \varnothing\}$ ;
-        \item $P(L) = \{a \in \Sigma,\, \Sigma^*\{a\} \cap L \neq \varnothing\}$ ;
+        \item $S(L) = \{a \in \Sigma,\, \Sigma^*\{a\} \cap L \neq \varnothing\}$ ;
         \item $F(L) = \{ab \in \Sigma_2,\, \Sigma^*\{ab\}\Sigma^* \cap L \neq \varnothing\}$.
     \end{enumeratebf}
 \end{definition} 
 
-\begin{proposition}{2.12}{caractérisation par les langages locaux}
+\begin{proposition}{2.13}{caractérisation par les langages locaux}
     Soit $\Sigma$ un alphabet fini et $L \in \Sigma^*$ un langage. $L$ est local si et seulement si l'égalité suivante est vérifiée~:
     $$L = \Biggl( \Bigl( P(L) \Sigma^* \cap \Sigma^* S(L)\Bigr) \setminus \Bigl( \Sigma^* \bigl( \Sigma_2 \setminus F(L) \bigr) \Sigma^* \Bigr) \Biggr) \cup \epsilon (L) $$
 \end{proposition}
 
-\begin{definition}{2.13}{expression régulière linéaire}
+\begin{definition}{2.14}{expression régulière linéaire}
     Une expression régulière dans laquelle chaque lettre apparaît au plus une fois est dite \notion{linéaire}.
 \end{definition}
 
-\begin{proposition}{2.14}{concernant les expressions régulières linéaires}
+\begin{proposition}{2.15}{concernant les expressions régulières linéaires}
     Tout langage local régulier est dénoté par une expression régulière linéaire.
 \end{proposition}
 
-\begin{definition}{2.15}{automate local}
+\begin{definition}{2.16}{automate local}
     Un automate fini déterministe est \notion{local} lorsque seules des transitions de même étiquette arrivent au même état.
 \end{definition}
 
-\begin{definition}{2.16}{automate standard}
+\begin{definition}{2.17}{automate standard}
     Un automate fini déterministe est dit \notion{standard} si aucune transition n'arrive en son état initial.
 \end{definition}
 
-\begin{proposition}{2.17}{concernant les automates locaux standards}
+\begin{proposition}{2.18}{concernant les automates locaux standards}
     Tout langage local régulier est reconnu par un automate local standard.
 \end{proposition}
 
-\begin{definition}{2.18}{automate fini généralisé}
+\begin{definition}{2.19}{automate fini généralisé}
     Un \notion{automate fini généralisé} ${\mc{A}}$ est d'abord défini par un quintuplet $(\Sigma, Q, q_0, f_0, \delta)$, avec~:
     \begin{enumeratebf}
         \item $\Sigma$ est un alphabet fini ;
@@ -125,7 +125,7 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{definition}{2.19}{automate reconnaissant l'union de deux langages reconnaissables}
+\begin{definition}{2.20}{automate reconnaissant l'union de deux langages reconnaissables}
     Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ et $A_2 = (\Sigma,\, Q_2,\, q_{0,2},\, F_2,\, \delta_2 )$ deux automates finis déterministes. Un \notion{automate fini déterministe reconnaissant le langage $\mc{L}(A_1) \cup \mc{L}(A_2)$} est l'automate produit $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$, où~:
     \begin{enumeratebf}
         \item $Q = Q_1 ;\times Q_2 $
@@ -135,7 +135,7 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{definition}{2.20}{automate reconnaissant l'intersection de deux langages reconnaissables}
+\begin{definition}{2.21}{automate reconnaissant l'intersection de deux langages reconnaissables}
     Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ et $A_2 = (\Sigma,\, Q_2,\, q_{0,2},\, F_2,\, \delta_2 )$ deux automates finis déterministes. \notion{Un automate fini déterministe reconnaissant le langage $\mc{L}(A_1) \cap \mc{L}(A_2)$} est l'automate produit $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$, où~:
     \begin{enumeratebf}
         \item $Q = Q_1 ;\times Q_2 $
@@ -145,7 +145,7 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{definition}{2.21}{automate reconnaissant le complémentaire d'un langage reconnaissable}
+\begin{definition}{2.22}{automate reconnaissant le complémentaire d'un langage reconnaissable}
     Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ un automate fini déterministe et \textbf{complet}. Un \notion{automate fini déterministe reconnaissant $\complement_{\Sigma^*}\mc{L}(A_1)$} est l'automate $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$ où~:
     \begin{enumeratebf}
         \item $Q = Q_1$ ;
@@ -155,7 +155,7 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{definition}{2.21}{automate reconnaissant le complémentaire d'un langage reconnaissable}
+\begin{definition}{2.23}{automate reconnaissant le complémentaire d'un langage reconnaissable}
     Soit $A_1 = (\Sigma,\, Q_1,\, q_{0,1},\, F_1, \delta_1)$ un automate fini déterministe et \textbf{complet}. Un \notion{automate fini déterministe reconnaissant $\complement_{\Sigma^*}\mc{L}(A_1)$} est l'automate $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$ où~:
     \begin{enumeratebf}
         \item $Q = Q_1$ ;
@@ -165,7 +165,7 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{question}{2.22}{D'après Mines-Telecom 2023}
+\begin{question}{2.24}{D'après Mines-Telecom 2023}
     Soit $L$ un langage régulier sur un alphabet $\Sigma$ et $A = (\Sigma,\, Q,\, q_0,\, F,\, \delta)$ un automate fini déterministe complet reconnaissant le langage $L$.
     \begin{enumeratebf}
         \item Soit $q,q' \in Q$ et $L_{q,q'} = \{\omega \in \Sigma^*,\, \delta^*(q,\omega) = q'\}$. Montrer que $L_{q,q'}$ est rationnel.
@@ -174,7 +174,7 @@
     
 \end{question}
 
-\begin{theoreme}{2.23}{lemme de l'étoile}
+\begin{theoreme}{2.25}{lemme de l'étoile}
     Soit $L$ un langage régulier. Il existe $N \in \N$ tel que~ :
     $$\forall u \in L,\, \abs{u} \geq N \implies \exists (x,y,z) \in (\Sigma^*)^3,\, \begin{cases*}
         u = xyz \\
@@ -185,7 +185,7 @@
 \end{theoreme}
 
 
-\begin{theoreme}{2.24}{lemme d'Arden}
+\begin{theoreme}{2.26}{lemme d'Arden}
     Soit $A$ et $B$ deux langages sur un même alphabet $\Sigma$. Si $\epsilon \notin A$, l'équation $L = (A\cdot L)\cup B$ admet pour unique solution le langage $A^*B$.
 \end{theoreme}
 

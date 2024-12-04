@@ -3,21 +3,43 @@
 \begin{adjustwidth}{-3cm}{-3cm}
 \input{../../stock/commands.tex}
 
-\newcommand{\intsemi}[2]{[#1;\,#2[}
+\newcommand{\intsemi}[0]{[a;\,b[}
 
 
 \begin{definition}{12.1}{intégrale impropre}
-    Soit $f:\intsemi{a}{b} \to \C$ un fonction continue par morceaux. On dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ converge} lorsque la fonction~:
-    \fonction{F_a}{\intsemi{a}{b}}{\C}{x}{\int_a^xf(t) \d{t}}
-    possède une limite en $b$. Le cas échéant, la limite est notée~:
-    $$F_a(x) \xrightarrow{x \to b}f(t)\d{t}$$
+    Soit $f:\intsemi \to \C$ un fonction continue par morceaux. On dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ converge} lorsque la fonction $x \mapsto \int_a^x f(t) \d{t}$ possède une limite finie en $b$.\\
     Autrement, on dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ diverge}.
 \end{definition}
 
 \begin{definition}{12.5}{reste d'une intégrale impropre convergente}
-    Soit $f:\intsemi{a}{b} \to \C$ un fonction continue par morceaux. L'application de $\intsemi{a}{b}$ dans $\C$ définie par~:
+    Soit $f:\intsemi \to \C$ un fonction continue par morceaux. L'application de $\intsemi$ dans $\C$ définie par~:
     $$x \mapsto \int_x^b f(t) \d{t}$$
     est appelée \notion{reste de l'intégrale impropre convergente}.
 \end{definition}
+
+\begin{proposition}{12.8}{caractérisation de la convergence d'une intégrale impropre}
+    Soit $f:\intsemi \to \R_+$ un fonction continue par morceaux, \textbf{à valeurs positives}. L'intégrale $\int_a^bf(t)\d{t}$ converge si et seulement si la fonction $x \mapsto \int_a^x f(t)\d{t}$ est majorée sur $\intsemi$.
+\end{proposition}
+
+\begin{definition}{12.14}{fonction intégrable}
+    Soit $f:\intsemi \to \C$ un fonction continue par morceaux. On dit que \notion{$f$ est intégrable} lorsque l'intégrale impropre $\int_a^b \abs{f}(t)\d{t}$ est convergente. Le cas échéant on dit aussi que l'intégrale impropre $\int_a^b f(t) \d{t}$ est absolument convergente.
+\end{definition}
+
+\begin{theoreme}{12.16}{convergence absolue implique convergence}
+    Soit $f:\intsemi \to \C$ un fonction continue par morceaux. Si $f$ est intégrable sur $\intsemi$, alors l'intégrale impropre $\int_a^b f(t)\d{t}$ est convergente.
+\end{theoreme}
+
+\begin{theoreme}{12.19}{fonction de Riemann}
+    Soit $\alpha \in \R$. La fonction de Riemann $\displaystyle x \mapsto \frac{1}{x^\alpha}$ définie sur $]0 ; +\infty[$ est~:
+    \begin{enumeratebf}
+        \item intégrable en $0$ si et seulement si $\alpha < 1$
+        \item intégrable en $+ \infty$ si et seulement si $\alpha > 1$
+    \end{enumeratebf}
+\end{theoreme}
+
+\begin{theoreme}{12.20}{fonction de référence}
+    Soit $\alpha \in \R$. La fonction $x \mapsto e^{-\alpha x}$ est intégrable sur $[0;+\infty[$ si et seulement si $\alpha > 0$. Le cas échéant~:
+    $$\int_0^{+\infty}e^{-\alpha t} \d{t} = \frac{1}{\alpha}$$
+\end{theoreme}
 
 \input{../../stock/pied.tex}
