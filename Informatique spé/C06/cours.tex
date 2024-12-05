@@ -88,9 +88,16 @@
     Pour un problème d'optimisation, pour une instance $i \in I$, 
     \begin{enumeratebf}
         \item un algorithme de résolution exacte est un algorithme qui renvoie $\sopt \in S_i$
-        \item un algorithme d'approximation est un algorithme qui \notion{$\sapprox \in S_i$ une solution approximativement optimale}. On définit alors \notion{$\rho_i(\sapprox)$ le rapport de performance pour l'instance $i$ de $\sapprox$} comme valant~:
-        $$\max\Bigg(\frac{f(\sapprox)}{f(\sopt)},\, \frac{f(\sopt)}{f(\sapprox)}\Bigg)\quad(\geq 1)$$
+        \item un algorithme d'approximation est un algorithme qui renvoie \notion{$\sapprox \in S_i$ une solution approximativement optimale}. On définit alors \notion{$\rho_i(\sapprox)$ le rapport de performance pour l'instance $i$ de $\sapprox$} comme valant~:
+        $$\rho_i(\sapprox) = \max\Bigg(\frac{f(\sapprox)}{f(\sopt)},\, \frac{f(\sopt)}{f(\sapprox)}\Bigg)\quad(\geq 1)$$
     \end{enumeratebf}  
+\end{definition}
+
+\begin{definition}{6.9}{rapport de performance pour un algorithme}
+    Pour un problème d'optimisation impliquant un algorithme $\mc{A}$ d'approximation,  on dit que \notion{$\rho_n$ est un rapport de performance pour une instance de taille $n$} si~:
+    $$ \rho_n \geq \sup_{\substack{i \in I \\ \abs{i} = n}} \rho_i\Big(\mc{A}(i)\Big)$$
+    On dit alors que \notion{$\mc{A}$ est une $\rho_n$-approximation}.
+    Généralement, on cherche un majorant de cette borne supérieure.
 \end{definition}
 
 \input{../../stock/pied.tex}
