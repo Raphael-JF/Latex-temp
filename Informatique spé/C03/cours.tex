@@ -97,4 +97,24 @@
     \end{lstLNat}
 \end{implementation}
 
+
+\begin{definition}{3.20}{couplage}
+    Soit $G = (S,A)$ un graphe non orienté. Un \notion{couplage $C\subset A$ de $G$} est un ensemble d'arêtes tel que tout sommet $s \in S$ est l'extrémité d'au plus une arête de $C$.
+\end{definition}
+
+\begin{definition}{3.21}{couplage maximal}
+    Soit $G = (S,A)$ un graphe non orienté. Un couplage $C \subset A$ de $G$ est dit \notion{maximal} s'il est maximal pour l'inclusion, \ie si on ne peut lui ajouter d'arête sans lui ôter sa nature de couplage~:
+    $$\forall a \in A \setminus C,\, C \cup \{a\} \text{ n'est pas un couplage}$$
+\end{definition}
+
+\begin{definition}{3.22}{couplage maximum}
+    Soit $G = (S,A)$ un graphe non orienté. Un couplage $C \subset A$ de $G$ est dit \notion{maximum} s'il est de cardinal maximal parmi les couplages de $G$~:
+    $$\forall C' \text{ couplage de }G,\, \abs{C'} \leq \abs{C} $$
+\end{definition}
+
+\begin{definition}{3.23}{couplage parfait}
+    Soit $G = (S,A)$ un graphe non orienté. Un couplage $C \subset A$ de $G$ est dit \notion{parfait} s'il recouvre tous les sommets de $G$~:
+    $$\forall s \in S,\, \exists a \in A,\, s\in a$$
+\end{definition}
+
 \input{../../stock/pied.tex}

@@ -100,4 +100,19 @@
     Généralement, on cherche un majorant de cette borne supérieure.
 \end{definition}
 
+\begin{definition}{6.10}{arbre de recherche de solutions}
+    Dans le cadre d'un problème d'optimisation combinatoire, étant donnée $i \in I$ un instance, on appelle \notion{arbre de recherche de solutions de $i$} un arbre étiqueté par des parties de $S_i$~:
+    \begin{itemize}
+        \item la racine est étiquetée par $S_i$ tout entier
+        \item chaque noeud étiqueté par $S \subset S_i$ a pour fils des noeuds d'étiquette $S_{\mr{f}_1},\, \dots,\, S_{\mr{f}_k}$ tels que $\displaystyle S = \bigsqcup_{i=1}^k S_{\mr{f}_i}$
+        \item les feuilles sont étiquetées par des singletons, on les associe en fait à une solution chacune.
+    \end{itemize}
+    On définit alors une \notion{fonction $\varphi$ d'évaluation} qui à un noeud $s$ d'étiquette $S$ associe ce qu'on peut espérer au mieux dans l'exploration du sous-arbre~:
+    $$\begin{cases*}
+    \displaystyle \varphi(n) \geq \max_{s \in S} f(s) &pour de la maximisation\\
+    \displaystyle \varphi(n) \leq \min_{s \in S} f(s) &pour de la minimisation
+    \end{cases*}$$
+
+\end{definition}
+
 \input{../../stock/pied.tex}
