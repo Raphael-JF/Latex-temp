@@ -115,4 +115,53 @@
 
 \end{definition}
 
+\begin{definition}{6.10}{algorithme par séparation-évaluation}
+    Un \notion{algorithme par séparation évaluation (Branch \& Bound)} repose \notion{une fonction d'évaluation $\varphi$} et sur trois règles~:
+    \begin{enumeratebf}
+        \item \notion{règle de sélection} : impose un ordre d'exploration des fils de chaque sous-arbre de recherche de solutions
+        \item \notion{règle de séparation} : impose la méthode de partitionnement de chaque étiquette des noeuds de l'arbre de recherche de solutions
+        \item \notion{règle d'évaluation} : impose de ne pas explorer certains fils.
+    \end{enumeratebf}
+\end{definition}
+
+\begin{implementation}{algorithme générique par séparation-évaluation (cadre de la maximisation)}
+    Pour tout arbre $\mc{A}$ de recherche de solution, on note $S(\mc{A})$ son étiquette.
+    \begin{itemize}
+        \item \textbf{Entrée} :
+        \begin{itemize}
+            \item $S$ un ensemble de solutions possibles
+            \item $\varphi : \mc{P}(S) \to \R_+$ une fonction d'évaluation
+            \item $f$ la fonction de coût du problème, ici supposée à maximiser
+        \end{itemize}
+        \item \textbf{Sortie} : $\sopt \in S$ telle que $\forall s \in S,\, f(\sopt) \geq f(s)$
+    \end{itemize}
+    \begin{lstLNat}
+    separation_evaluation($S$, $\varphi$, $f$):
+        $\mc{A}$ = arbre feuille de racine d'étiquette $S$
+        initialiser un sac contenant $\mc{A}$
+        $\sopt$ = None // noeud courant
+        max = $-\infty$ // coût courant
+        tant que le sac n'est pas vide:
+            $n$ = pop le premier élément du sac // règle de sélection
+            si $\varphi\big(S(n)\big)$ > max: // règle d'évaluation
+                // l'exploration peut aboutir à une meilleure solution
+                si $\abs{S(n)}$ == 1:
+                    identifier $\{s\}$ = $S(n)$
+                    si $f(s)$ > max:
+                        $\sopt$ = $s$
+                        max = $f(s)$
+                sinon:
+                    partionner $S(n)$ = $\bigsqcup_{i=1}^{k}S_i$ // règle de séparation
+                    pour tout $i \in \intint{1}{k}$:
+                        ajouter à $n$ le fils $f_i$ d'étiquette $S_i$
+                        ajouter $f_i$ au sac
+        renvoyer $\sopt$
+
+    \end{lstLNat}
+\end{implementation}
+
+\begin{definition}{6.11}{relaxation d'un problème d'optimisation}
+    On appelle \notion{relaxation d'un problème d'optimisation $\mc{P}$} un problème $\mc{P}'$ construit à partir de $\mc{P}$ en omettant une ou plusieurs contraintes. $\mc{P}'$ comporte alors de la même fonction de coût, les mêmes instances, mais l'ensemble des solutions possibles est plus grand pour l'inclusion.
+\end{definition}
+
 \input{../../stock/pied.tex}
