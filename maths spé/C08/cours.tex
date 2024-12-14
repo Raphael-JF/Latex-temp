@@ -49,15 +49,15 @@
     $$\Bigg\vert \somme{i \in I}{}u_i \Bigg\vert \leq \somme{i \in I}{}\abs{u_i}$$
 \end{proposition}
 
-\begin{theoreme}{8.17}{de Fubini complexe}
+\begin{theoreme}{8.25}{de Fubini complexe}
     Soit $(u_i)_{i\in I}$ une famille de nombres complexes et $\displaystyle I = \bigsqcup_{n\in \N} I_n$ une partition dénombrable de $I$. La famille $(u_i)_{i\in I}$ est sommable si et seulement si~:
     $$\begin{cases*}
         \forall n \in \N,\, (u_i)_{i \in I_n}& est sommable \\
-        \sum_n\bigg( \sum_{i\in I_n} \abs{u_i} \bigg) & est convergente
+        \displaystyle \sum_n \sum_{i\in I_n} \abs{u_i} & est convergente
     \end{cases*}$$
 
     Le cas échéant,
-    $$\sum_{n=0}^{+ \infty}\bigg( \sum_{i\in I_n} u_i \bigg) = \sum_{i\in I}u_i$$
+    $$\sum_{n=0}^{+ \infty}\sum_{i\in I_n} u_i = \sum_{i\in I}u_i$$
 \end{theoreme}
 
 \begin{theoreme}{8.28}{interversion des sommations de complexes}
