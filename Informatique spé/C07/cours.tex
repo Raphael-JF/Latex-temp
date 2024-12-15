@@ -1,0 +1,40 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{7.1}{système de preuve}
+    Un système de preuve est un cadre formel permettant de dériver des énoncés logiques à partir de règles bien définies et d'hypothèses. On le caractérise par~:
+    \begin{enumeratebf}
+        \item \notion{un ensemble d'axiomes} : propositions admises comme vraies.
+        \item \notion{un ensemble de règles d'inférence}.
+    \end{enumeratebf}
+    On représente une preuve par un arbre dont \notion{les feuilles sont des instances d'axiomes} et \notion{les noeuds internes des instances de règles d'inférence}.
+\end{definition}
+
+\begin{definition}{7.2}{instance d'un axiome, d'une règle d'inférence}
+    Une \notion{instance d'un axiome ou d'une règle d'inférence} est obtenue à partir de l'axiome ou de la règle, en choisissant pour chaque variable une formule logique et en remplaçant chaque occurrence de la variable par la formule.
+\end{definition}
+
+\newcommand{\these}[0]{\vdash}
+
+\begin{definition}{7.3}{séquent}
+    Un séquent (également jugement), est une \notion{affirmation qui exprime que, sous certaines hypothèses, une conclusion peut être déduite}. Il est généralement écrit sous la forme~:
+    $$\Gamma \these C$$
+    où : $\begin{cases*}
+        \Gamma & est un ensemble d'hypothèses (formules de la logique propositionnelle supposées vraies)\\
+        C & est la conclusion qui peut être déduite à partir des hypothèses de $\Gamma$
+    \end{cases*}$\\\\
+    Intuitivement, cela signifie : \textit{"Si les hypothèses de $\Gamma$ sont vérifiées, alors $C$ peut être démontrée"}
+\end{definition}
+
+\begin{definition}{7.4}{règle d'inférence}
+    Dans un système de preuve, une \notion{règle d'inférence} est constituée d'une \notion{famille de prémisses $P_1,\, \dots,\, P_k$}, et d'une \notion{conclusion $C$}. On représente une règle d'inférence par~:
+    $$\frac{P_1 \quad \dots \quad P_k}{C}$$
+\end{definition}
+
+\begin{definition}{7.5}{règle d'inférence de l'axiome}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules propositionnelles
+\end{definition}
+
+\input{../../stock/pied.tex}

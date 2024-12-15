@@ -143,18 +143,16 @@
         max = $-\infty$ // coût courant
         tant que le sac n'est pas vide:
             $n$ = pop le premier élément du sac // règle de sélection
-            si $\varphi\big(S(n)\big)$ > max: // règle d'évaluation
-                // l'exploration peut aboutir à une meilleure solution
-                si $\abs{S(n)}$ == 1:
-                    identifier $\{s\}$ = $S(n)$
-                    si $f(s)$ > max:
-                        $\sopt$ = $s$
-                        max = $f(s)$
-                sinon:
-                    partionner $S(n)$ = $\bigsqcup_{i=1}^{k}S_i$ // règle de séparation
-                    pour tout $i \in \intint{1}{k}$:
-                        ajouter à $n$ le fils $f_i$ d'étiquette $S_i$
-                        ajouter $f_i$ au sac
+            si $\abs{S(n)}$ == 1:
+                identifier $\{s\}$ = $S(n)$
+                si $f(s)$ > max:
+                    $\sopt$ = $s$
+                    max = $f(s)$
+            sinon si $\varphi\big(S(n)\big)$ > max: // règle d'évaluation
+                partitionner $S(n)$ = $\bigsqcup_{i=1}^{k}S_i$ // règle de séparation
+                pour tout $i \in \intint{1}{k}$:
+                    ajouter à $n$ le fils $f_i$ d'étiquette $S_i$
+                    ajouter $f_i$ au sac
         renvoyer $\sopt$
 
     \end{lstLNat}
@@ -162,6 +160,16 @@
 
 \begin{definition}{6.11}{relaxation d'un problème d'optimisation}
     On appelle \notion{relaxation d'un problème d'optimisation $\mc{P}$} un problème $\mc{P}'$ construit à partir de $\mc{P}$ en omettant une ou plusieurs contraintes. $\mc{P}'$ comporte alors de la même fonction de coût, les mêmes instances, mais l'ensemble des solutions possibles est plus grand pour l'inclusion.
+\end{definition}
+
+\begin{definition}{6.12}{généralisation d'un problème d'optimisation}
+    On appelle \notion{généralisation d'un problème d'optimisation $\mc{P}$}  un problème $\mc{P}'$ tel que~:
+    \begin{itemize}
+        \item les deux ont la même fonction de coût, avec le même objectif (maximisation ou minimisation)
+        \item $I_\mc{P} \subset I_{\mc{P}'}$
+        \item pour toute instance de $I_{\mc{P}}$, une solution optimale pour $\mc{P}'$ est une solution optimale pour $\mc{P}$.
+    \end{itemize}
+    
 \end{definition}
 
 \input{../../stock/pied.tex}
