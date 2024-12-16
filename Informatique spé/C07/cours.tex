@@ -34,7 +34,74 @@
 \end{definition}
 
 \begin{definition}{7.5}{règle d'inférence de l'axiome}
-    En déduction naturelle, Pour un ensemble $\Gamma$ de formules propositionnelles
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toute formule $A \in \Gamma$, le séquent $T \these A$ est prouvable~:
+    $$\frac{(\mr{axiome})}{\Gamma \these A}$$
+    en constitue une démonstration.
 \end{definition}
+
+\begin{definition}{7.6}{séquent prouvable}
+    un séquent est dit \notion{prouvable} lorsqu'il existe une \notion{dérivation} (c'est-à-dire \notion{un arbre de preuve}) de celui-ci.
+\end{definition}
+
+\begin{definition}{7.7}{inductive d'un séquent prouvable}
+    L'ensemble des séquents prouvables en déduction naturelle est défini inductivement à partir des règles de déduction naturelle~:
+    \begin{itemize}
+        \item Pour $\Gamma$ un ensemble de formules de la logique propositionnelle, et $A \in \Gamma$~:
+        $$\Gamma \these A \text{ prouvable par axiome}$$
+        \item Pour $\Gamma$ un ensemble de formules de la logique propositionnelle, et $A \in \Gamma$~:
+
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{7.8}{règle d'introduction du "et"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$, $B$ et $C$~:
+    $$\frac{\Gamma \these A \quad \Gamma \these B}{\Gamma \these A \wedge B}(\mr{i}\wedge)$$
+    telle est la \notion{règle d'introduction du "et"}.
+\end{definition}
+
+\begin{definition}{7.9}{règle d'élimination du "et"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$ et $B$~:
+    $$\frac{\Gamma \these A \wedge B}{\Gamma \these A}(\mr{e}\wedge\mr{g}) \qquad \frac{\Gamma \these A \wedge B}{\Gamma \these B}(\mr{e}\wedge\mr{d})$$
+    telle est la \notion{règle d'élimination du "et"}.
+\end{definition}
+
+\newcommand{\ou}[0]{\vee}
+
+\begin{definition}{7.10}{règle d'introduction du "ou"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$ et $B$~:
+    $$\frac{\Gamma \these B}{\Gamma \these A \ou B}(\mr{i}\ou\mr{d}) \qquad \frac{\Gamma \these A}{\Gamma \these A \ou B}(\mr{i}\ou\mr{g})$$
+    telle est la \notion{règle d'introduction du "ou"}.
+\end{definition}
+
+\begin{definition}{7.11}{règle d'élimination du "ou"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$, $B$ et $C$~:
+    $$\frac{\Gamma \these A \ou B \quad \Gamma,A \these C \quad \Gamma,B \these C}{\Gamma \these C}(\mr{e}\ou)$$
+    telle est la \notion{règle d'élimination du "ou"}.
+\end{definition}
+
+\begin{definition}{7.12}{règle d'introduction du "non"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toute formule $A$~:
+    $$\frac{\Gamma,A \these \bot}{\Gamma \these \lnot A}(\mr{i}\lnot)$$
+    telle est la \notion{règle d'introduction du "non"}.
+\end{definition}
+
+\begin{definition}{7.13}{règle d'élimination du "non"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toute formule $A$~:
+    $$\frac{\Gamma \these A \quad \Gamma \these \lnot A}{\Gamma \these \bot}(\mr{e}\lnot)$$
+    telle est la \notion{règle d'élimination du "non"}.
+\end{definition}
+
+\begin{definition}{7.14}{règle d'introduction du "implique"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$ et $B$~:
+    $$\frac{\Gamma,A \these B}{\Gamma \these A \to B}(\mr{i}\to)$$
+    telle est la \notion{règle d'introduction du "implique"}.
+\end{definition}
+
+\begin{definition}{7.15}{règle d'élimination du "implique"}
+    En déduction naturelle, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$ et $B$~:
+    $$\frac{\Gamma \these A \to B \quad \Gamma \these A}{\Gamma \these B}(\mr{e}\to)$$
+    telle est la \notion{règle d'élimination du "implique"}.
+\end{definition}
+
 
 \input{../../stock/pied.tex}
