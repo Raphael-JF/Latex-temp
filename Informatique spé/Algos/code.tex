@@ -355,4 +355,25 @@
     \end{lstC}
 \end{implementation}
 
+\begin{implementation}{entraînement à la création d'une instance de type sur le segment de données}
+    \begin{lstC}
+    struct RegExp{
+        char etiquette;
+        struct RegExp *filsd;
+        struct RegExp *filsg;
+    };
+    typedef struct RegExp RegExp;
+    
+    
+    int main(){
+        RegExp un = {
+            .etiquette = 'a',
+            .filsd = NULL,
+            .filsg = NULL,
+        };
+        return 0;
+    }
+    \end{lstC}
+\end{implementation}
+
 \input{../../stock/pied.tex}

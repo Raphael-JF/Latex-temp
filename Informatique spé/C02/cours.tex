@@ -70,8 +70,8 @@
 \end{definition}
 
 \begin{definition}{2.11}{langage local}
-    Soit $\Sigma$ un alphabet fini et $L \in \Sigma^*$ un langage. On dit que \notion{$L$ est local} s'il existe $P \in \Sigma$, $S \in \Sigma$ et $F \in \Sigma_2$ telles que :
-    $$L\setminus \{\epsilon\} = (P\Sigma^* \cap \Sigma^*S) \setminus (\Sigma^*(\Sigma_2 \setminus F)\Sigma^*)$$
+    Soit $\Sigma$ un alphabet fini et $L \subset \Sigma^*$ un langage. On dit que \notion{$L$ est local} s'il existe $P \subset \Sigma$, $S \subset \Sigma$ et $F \in \Sigma_2$ telles que :
+    $$L\setminus\{\epsilon\} = \Bigl( P \Sigma^* \cap \Sigma^* S\Bigr) \setminus \Bigl( \Sigma^* \bigl( \Sigma_2 \setminus F \bigr) \Sigma^* \Bigr) $$
 \end{definition} 
 
 \begin{definition}{2.12}{langages locaux d'un langage}

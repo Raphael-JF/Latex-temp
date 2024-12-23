@@ -29,5 +29,27 @@
     $$\lim_{x \to a} \bigg(\lim_{n \to + \infty} f_n(x)\bigg) = \lim_{n \to + \infty} \bigg(\lim_{x \to a} f_n(x)\bigg)$$
 \end{theoreme}
 
+\begin{definition}{9.19}{convergence uniforme d'une série de fonctions}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$. La série \notion{$\sum_n f_n$ converge uniformément sur $A$} si sa suite des sommes partielles converge uniformément, c’est-à-dire que la suite $(R_n)_{n \in \N}$ de ses restes converge vers $0$ pour $\norme{\cdot}_\infty^A$~:
+    $$\norme{R_n}_\infty^A \xrightarrow{n \to + \infty} 0$$
+    ou bien
+    $$\norme{S - S_n}_\infty^A \xrightarrow{n \to + \infty} 0$$
+\end{definition}
+
+\begin{definition}{9.20}{convergence normale d'une série de fonctions}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$. La série \notion{$\sum_n f_n$ converge normalement sur $A$} si la série $\sum_n \norme{u_n}_\infty^A$ converge.
+\end{definition}
+
+\begin{proposition}{9.25}{conditions nécessaires à la convergence normale}
+    Soit $\sum_n f_n$ une série fonctions de normalement convergentes sur $A$. On a alors~:
+    \begin{enumeratebf}
+        \item La série $\sum_n f_n$ converge absolument sur $A$ et donc simplement sur $A$.
+        \item La série $\sum_n f_n$ converge uniformément sur $A$.
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{definition}{9.40}{fonction continue par morceaux sur un intervalle}
+    Soit $I$ un intervalle de $\R$ et $f$ une fonction définie sur $I$. \notion{$f$ est continue par morceaux} si toute restriction de $f$ à un segment est continue par morceaux.
+\end{definition}
 
 \input{../../stock/pied.tex}
