@@ -39,4 +39,71 @@
     Soit $I$ un intervalle et $E$ de dimension finie. Soit $f:I \to E$ de classe $\mc{C}^1$ et $g:I\to \R_+$ de classe $\mc{C}^1$. Supposons pour $a \in I$ que $f' \underset{a}{=}o(g')$. Alors~:
     $$\norme{f(x) - f(a)}_E \underset{x \to a}{=} o\Big(\big\vert g(x) - g(a) \big\vert\Big)$$
 \end{theoreme}
+
+\begin{theoreme}{10.47}{formule de Taylor avec reste intégral}
+    Soit $f\in \mc{D}^{n}(I,E)$ telle que $f^{(n+1)}$ est continue par morceaux sur l'intervalle $I$. Pour $a \in I$~:
+    $$\forall x \in I,\, f(x) = \sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k + \inte{a}{x}\frac{f^{(n+1)}(t)}{n!}(x-t)^n \d{t}$$
+\end{theoreme}
+
+
+\begin{theoreme}{10.48}{inégalité de Taylor-Lagrange}
+    Soit $f\in \mc{D}^{n}(I,E)$ telle que $f^{(n+1)}$ est continue par morceaux sur l'intervalle $I$. Soit $\seg{a}{b} \subset I$ et $M$ un majorant de $\norme{f^{(n+1)}}_E$ sur $\seg{a}{b}$. Alors~:
+    $$\Bigg\Vert f(b) - \sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(b-a)^k\Bigg\Vert_E \leq M \bigg\vert \frac{(b-a)^{n+1}}{(n+1)!} \bigg\vert$$
+\end{theoreme}
+
+\begin{theoreme}{10.57}{échange limite-intégrale}
+    Soit $(f_n)_{n \in \N} \in \mc{C}(\seg{a}{b},E)^\N$ convergeant uniformément vers $f$ sur $\seg{a}{b}$. Alors~:
+    $$\lim_{n \to +\infty} \int_{\seg{a}{b}} f_n = \int_{\seg{a}{b}} \lim_{n \to +\infty} f_n $$
+\end{theoreme}
+
+\begin{theoreme}{10.62}{de convergence dominée pour une suite de fonctions}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(\seg{a}{b},\K)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{CM}(\seg{a}{b},\K)$.
+        \item $(f_n)_{n \in \N}$ converge simplement sur $\seg{a}{b}$ et sa limite y est continue par morceaux.
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(\seg{a}{b}, \R_+)$  telle que pour tout $n \in \N$,\, $\abs{f_n} \leq \varphi$
+    \end{enumeratebf}
+    on peut échanger les symboles "$\lim$" et "$\int$"~:
+    $$\lim_{n \to +\infty} \int_{\seg{a}{b}} f_n = \int_{\seg{a}{b}} \lim_{n \to +\infty} f_n $$
+\end{theoreme}
+
+\begin{theoreme}{10.62}{de convergence dominée pour une série de fonctions}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(\seg{a}{b},\K)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{CM}(\seg{a}{b},\K)$.
+        \item $(f_n)_{n \in \N}$ converge simplement sur $\seg{a}{b}$ et sa somme y est continue par morceaux.
+        \item la série $\sum_n \inte{a}{b}\abs{f_n(t)}\d{t}$ converge
+    \end{enumeratebf}
+    on peut échanger les symboles "$\sum$" et "$\int$"~:
+    $$\sum_{n=0}^{+\infty} \int_{\seg{a}{b}} f_n = \int_{\seg{a}{b}} \sum_{n=0}^{+\infty} f_n $$
+\end{theoreme}
+
+\begin{theoreme}{10.66}{primitivation d'une limite uniforme de suite de fonctions}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(I,E)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{C}^0(I,E)$.
+        \item $(f_n)_{n \in \N}$ converge uniformément vers une même fonction $f$ sur tout segment inclus dans $I$.
+    \end{enumeratebf}
+    la suite $(F_n)_{n \in \N}$ des primitives des $f_n$ respectives s'annulant toutes en un même $a \in I$ converge uniformément vers la primitive de $f$ s'annulant en $a$, et ce sur tout segment inclus dans $I$.
+\end{theoreme}
+
+\begin{theoreme}{10.66}{dérivation d'une limite uniforme de suite de fonctions}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(I,E)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{C}^1(I,E)$.
+        \item $(f_n)_{n \in \N}$ converge simplement vers une fonction $f \in \mc{CM}(I,E)$
+        \item $(f'_n)_{n \in \N}$ converge uniformément vers une même fonction $g$ sur tout segment inclus dans $I$.
+    \end{enumeratebf}
+    la fonction $f$ est de classe $\mc{C}^1(I,E)$ et $f' = g$.
+\end{theoreme}
+
+\begin{theoreme}{10.73}{dérivation $k$ fois d'une limite uniforme de suite de fonctions}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(I,E)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{C}^k(I,E)$.
+        \item pour tout $i \in \intint{0}{k-1}$, la suite $(f_n^{(i)})_{n \in \N}$ converge simplement vers une fonction $f_i \in \mc{CM}(I,E)$
+        \item $(f_n^{(k)})_{n \in \N}$ converge uniformément vers une même fonction $g$ sur tout segment inclus dans $I$.
+    \end{enumeratebf}
+    la fonction $f$ est de classe $\mc{C}^k(I,E)$ et $f^{(k)} = g$.
+\end{theoreme}
 \input{../../stock/pied.tex}
