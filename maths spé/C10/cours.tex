@@ -41,13 +41,13 @@
 \end{theoreme}
 
 \begin{theoreme}{10.47}{formule de Taylor avec reste intégral}
-    Soit $f\in \mc{D}^{n}(I,E)$ telle que $f^{(n+1)}$ est continue par morceaux sur l'intervalle $I$. Pour $a \in I$~:
+    Soit $f\in \mc{D}^{n+1}(I,E)$ telle que $f^{(n+1)}$ est continue par morceaux sur l'intervalle $I$. Pour $a \in I$~:
     $$\forall x \in I,\, f(x) = \sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(x-a)^k + \inte{a}{x}\frac{f^{(n+1)}(t)}{n!}(x-t)^n \d{t}$$
 \end{theoreme}
 
 
 \begin{theoreme}{10.48}{inégalité de Taylor-Lagrange}
-    Soit $f\in \mc{D}^{n}(I,E)$ telle que $f^{(n+1)}$ est continue par morceaux sur l'intervalle $I$. Soit $\seg{a}{b} \subset I$ et $M$ un majorant de $\norme{f^{(n+1)}}_E$ sur $\seg{a}{b}$. Alors~:
+    Soit $f\in \mc{D}^{n+1}(I,E)$ telle que $f^{(n+1)}$ est continue par morceaux sur l'intervalle $I$. Soit $\seg{a}{b} \subset I$ et $M$ un majorant de $\norme{f^{(n+1)}}_E$ sur $\seg{a}{b}$. Alors~:
     $$\Bigg\Vert f(b) - \sum_{k=0}^n \frac{f^{(k)}(a)}{k!}(b-a)^k\Bigg\Vert_E \leq M \bigg\vert \frac{(b-a)^{n+1}}{(n+1)!} \bigg\vert$$
 \end{theoreme}
 
@@ -84,7 +84,7 @@
         \item $\forall n \in \N,\, f_n \in \mc{C}^0(I,E)$.
         \item $(f_n)_{n \in \N}$ converge uniformément vers une même fonction $f$ sur tout segment inclus dans $I$.
     \end{enumeratebf}
-    la suite $(F_n)_{n \in \N}$ des primitives des $f_n$ respectives s'annulant toutes en un même $a \in I$ converge uniformément vers la primitive de $f$ s'annulant en $a$, et ce sur tout segment inclus dans $I$.
+    Pour tout $a \in I$, sur tout segment de $I$, la suite $(F_n)_{n \in \N}$ des primitives des $f_n$ respectives s'annulant en $a$ converge uniformément vers la primitive de $f$ s'annulant en $a$.
 \end{theoreme}
 
 \begin{theoreme}{10.66}{dérivation d'une limite uniforme de suite de fonctions}

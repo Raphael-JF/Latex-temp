@@ -40,7 +40,13 @@
 \end{definition}
 
 \begin{definition}{7.6}{séquent prouvable}
-    un séquent est dit \notion{prouvable} lorsqu'il existe une \notion{dérivation} (c'est-à-dire \notion{un arbre de preuve}) de celui-ci.
+    Un séquent est dit \notion{prouvable} lorsqu'il existe un \notion{un arbre de preuve} de celui-ci. Plus précisément, le séquent $\Gamma \these A$ est prouvable si l'une des conditions suivantes est satisfaite~:
+    \begin{itemize}
+        \item \textbf{cas de base} : $A \in \Gamma$. $\displaystyle \frac{(\text{axiome})}{\Gamma \these A}$ est alors une démonstration
+        \item \textbf{cas inductif} : il existe $\Gamma_1 \these C_1,\, \dots,\,  \Gamma_k \these C_k$ des séquents prouvables, ainsi qu'une règle d'inférence $(\gamma)$ dont~:
+        $$\frac{\Gamma_1 \these C_1 \quad \dots \quad \Gamma_k \these C_k}{\Gamma \these A}(\gamma)$$
+        est une instance. Le cas échéant $\Gamma \these A$ est prouvable via la règle $(\gamma)$.
+    \end{itemize}
 \end{definition}
 
 \begin{definition}{7.7}{inductive d'un séquent prouvable}
@@ -102,6 +108,10 @@
     $$\frac{\Gamma \these A \to B \quad \Gamma \these A}{\Gamma \these B}(\mr{e}\to)$$
     telle est la \notion{règle d'élimination du "implique"}.
 \end{definition}
+
+\begin{theoreme}{7.16}{propriété d'affaiblissement}
+    En déduction naturelle, pour des ensembles $\Gamma$ et $\Delta$ de formules de la logique propositionnelle, pour toute formule $A$ de la logique propositionnelle, si $\Gamma \these A$ est prouvable, alors il en est de même pour $\Gamma,\Delta \these A$.
+\end{theoreme}
 
 
 \input{../../stock/pied.tex}
