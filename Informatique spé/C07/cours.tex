@@ -113,5 +113,23 @@
     En déduction naturelle, pour des ensembles $\Gamma$ et $\Delta$ de formules de la logique propositionnelle, pour toute formule $A$ de la logique propositionnelle, si $\Gamma \these A$ est prouvable, alors il en est de même pour $\Gamma,\Delta \these A$.
 \end{theoreme}
 
+\begin{definition}{7.17}{relation "être conséquence logique"}
+    Soit $A$ et $B$ deux formules de la logique propositionnelle. On dit que \notion{$B$ est une conséquence logique de $A$, noté $A \models B$} si tout modèle de $A$ (valuation satisfaisant $A$) est un modèle de $B$.\\
+    Par extension si $\Gamma$ est un ensemble de formules de la logique propoistionnelle, $\Gamma \models A$ signifie~:
+    $$\forall C \in \Gamma,\, C \models A$$ 
+\end{definition}
+
+\begin{definition}{7.18}{règle correcte}
+    En déduction naturelle, on dit qu'une règle~:
+    $$\frac{\Delta_1 \these C_1 \quad \dots \quad \Delta_k \these C_k}{\Gamma \these A}(\gamma)$$
+    est \notion{correcte} si le fait que pour tout $i \in \intint{1}{k}$ toute valuation satisfaisant les formules de $\Delta_i$ satisfasse $C_i$ implique que toute valuation satisfaisant les formules de $\Gamma$ satisfait $A$.\\
+    En d'autres termes, la règle est \notion{correcte} si~:
+    $$\bigg(\forall i \in \intint{1}{k},\, \Delta_i \models C_i\bigg) \quad\implies \quad \Gamma \models A$$
+\end{definition}
+
+\begin{definition}{7.19}{séquent valide}
+    On dit qu'un séquent \notion{$\Gamma \these A$ est valide} si toute valuation satisfaisant les formules de $\Gamma$ satisfait $A$ \ie $\Gamma \models A$.
+\end{definition}
+
 
 \input{../../stock/pied.tex}
