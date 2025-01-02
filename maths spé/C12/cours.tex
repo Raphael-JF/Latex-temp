@@ -4,21 +4,27 @@
 \input{../../stock/commands.tex}
 
 \newcommand{\intsemi}[0]{[a;\,b[}
-
+\newcommand{\cm}{\mc{CM}\Big([a;\,b[,\K\Big)}
+\newcommand{\cmplus}{\mc{CM}\Big([a;\,b[,\R_+\Big)}
 
 \begin{definition}{12.1}{intégrale impropre}
-    Soit $f:\intsemi \to \C$ un fonction continue par morceaux. On dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ converge} lorsque la fonction $x \mapsto \int_a^x f(t) \d{t}$ possède une limite finie en $b$.\\
-    Autrement, on dit que \notion{l'intégrale impropre $\int_a^b f(t)\d{t}$ diverge}.
+    Soit $f \in \cm$. On dit que \notion{l'intégrale impropre $\displaystyle \int_a^b f(t)\d{t}$ converge} lorsque la fonction $\displaystyle x \mapsto \int_a^x f(t) \d{t}$ possède une limite finie en $b$.\\
+    Autrement, on dit que \notion{l'intégrale impropre $\displaystyle \int_a^b f(t)\d{t}$ diverge}.
 \end{definition}
 
 \begin{definition}{12.5}{reste d'une intégrale impropre convergente}
-    Soit $f:\intsemi \to \C$ un fonction continue par morceaux. L'application de $\intsemi$ dans $\C$ définie par~:
-    $$x \mapsto \int_x^b f(t) \d{t}$$
+    Soit $f \in \cm$ telle que l'intégrale $\displaystyle \int_{a}^{b}f(t)\d{t}$ converge. L'application~:
+    \fonction{R}{\intsemi}{\K}{x}{\int_{x}^{b}f(t)\d{t}}
     est appelée \notion{reste de l'intégrale impropre convergente}.
 \end{definition}
 
+\begin{theoreme}{12.6}{de la limite monotone}
+    Soit $f:I\to \R$ une fonction croissante. Quand $x$ tend vers la borne supérieure de $I$ (au sens large), $f(x)$ tend vers la borne supérieure (au sens large) de $f$ sur $I$~:
+    $$\lim_{x \to \sup I} f(x) = \sup\{f(x),\, x \in I\}$$
+\end{theoreme}
+
 \begin{proposition}{12.8}{caractérisation de la convergence d'une intégrale impropre}
-    Soit $f:\intsemi \to \R_+$ un fonction continue par morceaux, \textbf{à valeurs positives}. L'intégrale $\int_a^bf(t)\d{t}$ converge si et seulement si la fonction $x \mapsto \int_a^x f(t)\d{t}$ est majorée sur $\intsemi$.
+    Soit $f \in \cmplus$. L'intégrale $ \displaystyle \int_a^bf(t)\d{t}$ converge si et seulement si la fonction $\displaystyle x \mapsto \int_a^x f(t)\d{t}$ est majorée sur $\intsemi$.
 \end{proposition}
 
 \begin{definition}{12.14}{fonction intégrable}

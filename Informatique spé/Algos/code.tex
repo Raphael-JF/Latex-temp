@@ -376,4 +376,40 @@
     \end{lstC}
 \end{implementation}
 
+\begin{implementation}{algorithme de Rabin-Karp}
+    \begin{itemize}
+        \item \textbf{Entrée} : \begin{itemize}
+            \item un texte \code{t} sur un alphabet 
+            \item un motif \code{m} sur un alphabet $\Sigma$, de longueur inférieure à  celle du texte.
+        \end{itemize}
+        \item \textbf{Sortie} : le nombre d'occurrences du motif dans le texte
+    \end{itemize}
+    On associe à un caractère $c \in \Sigma$ un entier naturel unique, qu'on notera également $c$. On note également $b = \abs{\Sigma}$. pour un mot $a_0 \dots a_{\abs{m}-1}$, on note~:
+    $$h(t_0\dots t_{\abs{m}-1}) = \sum_{i=0}^{\abs{m}-1}t_i b^{\abs{m}-1-i}$$
+    la fonction $h$ ainsi créée est injective  (par liberté de $(b^{\abs{m}-1},\dots, b^0)$). On va calculer l'image par $h$ du motif et la comparer avec chaque facteur de texte de même longueur que le motif (en effectuant un \notion{glissement} pour avancer de proche en proche). En cas d'égalité, on aura trouvé une occurrence par injectivité de $h$.\\\\
+    \textbf{limitation} : le calcul de $h$ peut engendrer des dépassements de mémoire. On va donc calculer les hachés modulo $p$ un entier choisi~:\begin{itemize}
+        \item \textbf{premier avec $b$} (ou juste premier) pour ne pas lourdement altérer l'écriture en base $b$.
+        \item \textbf{grand} pour limiter les \notion{collisions} (cas de non unicité de l'image de $h$)
+        \item \textbf{assez petit pour que le produit $bp$ soit représentable} (pour appliquer le modulo)
+    \end{itemize}
+    on perd alors l'injectivité de $h$. En cas d'égalité il faudra donc comparer les hachés.
+    \begin{lstLNat}
+    Rabin_Karp(m,t):
+        $h_\code{m}$ = 0
+        $h_\mr{courant}$ = 0
+        pour $i = 0$ jusqu'à $\abs{m}-1$:
+            $h_\code{m}$ = $b\times h_\code{m} \, +\, m_i$ mod $p$
+            $h_\mr{courant}$ = $b\times h_\mr{courant} \, +\, t_i$ mod $p$
+        compteur = 0
+        b_puiss = $b^{m-1}$ mod $p$
+        pour $i = 0$ jusqu'à $\abs{t}-\abs{m}$:
+            si $h_\code{m}$ == $h_\mr{courant}$ et motif == $\code{t[i]}\dots \code{t[i+\abs{m}]}$: // évaluation paresseuse
+                compteur = compteur + 1
+            $h_\mr{courant}$ = $b \big( h_\mr{courant} - \code{b\_puiss} \times \code{t[i]} \big) + \code{t[i+\abs{m}]}$ mod $p$ // glissement
+        renvoyer compteur
+
+
+    \end{lstLNat}
+\end{implementation}
+
 \input{../../stock/pied.tex}

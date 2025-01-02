@@ -42,5 +42,29 @@
     Soit $\sum_n a_n z^n$ et $\sum_n b_n z^n$ deux séries entières de rayons de convergence respectifs $R_a$ et $R_b$. \\Si $a_n \underset{n \to +\infty}{\sim}b_n$, alors $R_a = R_b$.
 \end{proposition}
 
+\begin{theoreme}{11.13}{règle de d'Alembert pour les séries entières}
+    Soit $\sum_n a_n z^n$ une série entière telle que $\displaystyle \Bigg(\bigg\vert\frac{a_{n+1}}{a_n}\bigg\vert\Bigg)_{n \in \N}$ est définie à partir d'un certain rang et admette une limite $\ell \in \overline{\R}$. Le rayon de convergence $R$ de la série $\sum_n a_n z^n$ vaut $\begin{cases*}
+        0 &si $\ell = + \infty$ \\
+        \ell^{-1} &si $\ell>0$\\
+        + \infty &si $\ell=0$
+    \end{cases*}$.
+\end{theoreme}
 
+\begin{proposition}{11.14}{rayon de convergence d'une somme de séries entières}
+    Soit $\sum_n a_n z^n$ et $\sum_n b_n z^n$ deux séries entières de rayons de convergence respectifs $R_a$ et $R_b$. En notant $R_{a+b}$ le rayon de convergence de la série entière $\sum_n (a_n + b_n)z^n$, on a~:
+    $$R_{a+b} \geq \min(R_a,R_b)$$
+    avec égalité si et seulement si les rayons sont distincts.
+\end{proposition}
+
+\begin{proposition}{11.15}{rayon de convergence d'un produit de Cauchy de séries entières}
+    Soit $\sum_n a_n z^n$ et $\sum_n b_n z^n$ deux séries entières de rayons de convergence respectifs $R_a$ et $R_b$. En notant $R_{a\star b}$ le rayon de convergence de la série entière $\displaystyle \sum_n \big((a_i)_{i \in \N}\star (b_i)_{i \in \N}\big)_n z^n$, on a~:
+    $$R_{a \star b} \geq \min(R_a,R_b)$$
+    sans aucun cas d'égalité.
+\end{proposition}
+
+\begin{theoreme}{11.19}{convergence normale dans tout segment de l'intervalle ouvert de convergence}
+    Soit $\sum_n a_n z^n$ une série entière de rayon de convergence $R$. Pour $n \in \N$, soit~:
+    \fonction{f_n}{]-R;\, R[}{\R}{x}{\sum_{k=0}^{n}a_k x^k}
+    La série de fonctions $(f_n)_{n\in \N}$ est normalement convergente sur tout segment de $]-R;\, R[$.
+\end{theoreme}
 \input{../../stock/pied.tex}

@@ -107,7 +107,7 @@
         \item chaque noeud étiqueté par $S \subset S_i$ a pour fils des noeuds d'étiquette $S_{\mr{f}_1},\, \dots,\, S_{\mr{f}_k}$ tels que $\displaystyle S = \bigsqcup_{i=1}^k S_{\mr{f}_i}$
         \item les feuilles sont étiquetées par des singletons, on les associe en fait à une solution chacune.
     \end{itemize}
-    On définit alors une \notion{fonction $\varphi$ d'évaluation} qui à un noeud $s$ d'étiquette $S$ associe ce qu'on peut espérer au mieux dans l'exploration du sous-arbre~:
+    On définit alors une \notion{fonction $\varphi$ d'évaluation} qui à un noeud $n$ d'étiquette $S$ associe ce qu'on peut espérer au mieux dans l'exploration du sous-arbre~:
     $$\begin{cases*}
     \displaystyle \varphi(n) \geq \max_{s \in S} f(s) &pour de la maximisation\\
     \displaystyle \varphi(n) \leq \min_{s \in S} f(s) &pour de la minimisation
@@ -115,7 +115,7 @@
 
 \end{definition}
 
-\begin{definition}{6.10}{algorithme par séparation-évaluation}
+\begin{definition}{6.11}{algorithme par séparation-évaluation}
     Un \notion{algorithme par séparation évaluation (Branch \& Bound)} repose \notion{une fonction d'évaluation $\varphi$} et sur trois règles~:
     \begin{enumeratebf}
         \item \notion{règle de sélection} : impose un ordre d'exploration des fils de chaque sous-arbre de recherche de solutions
@@ -158,11 +158,11 @@
     \end{lstLNat}
 \end{implementation}
 
-\begin{definition}{6.11}{relaxation d'un problème d'optimisation}
+\begin{definition}{6.12}{relaxation d'un problème d'optimisation}
     On appelle \notion{relaxation d'un problème d'optimisation $\mc{P}$} un problème $\mc{P}'$ construit à partir de $\mc{P}$ en omettant une ou plusieurs contraintes. $\mc{P}'$ comporte alors de la même fonction de coût, les mêmes instances, mais l'ensemble des solutions possibles est plus grand pour l'inclusion.
 \end{definition}
 
-\begin{definition}{6.12}{généralisation d'un problème d'optimisation}
+\begin{definition}{6.13}{généralisation d'un problème d'optimisation}
     On appelle \notion{généralisation d'un problème d'optimisation $\mc{P}$}  un problème $\mc{P}'$ tel que~:
     \begin{itemize}
         \item les deux ont la même fonction de coût, avec le même objectif (maximisation ou minimisation)
