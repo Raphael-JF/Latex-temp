@@ -48,4 +48,50 @@
     $$\int_0^{+\infty}e^{-\alpha t} \d{t} = \frac{1}{\alpha}$$
 \end{theoreme}
 
+\begin{theoreme}{12.55}{de convergence dominée pour une suite de fonctions définies sur un intervalle}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(I,\K)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{CM}(I,\K)$.
+        \item $(f_n)_{n \in \N}$ converge simplement sur $I$ et sa limite y est continue par morceaux.
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(I, \R_+)$ une fonction intégrable telle que pour tout $n \in \N$, $\abs{f_n} \leq \varphi$
+    \end{enumeratebf}
+    les fonctions $f_n$ sont intégrables, ainsi que leur limite simple et on peut échanger les symboles "$\lim$" et "$\int$"~:
+    $$\lim_{n \to +\infty} \int_{I} f_n = \int_{I} \lim_{n \to +\infty} f_n $$
+\end{theoreme}
+
+\begin{theoreme}{12.59}{de convergence dominée pour une série de fonctions définies sur un intervalle}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(I,\K)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{CM}(I,\K)$ et $f_n$ est intégrable.
+        \item $\sum_n f_n$ converge simplement sur $I$ et sa somme y est continue par morceaux.
+        \item la série $\sum_n \int_I \abs{f_n(t)}$ converge.
+    \end{enumeratebf}
+    la fonction $\displaystyle\sum_{n=0}^{+\infty}f_n$ est intégrable sur $I$ et on peut échanger les symboles "$\sum$" et "$\int$"~:
+    $$\sum_{n=0}^{+\infty} \int_I f_n = \int_I \sum_{n=0}^{+\infty} f_n$$
+\end{theoreme}
+
+\begin{theoreme}{12.61}{théorème de convergence dominée à paramètre continu}
+    Soit $A \subset \R^m$, $I$ un intervalle de $\R$ et $f \in \mc{F}(A\times I,\, \K)$. Sous réserve des hypothèses suivantes~:
+    \begin{enumeratebf}
+        \item $\forall x \in A,\,  f(x,\cdot) \in \mc{CM}(I,\K)$ où $f(x,\cdot): t \mapsto f(x,t)$.
+        \item Pour un certain $x_0 \in \overline{A}$ la fonction $\displaystyle \lim_{x \to x_0}f(x,\cdot)$ est continue par morceaux sur $I$.
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(I, \R_+)$ intégrable, majorant $f(x,\cdot)$ pour tout $x \in A$.
+    \end{enumeratebf}
+    Pour tout $x \in A$ la fonction $f(x, \cdot)$ est intégrable sur $I$, de même pour $\displaystyle \lim_{x \to x_0}f(x,\cdot)$, et on peut échanger les symboles "$\lim$" et "$\int$"~:
+    $$\int_I \lim_{x \to x_0} f(x,\cdot) = \lim_{x \to x_0} \int_I f(x,\cdot)$$
+\end{theoreme}
+
+\begin{theoreme}{12.63}{théorème de continuité sous le signe $\int$}
+    Soit $A \subset \R^m$, $I$ un intervalle de $\R$ et $f \in \mc{F}(A\times I,\, \K)$. Sous réserve des hypothèses suivantes~:
+    \begin{enumeratebf}
+        \item $\forall x \in A,\,  f(x,\cdot) \in \mc{CM}(I,\K)$ où $f(x,\cdot): t \mapsto f(x,t)$
+        \item $\forall t \in I,\, f(\cdot, t) \in \mc{C}^0(A, \K)$ où $f(\cdot,t):x \mapsto f(x,t)$
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(I, \R_+)$ intégrable, majorant $f(x,\cdot)$ pour tout $x \in A$.
+    \end{enumeratebf}
+    Pour tout $x \in A$ la fonction $f(x, \cdot)$ est intégrable sur $I$, et la fonction $\displaystyle x \mapsto \int_I f(x,t)\d{t}$ est continue sur $A$.
+\end{theoreme}
+
+
+
+
 \input{../../stock/pied.tex}
