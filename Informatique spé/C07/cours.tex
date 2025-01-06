@@ -136,28 +136,28 @@
     \begin{itemize}
         \item des symboles de constante (comme $0$, $\varnothing$, $\pi$,...)
         \item des symboles de fonctions, comme $+ (5,3)$
-        \item des symboles de relations, comme $=$, $\neq$, $\geq$, $>$
+        \item des symboles de relations, comme $=$, $\neq$, $\geq$, $>$.
     \end{itemize}
 \end{definition}
 
 \begin{definition}{7.21}{terme en logique du premier ordre}
     L'ensemble des \notion{termes pour un langage du premier ordre} est défini inductivement~:
     \begin{itemize}
-        \item un symbole de constante est un terme
-        \item une variable est un terme (inconnue impliquée dans les quantificateurs entre autres)
-        \item pour $t_1, \dots, t_n$ des termes et $f$ un symbole de fonction d'arité $n$, $f(t_1, \dots, t_n)$
+        \item un symbole de constante est un terme.
+        \item une variable, inconnue impliquée dans les quantificateurs entre autres, est un terme.
+        \item pour $t_1, \dots, t_n$ des termes et $f$ un symbole de fonction d'arité $n$, $f(t_1, \dots, t_n)$ est un terme.
     \end{itemize}
 \end{definition}
 
 \begin{definition}{7.22}{formule de la logique du premier ordre}
-    L'ensemble des formules de la logique du premier ordre pour un langage du premier ordre est défini inductivement~:
+    L'ensemble des \notion{formules de la logique du premier ordre pour un langage du premier ordre} est défini inductivement~:
     \begin{enumeratebf}
         \item les formules suivantes, appelées \notion{formules atomiques} sont de telles formules~:
         \begin{itemize}
             \item $\top$ et $\bot$ sont des formules atomiques
             \item pour $t_1, \dots, t_k$ des termes et $\mc{R}$ un symbole de relation d'arité $k$, $R(t_1,\dots, t_k)$ est une formule atomique
         \end{itemize}
-        \item pour $F_1$ et $F_2$ deux telles formules~: 
+        \item pour $F_1$ et $F_2$ deux formules de la logique du premier ordre~: 
         \begin{itemize}
             \item $F_1 \wedge F_2$ en est une.
             \item $F_1 \vee F_2$ en est une.
@@ -165,12 +165,17 @@
             \item $F_1 \leftrightarrow F_2$ en est une.
             \item $\lnot F_1$ en est une.
         \end{itemize}
-        \item $F(x)$ un formule faisant intervenir la variable $x$~:
+        \item $F(x)$ une formule de la logique du premier ordre faisant intervenir la variable $x$~:
         \begin{itemize}
             \item $\forall x.F(x)$ en est une.
             \item $\exists x.F(x)$ en est une.
         \end{itemize}
     \end{enumeratebf}
+\end{definition}
+
+\begin{definition}{7.23}{portée d'une variable, caractères libre et lié d'une variable}
+    En logique du premier ordre, pour $P$ une formule, et $x$ une variable (inconnue impliquée dans les quantificateurs entre autres), on dit que \notion{dans les formules $\forall x.P$ et $\exists x.P$, la portée de la variable $x$ est $P$} et on dit que \notion{$x$ est dans la portée du quantificateur} qui lui précède.\\
+    Une \notion{occurrence d'une variable libre} est une variable ne se trouvant dans la portée d'aucun quantificateur, autrement elle est dite \notion{liée}.
 \end{definition}
 
 
