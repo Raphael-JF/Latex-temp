@@ -1,0 +1,67 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\begin{definition}{8.1}{processus}
+    Un \notion{processus} est un programme en cours d'exécution. Il occupe la mémoire selon l'organisation suivante~
+    \begin{itemize}
+        \item le \notion{segment de donnée}, qui constitue une zone de mémoire "fixe" pour stocker les \notion{variables globales}, ainsi que les \notion{constantes}.
+        \item le \notion{tas}, où sont stockées les variables allouées dynamiquement.
+        \item la \notion{pile}, une zone de mémoire de taille variable où sont stockés 
+        \begin{itemize}
+            \item les \notion{blocs d'activation} pour chaque appel de fonction contenant les variables locales aux fonctions
+            \item un \notion{pointeur d'instruction} vers le segment de code qui contient l'adresse de la prochaine instruction dans le \notion{segment de code}
+        \end{itemize}
+        \item le \notion{segment de code}, où sont stockés les isntructions du programme
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}{8.2}{}
+    Deux processus distincts ne partagent pas leur zones de mémoire.
+\end{remarque}
+
+\begin{remarque}{8.3}{}
+    Pour les faire communiquer, on a besoin de faire des \notion{appels système}. Par exemple, on utilise un ficher utilisé par deux processus en lecture/écriture.
+\end{remarque}
+
+\begin{remarque}{8.4}{}
+    On dit que le \notion{contexte d'un processus} est \notion{lourd} car sa création est son activation sont coûteux.
+\end{remarque}
+
+\begin{definition}{8.5}{instruction atomique}
+    Une \notion{instruction atomique} est une instruction qui s'effectue sans interruption.
+\end{definition}
+
+\begin{definition}{8.5}{fil d'exécution (thread)}
+    Un \notion{fil d'exécution} (dit \textit{thread}) est une séquence d'\notion{instructions atomiques} : instructions s'effectuant sans interruption.\\
+    Généralement, un \notion{fil d'exécution} est matérialisé par une fonction en cours d'exécution.
+\end{definition}
+
+\begin{remarque}{8.6}{création d'un fil d'exécution}
+    Pour créer un fil d'exécution, on définit sa \notion{tâche} sous la forme d'une fonction et on lui associe une pile listant les instructions à traîter.
+\end{remarque}
+
+\begin{remarque}{8.7}{}
+    Un processus peut contenir plusieurs fils d'exécutions~:
+    \begin{itemize}
+        \item un désigné \notion{principal}
+        \item tous ceux créés en plus : on a autant de piles dans la mémoire que de fils d'exécution.
+    \end{itemize}
+    voir figure 
+\end{remarque}
+
+Plusieurs fils d'exécution peuvent partager des données stockées dans le tas ou le segment de données.
+
+Théoriquement, ils ont accès avec les adresses mémoires aux piles des autres fils, mais ce n'est pas utilisé en pratique.
+
+On dit que le \notion{contexte} des fils d'exécution est \notion{léger} car la création, l'activation et la communication est facilitée et peu coûteuse.
+
+Les fils d'exécutions s'exécutent indépendamment les uns les autes.
+
+Un fil seul est \notion{séquentiel}. On dit qu'une programme est \notion{concurrent} lorsqu'il a plusieurs fils d'exécution (concurrent au sens de "se passe en même temps").
+
+L'exécution repose sur un \notion{entrelacement} \notion{non déterministe} des fils d'exécution.
+
+\input{../../stock/pied.tex}
+
