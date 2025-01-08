@@ -14,4 +14,37 @@
 \begin{definition}{9.3}{couple d'oxydoréduction}
     Un \notion{couple oxydant/réducteur} est l'association de deux espèces chimiques dont chacune peut être obtenue à partir de l'autre via une réaction d'oxydoréduction (\ie un échange d'électrons).
 \end{definition}
+
+\begin{definition}{9.4}{numéro atomique}
+    Le \notion{numéro atomique} (noté $Z$) d'un élément chimique est son nombre de protons. Pour un élément stable, c'est également son nombre d'électrons.
+\end{definition}
+
+\begin{definition}{9.5}{nombre de masse}
+    Le \notion{nombre de masse} (noté $A$) d'un élément chimique est son nombre de nucléons (protons et neutrons).
+\end{definition}
+
+\begin{proposition}{9.6}{neutralité électrique et nombre d'oxydation}
+    Pour un édifice chimique stable, la somme des nombres d'oxydation de chaque composé de l'édifice est nulle.
+    Plus généralement cette somme vaut la charge de l'édifice.
+\end{proposition}
+
+\newcommand{\pstand}{E^\circ}
+
+
+\begin{definition}{9.7}{potentiel électrique standard}
+    À tout couple d'oxydoréduction on associe un \notion{potentiel standard $\pstand$} caractérisant la force de l'oxydant et du réducteur~:
+    \begin{itemize}
+        \item plus $\pstand$ est grand, plus l'oxydant est fort.
+        \item plus $\pstand$ est petit, plus le réducteur est fort.
+    \end{itemize}
+    Les potentiels standard sont des grandeurs tabulées.
+\end{definition}
+
+\begin{theoreme}{9.8}{relation de Nernst}
+    Étant donnée la demi-équation du couple $(\mc{O}, \mc{R})$, impliquant $n$ électrons, à température ambiante~:
+    $$E(\mc{O}/\mc{R}) = E^0(\mc{O}/\mc{R}) + \frac{0,06}{n}\log_{10}\Bigg(\frac{ \displaystyle \prod_{A \text{ côté oxydant}}a_A^{\nu_A}}{\displaystyle\prod_{B \text{ côté réducteur}}a_B^{\nu_B}}\Bigg)$$
+\end{theoreme}
+
+
+
 \input{../../stock/pied.tex}
