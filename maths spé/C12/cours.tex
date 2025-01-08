@@ -91,6 +91,30 @@
     Pour tout $x \in A$ la fonction $f(x, \cdot)$ est intégrable sur $I$, et la fonction $\displaystyle x \mapsto \int_I f(x,t)\d{t}$ est continue sur $A$.
 \end{theoreme}
 
+\begin{theoreme}{12.69}{de classe $\mc{C}^1$ sous le signe $\int$}
+    Soit $A$ et $I$ deux intervalle de $\R$ et $f \in \mc{F}(A\times I,\, \K)$. Sous réserve des hypothèses suivantes~:
+    \begin{enumeratebf}
+        \item $\forall t \in I,\, f(\cdot, t) \in \mc{C}^1(A, \K)$.
+        \item $\displaystyle \forall x \in A,\, f(x,\cdot) \in \mc{CM}(I,K)$ et est intégrable.
+        \item $\displaystyle \forall x \in A,\, \derivepar{}{f}{x}(x,\cdot) \in \mc{CM}(I,\K)$
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(I, \R_+)$ intégrable, majorant $\displaystyle\Bigg\vert\derivepar{}{f}{x}(x,\cdot)\Bigg\vert$ pour tout $x \in A$.
+    \end{enumeratebf}
+    pour tout $x \in A$, la fonction $\displaystyle\derivepar{}{f}{x}(x,\cdot)$ est intégrable sur $I$ et la fonction $\displaystyle F : x \mapsto \int_I f(x,t)\d{t}$ est de classe $\mc{C}^1$ sur $A$ avec~:
+    $$F^{(k)} : x \mapsto \int_I \derivepar{}{f}{x}(x,t)\d{t}$$
+\end{theoreme}
+
+\begin{theoreme}{12.74}{de classe $\mc{C}^k$ sous le signe $\int$, avec hypothèses minimales}
+    Soit $A$ et $I$ deux intervalle de $\R$ et $f \in \mc{F}(A\times I,\, \K)$. Sous réserve des hypothèses suivantes~:
+    \begin{enumeratebf}
+        \item $\forall t \in I,\, f(\cdot, t) \in \mc{C}^k(A, \K)$.
+        \item $\displaystyle \forall i \in \intint{0}{k-1},\, \forall x \in A,\, \derivepar{i}{f}{x}(x,\cdot) \in \mc{CM}(I,K)$ et est intégrable.
+        \item $\displaystyle \forall x \in A,\, \derivepar{k}{f}{x}(x,\cdot) \in \mc{CM}(I,\K)$
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(I, \R_+)$ intégrable, majorant $\displaystyle\Bigg\vert\derivepar{k}{f}{x}(x,\cdot)\Bigg\vert$ pour tout $x \in A$.
+    \end{enumeratebf}
+    pour tout $x \in A$, la fonction $\displaystyle\derivepar{k}{f}{x}(x,\cdot)$ est intégrable sur $I$ et la fonction $\displaystyle F : x \mapsto \int_I f(x,t)\d{t}$ est de classe $\mc{C}^k$ sur $A$ avec~:
+    $$F^{(k)} : x \mapsto \int_I \derivepar{k}{f}{x}(x,t)\d{t}$$
+\end{theoreme}
+
 
 
 
