@@ -138,6 +138,7 @@
         \item des symboles de fonctions, comme $+ (5,3)$
         \item des symboles de relations, comme $=$, $\neq$, $\geq$, $>$.
     \end{itemize}
+    Les constantes et images des symboles de fonctions sont des éléments d'un ensemble d'étude, appelé \notion{domaine}, qui dépend du langage du premier ordre
 \end{definition}
 
 \begin{definition}{7.21}{terme en logique du premier ordre}
@@ -176,6 +177,30 @@
 \begin{definition}{7.23}{portée d'une variable, caractères libre et lié d'une variable}
     En logique du premier ordre, pour $P$ une formule, et $x$ une variable (inconnue impliquée dans les quantificateurs entre autres), on dit que \notion{dans les formules $\forall x.P$ et $\exists x.P$, la portée de la variable $x$ est $P$} et on dit que \notion{$x$ est dans la portée du quantificateur} qui lui précède.\\
     Une \notion{occurrence d'une variable libre} est une variable ne se trouvant dans la portée d'aucun quantificateur, autrement elle est dite \notion{liée}.
+\end{definition}
+
+\begin{definition}{7.24}{caractères libre et lié d'une occurrence d'une variable}
+    En logique du premier ordre, pour $F$ une formule, une occurrence précise d'une variable est~:
+    \begin{itemize}
+        \item \notion{libre} si elle n'est dans la portée d'aucun quantificateur.
+        \item \notion{liée} si elle est dans la portée d'au moins quantificateur.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{7.25}{caractères libre et lié d'un variable dans une formule}
+    En logique du premier ordre, pour $F$ une formule, une variable $x$~:
+    \begin{itemize}
+        \item \notion{libre dans $F$} s'il existe une occurrence de $x$ libre dans $F$
+        \item \notion{liée dans $F$} s'il existe une occurrence de $x$ libre dans $F$.
+    \end{itemize}
+\end{definition}
+
+
+\begin{definition}{7.24}{règle d'introduction du quantificateur universel}
+    En déduction naturelle munie de la logique du premier ordre, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$ et $B$~:
+    $$\frac{\Gamma \these \varphi(x)}{\Gamma \these \forall x.\varphi(x)}(\mr{i}\forall)$$
+    valable si toutes les occurrences de $x$ sont non libres.
+    telle est la \notion{règle d'élimination du quantificateur universel}.
 \end{definition}
 
 
