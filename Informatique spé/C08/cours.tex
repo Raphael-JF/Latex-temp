@@ -3,39 +3,41 @@
 \begin{adjustwidth}{-3cm}{-3cm}
 \input{../../stock/commands.tex}
 
+\section{Fils d'exécution}
+
 \begin{definition}{8.1}{processus}
     Un \notion{processus} est un programme en cours d'exécution. Il occupe la mémoire selon l'organisation suivante~
     \begin{itemize}
-        \item le \notion{segment de donnée}, qui constitue une zone de mémoire "fixe" pour stocker les \notion{variables globales}, ainsi que les \notion{constantes}.
+        \item le \notion{segment de données}, qui constitue une zone de mémoire "fixe" pour stocker les variables globales, ainsi que les constantes.
         \item le \notion{tas}, où sont stockées les variables allouées dynamiquement.
-        \item la \notion{pile}, une zone de mémoire de taille variable où sont stockés 
+        \item la \notion{pile}, une zone de mémoire de taille variable où sont stockés~:
         \begin{itemize}
-            \item les \notion{blocs d'activation} pour chaque appel de fonction contenant les variables locales aux fonctions
-            \item un \notion{pointeur d'instruction} vers le segment de code qui contient l'adresse de la prochaine instruction dans le \notion{segment de code}
+            \item les \notion{blocs d'activation} pour chaque appel de fonction contenant les variables locales aux fonctions.
+            \item un \notion{pointeur d'instruction} vers le segment de code qui contient l'adresse de la prochaine instruction dans le \notion{segment de code}.
         \end{itemize}
-        \item le \notion{segment de code}, où sont stockés les isntructions du programme
+        \item le \notion{segment de code}, où sont stockés les instructions du programme.
     \end{itemize}
 \end{definition}
 
-\begin{remarque}{8.2}{}
-    Deux processus distincts ne partagent pas leur zones de mémoire.
+\begin{remarque}{8.2}{contexte d'un processus}
+    Deux processus ne partagent pas leur zone de mémoire. Pour communiquer, ils doivent effectuer des \notion{appels système} (interaction avec du matériel physique comme la mémoire ou les périphériques) coûteux. Pour cette raison on dit que \notion{le contexte d'un processus est lourd}.
 \end{remarque}
 
 \begin{remarque}{8.3}{}
-    Pour les faire communiquer, on a besoin de faire des \notion{appels système}. Par exemple, on utilise un ficher utilisé par deux processus en lecture/écriture.
+    Pour les faire communiquer, on a besoin de faire des \notion{appels système}. Par exemple, on utilise un fichier utilisé par deux processus en lecture/écriture.
 \end{remarque}
 
 \begin{remarque}{8.4}{}
     On dit que le \notion{contexte d'un processus} est \notion{lourd} car sa création est son activation sont coûteux.
 \end{remarque}
 
-\begin{definition}{8.5}{instruction atomique}
-    Une \notion{instruction atomique} est une instruction qui s'effectue sans interruption.
-\end{definition}
-
 \begin{definition}{8.5}{fil d'exécution (thread)}
-    Un \notion{fil d'exécution} (dit \textit{thread}) est une séquence d'\notion{instructions atomiques} : instructions s'effectuant sans interruption.\\
-    Généralement, un \notion{fil d'exécution} est matérialisé par une fonction en cours d'exécution.
+    Un \notion{fil d'exécution} (dit \textit{thread}) est une séquence d'\notion{instructions atomiques} : instructions s'effectuant individuellement sans interruption. On le définit par~:
+    \begin{itemize}
+        \item sa \notion{tâche}, sous la forme d'une fonction.
+        \item une pile listant les intructions atomiques à traîter.
+    \end{itemize}
+    Un processus peut contenir plusieurs fils d'exécutions dont un désigné \notion{principal}.
 \end{definition}
 
 \begin{remarque}{8.6}{création d'un fil d'exécution}
@@ -51,6 +53,11 @@
     voir figure 
 \end{remarque}
 
+\begin{remarque}{8.8}{contexte d'un fil d'exécution}
+    Les fils d'exécution peuvent partager des données stockées dans le tas ou le segment de données. Ainsi, on dit que le \notion{contexte} des fils d'exécution est \notion{léger} car la création, l'activation et la communication est facilitée et peu coûteuse.\\
+    Pour autant, les fils d'exécution s'exécutent indépendamment les uns des autres.
+\end{remarque}
+
 Plusieurs fils d'exécution peuvent partager des données stockées dans le tas ou le segment de données.
 
 Théoriquement, ils ont accès avec les adresses mémoires aux piles des autres fils, mais ce n'est pas utilisé en pratique.
@@ -59,9 +66,219 @@ On dit que le \notion{contexte} des fils d'exécution est \notion{léger} car la
 
 Les fils d'exécutions s'exécutent indépendamment les uns les autes.
 
-Un fil seul est \notion{séquentiel}. On dit qu'une programme est \notion{concurrent} lorsqu'il a plusieurs fils d'exécution (concurrent au sens de "se passe en même temps").
+\begin{definition}{8.9}{programmes séquentiel, concurrent}
+    Un \notion{programme séquentiel} est un programme utilisant un seul fil d'exécution. Un \notion{programme concurrent} en utilise plusieurs à la fois.
+\end{definition}
+
+Un fil seul est \notion{séquentiel}. On dit qu'un programme est \notion{concurrent} lorsqu'il a plusieurs fils d'exécution (concurrent au sens de "se passe en même temps").
 
 L'exécution repose sur un \notion{entrelacement} \notion{non déterministe} des fils d'exécution.
+
+Dans un programme concurrent, initialement on a un fil d'exécution principal, puis on a des phases avec plusieurs fils d'execution en parallèle. Il faut explicitement attendre la terminaison des \notion{fils secondaires} pour revenir à un unique fil principal avant la fin du processus. Voir Fig.2 \\
+Si on n'attend pas explicitement, des fils secondaires peuvent ne pas avoir terminé leur \notion{tâche} au moment où le fil principal termine le processus.
+
+\begin{implementation}{exemple de programme concurrent en pseudocode}
+    \code{t} pour tâche.
+    \begin{lstLNat}
+    $F$(nom):
+        pour i=1 jusqu'à 10:
+            afficher nom
+            afficher i
+    MAIN(): // programme concurrent
+        t1 = création du fil 1 réalisant la tâche $F$ sur "Fil 1"
+        t2 = création du fil 2 réalisant la tâche $F$ sur "Fil 2"
+        attendre la fin de t1
+        attendre la fin de t2
+        afficher "Fin"
+    \end{lstLNat}
+    On a trois fils d'exécutions en parallèle~:
+    \begin{itemize}
+        \item un pour la fonction \code{MAIN} (le \notion{fil principal})
+        \item le fil 1 pour $F$ sur "Fil1"
+        \item le fil 2 pour $F$ sur "Fil2"
+    \end{itemize}
+\end{implementation}
+
+On a plusieurs résultats possibles, issus de différents entrelacements.\\
+
+À chaque exécution, on peut avoir une issue différente : c'est \notion{non déterministe}.
+
+
+
+\begin{exemple}{8.13}{}
+    voir feuilles
+\end{exemple}
+
+\begin{exemple}{8.14}{}
+    voir feuilles
+\end{exemple}
+
+En C, pour pouvoir créer des fils d'exécution, il est nécessaire d'inclure l'en-tête~:
+$$\code{#include <pthread.h>}$$
+permettant l'utilisation de la bibliothèque POSIX \code{pthread}.\\
+De plus, à la compilation, il faut ajouter l'option de compilation~:
+$$\code{-pthread}$$
+
+On a un type décrivant les fils d'exécution~:
+$$\code{pthread\_t}$$
+
+Pour créer un fil d'exécution, on utilise la fonction de prototype suivant~:
+\begin{lstC}
+    int pthread_create(
+        pthread_t* thread,
+        const pthread_attr_t* attr,
+        void* (*start_routine) (void*), //transtypage
+        void* arg
+    );
+\end{lstC}
+
+Avant d'appeler \code{pthread\_create}, il faut créer un pointeur du type \code{pthread\_t*} valide (la mémoire est allouée avant appel, mais avoir défini sur la pile convient, auquel cas on y rentre \code{&file}, car il lui faut quand même un pointeur, cf exemple ci-dessous).\\
+On déclare un fil~:
+\begin{lstC}
+    pthread_t t1; // alloué sur la pile ici
+    pthread_create(&t1, $\dots$); // et on y met le pointeur
+\end{lstC}
+
+
+
+\begin{remarque}{8.15}{concernant le paramètre \code{*start\_routine}}
+    On écrit préalablement une fonction \code{start\_routine} qui correspond à la tâche du fil créé et qui doit être du prototype~:
+    \begin{lstC}
+        void* start_routine(void* arg)
+    \end{lstC}
+    Bien qu'on ait un unique argument de type \code{void*}, grâce au transtypage et à l'utilisation de structures bien choisies, on peut pallier à cette restriction. De même pour le retour de la fonction $\code{start\_routine}$.\\
+    Néammoins, en MPI, on ne récupère pas la sortie : en pratique, on écrit dans des variables partagées entre les fils (merci les pointeurs !).\\
+    Théoriquement, la fonction prend un pointeur vers une fonction, mais les deux syntaxes fonctionnent (attention au sujet dans ce cas).
+    \begin{lstC}
+        pthread_create(&t1, $\dots$, start_routine, $\dots$);
+        pthread_create(&t1, $\dots$, &start_routine, $\dots$);
+    \end{lstC}
+\end{remarque}
+
+\begin{remarque}{8.16}{concernant le paramètre \code{void* arg}}
+    \code{arg} est l'argument que l'on donne à la fonction \code{start\_routine} pour le fil créé.\\
+    Il vaut \code{NULL} si aucun argument n'est à transférer.
+\end{remarque}
+
+\begin{remarque}{8.17}{concernant le paramètre \code{const pthread\_attr\_t* attr}}
+    En MPI, il vaut \code{NULL}.
+\end{remarque}
+
+\begin{remarque}{8.18}{concernant la sortie de \code{pthread\_create}}
+    La valeur de retour de \code{pthread\_create} est un entier~:    
+    \begin{itemize}
+        \item \code{0} si tout se passe bien.
+        \item un code d'erreur sinon.
+    \end{itemize}
+    Mais en MPI, on ignore cette sortie.
+\end{remarque}
+
+Pour attendre la fin de l'exécution d'un fil dans un autre, (pas forcément dans le \notion{fil principal}), on utilise la fonction~:\\
+\begin{lstC}
+    int pthread_join(
+        pthread_t thread,
+        void** value_ptr
+    );
+\end{lstC}
+
+\begin{remarque}{8.19}{paramètre \code{thread}}
+    \code{thread} est le fil dont on attend la terminaison. En MPI, \code{value\_ptr} est toujours \code{NULL}.
+\end{remarque}
+
+\begin{implementation}{implémentation en C du pseudocode précédent}
+    \begin{lstC}
+        #include <pthread.h>
+        #include <stdio.h>
+
+        void* F(void* arg){ // au lieu de char* str, on GÉNÉRALISE en y mettant directement le arg qu'on rentre dans la création du thread !
+            char* chaine = (char*) arg;
+            for (int i=0; i<1000; i++){
+                printf("%s %d\n", chaine, i);
+            }
+            return NULL; // important !
+        }
+
+        int main(){
+            pthread_t t1, t2;
+            pthread_create(&t1, NULL, &F, "Fil1");
+            pthread_create(&t2, NULL, &F, "Fil2");
+            pthread_join(t1, NULL);
+            pthread_join(t2, NULL);
+            printf("Fin");
+            return 0;
+        }
+    \end{lstC}
+\end{implementation}
+
+En OCaml, on utilise le module \code{Thread}.
+Cela ne fonctionne pas en mode interactif, il faut compiler-exécuter avec des options de compilation.
+$$\code{ocamlc -I +threads unix.cma threads.cma ficher.ml -o fichier}$$
+$$\code{ocamlopt -I +threads unix.cmxa threads.cmxa ficher.ml -o fichier}$$
+Le type des fils d'exécution est~:
+$$\code{Thread.t}$$
+Pour créer un fil d'exécution~:
+\begin{lstOCaml}
+    Thread.create : ('a -> 'b) -> 'a -> Thread.t
+\end{lstOCaml}
+\code{Thread.create f x} crée et "renvoie" un fil d'exécution que réalise la fonction \code{f} sur l'argument \code{x}.\\\\
+Pour attendre la terminaison d'un fil dans un autre~:
+\begin{lstOCaml}
+    Thread.join : Thread.t -> unit
+\end{lstOCaml}
+
+\begin{implementation}{implémentation en OCaml du précédent pseudocode}
+    \begin{lstOCaml}
+        let f chaine = 
+            for i=0 to 1000 do
+                print_string (chaine^(string_of_int i)^"\n");
+            done
+
+        let t1 = Thread.create f "File 1 : "
+        let t2 = Thread.create f "File 2 : "
+        let () = Thread.join t1; Thread.join t2
+        let () = print_string "Fin"
+    \end{lstOCaml}
+\end{implementation}
+
+\section{Synchronisation et concurrence}
+
+\subsection{Pourquoi faut-il synchroniser ?}
+
+Pour que les fils coopèrent sur des variables partagées, il faut leur permettre de communiquer.
+
+\begin{implementation}{deux fils d'exécutions communiquantes en C}
+    On écrit un programme qui utilisent deux fils d'exécution qui incrémentent un \notion{entier commun}.
+    \begin{lstC}
+        void* f(void* arg){
+            for (int i=0; i<1000; i++){
+                *((int*) arg) = *((int*) arg) + 1; // déréférencement
+            }
+            return NULL;
+        }
+        int main(){
+            int x = 0;
+            pthread_t t1, t2;
+            pthread_create(&t1, NULL, &f, (void*) &x);
+            pthread_create(&t2, NULL, &f, (void*) &x); // l'entier x est une varible partagée
+
+            pthread_join(t1, NULL); // demande d'attendre t1
+            pthread_join(t2, NULL); // demande d'attendre t2
+            printf("x = %i \n",x);
+            return 0;
+        }
+    \end{lstC}
+    On s'attend à l'affichage de $\code{"x = 2000"}$, mais en pratique c'est plus petit.
+\end{implementation}
+    
+
+l'incrémentation n'est pas une instance atomique~:
+\begin{itemize}
+    \item on a une phase de récupération de la valeur
+    \item on a une phase d'incrémentation locale de la valeur récupérée (espace mémoire temporaire dédié)
+    \item on a une dernière phase où l'on écrit la nouvelle valeur dans l'espace mémoire dédié.
+\end{itemize}
+Dans l'entrelacement, le fil actif peut changer entre deux phases. Donc la valeur écrite dans la dernière phase peut être inférieure à la valeur. Voir Fig.3
+
 
 \input{../../stock/pied.tex}
 
