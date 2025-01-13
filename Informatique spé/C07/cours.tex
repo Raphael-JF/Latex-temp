@@ -174,9 +174,8 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{definition}{7.23}{portée d'une variable, caractères libre et lié d'une variable}
-    En logique du premier ordre, pour $P$ une formule, et $x$ une variable (inconnue impliquée dans les quantificateurs entre autres), on dit que \notion{dans les formules $\forall x.P$ et $\exists x.P$, la portée de la variable $x$ est $P$} et on dit que \notion{$x$ est dans la portée du quantificateur} qui lui précède.\\
-    Une \notion{occurrence d'une variable libre} est une variable ne se trouvant dans la portée d'aucun quantificateur, autrement elle est dite \notion{liée}.
+\begin{definition}{7.23}{portée d'une variable}
+    En logique du premier ordre, pour $P$ une formule, et $x$ une variable (inconnue impliquée dans les quantificateurs entre autres), on dit que \notion{dans les formules $\forall x.P$ et $\exists x.P$, la portée de la variable $x$ est $P$} et on dit que \notion{$x$ est dans la portée du quantificateur} qui lui précède.
 \end{definition}
 
 \begin{definition}{7.24}{caractères libre et lié d'une occurrence d'une variable}
@@ -196,11 +195,32 @@
 \end{definition}
 
 
-\begin{definition}{7.24}{règle d'introduction du quantificateur universel}
-    En déduction naturelle munie de la logique du premier ordre, Pour un ensemble $\Gamma$ de formules de la logique propositionnelle, pour toutes formules $A$ et $B$~:
-    $$\frac{\Gamma \these \varphi(x)}{\Gamma \these \forall x.\varphi(x)}(\mr{i}\forall)$$
-    valable si toutes les occurrences de $x$ sont non libres.
+\begin{definition}{7.26}{règle d'introduction du quantificateur universel}
+    En déduction naturelle munie de la logique du premier ordre, pour un ensemble $\Gamma$ de formules, pour toute formule $A$~:
+    $$\frac{\Gamma \these A(x)}{\Gamma \these \forall x.A(x)}(\mr{i}\forall)$$
+    valable si $x$ est non libre dans $A$ \ie si toutes les occurrences de $x$ dans $A$ sont liées.\\
+    telle est la \notion{règle d'introduction du quantificateur universel}.
+\end{definition}
+
+\begin{definition}{7.27}{règle d'élimination du quantificateur universel}
+    En déduction naturelle munie de la logique du premier ordre, pour un ensemble $\Gamma$ de formules, pour toute formule $A$~:
+    $$\frac{\Gamma \these \forall x.A(x)}{\Gamma \these A(t)}(\mr{e}\forall)$$
+    valable si toutes les variables libres du terme $t$ ne sont pas des variables liées dans $A$.\\
     telle est la \notion{règle d'élimination du quantificateur universel}.
+\end{definition}
+
+\begin{definition}{7.28}{règle d'introduction du quantificateur existentiel}
+    En déduction naturelle munie de la logique du premier ordre, pour un ensemble $\Gamma$ de formules, pour toute formule $A$~:
+    $$\frac{\Gamma \these A(t)}{\Gamma \these \exists x.A(x)}(\mr{i}\exists)$$
+    valable si $x$ est une variable et $t$ un terme.\\
+    telle est la \notion{règle d'introduction du quantificateur existentiel}.
+\end{definition}
+
+\begin{definition}{7.29}{règle d'élimination du quantificateur existentiel}
+    En déduction naturelle munie de la logique du premier ordre, pour un ensemble $\Gamma$ de formules, pour toutes formules $A$ et $B$~:
+    $$\frac{\Gamma \these \exists x.A(x) \quad \Gamma,\,A(x) \these B}{\Gamma \these B}(\mr{e}\exists)$$
+    valable si $x$ est non libre dans $\Gamma$ et dans $B$ \ie si toutes les occurrences de $x$ dans $B$ et les formules de $\Gamma$ sont liées.\\
+    telle est la \notion{règle d'élimination du quantificateur existentiel}.
 \end{definition}
 
 
