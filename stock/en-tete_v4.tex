@@ -17,7 +17,7 @@
 \usetikzlibrary{arrows}
 \usepackage{forest}
 \usepackage{hyperref}
-
+\setlength{\parindent}{0pt}
 % physique
 % \renewcommand*{\overrightarrow}[1]{\vbox{\halign{##\cr 
 %   \tiny\rightarrowfill\cr\noalign{\nointerlineskip\vskip1pt} 
@@ -68,20 +68,32 @@
   skipbelow=\topsep,
 ]{boite_definition}
 
-
+\newcounter{boite}
+\setcounter{boite}{1}
 \newenvironment{definition}[2]
 {
     \vspace{15pt}
     \begin{boite_definition}
-    \textbf{\textcolor{rouge}{Définition #1}}
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Définition \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\
+        \textbf{\textcolor{rouge}{Définition #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
 }
 {
     \end{boite_definition}
-    
+    \vspace{10pt}
 }
 
 \newmdenv[
@@ -106,17 +118,27 @@
 {
     \vspace{15pt}
     \begin{boite_exemple}
-    \textbf{\textcolor{bleufonce}{Exemple #1}}
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{bleufonce}{Exemple \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\ 
-}
-{   
-    \end{boite_exemple}
+        \textbf{\textcolor{bleufonce}{Exemple #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
     
 }
-
+{
+    \end{boite_exemple}
+    \vspace{10pt}
+}
 
 \newmdenv[
   nobreak=true,
@@ -139,16 +161,26 @@
 {
     \vspace{15pt}
     \begin{boite_proposition}
-    \textbf{\textcolor{rouge}{Proposition #1}}
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Proposition \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\
+        \textbf{\textcolor{rouge}{Proposition #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
 }
 {
     \end{boite_proposition}
 }
-
 
 \newmdenv[
   nobreak=true,
@@ -172,15 +204,25 @@
 {
     \vspace{15pt}
     \begin{boite_theoreme}
-    \textbf{\textcolor{rouge}{Théorème #1}} 
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Théorème \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\
+        \textbf{\textcolor{rouge}{Théorème #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
 }
 {
     \end{boite_theoreme}
-    
 }
 
 
@@ -236,15 +278,25 @@
 {
     \vspace{15pt}
     \begin{boite_remarque}
-    \textbf{\textcolor{bleufonce}{Remarque #1}}
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{bleufonce}{Remarque \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\   
-}
-{  
-    \end{boite_remarque}
+        \textbf{\textcolor{bleufonce}{Remarque #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
     
+    
+}
+{
+    \end{boite_remarque}
 }
 
 \newmdenv[
@@ -439,15 +491,25 @@
 {
     \vspace{15pt}
     \begin{boite_question}
-    \textbf{\textcolor{rouge}{Question #1}}
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Question \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\
+        \textbf{\textcolor{rouge}{Question #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
 }
 {
     \end{boite_question}
-    
 }
 
 \newmdenv[
@@ -473,13 +535,23 @@
 {
     \vspace{15pt}
     \begin{boite_corollaire}
-    \textbf{\textcolor{rouge}{Corollaire #1}}
-    \if\relax\detokenize{#2}\relax
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Corollaire \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
     \else
-        \textit{ - #2}
-    \fi \\ \\   
+        \textbf{\textcolor{rouge}{Corollaire #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
 }
 {
     \end{boite_corollaire}
-    
 }

@@ -2,10 +2,12 @@
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
 \input{../../stock/commands.tex}
+\newcounter{chapitre}
+\setcounter{chapitre}{8}
 
 \section{Fils d'exécution}
 
-\begin{definition}{8.1}{processus}
+\begin{definition}{}{processus}
     Un \notion{processus} est un programme en cours d'exécution. Il occupe la mémoire selon l'organisation suivante~
     \begin{itemize}
         \item le \notion{segment de données}, qui constitue une zone de mémoire "fixe" pour stocker les variables globales, ainsi que les constantes.
@@ -19,19 +21,19 @@
     \end{itemize}
 \end{definition}
 
-\begin{remarque}{8.2}{contexte d'un processus}
+\begin{remarque}{}{contexte d'un processus}
     Deux processus ne partagent pas leur zone de mémoire. Pour communiquer, ils doivent effectuer des \notion{appels système} (interaction avec du matériel physique comme la mémoire ou les périphériques) coûteux. Pour cette raison on dit que \notion{le contexte d'un processus est lourd}.
 \end{remarque}
 
-\begin{remarque}{8.3}{}
+\begin{remarque}{}{}
     Pour les faire communiquer, on a besoin de faire des \notion{appels système}. Par exemple, on utilise un fichier utilisé par deux processus en lecture/écriture.
 \end{remarque}
 
-\begin{remarque}{8.4}{}
+\begin{remarque}{}{}
     On dit que le \notion{contexte d'un processus} est \notion{lourd} car sa création est son activation sont coûteux.
 \end{remarque}
 
-\begin{definition}{8.5}{fil d'exécution (thread)}
+\begin{definition}{}{fil d'exécution (thread)}
     Un \notion{fil d'exécution} (dit \textit{thread}) est une séquence d'\notion{instructions atomiques} : instructions s'effectuant individuellement sans interruption. On le définit par~:
     \begin{itemize}
         \item sa \notion{tâche}, sous la forme d'une fonction.
@@ -40,11 +42,11 @@
     Un processus peut contenir plusieurs fils d'exécutions dont un désigné \notion{principal}.
 \end{definition}
 
-\begin{remarque}{8.6}{création d'un fil d'exécution}
+\begin{remarque}{}{création d'un fil d'exécution}
     Pour créer un fil d'exécution, on définit sa \notion{tâche} sous la forme d'une fonction et on lui associe une pile listant les instructions à traîter.
 \end{remarque}
 
-\begin{remarque}{8.7}{}
+\begin{remarque}{}{}
     Un processus peut contenir plusieurs fils d'exécutions~:
     \begin{itemize}
         \item un désigné \notion{principal}
@@ -53,7 +55,7 @@
     voir figure 
 \end{remarque}
 
-\begin{remarque}{8.8}{contexte d'un fil d'exécution}
+\begin{remarque}{}{contexte d'un fil d'exécution}
     Les fils d'exécution peuvent partager des données stockées dans le tas ou le segment de données. Ainsi, on dit que le \notion{contexte} des fils d'exécution est \notion{léger} car la création, l'activation et la communication est facilitée et peu coûteuse.\\
     Pour autant, les fils d'exécution s'exécutent indépendamment les uns des autres.
 \end{remarque}
@@ -66,7 +68,7 @@ On dit que le \notion{contexte} des fils d'exécution est \notion{léger} car la
 
 Les fils d'exécutions s'exécutent indépendamment les uns les autes.
 
-\begin{definition}{8.9}{programmes séquentiel, concurrent}
+\begin{definition}{}{programmes séquentiel, concurrent}
     Un \notion{programme séquentiel} est un programme utilisant un seul fil d'exécution. Un \notion{programme concurrent} en utilise plusieurs à la fois.
 \end{definition}
 
@@ -105,34 +107,34 @@ On a plusieurs résultats possibles, issus de différents entrelacements.\\
 
 
 
-\begin{exemple}{8.13}{}
+\begin{exemple}{}{}
     voir feuilles
 \end{exemple}
 
-\begin{exemple}{8.14}{}
+\begin{exemple}{}{}
     voir feuilles
 \end{exemple}
 
 En C, pour pouvoir créer des fils d'exécution, il est nécessaire d'inclure l'en-tête~:
-$$\code{#include <pthread.h>}$$
+$$\code{\#include <pthread.h>}$$
 permettant l'utilisation de la bibliothèque POSIX \code{pthread}.\\
 De plus, à la compilation, il faut ajouter l'option de compilation~:
 $$\code{-pthread}$$
 
 On a un type décrivant les fils d'exécution~:
 $$\code{pthread\_t}$$
-
+\\\\\\\\\\
 Pour créer un fil d'exécution, on utilise la fonction de prototype suivant~:
 \begin{lstC}
     int pthread_create(
         pthread_t* thread,
         const pthread_attr_t* attr,
-        void* (*start_routine) (void*), //transtypage
+        void* (*start_routine)(void*), //transtypage
         void* arg
     );
 \end{lstC}
 
-Avant d'appeler \code{pthread\_create}, il faut créer un pointeur du type \code{pthread\_t*} valide (la mémoire est allouée avant appel, mais avoir défini sur la pile convient, auquel cas on y rentre \code{&file}, car il lui faut quand même un pointeur, cf exemple ci-dessous).\\
+Avant d'appeler \code{pthread\_create}, il faut créer un pointeur du type \code{pthread\_t*} valide (la mémoire est allouée avant appel, mais avoir défini sur la pile convient, auquel cas on y rentre \code{\&file}, car il lui faut quand même un pointeur, cf exemple ci-dessous).\\
 On déclare un fil~:
 \begin{lstC}
     pthread_t t1; // alloué sur la pile ici
@@ -141,7 +143,7 @@ On déclare un fil~:
 
 
 
-\begin{remarque}{8.15}{concernant le paramètre \code{*start\_routine}}
+\begin{remarque}{}{concernant le paramètre \code{*start\_routine}}
     On écrit préalablement une fonction \code{start\_routine} qui correspond à la tâche du fil créé et qui doit être du prototype~:
     \begin{lstC}
         void* start_routine(void* arg)
@@ -155,16 +157,16 @@ On déclare un fil~:
     \end{lstC}
 \end{remarque}
 
-\begin{remarque}{8.16}{concernant le paramètre \code{void* arg}}
+\begin{remarque}{}{concernant le paramètre \code{void* arg}}
     \code{arg} est l'argument que l'on donne à la fonction \code{start\_routine} pour le fil créé.\\
     Il vaut \code{NULL} si aucun argument n'est à transférer.
 \end{remarque}
 
-\begin{remarque}{8.17}{concernant le paramètre \code{const pthread\_attr\_t* attr}}
+\begin{remarque}{}{concernant le paramètre \code{const pthread\_attr\_t* attr}}
     En MPI, il vaut \code{NULL}.
 \end{remarque}
 
-\begin{remarque}{8.18}{concernant la sortie de \code{pthread\_create}}
+\begin{remarque}{}{concernant la sortie de \code{pthread\_create}}
     La valeur de retour de \code{pthread\_create} est un entier~:    
     \begin{itemize}
         \item \code{0} si tout se passe bien.
@@ -181,16 +183,23 @@ Pour attendre la fin de l'exécution d'un fil dans un autre, (pas forcément dan
     );
 \end{lstC}
 
-\begin{remarque}{8.19}{paramètre \code{thread}}
+\begin{remarque}{}{paramètre \code{thread}}
     \code{thread} est le fil dont on attend la terminaison. En MPI, \code{value\_ptr} est toujours \code{NULL}.
 \end{remarque}
 
-\begin{implementation}{implémentation en C du pseudocode précédent}
+\begin{definition}{}{synchronisation, et pratique}
+    La \notion{synchronisation} permet de coordonner l'exécutions des fils d'exécution afin qu'ils puissent travailler ensemble de façon cohérente.\\
+    En C comme en OCaml, la fonction de synchronisation permet de bloquer l'exécution de la fonction principale (dans laquelle la fonction est appelée) pour finir l'exécution du fil d'exécution passé en argument.
+\end{definition}
+
+
+\begin{implementation}{implémentation en C d'une démonstration de l'entrelacement non déterministe}
     \begin{lstC}
         #include <pthread.h>
         #include <stdio.h>
 
-        void* F(void* arg){ // au lieu de char* str, on GÉNÉRALISE en y mettant directement le arg qu'on rentre dans la création du thread !
+        void* F(void* arg){ // au lieu de char* str, on GÉNÉRALISE en y 
+        // mettant directement le arg qu'on rentre dans la création du thread !
             char* chaine = (char*) arg;
             for (int i=0; i<1000; i++){
                 printf("%s %d\n", chaine, i);
@@ -226,7 +235,7 @@ Pour attendre la terminaison d'un fil dans un autre~:
     Thread.join : Thread.t -> unit
 \end{lstOCaml}
 
-\begin{implementation}{implémentation en OCaml du précédent pseudocode}
+\begin{implementation}{implémentation en OCaml d'une démonstration de l'entrelacement non déterministe}
     \begin{lstOCaml}
         let f chaine = 
             for i=0 to 1000 do
@@ -279,6 +288,236 @@ l'incrémentation n'est pas une instance atomique~:
 \end{itemize}
 Dans l'entrelacement, le fil actif peut changer entre deux phases. Donc la valeur écrite dans la dernière phase peut être inférieure à la valeur. Voir Fig.3
 
+\subsection{Gestion des sections critiques}
+
+\begin{definition}{}{section critique}
+    Une \notion{section critique} est une suite d'instructions (portion de code) d'un processus nécessitant d'accéder à une ressource unique et commune pour plusieus fils d'exécution. On parle de \notion{variable partagée}
+\end{definition}
+
+\textbf{Enjeu} : Un seul fil doit être capable d'accéder à une section critique pour une même ressource, en lecture ou en écriture. \\\\
+
+Pour assurer cela, on peut protéger la ressource partagée avec un \notion{verrou} que l'on peut sceller ou lever pour limiter l'accès aux sections critiques dans les différents fils. On dit qu'un fil qui est le seul à accéder à une section critique est en exclusion mutuelle.
+
+\begin{definition}{}{exclusion mutuelle}
+    Lorsqu'un fil accède à une section critique, on dit qu'il entre en \notion{exclusion mutuelle} sur la ressource : il empêche tous les autres d'y accéder.
+\end{definition}
+
+Lorsque deux fils cherchent à accéder à une même ressources et que deux entrelacements au moins donnent deux résultats différents, on parle de \notion{course critique}.
+
+\begin{remarque}{}{concernant l'exemple de l'incrémentation mutuelle}
+    Dans l'exemple de la section 2.1, on obtient différentes valeurs pour la variable commune : il s'agit d'une course critique.\\
+    On cherche à éviter les courses critiques car elles causent un comportement non déterministe.
+\end{remarque}
+
+\begin{definition}{}{propriétés usuelles d'un programme concurrent}
+    Pour un programme concurrent, on cherche à garantir plusieurs propriétés~:
+    \begin{enumeratebf}
+        \item \notion{sûreté (ou principe de l'exclusion mutuelle)} : On a au plus un fil d'exécution accédant une section critique pour une même ressource au même moment.
+        \item \notion{vivacité (ou absence de famine)}~: tout fil d'exécution demandeur d'accès à une ressource partagée aura à un moment donné accès à la ressource.
+        \item \notion{absence d'inter-blocage}~: lorsque plusieurs fils demandent accès à une ressource partagée simultanément, au moins un obtient l'accès.
+    \end{enumeratebf}
+\end{definition}
+\textbf{N.B} : la troisième est moins forte (difficile à réaliser) que la deuxième (2 implique 3), on la met car parfois on veut juste vérifier la troisième.\\
+
+\begin{remarque}{}{atomicité d'une section critique}
+    L'atomicité d'une section critique est importante. La mise en place de verrou de la forme suivante permet d'induire une atomicité de la section critique~:
+    \begin{lstNat}
+        lock()
+        // section critique
+        unlock()
+    \end{lstNat}
+\end{remarque}
+
+\begin{exemple}{}{de verrouillage}
+    \begin{center}
+        \begin{tabular}{c|c}
+            \textbf{Fil 1} & \textbf{Fil 2} \\
+            \code{t = x}         & \code{u = x}   \\ 
+            \code{x = t+1}         & \code{x = u+2}          \\ 
+        \end{tabular}
+    \end{center}
+    La variable \code{x} est une ressource partagée. Les deux morceaux sont des \notion{sections critiques pour la ressource \code{x}}.\\
+    Dans l'état actuel, on a une course critique car les deux entrelacements donnent des résutlats différents~:
+    \begin{center}
+        \begin{tabular}{c|c}
+            \textbf{Fil 1} & \textbf{Fil 2} \\
+            \code{t = x}         &    \\ 
+            \code{x = t+1}         &         \\ 
+            & \code{u = x}  \\
+            & \code{x = u+2}  
+        \end{tabular}
+    \end{center}
+    La valeur de la variable \code{x} est augementée de 3.
+    \begin{center}
+        \begin{tabular}{c|c}
+            \textbf{Fil 1} & \textbf{Fil 2} \\
+            \code{t = x}         &    \\ 
+                     &   \code{u = x}     \\ 
+            &   \code{x = u+2} \\
+            \code{x = t+1} &   
+        \end{tabular}
+    \end{center}
+    La valeur de la variable \code{x} est incrémentée.
+\end{exemple}
+
+\begin{remarque}{}{trace d'exécution}
+    On peut parler de \notion{trace d'exécution} lorsque l'on donne un entrelacement possible.
+\end{remarque}
+
+\begin{exemple}{}{élimination de section critique}
+    Pour ne plus avoir de section critique, on met en place un verrou \code{m}.
+    \begin{center}
+        \begin{tabular}{c|c}
+            \textbf{Fil 1} & \textbf{Fil 2} \\
+            lock(m) & lock(m) \\
+            t = x & u = x\\
+            x = t+1 & x = u+2\\
+            unlock(m) & unlock(m)
+        \end{tabular}
+    \end{center}
+    Le premier fil à lire l'instruction \code{lock(m)} verrouille \code{m}, le second attend alors que \code{m} soit déverrouillé pour lire la prochaine instruction.
+\end{exemple}
+
+\begin{definition}{}{mutex}
+    On met en place des verrous à l'aide de \notion{mutex} qui disposent de deux opérations élémentaires~:
+    \begin{itemize}
+        \item une opération de \notion{verrouillage}~: verrouille le mutex s'il est déverrouillé, ou bien attend que le mutex soit déverrouillé puis le verrouille.
+        \item une opération de \notion{déverrouillage}~: déverrouille le mutex.
+    \end{itemize}
+    On dit qu'un mutex est une \notion{primitive de synchronisation}, car c'est un outil utilisant des instructions simples pour gérer la synchronisation des fils d'exécutions.
+\end{definition}
+
+\begin{remarque}{}{usage de mutex en pratique}
+    Dans certains langages (dont OCaml), un mutex doit être verrouillé puis déverrouillé dans un même fil. Cela reste une bonne pratique dans les autres langages.\\
+    Lorsqu'on souhaite verrouiller dans un fil et déverrouiller dans un autre, on préfèrera l'utilisation de \notion{sémaphores} : une généralisation des mutex.
+\end{remarque}
+
+\begin{definition}{}{sémaphores binaire, à compteur}
+    Il existe deux types de \notion{sémaphores}~:
+    \begin{itemize}
+        \item les \notion{sémaphores binaires} : ce sont des mutex
+        \item les \notion{sémaphores à compteur} : une sutructre de données constituée d'un \notion{compteur} et d'une \notion{file d'attente}.
+    \end{itemize}
+    On initialise un sémaphore à compteur avec une file d'attente vide et un compteur initialisé à un entier positif.\\
+    Le sémaphore à compteur exploite deux opérations élémentaires~:
+    \begin{itemize}
+        \item \notion{demande d'accès}~: notée \code{P} ou bien \code{down} (\code{wait} en C, \code{acquire} en OCaml).\\
+            On vérifie que le compteur est strictement positif~
+            \begin{itemize}
+                \item si oui, one le décrémente et on passe à l'instruction suivante.
+                \item sinon, on attend que le compteur soit incrémenté pour un autre fil et lui applique le cas précédent dès que ça arrive.
+            \end{itemize}
+            pendant qu'il attend, le fil d'exécution est placé dans la file d'attente du sémphore à compteur.
+            \item \notion{fin d'accès}~: notée \code{V} ou bien \code{vp} (\code{post} en C, \code{release} en OCaml)\\
+            Le compteur est incrémenté et si la file d'attente n'est pas vide, un des fils de la file d'attente du sémaphore (à compteur) est "réveillé" pour décrémenter le compteur et poursuivre l'exécution du dit fil. \textbf{les fils sont donc réveillés dans un ordre non déterministe}.
+    \end{itemize}
+    \textit{on fera un pseudocode de fonctionnement, la FC est lourde là}
+\end{definition}
+
+\begin{remarque}{}{rôle du compteur du sémaphore à compteur}
+    Le compteur joue un rôle de \notion{compteur de ressources}.\\
+    La demande d'accès correspond à la récupération d'une ressource pour passer à la suite~: on attend s'il n'y en a pas de disponible.\\
+    La fin d'accès correspond à la situation où l'on rend disponible une ressource.
+\end{remarque}
+
+\begin{remarque}{}{comparaison entre sémaphores à compteur et mutex}
+    Les sémaphores sont moins restricts que les mutexs : on peut avoir des fils qui font uniquement de la demande d'accès et des fils qui font uniquement de la fin d'accès (production de ressources).
+\end{remarque}
+
+\begin{remarque}{}{initialisation du compteur d'un sémaphore à compteur}
+    On peut voir dans certaines situations la valeur du compteur initiale comme le nombre maximum souhaité de fils qui peuvent exploiter les ressources partagées simultanément.
+\end{remarque}
+
+\subsection{Mutex et sémaphores à compteurs en C}
+
+L'utilisation des mutex se fait à l'aide de la bibliothèque \code{pthread.h}. Le type utilise pour les mutex est~:
+$$\code{pthread\_mutex\_t}$$
+On iniatialise un mutex déverrouillé de la façon suivante (pour l'avoir verrouillé direct, on le verrouille aussitôt après)~:
+\begin{lstC}
+    pthrad_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
+\end{lstC}
+Si la variable protégée est une variable globale, le mutex doit être aussi une variable globale (définie sur le segment de données).
+On ensuite trois fonctions à connaître~:
+\begin{itemize}
+    \item \notion{verrouillage}~:
+    \begin{lstC}
+        int pthread_mutex_lock(pthread_mutex_t* mutex);
+    \end{lstC}
+    L'instruction \code{pthread\_mutex\_lock(&m)} verrouille \code{m} et renvoie 0 si tout s'est bien passé.
+    \item \notion{déverrouillage}~:
+    \begin{lstC}
+        int pthread_mutex_unlock(
+            pthread_mutex_t* mutex;
+        )
+    \end{lstC}
+    L'instruction \code{pthread\_mutex\_unlock(&m)} déverrouille \code{m} et renvoie 0 si tout s'est bien passé.
+    \item \notion{destruction}~:
+    \begin{lstC}
+        int pthread_mutex_destroy(
+            pthread_mutex_t* mutex;
+        )
+    \end{lstC}
+    L'instruction \code{pthread\_mutex\_destroy(&m)} détruit \code{m} (il ne peut plus être utilisé) et renvoie 0 si tout s'est bien passé.
+\end{itemize}
+
+L'utilisation des sémaphores demande l'inclusion du fichier d'en-tête \code{semaphore.h}~:
+\begin{lstC}
+    #include <semaphore.h>
+\end{lstC}
+Le type utilisé pour les sémaphores~: est \code{sem\_t}. On a ensuite quatre fonctions à connaître~:
+\begin{enumeratebf}
+    \item \notion{Initialisation}~:
+    \begin{lstC}
+    int sem_init(
+        sem_t* sem,
+        int pshared,
+        unsigned int value,
+    );
+    \end{lstC}
+    On déclare préalablement notre sémaphore et on l'initialise~:
+    \begin{lstC}
+    sem_t s;
+    sem_init(&s, 0, nmb)
+    \end{lstC}
+    avec \code{nmb} la valeur positive que l'on veut pour le compteur initialement (peut être 0).\\
+    \code{pshared} vaut 0 pour signifier que tous les fils partagent les sémaphores. Tout autre valeur relèverait du hors programme.\\
+    La valeur 0 est renvoyée si tout se passe bien.
+    \item \notion{destruction}~:
+    \begin{lstC}
+    int sem_destroy(sem_t* sem);
+    \end{lstC}
+    \item \notion{demande d'accès (P, attente)}~: 
+    \begin{lstC}
+    int sem_wait(sem_t* sem);
+    \end{lstC}
+    \item \notion{fin d'accès (V, libération)}~:
+    \begin{lstC}
+    int sem_post(sem_t* sem);
+    \end{lstC}
+\end{enumeratebf}
+
+\subsection{Mutex et sémaphores en OCaml}
+Pour les mutex, on utilise en OCaml le module Mutex. Le type utilsé est \code{Mutex.t}. Trois fonctions à connaître~:
+\begin{enumeratebf}
+    \item \notion{création}~:
+    \begin{lstOCaml}
+    Mutex.create : unit -> Mutex.t
+    \end{lstOCaml}
+    \begin{lstOCaml}
+    let m = Mutex.create ()
+    \end{lstOCaml}
+    \code{m} est un mute initialement déverrouillé
+    \item \notion{verrouillage}~:
+    \begin{lstOCaml}
+    Mutex.lock : Mutex.t -> unit
+    \end{lstOCaml}
+    \code{Mutex.lock m} verrouille le mutex \code{m}
+    \item \notion{déverrouillage}~:
+    \begin{lstOCaml}
+    Mutex.unlock : Mutex.t -> unit
+    \end{lstOCaml}
+    \code{Mutex.unlock m} déverrouille le mutex \code{m}.   
+\end{enumeratebf}
+
 
 \input{../../stock/pied.tex}
-

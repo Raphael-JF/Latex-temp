@@ -1,0 +1,45 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+
+\newcommand{\tribu}[0]{\mathcal{T}}
+\newcommand{\univ}[0]{\Omega}
+
+
+
+\begin{definition}{15.1}{tribu}
+    Pour un univers $\univ$ au plus dénombrable, on appelle \notion{tribu sur $\univ$} une partie $\tribu \subset \mc{P}(\univ)$ tel que~:
+    \begin{enumeratebf}
+        \item $\univ \in \tribu$
+        \item Pour tout $A \in \tribu, \overline{A} \in \tribu$
+        \item Pour toute suite $(A_n)_{n \in \N}$ d'éléments de $\tribu$, $\displaystyle \bigcup_{n \in \N}A_n \in \tribu$
+    \end{enumeratebf}
+    Les éléments de $\tribu$ sont appelés \notion{évènements}.
+\end{definition}
+
+\begin{definition}{15.4}{espace probabilisable}
+    Soit $\univ$ un univers au plus dénombrable et $\tribu$ une tribu sur $\univ$. Le couple $(\Omega, \tribu)$ est appelé \notion{espace probabilisable}.
+\end{definition}
+
+\begin{definition}{15.5}{système complet d'évènements}
+    Soit $(\univ, \tribu)$ un espace probabilisable associé à un univers $\univ$ au plus dénombrable. On dit qu'une famille au plus dénombrable $(A_i)_{i \in I} \in \tribu^I$ d'évènements constitue un \notion{système complet d'évènements} si~:
+    $$\univ = \bigsqcup_{i \in I}A_i$$
+\end{definition}
+
+
+\newcommand{\proba}[0]{\mathbb{P}}
+
+\begin{definition}{15.7}{probabilité sur un univers}
+    Soit $(\univ, \tribu)$ un espace probabilisable associé à un univers $\univ$ au plus dénombrable. On appelle \notion{probabilité sur $(\univ, \tribu)$} une application $\proba : \tribu \to \seg{0}{1}$ telle que~:
+    \begin{enumeratebf}
+        \item $\proba(\univ) = 1$
+        \item \notion{$\sigma$-additivité}~: Pour toute suite $(A_n)_{n \in \N}$ d'évènements deux à deux incompatibles, la série de terme général $\proba(A_n)$ converge et~:
+        $$\proba\Bigg(\bigsqcup_{n \in \N}A_n\Bigg) = \sum_{n=0}^{+ \infty} \proba(A_n)$$
+    \end{enumeratebf}
+    On dit alors que $(\univ, \tribu, \proba)$ constitue un \notion{espace probabilisé}.
+\end{definition}
+
+
+
+\input{../../stock/pied.tex}
