@@ -290,8 +290,13 @@ Dans l'entrelacement, le fil actif peut changer entre deux phases. Donc la valeu
 
 \subsection{Gestion des sections critiques}
 
+\begin{definition}{}{section critique (d'après le cours)}
+    Une \notion{section critique} est une suite d'instructions d'un processus nécessitant d'accéder à une ressource unique et commune à plusieurs fils d'exécution. On parle de \notion{variable partagée}.
+\end{definition}
+
 \begin{definition}{}{section critique}
-    Une \notion{section critique} est une suite d'instructions (portion de code) d'un processus nécessitant d'accéder à une ressource unique et commune pour plusieus fils d'exécution. On parle de \notion{variable partagée}
+    Une \notion{section critique} est une suite d'instructions que jamais plus d'un thread ne doit exécuter simultanément.\\
+    Lorsqu'un fil accède à une section critique, on dit qu'il entre en \notion{exclusion mutuelle} sur la ressource~: il empêche tous les autres d'y accéder.
 \end{definition}
 
 \textbf{Enjeu} : Un seul fil doit être capable d'accéder à une section critique pour une même ressource, en lecture ou en écriture. \\\\
@@ -300,6 +305,10 @@ Pour assurer cela, on peut protéger la ressource partagée avec un \notion{verr
 
 \begin{definition}{}{exclusion mutuelle}
     Lorsqu'un fil accède à une section critique, on dit qu'il entre en \notion{exclusion mutuelle} sur la ressource : il empêche tous les autres d'y accéder.
+\end{definition}
+
+\begin{definition}{}{course critique}
+    Lorsque deux fils cherchent à accéder à une même ressource et que plusieurs entrelacements donnent une issue différente, on parle de \notion{course critique}.
 \end{definition}
 
 Lorsque deux fils cherchent à accéder à une même ressources et que deux entrelacements au moins donnent deux résultats différents, on parle de \notion{course critique}.
@@ -321,11 +330,11 @@ Lorsque deux fils cherchent à accéder à une même ressources et que deux entr
 
 \begin{remarque}{}{atomicité d'une section critique}
     L'atomicité d'une section critique est importante. La mise en place de verrou de la forme suivante permet d'induire une atomicité de la section critique~:
-    \begin{lstNat}
+    \begin{lstLNat}
         lock()
         // section critique
         unlock()
-    \end{lstNat}
+    \end{lstLNat}
 \end{remarque}
 
 \begin{exemple}{}{de verrouillage}
@@ -369,10 +378,10 @@ Lorsque deux fils cherchent à accéder à une même ressources et que deux entr
     \begin{center}
         \begin{tabular}{c|c}
             \textbf{Fil 1} & \textbf{Fil 2} \\
-            lock(m) & lock(m) \\
-            t = x & u = x\\
-            x = t+1 & x = u+2\\
-            unlock(m) & unlock(m)
+            \code{lock(m)} & \code{lock(m)} \\
+            \code{t = x} & \code{u = x}\\
+            \code{x = t+1} & \code{x = u+2}\\
+            \code{unlock(m)} & \code{unlock(m)}
         \end{tabular}
     \end{center}
     Le premier fil à lire l'instruction \code{lock(m)} verrouille \code{m}, le second attend alors que \code{m} soit déverrouillé pour lire la prochaine instruction.
@@ -389,7 +398,7 @@ Lorsque deux fils cherchent à accéder à une même ressources et que deux entr
 
 \begin{remarque}{}{usage de mutex en pratique}
     Dans certains langages (dont OCaml), un mutex doit être verrouillé puis déverrouillé dans un même fil. Cela reste une bonne pratique dans les autres langages.\\
-    Lorsqu'on souhaite verrouiller dans un fil et déverrouiller dans un autre, on préfèrera l'utilisation de \notion{sémaphores} : une généralisation des mutex.
+    Lorsqu'on souhaite verrouiller dans un fil et déverrouiller dans un autre, on préfèrera l'utilisation de \notion{sémaphores}~: une généralisation des mutex.
 \end{remarque}
 
 \begin{definition}{}{sémaphores binaire, à compteur}
@@ -414,6 +423,37 @@ Lorsque deux fils cherchent à accéder à une même ressources et que deux entr
     \textit{on fera un pseudocode de fonctionnement, la FC est lourde là}
 \end{definition}
 
+\begin{definition}{}{initialisation d'un sémaphore à compteur}
+    On initialise un sémaphore à compteur avec~:
+    \begin{itemize}
+        \item une \notion{file d'attente} vide, qui stockera les fils concernés par le sémaphore.
+        \item un \notion{compteur}, entier naturel non nul désignant le nombre maximal de fils pouvant accéder à la section critique protégée par le sémaphore.
+    \end{itemize}
+\end{definition}
+
+\begin{implementation}{demande d'accès à un sémaphore}
+    On note $\mc{S}$ le sémaphore. le fil \code{fil} est celui dans lequel \code{P} est appelée.
+    \begin{lstLNat}
+    P($\mc{S}$, fil):
+        si $\mc{S}$.compteur <= 0: 
+            // $\mc{S}$ : "Je ne peux pas vous donner l'accès, je garde votre nom."
+            ajouter($\mc{S}$.file, fil)
+            bloquer(fil) // $\code{fil}$ : "Ok, j'attends."
+        $\mc{S}$.compteur = $\mc{S}$.compteur - 1 // un emplacement libre de moins
+    \end{lstLNat}
+\end{implementation}
+
+\begin{implementation}{annonce de fin d'accès à un sémaphore}
+    On note $\mc{S}$ le sémaphore.
+    \begin{lstLNat}
+    V($\mc{S}$):
+        si $\mc{S}$.file n'est pas vide:
+            fil = defiler($\mc{S}$.file) // $\mc{S}$ : "C'est à vous, $\code{fil}$."
+            réveiller(fil) // $\code{fil}$ : "Entendu, c'est reparti."
+        $\mc{S}$.compteur = $\mc{S}$.compteur + 1 // un emplacement de libéré
+    \end{lstLNat}
+\end{implementation}
+
 \begin{remarque}{}{rôle du compteur du sémaphore à compteur}
     Le compteur joue un rôle de \notion{compteur de ressources}.\\
     La demande d'accès correspond à la récupération d'une ressource pour passer à la suite~: on attend s'il n'y en a pas de disponible.\\
@@ -421,7 +461,7 @@ Lorsque deux fils cherchent à accéder à une même ressources et que deux entr
 \end{remarque}
 
 \begin{remarque}{}{comparaison entre sémaphores à compteur et mutex}
-    Les sémaphores sont moins restricts que les mutexs : on peut avoir des fils qui font uniquement de la demande d'accès et des fils qui font uniquement de la fin d'accès (production de ressources).
+    Les sémaphores sont moins restrictifs que les mutexs : on peut avoir des fils qui font uniquement de la demande d'accès et des fils qui font uniquement de la fin d'accès (production de ressources).
 \end{remarque}
 
 \begin{remarque}{}{initialisation du compteur d'un sémaphore à compteur}
@@ -446,16 +486,12 @@ On ensuite trois fonctions à connaître~:
     L'instruction \code{pthread\_mutex\_lock(&m)} verrouille \code{m} et renvoie 0 si tout s'est bien passé.
     \item \notion{déverrouillage}~:
     \begin{lstC}
-        int pthread_mutex_unlock(
-            pthread_mutex_t* mutex;
-        )
+        int pthread_mutex_unlock(pthread_mutex_t* mutex);
     \end{lstC}
     L'instruction \code{pthread\_mutex\_unlock(&m)} déverrouille \code{m} et renvoie 0 si tout s'est bien passé.
     \item \notion{destruction}~:
     \begin{lstC}
-        int pthread_mutex_destroy(
-            pthread_mutex_t* mutex;
-        )
+        int pthread_mutex_destroy(pthread_mutex_t* mutex)
     \end{lstC}
     L'instruction \code{pthread\_mutex\_destroy(&m)} détruit \code{m} (il ne peut plus être utilisé) et renvoie 0 si tout s'est bien passé.
 \end{itemize}
