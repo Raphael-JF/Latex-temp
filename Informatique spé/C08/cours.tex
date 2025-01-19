@@ -554,6 +554,178 @@ Pour les mutex, on utilise en OCaml le module Mutex. Le type utilsé est \code{M
     \end{lstOCaml}
     \code{Mutex.unlock m} déverrouille le mutex \code{m}.   
 \end{enumeratebf}
+L'utilisation des sémaphores en OCaml, n'appraît pas dans le programme mais se fait à l'aide du module \code{Semaphore} et des sous-modules \code{Semaphore.Binary} (osef, voir \code{Mutex} c'est pareil pour nous), et \code{Semaphore.Counting} (sémaphores à compteur).\\
+Le type pour les sémaphores à compteur est \code{Semaphore.Counting.t}. On a trois fonctions à connaîtres~:
+\begin{enumeratebf}
+    \item \notion{Initialisation}~:
+    \begin{lstOCaml}
+    Semaphore.Counting.make : int -> Semaphore.Counting.t
+    \end{lstOCaml}
+    L'appel \code{Semaphore.counting.make c} crée un sémaphore à compteur de compteur initial égal à \code{c} un entier naturel.
+    \item \notion{Demande d'accès : \code{P}}~:
+    \begin{lstOCaml}
+    Semaphore.Counting.acquire : Semaphore.Counting.t -> unit
+    \end{lstOCaml}
+    \item \notion{Fin d'accès : \code{V}}~:
+    \begin{lstOCaml}
+    Semaphore.Counting.release : Semaphore.Counting.t -> unit
+    \end{lstOCaml}
+\end{enumeratebf}
+
+\subsection{Algorithme de Peterson}
+
+L'algorithme de Peterson est une façon d'implémenter un mutex partagé uniquement par \textbf{2} fils d'exécution.\\
+Cet algorithme utilise l'\notion{attente active} : lorsqu'un fil \code{A} demande l'accès à une section critique, si l'autre fil \code{B} est déjà sur sa section critique, le fil demandeur \code{A} vérifie "en boucle" s'il a le droit de continuer.\\
+C'est très coûteux et peu efficace, mais c'est la première idée mise en place historiquement pour gérer la synchronisation. Aujourd'hui, il est possible de mettre un fil en attente passive et le réveiller, mais c'est HP.
+
+\begin{remarque}{}{concernant l'algorithme}
+    un booléen suffit ne suffit pas : les fils seraient en course critique.\\
+    On va utiliser deux booléens et un entier~:
+    \begin{itemize}
+        \item un booléen par fil qui indique si chaque fil est demandeur. Il reste \code{Vrai} si le fil est dans la section critique.
+        \item un entier qui informe sur le fil prioritaire parmi les deux mis en jeu : \code{0} pour le fil \code{A} et \code{1} pour le fil \code{B}. On dit que ce fil prioritaire \code{a les droits d'accès}
+    \end{itemize}
+\end{remarque}
+
+\begin{implementation}{algorithme de Peterson de fonctionnement d'un mutex}
+    $i \in \{0;1\}$ est l'indice du fil.
+    \begin{lstLNat}
+    flag = [false, false] // VAR GLOBALE !
+    tour = 0 // VAR GLOBALE !
+    lock($i$): // $i$=0 ou $i$=1, c'est l'indice du fil.
+        flag[$i$] = true
+        tour = 1-$i$ // on passe à l'autre
+        tant que flag[tour] et tour == 1-$i$:
+            attendre
+    
+    unlock($i$): // $i$=0 ou $i$=1
+        flag[i] = false
+    \end{lstLNat}
+\end{implementation}
+
+\begin{remarque}{}{concernant l'algorithme}
+    \begin{itemize}
+        \item Lorsqu'un seul fil est demandeur, il n'attend pas car \code{flag[1-i]} est toujours valant \code{false}.
+        \item Lorsqu'un fil est demandeur pendant que l'autre fil est dans la section critique. Il actualise son \code{flag} (son drapeau) et donne les droits d'accès à l'autre donc il attend jusqu'à que l'autre fil appelle \code{unlock}.
+        \item Lorsque les deux fils demandent simultanément, ces deux drapeaux sont actualisés à \code{true} et \code{tour} prend la valeur $0$ ou $1$ selon l'entrelacement. Un seul des fils, celui qui a les droits d'accès, n'attend pas.
+        \item \begin{itemize}
+            \item Le \notion{principe d'exclusion mutuelle} est garanti : on n'a jamais les deux fils en même temps accédant à la section critique.
+            \item Avec une bonne utilisation de \code{lock} et \code{unlock}, à savoir un \code{lock} toujours suivi d'un \code{unlock}. On a \notion{absence d'interblocage} : au moins un des deux fils a les droits d'accès. \textit{voir la def, jvois pas ce que c'est}
+            \item Avec une bonne utilisation, on a également \code{absence de famine}. car le fil qui attend obtiendra les droits d'accès si l'autre fil est de nouveau demandeur après sa première fin d'accès.
+        \end{itemize}
+    \end{itemize}
+\end{remarque}
+
+\subsection{Algorithme de la boulangerie (ou du BK) de Lamport}
+
+L'algorithme de la boulangerie de Lamport est une façon d'implémenter un mutex partagé par $N\in \N$ fil d'exécutions. $N$ est fixé une fois pour toutes.
+On utilise un principe de file d'attente, voire de file de priorité.\\
+La demande d'accès se fait en deux étapes~:
+\begin{enumeratebf}
+    \item la \notion{phase d'acquisition} d'un numéro par le fil demandeur. Il prend (comme au BK) le numéro incrémenté du maximum des numéros déjà attribués.
+    \item la \notion{phase d'attente active} pendant laquelle un fil vérifie, "en boucle" si c'est son tour \ie si c'est celui avec le plus petit numéro.\\
+    En cas d'égalité (demande d'accès simultanée), on compare les indices (différents du numéro !) des fils (dans $\intint{0}{N-1}$).\\
+    Attention, on utilise un marqueur booléen pour signaler qu'un fil est en \notion{phase d'acquisition} pour attendre avant de comparer les numéros.
+\end{enumeratebf}
+
+\begin{remarque}{}{}
+    Il y a beaucoup d'attente active, ce qui est coûteux et ralentit le code. Il faut retenir l'idée. Cet algorithme n'est plus utilisé tel quel.
+\end{remarque}
+
+\begin{implementation}{algorithme de la boulangerie de Lamport pour un mutex partagé par $N$ fils}
+    Ici, $i \in \intint{0}{N-1}$ est l'indice du fil.
+    \begin{lstLNat}
+    // VAR GLOBALES
+    acquisition = [false]*$N$ // acquisition[i] désigne si 
+    // le fil d'indice i est en phase d'acquisition
+    numero = [0]*$N$ // initialisation en "pas demandeur"
+
+    lock($i$):
+        acquistion[i] = true
+        num = 0
+        pour j = 0 jusqu'à $N-1$: // but : trouver le numéro suivant
+            si j != i:
+                num = max(num, numero[j])
+        numero[i] = num + 1
+        acquisition[i] = false
+
+        // Phase d'attente active :
+        Pour j = 0 jusqu'à $N-1$:
+            si j<i:
+                tant que acquisition[j] ou (numero[j] != et numero[j] <= numero[i]):
+                    Attendre
+            sinon: // (j>i)
+                tant que acquisition[j] ou (numero[j] != et numero[j] < numero[i]):
+                    Attendre
+    
+    unlock(i):
+        NUMERO[i] = 0
+    \end{lstLNat}
+\end{implementation}
+
+\begin{remarque}{}{}
+    \begin{itemize}
+        \item Pendant la phase d'attente active, seul le fil d'exécution de plus petite (\code{numero[i]}, \code{i}) n'attend pas.\\
+        De plus, on attend si un fil est en cours d'acquisition au cas où il a récupéré un plus petit numéro mais ne l'a pas encore écrit.
+        \item Une fois que le fil \code{i} a vérifié un fil \code{j} par rapport à \code{i}, il ne peut acquérir qu'un plus grand numéro que \code{i} car il regardera \code{numero[i]} dans la phase d'acquisition.
+    \end{itemize}
+\end{remarque}
+
+\subsection{Exmemple de situation d'interblocage avec une mauvaise situation des mutexs}
+
+On écrit un ptit programme en OCaml~:
+\begin{lstOCaml}
+    let m1 = Mutex.create ()
+    let m2 = Mutex.create ()
+
+    let f1 () = 
+        Mutex.lock m1;
+        Mutex.lock m2;
+        print_string "Section critique\n";
+        Mutex.unlock m2;
+        Mutex.unlock m1
+
+    let f2 () = 
+        Mutex.lock m2;
+        Mutex.lock m1;
+        print_string "Autre section critique\n";
+        Mutex.unlock m1;
+        Mutex.unlock m2
+    
+    let t1 = Thread.create f1 ()
+    let t2 = Thread.create f2 ()
+    let () = Thread.join t1; Thread.join t2
+\end{lstOCaml}
+
+Voici une trace d'exécution (un entrelacement) menant à un interblocage~:
+\begin{lstLNat}
+    t1 : Mutex.lock m1 (*m1 est bloqué*)
+    t2 : Mutex.lock m2 (*m2 bloqué*)
+    t1 : Mutex.lock m2 (*t1 est bloqué car il attend de pouvoir bloquer m2*)
+    t2 : Mutex.lock m1 (*t2 est bloqué car il attend de pouvoir bloquer m1*)
+\end{lstLNat}
+
+\subsection{Petit complément HP}
+
+Pour formaliser l'étude du comportement des mutex et des sémaphores partagés par deux fils d'exécution, on peut construire un \notion{diagramme de transition}, il s'agit d'un tableau à double entrée~:
+\begin{itemize}
+    \item les lignes correspondent aux instructions des fils d'exécution.
+    \item les colonnes correspondent aux instructions de l'autre.
+    \item dans les cases, on représente à l'aide d'entiers l'état des mutex et des sémaphores. 
+    \begin{itemize}
+        \item Pour un mutex~:
+        \begin{itemize}
+            \item 1 si c'est déverrouillé
+            \item 0 si c'est verrouillé
+            \item une valeur négative si c'est impossible, on a un blocage
+        \end{itemize}
+        \item pour un sémaphore, on utilsie la valeur du compteur comme s'il pouvait être négatif : une valeur négative indique un blocage.
+    \end{itemize}
+\end{itemize}
+Pour l'exemple $(i_1, i_2)$ état de $(\code{m1}, \code{m2})$~:
+
+
+
 
 
 \input{../../stock/pied.tex}

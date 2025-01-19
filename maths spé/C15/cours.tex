@@ -43,11 +43,39 @@
 \end{definition}
 
 \begin{theoreme}{15.17}{de la limite monotone}
-    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_n)_{n\in \N}$ une suite croissante d'évènements ($\forall n \in \N,\, A_n \subset A_{n+1}$). Alors~:
-    \begin{enumeratebf}
-        \item 
-    \end{enumeratebf}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_n)_{n\in \N} \in \tribu^\N$ une suite croissante d'évènements ($\forall n \in \N,\, A_n \subset A_{n+1}$). Alors~:
+    $$\proba\Bigg(\bigcup_{n=0}^{+\infty}A_n\Bigg) = \lim_{n \to +\infty} \proba(A_n)$$
 \end{theoreme}
 
+\begin{proposition}{15.20}{inégalité de Boole}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_n)_{n\in \N} \in \tribu^\N$ une suite d'événements telle que la série de terme général $\proba(A_n)$ converge. Alors~:
+    $$\proba\Bigg(\bigcup_{n=0}^{+\infty}A_n\Bigg) \leq \sum_{n=0}^{+\infty} \proba(A_n)$$
+\end{proposition}
+
+\begin{definition}{15.21}{événements négligeable, presque sûr}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé.
+    \begin{itemize}
+        \item Un événement $A$ est dit \notion{négligeable} si $\proba(A) = 0$.
+        \item Un événement $A$ est dit \notion{presque sûr} si $\proba(A) = 1$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{15.22 (3)}{intersection, union avec un événement négligeable}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $A \in \tribu$ un événement négligeable. Alors~:
+    $$\forall B \in \tribu,\, \begin{cases*}
+        \proba(A\cap B) = 0 \\ \proba(A\cup B) = \proba(B)
+    \end{cases*} $$
+\end{proposition}
+
+\begin{definition}{15.24}{probabilité conditionnelle}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $A \in \tribu$ un événement non négligeable. Alors l'application~:
+    \fonction{\proba_A}{\tribu}{\seg{0}{1}}{B}{\frac{\proba(A \cap B)}{\proba(A)}}
+    est une probabilité, appelée \notion{probabilité conditionnelle sachant $A$}.
+\end{definition}
+
+\begin{theoreme}{15.26}{formule des probabilités composées}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_k)_{k \in \intint{1}{n}} \in \tribu^n$ une famille d'évènements telle que $\displaystyle \bigcap_{k=1}^{n}A_k$ ne soit pas négligeable. Alors~:
+    $$\proba\Bigg(\bigcap_{k=1}^nA_k\Bigg) = \prod_{k=1}^n\proba\bigg( A_k\, \bigg\vert\,\bigcap_{i=1}^{k-1} A_j \bigg)$$
+\end{theoreme}
 
 \input{../../stock/pied.tex}

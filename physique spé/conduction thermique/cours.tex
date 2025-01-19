@@ -1,0 +1,20 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+\newcounter{chapitre}
+\setcounter{chapitre}{15}
+
+\begin{definition}{}{densité de flux thermique}
+    On appelle \notion{vecteur densité de flux thermique $\vec{j_\mr{th}}$} le vecteur dont le flux au travers d'une surface orientée $S$ vaut la puissance thermique la traversant~:
+    $$\Phi = \iint_S \vec{j_\mr{th}} \cdot \d{\vec{S}}$$
+    avec $\vec{j_\mr{th}} = \vec{j_\mr{conduction}} + \vec{j_\mr{rayonnement}} + \vec{j_\mr{convection}}$
+\end{definition}
+
+\begin{theoreme}{}{loi de Fourier}
+    Le vecteur densité de flux thermique \notion{par conduction} est opposé au gradient de température~
+    $$\vec{j_\mr{cond}} = -\lambda \grad T$$
+    où $\lambda$ est la \notion{conductivité thermique} du matériau. Elle s'exprime en $\mr{W}\cdot\mr{m}^{-1}\cdot\mr{K}^{-1}$
+\end{theoreme}
+
+\input{../../stock/pied.tex}
