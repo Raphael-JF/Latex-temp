@@ -2,8 +2,10 @@
 \begin{document}
 \begin{adjustwidth}{-3cm}{-3cm}
 \input{../../stock/commands.tex}
+\newcounter{chapitre}
+\setcounter{chapitre}{numéro}
 
-\begin{definition}{3.1}{opérateur $\vnabla$}
+\begin{definition}{}{opérateur $\vnabla$}
     $\vnabla$ est un \notion{opérateur différentiel vectoriel}.
     \begin{enumeratebf}
         \item dans la base cartésienne : $$ \displaystyle \vnabla = \frac{\partial}{\partial x}\vec{u_x} + \frac{\partial}{\partial y}\vec{u_y} + \frac{\partial}{\partial z}\vec{u_z}$$
@@ -16,22 +18,22 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{definition}{3.2}{gradient d'une fonction scalaire}
+\begin{definition}{}{gradient d'une fonction scalaire}
     le \notion{gradient d'une fonction scalaire} $f$ correspond au produit du vecteur $\vnabla$ par $f$~:
     $$\grad f = \vnabla f$$
 \end{definition}
 
-\begin{definition}{3.3}{divergence d'une fonction vectorielle}
+\begin{definition}{}{divergence d'une fonction vectorielle}
     la \notion{divergence d'une fonction vectorielle} $\vec{A}$ correspond au produit scalaire de $\vnabla$ par $\vec{A}$~:
     $$\div \vec{A} = \vnabla \cdot \vec{A}$$
 \end{definition}
 
-\begin{definition}{3.4}{rotationnel d'une fonction vectorielle}
+\begin{definition}{}{rotationnel d'une fonction vectorielle}
     Le \notion{rotationnel d'une fonction vectorielle} $\vec{A}$ correspond au produit vectoriel de $\vnabla$ par $\vec{A}$~:
     $$\rot \vec{A} = \vnabla \wedge \vec{A}$$
 \end{definition}
 
-\begin{theoreme}{3.5}{équation locale de Maxwell-Gauss}
+\begin{theoreme}{}{équation locale de Maxwell-Gauss}
     En tout point $M$ de l'espace~:
     $$\div \vec{E} = \frac{\rho}{\epsilon_0}$$
     avec $\begin{cases*}
@@ -40,7 +42,7 @@
     \end{cases*}$
 \end{theoreme}
 
-\begin{definition}{3.6}{surface de Gauss}
+\begin{definition}{}{surface de Gauss}
     On appelle \notion{surface de Gauss} un objet topologique~:
     \begin{enumeratebf}
         \item fermé ;
@@ -49,7 +51,7 @@
     \end{enumeratebf}
 \end{definition}
 
-\begin{theoreme}{3.7}{théorème de Gauss}
+\begin{theoreme}{}{théorème de Gauss}
     Le flux $\Phi$ du champ électrostatique sortant d’une surface de Gauss $\Sigma_G$ est relié à la charge $Q_\mr{int}$ contenue à l’intérieur de cette surface~:
     $$\Phi = \oiint_{\Sigma_G} \vec{E} \cdot \d{\vec{S}} = \frac{Q_\mr{int}}{\epsilon_0}$$
     avec $\begin{cases*}

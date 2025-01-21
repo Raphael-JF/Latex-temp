@@ -483,17 +483,17 @@ On ensuite trois fonctions à connaître~:
     \begin{lstC}
         int pthread_mutex_lock(pthread_mutex_t* mutex);
     \end{lstC}
-    L'instruction \code{pthread\_mutex\_lock(&m)} verrouille \code{m} et renvoie 0 si tout s'est bien passé.
+    L'instruction \code{pthread\_mutex\_lock(\&m)} verrouille \code{m} et renvoie 0 si tout s'est bien passé.
     \item \notion{déverrouillage}~:
     \begin{lstC}
         int pthread_mutex_unlock(pthread_mutex_t* mutex);
     \end{lstC}
-    L'instruction \code{pthread\_mutex\_unlock(&m)} déverrouille \code{m} et renvoie 0 si tout s'est bien passé.
+    L'instruction \code{pthread\_mutex\_unlock(\&m)} déverrouille \code{m} et renvoie 0 si tout s'est bien passé.
     \item \notion{destruction}~:
     \begin{lstC}
         int pthread_mutex_destroy(pthread_mutex_t* mutex)
     \end{lstC}
-    L'instruction \code{pthread\_mutex\_destroy(&m)} détruit \code{m} (il ne peut plus être utilisé) et renvoie 0 si tout s'est bien passé.
+    L'instruction \code{pthread\_mutex\_destroy(\&m)} détruit \code{m} (il ne peut plus être utilisé) et renvoie 0 si tout s'est bien passé.
 \end{itemize}
 
 L'utilisation des sémaphores demande l'inclusion du fichier d'en-tête \code{semaphore.h}~:
@@ -588,17 +588,17 @@ C'est très coûteux et peu efficace, mais c'est la première idée mise en plac
 \end{remarque}
 
 \begin{implementation}{algorithme de Peterson de fonctionnement d'un mutex}
-    $i \in \{0;1\}$ est l'indice du fil.
+    L'algorithme de Peterson est une façon d'implémenter un mutex partagé uniquement par 2 fils d'exécution.
     \begin{lstLNat}
-    flag = [false, false] // VAR GLOBALE !
-    tour = 0 // VAR GLOBALE !
-    lock($i$): // $i$=0 ou $i$=1, c'est l'indice du fil.
-        flag[$i$] = true
-        tour = 1-$i$ // on passe à l'autre
-        tant que flag[tour] et tour == 1-$i$:
-            attendre
+    flag = [false, false]  // indique si i veut accéder
+    tour = 0               // indique qui a les droits d'accès (prio)
+    lock(i):               // i est l'indice du fil.
+        flag[i] = true
+        tour = 1-i         // même si i veut accéder, il est poli
+        tant que flag[1-i] et tour == 1-i: // i-1 attend et a la prio
+            attendre       // on fait de l'attente active
     
-    unlock($i$): // $i$=0 ou $i$=1
+    unlock(i):
         flag[i] = false
     \end{lstLNat}
 \end{implementation}
@@ -610,10 +610,18 @@ C'est très coûteux et peu efficace, mais c'est la première idée mise en plac
         \item Lorsque les deux fils demandent simultanément, ces deux drapeaux sont actualisés à \code{true} et \code{tour} prend la valeur $0$ ou $1$ selon l'entrelacement. Un seul des fils, celui qui a les droits d'accès, n'attend pas.
         \item \begin{itemize}
             \item Le \notion{principe d'exclusion mutuelle} est garanti : on n'a jamais les deux fils en même temps accédant à la section critique.
-            \item Avec une bonne utilisation de \code{lock} et \code{unlock}, à savoir un \code{lock} toujours suivi d'un \code{unlock}. On a \notion{absence d'interblocage} : au moins un des deux fils a les droits d'accès. \textit{voir la def, jvois pas ce que c'est}
+            \item Avec une bonne utilisation de \code{lock} et \code{unlock}, à savoir un \code{lock} toujours suivi d'un \code{unlock}. On a \notion{absence d'interblocage} : au moins un des deux fils a les droits d'accès.
             \item Avec une bonne utilisation, on a également \code{absence de famine}. car le fil qui attend obtiendra les droits d'accès si l'autre fil est de nouveau demandeur après sa première fin d'accès.
         \end{itemize}
     \end{itemize}
+\end{remarque}
+
+\begin{remarque}{}{correction (caractère thread-safe) de l'algorithme de Peterson}
+    \begin{enumeratebf}
+        \item Le \notion{principe d'exclusion mutuelle} est garanti (on n'a jamais les deux fils en même temps accédant à la section critique). En effet, lorsque les deux fils demandent simultanément, ces deux drapeaux sont actualisés à \code{true} et \code{tour} prend la valeur $0$ ou $1$ selon l'entrelacement. Un seul des fils accède à la section critique.
+        \item L'\notion{absence de famine} est également respectée (un fil n'attend jamais indéfiniment pour l'accès) car si un fil est demandeur pendant que l'autre fil est dans la section critique, il actualise son \code{flag} et donne les droits d'accès à l'autre (il attend jusqu'à ce que l'autre fil appelle \code{unlock}).
+        \item L'\notion{absence d'interblocage} (en cas de conflit, au moins un fil accède) est aussi vérifiée~: Si un fil quitte la section critique (\code{flag[i] = false}), l’autre fil peut progresser.
+    \end{enumeratebf}
 \end{remarque}
 
 \subsection{Algorithme de la boulangerie (ou du BK) de Lamport}
