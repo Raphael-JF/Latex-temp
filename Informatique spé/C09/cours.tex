@@ -1,0 +1,110 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+\newcounter{chapitre}
+\setcounter{chapitre}{9}
+
+\title{Chapitre 9 : Grammaires non contextuelles}
+\maketitle
+
+\section{Grammaire non contextuelle}
+
+\subsection{Vocabulaire}
+
+\begin{definition}{}{grammaire au sens général, grammaire de type 0}
+    Une \notion{grammaire} est défini par un quadruplet $(\Sigma,\,V,\,P,\,S)$ où~:
+    \begin{itemize}
+        \item $\Sigma$ est un alphabet fini de \notion{symboles terminaux}, dit aussi \notion{alphabet terminal}
+        \item $V$ est un alphabet fini de \notion{symboles non terminaux} (ou \notion{variables}), dit aussi \notion{alphabet non terminal}
+        \item $P \subset (\Sigma \cup V)^* \times (\Sigma \cup V)^* $ est un ensemble de \notion{règles de production}.\\
+        Une règle de production $(w_1,w_2) \in P$, notée $w_1 \to w_2$ est un couple de mots écrits avec des symboles terminaux et non terminaux.
+        \item $S \in V$ est un symbole non terminal avec un statut particulier de \notion{symbole initial} (ou \notion{axiome}, \notion{variable initiale})
+    \end{itemize}
+    Une grammaire sans propriété particulière est dite \notion{type 0}.
+\end{definition}
+
+\begin{remarque}{}{grammaires}
+    On note usuellement par des majuscules les symboles non terminaux, et en minuscule les terminaux.
+\end{remarque}
+
+\newcommand{\rp}[2]{\code{#1}\to\code{#2}}
+
+
+\begin{exemple}{}{de grammaire de type 0}
+    Pour $\Sigma = \{a\}$ et $V = \{S,D,F,X,Y,Z\}$
+    et $P = \{\rp{S}{DXaD},\rp{Xa}{aaX},\rp{XF}{YF},\rp{aY}{Ya},\rp{DY}{DX},\rp{XZ}{Z},\rp{aZ}{Za},\code{DZ}\to \epsilon\}$, $G = (\Sigma, V, P, S)$ est une grammaire de type 0.
+\end{exemple}
+
+\begin{definition}{}{dérivation immédiate}
+    Soit $G = (\Sigma, V, P, S)$ une grammaire. On dit que $\alpha \in (\Sigma \cup V)^*$ se dérive immédiatement en $\beta \in (\Sigma \cup V)^*$ lorsqu'il existe $(\alpha_2,\beta_2)\in P$ tel que~:
+    $$\exists (\alpha_1, \alpha_3) \in \Big((\Sigma \cup V)^*\Big)^2,\, \begin{cases*}
+        \alpha = \alpha_1\alpha_2\alpha_3\\
+        \beta = \alpha_1 \beta_2 \alpha_3
+    \end{cases*}$$
+    Le cas échéant, on note $\alpha \Rightarrow  \beta$. On parle de \notion{dérivation immédiate}. Moralement, le facteur $\alpha_2$ est remplacé par le facteur $\beta_2$.
+\end{definition}
+
+\newcommand{\crt}[]{\Rightarrow ^*}
+
+
+\begin{definition}{}{clôture reflexive et transitive}
+    On note $\crt$ la \notion{clôture reflexive et transitive} de la relation $\Rightarrow $ de dérivabilité immédiate.\\\\
+    $\crt$ est définie comme la plus petite relation au sens de l'inclusion tel que~:
+    \begin{itemize}
+        \item $\forall \alpha \in (\Sigma \cup V)^*,\, \alpha \crt \alpha$
+        \item $\forall (\alpha,\beta) \in \Big((\Sigma \cup V)^*\Big)^2, (\alpha \Rightarrow  \beta) \implies (\alpha \crt \beta)$
+        \item $\forall (\alpha,\beta, \gamma) \in \Big((\Sigma \cup V)^*\Big)^3,\, (\alpha \crt \beta \text{ et } \beta \crt \gamma) \implies (\alpha \crt \gamma)$
+    \end{itemize}
+    Autrement dit, $\alpha \crt \beta$ lorsqu'il existe $(\alpha=\alpha_0,\, \dots,\, \alpha_k = \beta)$ une suite de mots dans $(\Sigma \cup V)^*$ telle que~: 
+    $$\forall i \in \intint{0}{k-1}, \alpha_i \Rightarrow  \alpha_{i+1}$$
+\end{definition}
+
+\begin{exemple}{}{de dérivation}
+    Dans la grammaire précédemment introduite~:\\
+    Pour $\Sigma = \{a\}$ et $V = \{S,D,F,X,Y,Z\}$
+    et $P = \{\rp{S}{DXaD},\rp{Xa}{aaX},\rp{XF}{YF},\rp{aY}{Ya},\rp{DY}{DX},\rp{XZ}{Z},\rp{aZ}{Za},\code{DZ}\to \epsilon\}$, $G = (\Sigma, V, P, S)$ est une grammaire de type 0.
+    \begin{align*}
+        S &\Rightarrow \code{DXaF} \\
+        &\Rightarrow \code{DaaXF}\\
+        &\Rightarrow \code{DaaYF}\\
+        &\Rightarrow \code{DaYaF}\\
+        &\Rightarrow \code{DYaaF}\\
+        &\Rightarrow \code{DXaaF}\\
+        &\Rightarrow \code{DaaXaF}\\
+        &\Rightarrow \code{DaaaaXF}\\
+        &\Rightarrow \code{DaaaaZ}\\
+        &\Rightarrow \code{DaaaZa}\\
+        &\Rightarrow \code{DaaZaa}\\
+        &\Rightarrow \code{DaZaaa}\\
+        &\Rightarrow \code{DZaaaa}\\
+        &\Rightarrow \code{aaaa}
+    \end{align*}
+    D'où $S \crt \code{aaaa}$
+\end{exemple}
+
+\begin{definition}{}{langage engendré par une grammaire depuis un mot}
+    Soit $G = (\Sigma, V, , S)$ une grammaire et $\alpha \in (\Sigma\cup V)^*$.\\
+    On définit le \notion{langage engendré par $G$ depuis $\alpha$} comme l'ensemble des mots de $\Sigma^*$ que l'on peut obtenir par dérivation depuis $\alpha$ en utilisant les règles de production de $G$.\\
+    $$\mc{L}_G = \{u \in \Sigma^*,\, \alpha \crt u\}$$
+    Le \notion{langage élargi engendré par $G$ depuis $\alpha$} est~:
+    $$\widehat{\mc{L}_G(\alpha)} = \{\beta \in (\Sigma \cup V)^*,\, \alpha \crt \beta\}$$
+    Le \notion{langage engendré par $G$} désigne $\mc{L}_G(S)$ le langage engendré par $G$ depuis le symbole initial.
+\end{definition}
+
+\begin{exemple}{}{}
+    Pour la grammaire de l'exemple, on pourrait montrer que $\mc{L}_G(S) = \{a^{2^n},\, n \in \N^*\}$
+    On montre que ce langage n'est pas régulier (absurde + lemme de l'étoile tmtc)
+\end{exemple}
+
+\begin{definition}{}{langage de type 0}
+    On dit qu'un \notion{langage est de type 0} s'il peut être engendré par une grammaire de type 0.
+\end{definition}
+
+\begin{theoreme}{}{de Chomsky (HP)}
+    Les langages de type 0 sont exactement les langages récursivement énumérables, c'est-à-dire les langages reconnaissables par une machine de Turing.
+\end{theoreme}
+
+
+
+\input{../../stock/pied.tex}
