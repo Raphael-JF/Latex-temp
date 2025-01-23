@@ -642,41 +642,40 @@ La demande d'accès se fait en deux étapes~:
 \end{remarque}
 
 \begin{implementation}{algorithme de la boulangerie de Lamport pour un mutex partagé par $N$ fils}
-    Ici, $i \in \intint{0}{N-1}$ est l'indice du fil.
+    Ici, \code{i} est l'indice du fil : \code{0 <= i <= $N-1$}
     \begin{lstLNat}
-    // VAR GLOBALES
-    acquisition = [false]*$N$ // acquisition[i] désigne si 
-    // le fil d'indice i est en phase d'acquisition
-    numero = [0]*$N$ // initialisation en "pas demandeur"
+    acqui = [false]*$N$ // si le fil i demande un ticket
+    ticket = [0]*$N$ // 0 -> pas de ticket assigné
 
-    lock($i$):
-        acquistion[i] = true
+    lock(i):
+        // Phase d'acquisition
+        acqui[i] = true
         num = 0
-        pour j = 0 jusqu'à $N-1$: // but : trouver le numéro suivant
-            si j != i:
-                num = max(num, numero[j])
-        numero[i] = num + 1
-        acquisition[i] = false
+        pour k = 0 jusqu'à $N-1$:
+            num = max(num, ticket[k])
+        ticket[i] = num + 1
+        acqui[i] = false
 
-        // Phase d'attente active :
-        Pour j = 0 jusqu'à $N-1$:
-            si j<i:
-                tant que acquisition[j] ou (numero[j] != et numero[j] <= numero[i]):
-                    Attendre
-            sinon: // (j>i)
-                tant que acquisition[j] ou (numero[j] != et numero[j] < numero[i]):
-                    Attendre
+        // Phase d'attente active
+        pour k = 0 jusqu'à i-1:
+            tant que acqui[k] ou (ticket[k] != 0 et ticket[k] <= ticket[i]):
+                attendre
+            // ok si k ne demande pas de ticket et 
+            // k n'a pas de ticket ou un moins prioritaire=petit
+        pour k = i+1 jusqu'à $N-1$:
+            tant que acqui[k] ou (ticket[k] != 0 et ticket[k] < ticket[i]):
+                attendre
     
     unlock(i):
-        NUMERO[i] = 0
+        ticket[i] = 0
     \end{lstLNat}
 \end{implementation}
 
 \begin{remarque}{}{}
     \begin{itemize}
-        \item Pendant la phase d'attente active, seul le fil d'exécution de plus petite (\code{numero[i]}, \code{i}) n'attend pas.\\
+        \item Pendant la phase d'attente active, seul le fil d'exécution de plus petite (\code{ticket[i]}, \code{i}) n'attend pas.\\
         De plus, on attend si un fil est en cours d'acquisition au cas où il a récupéré un plus petit numéro mais ne l'a pas encore écrit.
-        \item Une fois que le fil \code{i} a vérifié un fil \code{j} par rapport à \code{i}, il ne peut acquérir qu'un plus grand numéro que \code{i} car il regardera \code{numero[i]} dans la phase d'acquisition.
+        \item Une fois que le fil \code{i} a vérifié un fil \code{j} par rapport à \code{i}, il ne peut acquérir qu'un plus grand numéro que \code{i} car il regardera \code{ticket[i]} dans la phase d'acquisition.
     \end{itemize}
 \end{remarque}
 
@@ -915,7 +914,7 @@ Un philosophe alterne entre deux "états" : manger et penser. Lorsqu'il veut man
 
 \begin{implementation}{première approche}
     On numérote $(\Phi_i)_{i \in \intint{0}{N-1}}$ les philosophes, $(\psi_j)_{j \in \intint{0}{N-1}}$ les fourchettes.\\
-    On protège chaque fourchettes par un mutex : \code{fourchettes[i]} est un mutex pour la fourchettes \code{i}.
+    On protège chaque fourchettes par un mutex : \code{fourchettes[i]} est un mutex pour la fourchette \code{i}.
     \begin{lstLNat}
     philosophe(i): //i est le numéro du philosophe
         while(true):
@@ -928,7 +927,7 @@ Un philosophe alterne entre deux "états" : manger et penser. Lorsqu'il veut man
     \end{lstLNat}
 \end{implementation}
 Dans le cas où tous les philosophes se retrouvent au niveau du problème dans le code, tous les mutex (\code{fourchettes[i]}) sont verrouillés et tous les fils sont obligés d'attendre.\\
-Tous les philosophes ont pris leur foruchette droite et attendent que la fourchette gauche soit rendue disponible.\\
+Tous les philosophes ont pris leur fourchette droite et attendent que la fourchette gauche soit rendue disponible.\\
 On peut représenter la situation à l'aide d'un \notion{graphe de requêtes} (HP) $G = (S,A)$ où~:
 \begin{itemize}
     \item $S$ est l'ensemble des ressources (protégées par des mutex ou des sémaphores)

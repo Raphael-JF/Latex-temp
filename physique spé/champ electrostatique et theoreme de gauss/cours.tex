@@ -33,6 +33,16 @@
     $$\rot \vec{A} = \vnabla \wedge \vec{A}$$
 \end{definition}
 
+\begin{definition}{}{laplacien d'une fonction scalaire en coordonnées cartésiennes}
+    Le \notion{laplacien d'une fonction scalaire} $f$ est, en coordonnées cartésiennes~:
+    $$\Delta f = \derivepar{2}{f}{x} + \derivepar{2}{f}{y} + \derivepar{2}{f}{z}$$
+\end{definition}
+
+\begin{theoreme}{}{de Green-Ostrogradski}
+    Soit $\mc{S}$ une surface orientée vers l'extérieur délimitant un volume $\mc{V}$. Pour toute fonction vectorielle $\vec{A}$ de classe $\mc{C}^1$ de l'espace~:
+    $$\iiint_\mc{V}(\div \vec{A})\d{\tau} = \oiint_\mc{S}\vec{A} \cdot \vec{\d{S}}$$
+\end{theoreme}
+
 \begin{theoreme}{}{équation locale de Maxwell-Gauss}
     En tout point $M$ de l'espace~:
     $$\div \vec{E} = \frac{\rho}{\epsilon_0}$$
@@ -41,6 +51,8 @@
         $\rho$ \text{ la densité volumique de charge}
     \end{cases*}$
 \end{theoreme}
+
+
 
 \begin{definition}{}{surface de Gauss}
     On appelle \notion{surface de Gauss} un objet topologique~:
