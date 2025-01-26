@@ -404,7 +404,7 @@ Lorsque deux fils cherchent à accéder à une même ressources et que deux entr
 \begin{definition}{}{sémaphores binaire, à compteur}
     Il existe deux types de \notion{sémaphores}~:
     \begin{itemize}
-        \item les \notion{sémaphores binaires} : ce sont des mutex
+        \item les \notion{sémaphores binaires} : c'est comme des mutex, mais qui fonctionnent entre plusieurs threads
         \item les \notion{sémaphores à compteur} : une sutructre de données constituée d'un \notion{compteur} et d'une \notion{file d'attente}.
     \end{itemize}
     On initialise un sémaphore à compteur avec une file d'attente vide et un compteur initialisé à un entier positif.\\

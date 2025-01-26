@@ -8,7 +8,7 @@
 \title{Chapitre 9 : Grammaires non contextuelles}
 \maketitle
 
-\section{Grammaire non contextuelle}
+\section{Grammaire non contextuelle (ou hors-contexte)}
 
 \subsection{Vocabulaire}
 
@@ -84,6 +84,7 @@
 \end{exemple}
 
 \begin{definition}{}{langage engendré par une grammaire depuis un mot}
+    \textbf{ajouter que c une déf structurelle !! VOir démo 1}
     Soit $G = (\Sigma, V, , S)$ une grammaire et $\alpha \in (\Sigma\cup V)^*$.\\
     On définit le \notion{langage engendré par $G$ depuis $\alpha$} comme l'ensemble des mots de $\Sigma^*$ que l'on peut obtenir par dérivation depuis $\alpha$ en utilisant les règles de production de $G$.\\
     $$\mc{L}_G = \{u \in \Sigma^*,\, \alpha \crt u\}$$
@@ -105,6 +106,146 @@
     Les langages de type 0 sont exactement les langages récursivement énumérables, c'est-à-dire les langages reconnaissables par une machine de Turing.
 \end{theoreme}
 
+A skip si besoin
+\begin{definition}{}{grammaire contextuelle (HP)}
+    On appelle \notion{grammaire contextuelle (ou de type 1 ou monotone)} lorsque~:
+    $$\forall (\alpha,\beta) \in P \setminus \{(s,\epsilon)\},\, \abs{\alpha} \leq \abs{\beta}$$
+    Moralement, tous les facteurs "produits" sont plus long que les facteurs remplacés.
+\end{definition}
+
+\begin{exemple}{}{de grammaire qui n'est pas "contextuelle"}
+    la grammaire exemple définie par $\Sigma = \{a\}$ et $V = \{S,D,F,X,Y,Z\}$ et $P = \{\rp{S}{DXaD},\rp{Xa}{aaX},\rp{XF}{YF},\rp{aY}{Ya},\rp{DY}{DX},\rp{XZ}{Z},\rp{aZ}{Za},\code{DZ}\to \epsilon\}$ puis $G = (\Sigma, V, P, S)$ n'est pas contextuelle ~:
+    $$(\rp{DZ}{\epsilon}) \in P$$
+    mais~:
+    $$\abs{DZ} = 2 > \abs{\epsilon} = 0$$
+\end{exemple}
+
+\begin{remarque}{}{indépendance des caractères "contextuel" et "non contextuel"}
+    Nous le reverrons, mais une grammaire est "contextuelle" indépendamment de son caractère "non contextuel".
+\end{remarque}
+
+\begin{remarque}{}{}
+    Sans l'autorisation d'avoir $(S,\epsilon) \in P$,\, les langages engendrés par des grammaires contextuelles ne peuvent pas contenir $\epsilon$.\\
+    En effet, on a initialement $S$ de longueur 1 et les règles de productions ne peuvent qu'augmenter la longueur du mot. 0 serait donc une longueur inexistente.
+\end{remarque}
+
+\begin{definition}{}{grammaire non contextuelle}
+    Une grammaire $\mc{G} = (\Sigma, V, P, S)$ est dite \notion{non contextuelle ou hors-contexte (ou encore algébrique ou de type 2)} lorsque~:
+    $$P \subset V \times (\Sigma \cup V)^*$$
+    Autrement le facteur remplacé pour toutes les règles n'est qu'un symbole non terminal.
+\end{definition}
+
+\begin{exemple}{}{de règle de production non valide pour une grammaire "non contextuelle"}
+    $\rp{DZ}{\epsilon}$ n'est pas une règle possible pour une grammaire hors contexte.
+\end{exemple}
+
+\begin{exemple}{}{de grammaire "non contextuelle"}
+    $G_1 = (\Sigma_1, V_1, P_1, S_1)$ définie par~:
+    \begin{itemize}
+        \item $\Sigma_1 = \{a,b\}$
+        \item $V_1 = \{S_1\}$
+        \item $P_1 = \{\rp{S_1}{a S_1 b},\rp{S_1}{\epsilon}\}$
+    \end{itemize}
+    est une grammaire hors contexte.
+\end{exemple}
+
+\begin{remarque}{}{}
+    On dit "hors contexte" car les symboles non terminaux
+\end{remarque}
+
+PASSE 1
+ajouter à l'exemple : 
+
+$\widehat{\mc{L}_{G_1}(S_1) = \{a^n S_1 b^n,\, n \in \N\} \cup \{a^n b^n ,\, n \in \N\}$ pour comprendre le chapeau.
+
+
+Voir démo 1
+
+\begin{exemple}{}{Langage de Dyck}
+    Le langage de Dyck (bon parenthésage) est engendré par~:
+    \begin{itemize}
+        \item $\Sigma = {\code{(}, \code{)}}$
+        \item $\mr{S}{(S)S}$
+        \item $\mr{S}{\epsilon}$
+    \end{itemize}
+\end{exemple}
+
+\begin{remarque}{}{grammaires "non contextuelles" uniquement définies par les règles de production}
+    En général, on donne une grammaire hors-contexte uniquement avec les règles de production.\\
+    On ne précise le symbole initial que si ce n'est pas $S$.\\
+    Les symboles non terminaux sont exactement ceux que l'on rencontre à gauche des règles et les terminaux sont les autres qu'on rencontre.
+\end{remarque}
+
+\begin{remarque}{}{"hors-contexte" $\nRightarrow$ "régulier"}
+    Les exemples montrent qu'il existe des langages hors contexte qui ne sont pas réguliers.
+\end{remarque}
+
+\begin{remarque}{}{abréviation d'une famille de règles de production}
+    Pour noter rapidement un ensemble de règles de production utilisant le même symbole non terminal comme départ~:
+    $$\{\rp{X,$\alpha_1$},\, \dots,\, \rp{X}{$\alpha_k$}\} \subset P$$
+    avec $X\in V$,\, on note~:
+    $$X \rightarrow \alpha_1 \vert \cdots \vert \alpha_k$$
+    Ce n'est qu'une notation, on a bien $k$ règles de production derrière ça.
+\end{remarque}
+
+\begin{exemple}{}{exploitant ce raccourci}
+    $G_1$ s'écrit~:
+    $$S_1 \rightarrow aS_1b \vert \epsilon$$
+\end{exemple}
+
+\subsection{Langages réguliers et langages hors-contexte}
+
+Un résultat à connaître et savoir redémontrer.
+\begin{proposition}{}{"régulier" $\implies$ "hors-contexte"}
+    Soit $\Sigma$ un alphabet, Tout langage sur $\Sigma$ régulier est "hors-contexte".
+\end{proposition}
+Voir Démo 2 (elle est incomplète)
+
+\begin{remarque}{}{concernant ce résultat}
+    L'inclusion réciproque est fausse si $\abs{Sigma} \geq 2$~:
+    $$\{a^nb^n,\, n \in \N\}$$
+    est un langage hors-contexte mais non régulier.
+\end{remarque}
+
+cette définition sera rappelée, mais il faut vite la comprendre ! FC où on donne la déf, et on doit interpréter !
+\begin{definition}{}{grammaire linéaire (HP)}
+    $G = (\Sigma, V, P, S)$ est dite~:
+    \begin{itemize}
+        \item \notion{linéaire} si~:
+        $$P \subset V \times (\Sigma^* \cup \Sigma^*V\Sigma^*)$$
+        Moralement, on a toujours au plus un symbole non terminal (voir Fig.1)
+        \item \notion{linéaire gauche} lorsque~:
+        $$P \subset V \times \bigg( \Sigma^* \cup (V \Sigma^*) \bigg)$$
+        Le facteur "produit" commence par un unique symbole non terminal ou n'en a aucun.
+        \item \notion{linéaire droit} lorsque~:
+        $$P \subset V \times \bigg( \Sigma^* \cup (Sigma^*V) \bigg)$$
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}{}{chaine d'implications}
+
+    linéaire droit implqiue linéaire implique hors contexte
+    linéaire gauche implique linéaire implique hors contexte.
+    
+\end{remarque}
+
+\begin{definition}{}{langages linéaire, linéaire droit, linéaire gauche}
+    Un langage est dit linéaire (resp. simple, droit, gauche) lorsqu'il peut être engendré par une grammaire linéaire (resp. simple, linéaire droite).
+\end{definition}
+
+\begin{remarque}{}{existence langages linéaires non réguliers}
+    $$\code{S} \rightarrow \code{aSb} \vert \epsilon$$ est linéaire et engendre $\{a^n b^n,\, n \in \N\}$
+\end{remarque}
+
+\begin{proposition}{}{régulier $\iif$ linéaire droit $\iif$ linéaire gauche pour un langage} 
+    tout est dans le titre. Le réécrire lol.
+\end{proposition}
+
+\begin{remarque}{}{sur la démo}
+    En montrant régulier implqiue linéaire droit, on montre à nouveau que régulier implqiue hors contexte, ceci constitue une autre démo que la propriété précédente.
+\end{remarque}
+
+Démo 3.
 
 
 \input{../../stock/pied.tex}
