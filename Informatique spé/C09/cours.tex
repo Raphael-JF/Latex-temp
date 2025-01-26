@@ -4,7 +4,6 @@
 \input{../../stock/commands.tex}
 \newcounter{chapitre}
 \setcounter{chapitre}{9}
-
 \title{Chapitre 9 : Grammaires non contextuelles}
 \maketitle
 
@@ -32,20 +31,20 @@
 
 
 \begin{exemple}{}{de grammaire de type 0}
-    Pour $\Sigma = \{a\}$ et $V = \{S,D,F,X,Y,Z\}$
-    et $P = \{\rp{S}{DXaD},\rp{Xa}{aaX},\rp{XF}{YF},\rp{aY}{Ya},\rp{DY}{DX},\rp{XZ}{Z},\rp{aZ}{Za},\code{DZ}\to \epsilon\}$, $G = (\Sigma, V, P, S)$ est une grammaire de type 0.
+    Pour $\Sigma = \{\code{a}\}$, $S = \code{S}$, $V = \{S,\code{D},\code{F},\code{X},\code{Y},\code{Z}\}$
+    et $P = \{\rp{S}{DXaD},\,\rp{Xa}{aaX},\,\rp{XF}{YF},\,\rp{aY}{Ya},\,\rp{DY}{DX},\,\rp{XZ}{Z},\,\rp{aZ}{Za},\,\code{DZ}\to \epsilon\}$, $G = (\Sigma, V, P, S)$ est une grammaire de type 0.
 \end{exemple}
 
-\begin{definition}{}{dérivation immédiate}
-    Soit $G = (\Sigma, V, P, S)$ une grammaire. On dit que $\alpha \in (\Sigma \cup V)^*$ se dérive immédiatement en $\beta \in (\Sigma \cup V)^*$ lorsqu'il existe $(\alpha_2,\beta_2)\in P$ tel que~:
-    $$\exists (\alpha_1, \alpha_3) \in \Big((\Sigma \cup V)^*\Big)^2,\, \begin{cases*}
-        \alpha = \alpha_1\alpha_2\alpha_3\\
-        \beta = \alpha_1 \beta_2 \alpha_3
+\begin{definition}{}{dérivabilité immédiate}
+    Soit $G = (\Sigma, V, P, S)$ une grammaire. Soit $\alpha$ et $\beta$ deux mots de $(\Sigma \cup V)^*$. On dit que \notion{$\alpha$ se dérive immédiatement en $\beta$} lorsqu'il existe $(\alpha_1,\beta_1)\in P$ tel que~:
+    $$\exists (u, v) \in \Big((\Sigma \cup V)^*\Big)^2,\, \begin{cases*}
+        \alpha = u\alpha_1v\\
+        \beta = u \beta_1 v
     \end{cases*}$$
-    Le cas échéant, on note $\alpha \Rightarrow  \beta$. On parle de \notion{dérivation immédiate}. Moralement, le facteur $\alpha_2$ est remplacé par le facteur $\beta_2$.
+    Le cas échéant, on note $\alpha \Rightarrow  \beta$. On parle de \notion{dérivation immédiate}. Moralement, la règle de production $(\alpha_1,\beta_1)$ remplace le facteur $\alpha_1$ par le facteur $\beta_1$.
 \end{definition}
 
-\newcommand{\crt}[]{\Rightarrow ^*}
+\newcommand{\crt}{\Rightarrow ^*}
 
 
 \begin{definition}{}{clôture reflexive et transitive}
@@ -57,6 +56,11 @@
         \item $\forall (\alpha,\beta, \gamma) \in \Big((\Sigma \cup V)^*\Big)^3,\, (\alpha \crt \beta \text{ et } \beta \crt \gamma) \implies (\alpha \crt \gamma)$
     \end{itemize}
     Autrement dit, $\alpha \crt \beta$ lorsqu'il existe $(\alpha=\alpha_0,\, \dots,\, \alpha_k = \beta)$ une suite de mots dans $(\Sigma \cup V)^*$ telle que~: 
+    $$\forall i \in \intint{0}{k-1}, \alpha_i \Rightarrow  \alpha_{i+1}$$
+\end{definition}
+
+\begin{definition}{}{clôture reflexive et transitive de $\Rightarrow$}
+    Soit $G = (\Sigma, V, P, S)$ une grammaire. Soit $\alpha$ et $\beta$ deux mots de $(\Sigma \cup V)^*$. On note \notion{$\crt$ la clôture reflexive et transitive de la relation $\Rightarrow $}. Ainsi $\alpha \crt \beta$ lorsqu'il existe $(\alpha=\alpha_0,\, \dots,\, \alpha_k = \beta)$ une suite de mots dans $(\Sigma \cup V)^*$ telle que~: 
     $$\forall i \in \intint{0}{k-1}, \alpha_i \Rightarrow  \alpha_{i+1}$$
 \end{definition}
 
@@ -83,14 +87,18 @@
     D'où $S \crt \code{aaaa}$
 \end{exemple}
 
-\begin{definition}{}{langage engendré par une grammaire depuis un mot}
-    \textbf{ajouter que c une déf structurelle !! VOir démo 1}
-    Soit $G = (\Sigma, V, , S)$ une grammaire et $\alpha \in (\Sigma\cup V)^*$.\\
-    On définit le \notion{langage engendré par $G$ depuis $\alpha$} comme l'ensemble des mots de $\Sigma^*$ que l'on peut obtenir par dérivation depuis $\alpha$ en utilisant les règles de production de $G$.\\
-    $$\mc{L}_G = \{u \in \Sigma^*,\, \alpha \crt u\}$$
-    Le \notion{langage élargi engendré par $G$ depuis $\alpha$} est~:
-    $$\widehat{\mc{L}_G(\alpha)} = \{\beta \in (\Sigma \cup V)^*,\, \alpha \crt \beta\}$$
-    Le \notion{langage engendré par $G$} désigne $\mc{L}_G(S)$ le langage engendré par $G$ depuis le symbole initial.
+\begin{definition}{}{langage engendré, langage élargi engendré par une grammaire depuis un mot}
+    Soit $G = (\Sigma, V, P , S)$ une grammaire et $\alpha \in (\Sigma\cup V)^*$.
+    \begin{itemize}
+        \item le \notion{langage engendré par $G$ depuis $\alpha$} est l'ensemble des mots de $\Sigma^*$ que l'on peut obtenir par dérivation de $\alpha$ en utilisant les règles de production de $G$~:
+        $$\mc{L}_G(\alpha) = \{\beta \in \Sigma^*,\, \alpha \crt \beta\}$$
+        \item le \notion{langage élargi engendré par $G$ depuis $\alpha$} est l'ensemble des mots de $(\Sigma \cup V)^*$ que l'on peut obtenir par dérivation de $\alpha$ en utilisant les règles de production de $G$~:
+        $$\widehat{\mc{L}_G(\alpha)} = \{\beta \in (\Sigma \cup V)^*,\, \alpha \crt \beta\}$$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{}{langage engendré par une grammaire}
+    Soit $G = (\Sigma, V, P , S)$ une grammaire et $\alpha \in (\Sigma\cup V)^*$. Le \notion{langage engendré par $G$} désigne $\mc{L}_G(S)$ le langage engendré par $G$ depuis son symbole initial $S$.
 \end{definition}
 
 \begin{exemple}{}{}
@@ -106,16 +114,15 @@
     Les langages de type 0 sont exactement les langages récursivement énumérables, c'est-à-dire les langages reconnaissables par une machine de Turing.
 \end{theoreme}
 
-A skip si besoin
 \begin{definition}{}{grammaire contextuelle (HP)}
-    On appelle \notion{grammaire contextuelle (ou de type 1 ou monotone)} lorsque~:
-    $$\forall (\alpha,\beta) \in P \setminus \{(s,\epsilon)\},\, \abs{\alpha} \leq \abs{\beta}$$
+    Une grammaire $G=(\Sigma, V,P,S)$ de type 0 est appelée \notion{grammaire contextuelle (ou de type 1 ou monotone)} lorsque~:
+    $$\forall (\alpha,\beta) \in P \setminus \{(S,\epsilon)\},\, \abs{\alpha} \leq \abs{\beta}$$
     Moralement, tous les facteurs "produits" sont plus long que les facteurs remplacés.
 \end{definition}
 
 \begin{exemple}{}{de grammaire qui n'est pas "contextuelle"}
     la grammaire exemple définie par $\Sigma = \{a\}$ et $V = \{S,D,F,X,Y,Z\}$ et $P = \{\rp{S}{DXaD},\rp{Xa}{aaX},\rp{XF}{YF},\rp{aY}{Ya},\rp{DY}{DX},\rp{XZ}{Z},\rp{aZ}{Za},\code{DZ}\to \epsilon\}$ puis $G = (\Sigma, V, P, S)$ n'est pas contextuelle ~:
-    $$(\rp{DZ}{\epsilon}) \in P$$
+    $$(\code{DZ}\rightarrow \epsilon) \in P$$
     mais~:
     $$\abs{DZ} = 2 > \abs{\epsilon} = 0$$
 \end{exemple}
@@ -130,13 +137,13 @@ A skip si besoin
 \end{remarque}
 
 \begin{definition}{}{grammaire non contextuelle}
-    Une grammaire $\mc{G} = (\Sigma, V, P, S)$ est dite \notion{non contextuelle ou hors-contexte (ou encore algébrique ou de type 2)} lorsque~:
+    Une grammaire $G = (\Sigma, V, P, S)$ est dite \notion{non contextuelle} (ou \notion{hors contexte} ou encore \notion{algébrique} ou \notion{de type 2}) lorsque~:
     $$P \subset V \times (\Sigma \cup V)^*$$
-    Autrement le facteur remplacé pour toutes les règles n'est qu'un symbole non terminal.
+    Moralement, les règles de production ne permettent de remplacer que des symboles non terminaux (et pas des mots) : des majuscules.
 \end{definition}
 
 \begin{exemple}{}{de règle de production non valide pour une grammaire "non contextuelle"}
-    $\rp{DZ}{\epsilon}$ n'est pas une règle possible pour une grammaire hors contexte.
+    $\code{DZ}\rightarrow \epsilon$ n'est pas une règle possible pour une grammaire hors contexte.
 \end{exemple}
 
 \begin{exemple}{}{de grammaire "non contextuelle"}
@@ -144,19 +151,21 @@ A skip si besoin
     \begin{itemize}
         \item $\Sigma_1 = \{a,b\}$
         \item $V_1 = \{S_1\}$
-        \item $P_1 = \{\rp{S_1}{a S_1 b},\rp{S_1}{\epsilon}\}$
+        \item $P_1 = \{S_1 \rightarrow a S_1 b,\,S_1\rightarrow \epsilon\}$
     \end{itemize}
     est une grammaire hors contexte.
 \end{exemple}
 
 \begin{remarque}{}{}
-    On dit "hors contexte" car les symboles non terminaux
+    On dit "hors contexte" car les symboles non terminaux sont considérés seuls par les règles de production : on ne regarde pas les lettres autour.
 \end{remarque}
+
+
 
 PASSE 1
 ajouter à l'exemple : 
 
-$\widehat{\mc{L}_{G_1}(S_1) = \{a^n S_1 b^n,\, n \in \N\} \cup \{a^n b^n ,\, n \in \N\}$ pour comprendre le chapeau.
+$\widehat{\mc{L}_{G_1}(S_1)} = \{a^n S_1 b^n,\, n \in \N\} \cup \{a^n b^n ,\, n \in \N\}$ pour comprendre le chapeau.
 
 
 Voir démo 1
@@ -164,9 +173,9 @@ Voir démo 1
 \begin{exemple}{}{Langage de Dyck}
     Le langage de Dyck (bon parenthésage) est engendré par~:
     \begin{itemize}
-        \item $\Sigma = {\code{(}, \code{)}}$
-        \item $\mr{S}{(S)S}$
-        \item $\mr{S}{\epsilon}$
+        \item $\Sigma = \{\code{(}, \code{)}\}$
+        \item $S \rightarrow {(S)S}$
+        \item $S \rightarrow \epsilon$
     \end{itemize}
 \end{exemple}
 
@@ -237,8 +246,13 @@ cette définition sera rappelée, mais il faut vite la comprendre ! FC où on do
     $$\code{S} \rightarrow \code{aSb} \vert \epsilon$$ est linéaire et engendre $\{a^n b^n,\, n \in \N\}$
 \end{remarque}
 
-\begin{proposition}{}{régulier $\iif$ linéaire droit $\iif$ linéaire gauche pour un langage} 
-    tout est dans le titre. Le réécrire lol.
+\begin{proposition}{}{pour un langage, régulier $\ssi$ linéaire droit $\ssi$ linéaire gauche} 
+    Soit $L$ un langage. Les propriétés suivantes sont équivalentes.
+    \begin{enumeratebf}
+        \item $L$ est régulier
+        \item $L$ est linéaire droit
+        \item $L$ est linéaire gauche
+    \end{enumeratebf}
 \end{proposition}
 
 \begin{remarque}{}{sur la démo}
