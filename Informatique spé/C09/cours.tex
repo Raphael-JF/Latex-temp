@@ -7,7 +7,7 @@
 \title{Chapitre 9 : Grammaires non contextuelles}
 \maketitle
 
-\section{Grammaire non contextuelle (ou hors-contexte)}
+\section{Grammaire non contextuelle (ou hors contexte)}
 
 \subsection{Vocabulaire}
 
@@ -160,15 +160,19 @@
     On dit "hors contexte" car les symboles non terminaux sont considérés seuls par les règles de production : on ne regarde pas les lettres autour.
 \end{remarque}
 
+\newcommand{\leng}[2]{\mc{L}_{#1}(#2)}
 
 
-PASSE 1
-ajouter à l'exemple : 
-
-$\widehat{\mc{L}_{G_1}(S_1)} = \{a^n S_1 b^n,\, n \in \N\} \cup \{a^n b^n ,\, n \in \N\}$ pour comprendre le chapeau.
-
-
-Voir démo 1
+\begin{exemple}{}{langage engendré par une grammaire hors contexte}
+    $G_1 = (\Sigma_1, V_1, P_1, S_1)$ définie par~:
+    \begin{itemize}
+        \item $\Sigma_1 = \{a,b\}$
+        \item $V_1 = \{S_1\}$
+        \item $P_1 = \{S_1 \rightarrow a S_1 b,\,S_1\rightarrow \epsilon\}$
+    \end{itemize}
+    Alors $\mc{L}_{G_1}(S_1) = \{a^nb^n,\, n \in \N\}$. On le démontre (Démo 1).
+    Par ailleurs $\widehat{\mc{L}_{G_1}(S_1)} = \{a^n S_1 b^n,\, n \in \N\} \cup \{a^n b^n ,\, n \in \N\}$.
+\end{exemple}
 
 \begin{exemple}{}{Langage de Dyck}
     Le langage de Dyck (bon parenthésage) est engendré par~:
@@ -180,13 +184,9 @@ Voir démo 1
 \end{exemple}
 
 \begin{remarque}{}{grammaires "non contextuelles" uniquement définies par les règles de production}
-    En général, on donne une grammaire hors-contexte uniquement avec les règles de production.\\
+    En général, on donne une grammaire hors contexte uniquement avec les règles de production.\\
     On ne précise le symbole initial que si ce n'est pas $S$.\\
     Les symboles non terminaux sont exactement ceux que l'on rencontre à gauche des règles et les terminaux sont les autres qu'on rencontre.
-\end{remarque}
-
-\begin{remarque}{}{"hors-contexte" $\nRightarrow$ "régulier"}
-    Les exemples montrent qu'il existe des langages hors contexte qui ne sont pas réguliers.
 \end{remarque}
 
 \begin{remarque}{}{abréviation d'une famille de règles de production}
@@ -202,33 +202,41 @@ Voir démo 1
     $$S_1 \rightarrow aS_1b \vert \epsilon$$
 \end{exemple}
 
-\subsection{Langages réguliers et langages hors-contexte}
+\subsection{Langages réguliers et langages hors contexte}
 
 Un résultat à connaître et savoir redémontrer.
-\begin{proposition}{}{"régulier" $\implies$ "hors-contexte"}
-    Soit $\Sigma$ un alphabet, Tout langage sur $\Sigma$ régulier est "hors-contexte".
+\begin{proposition}{}{régulier $\implies$ hors contexte}
+    Soit $\Sigma$ un alphabet, Tout langage sur $\Sigma$ régulier est hors contexte.
 \end{proposition}
 Voir Démo 2 (elle est incomplète)
 
-\begin{remarque}{}{concernant ce résultat}
-    L'inclusion réciproque est fausse si $\abs{Sigma} \geq 2$~:
-    $$\{a^nb^n,\, n \in \N\}$$
-    est un langage hors-contexte mais non régulier.
+\begin{remarque}{}{hors contexte $\nRightarrow$ régulier}
+    il existe des langages hors contexte qui ne sont pas réguliers. En effet on a montré que pour $G_1 = (\Sigma_1, V_1, P_1, S_1)$ définie par~:
+    \begin{itemize}
+        \item $\Sigma_1 = \{a,b\}$
+        \item $V_1 = \{S_1\}$
+        \item $P_1 = \{S_1 \rightarrow a S_1 b,\,S_1\rightarrow \epsilon\}$
+    \end{itemize}
+    Alors $\mc{L}_{G_1}(S_1) = \{a^nb^n,\, n \in \N\}$.\\\\
+    Ce langage est donc hors contexte, mais n'est pas régulier.
 \end{remarque}
 
-cette définition sera rappelée, mais il faut vite la comprendre ! FC où on donne la déf, et on doit interpréter !
-\begin{definition}{}{grammaire linéaire (HP)}
-    $G = (\Sigma, V, P, S)$ est dite~:
-    \begin{itemize}
-        \item \notion{linéaire} si~:
-        $$P \subset V \times (\Sigma^* \cup \Sigma^*V\Sigma^*)$$
-        Moralement, on a toujours au plus un symbole non terminal (voir Fig.1)
-        \item \notion{linéaire gauche} lorsque~:
-        $$P \subset V \times \bigg( \Sigma^* \cup (V \Sigma^*) \bigg)$$
-        Le facteur "produit" commence par un unique symbole non terminal ou n'en a aucun.
-        \item \notion{linéaire droit} lorsque~:
-        $$P \subset V \times \bigg( \Sigma^* \cup (Sigma^*V) \bigg)$$
-    \end{itemize}
+\begin{definition}{}{grammaire hors contexte linéaire (HP)}
+    Une grammaire $G = (\Sigma, V, P, S)$ hors contexte est dite \notion{linéaire} si~:
+        $$P \subset V \times \big(\Sigma^* \cup \Sigma^*V\Sigma^*\big)$$
+    Moralement, on a toujours au plus un symbole non terminal (voir Fig.1)
+\end{definition}
+
+\begin{definition}{}{grammaire hors contexte linéaire gauche (HP)}
+    Une grammaire $G = (\Sigma, V, P, S)$ hors contexte est dite \notion{linéaire} si~:
+        $$P \subset V \times \big( \Sigma^* \cup V \Sigma^* \big)$$
+    Moralement, Le facteur "produit" commence par un unique symbole non terminal ou n'en a aucun.
+\end{definition}
+
+\begin{definition}{}{grammaire hors contexte linéaire droite (HP)}
+    Une grammaire $G = (\Sigma, V, P, S)$ hors contexte est dite \notion{linéaire} si~:
+        $$P \subset V \times \big( \Sigma^* \cup \Sigma^*V \big)$$
+    Moralement, Le facteur "produit" termine par un unique symbole non terminal ou n'en a aucun.
 \end{definition}
 
 \begin{remarque}{}{chaine d'implications}
@@ -242,7 +250,7 @@ cette définition sera rappelée, mais il faut vite la comprendre ! FC où on do
     Un langage est dit linéaire (resp. simple, droit, gauche) lorsqu'il peut être engendré par une grammaire linéaire (resp. simple, linéaire droite).
 \end{definition}
 
-\begin{remarque}{}{existence langages linéaires non réguliers}
+\begin{remarque}{}{existence de langages linéaires non réguliers}
     $$\code{S} \rightarrow \code{aSb} \vert \epsilon$$ est linéaire et engendre $\{a^n b^n,\, n \in \N\}$
 \end{remarque}
 
@@ -261,5 +269,138 @@ cette définition sera rappelée, mais il faut vite la comprendre ! FC où on do
 
 Démo 3.
 
+subsection{Système d'équations d'une grammaire}
+
+\begin{definition}{}{}
+    Soit $G = (\Sigma, V, P,S)$ une grammaire hors contexte avec $V = \{S, X_1, \dots, X_n\}$. Soit $L = (L_0,\, \dots,\, L_n)$ un $(n+1)$-uplet de langages sur $\Sigma$. On définit par induction~:
+    \begin{itemize}
+        \item $\epsilon(L) = \{\epsilon\}$ (base)
+        \item $\forall a \in \Sigma,\, a(L) = \{a\}$ (base)
+        \item $S(L) = L_0$ (base)
+        \item $\forall i \in \intint{1}{n},\, X_i(L) = L_i$ (base)
+        \item $\forall (\alpha,\beta) \in \Big((\Sigma \cup V)^*\Big)^2,\, \alpha\beta(L) = \alpha(L)\cdot \beta(L)$ (compatibilité avec la concaténation)
+        \item $\forall K \subset (\Sigma \cup V)^*,\, K(L) = \bigcup_{w \in K} w(L)$ (compatibilité avec l'union)
+    \end{itemize}
+    Le \notion{système d'équations $\mc{S}(G)$ de la grammaire $G$} est le suivant~:
+    $$\begin{cases*}
+        \forall i \in \intint{1}{n},\, L_i = \bigcup_{(X_i,\alpha) \in P}\alpha(L)\\
+        L_0 = \bigcup_{(S, \alpha) \in P} \alpha(L)
+    \end{cases*}$$
+\end{definition}
+
+\begin{remarque}{}{}
+    À chaque symbole on associe un langage $L_i$. On veut montrer que $\mc{L}_G = (\leng{G}{S},\, \leng{G}{X_1},\,\dots,\,  \leng{G}{X_n})$ est solution du système $\mc{S}(G)$
+\end{remarque}
+
+\begin{exemple}{}{}
+    $\begin{align*}
+        G_1 :&\\ 
+        &S \rightarrow aX_1b\\
+        &X_1 \rightarrow cX_2d\\
+        &X_2 \rightarrow \epsilon \vert S
+    \end{align*}$
+    Avec cette grammaire, on obtient le système suivant~:
+    $$\begin{cases*}
+        L_0 = \{a\}L_1\{b\}\\
+        L_1 = \{c\}L_2\{d\}\\
+        L_2 = \{\epsilon\} \cup L_0
+    \end{cases*}$$
+\end{exemple}
+
+\begin{remarque}{}{notation liées à un sytème d'équations d'une grammaire}
+    On note $\mc{L}_G = (\leng{G}{S},\, \leng{G}{X_1},\,\dots,\,  \leng{G}{X_n})$ le $(n+1)$-uplet de langages engendrés par les symboles non terminaux.
+\end{remarque}
+
+\begin{proposition}{}{lemme 1 concernant ce $(n+1)$-uplet}
+    $\forall \alpha \in (V \cup \Sigma)^*,\, \leng{G}{\alpha} = \alpha(\mc{L}_G)$
+\end{proposition}
+Démo 4
+
+\begin{proposition}{}{Lemme 2 concernant ce ...}
+    Soit $L$ un $(n+1)$-uplet de langages sur $\Sigma$ solution de $\mc{S}(G)$.\\
+    $$\forall (\alpha,\beta) \in (\Sigma \cup V)^*,\, (\alpha \crt \beta) \implies (\beta(L) \subset \alpha(L))$$
+\end{proposition}
+demo 5
+
+\begin{theoreme}{}{utilisant les deux lemmes}
+    $\mc{L}_G = (\leng{G}{S},\, \leng{G}{X_1},\,\dots,\,  \leng{G}{X_n})$  est l'unique solution minimale pour l'inclusion composante par composannte de $\mc{S}(G)$.
+\end{theoreme}
+Démo 6
+
+\begin{exemple}{}{pratique}
+    En pratique on peut résoudre le système en utilisant le lemme d'Arden pour déterminer le langage engendré par une grammaire hors contexte pas trop complexe. D'après la théorie précédente, la solution sera l'unique solution minimale pour le système de grammaire.
+    $\begin{align*}
+        G : &S \rightarrow  SX_1 \vert \epsilon\\
+        &X_1 \rightarrow aX_1 \vert b 
+    \end{align*}$
+
+    $$\begin{cases*}
+        L_0 = L_0L_1 \cup \{\epsilon\}\\
+        L_1 = \{a\}L_1\{b\}
+    \end{cases*}$$
+    Voir Démo 7
+\end{exemple}
+
+Rappel
+\begin{theoreme}{}{lemme d'Arden (revisité mdr)}
+    Soit $A$ et $B$ deux langages sur un même alphabet $\Sigma$. Toute solution de $L = AL\cup B$ continet $A^*B$. En particulier $A^*B$ est solution et elle est unique si $\epsilon \notin A$.
+    On a un résultat analogue pour LA et AL !
+\end{theoreme}
+Revoir la démo de ça et traiter les 4 cas.
+
+\begin{exemple}{}{pénible}
+    Pour $S\rightarrow aSb \vert \epsilon$,
+    On ne peut pas appliquer le lemme d'Arden, il faut faire une induction~:
+    $$L = (A_1LA_2) \cup B$$
+    Une solution minimale est $\{m_1 m_0 m_2,\, k \in \N,\, m_1 \in A_1^k,\, m_2 \in A_2^k,\, m_0 \in B\}$. La démo est celle du lemme d'Arden mais il ne couvre pas ce cas c'est tout.
+\end{exemple}
+
+\begin{remarque}{}{}
+    Les systèmes d'équation de grammaire et le lemme d'Arden sont des outils HORS PROGRAMME. À l'écrit, il faut le redémontrer une fois avant d'utiliser le lemme d'Arden ou faire une induction structurelle dans les cas particuliers.\\
+    Pour $\mc{S}(G)$, on justifie par une phrase en s'appuyant sur la première règle utilisée et on donne $\mc{S}(G)$.
+\end{remarque}
+
+\subsection{1.4}
+
+Passe 2
+
+\subsection{Hiérarchie de Chomsky - HP, culture générale}
+
+\begin{theoreme}{}{hiérarchie de Chomsky}
+    Il s'agit d'un théorème qui définit une "hiérarchie" sur les langages~:
+    \begin{enumeratebf}
+        \item Tout langage régulier (rationnel, de type 3) est un langage linéaire (réciproque fausse)
+        \item Tout langage linéaire est un langage hors contexte (de type 2). La réciproque est fausse.
+        \item Tout langage hors contexte (de type 2) est un langage contextuel (de type 1). La réciproque est fausse
+        \item Tout langage contextuel (de type 1) est un langage récursif (réciproque fausse). C'est à dire les langages récurssifs (\ie reconnus par une machine de Turing déterministe, sans calcul infini).
+        \item Tout langage récursif est récursivement énumérable (= de type 0 d'après le théorème de Chomsky) (reconnaissable par une machine de Turing).
+    \end{enumeratebf}
+    Voir Fig.8
+\end{theoreme}
+
+section{Arbre d'analyse}
+
+\begin{definition}{}{arbre d'analyse}
+    Un \notion{arbre d'analyse} (ou \notion{arbre d'analyse syntaxique}, ou \notion{arbre de dérivation}) pour une grammaire hors contexte $G = (\Sigma, V,P,S)$ et un mot $w \in \leng{G}{S}$ est un arbre~:
+    \begin{itemize}
+        \item dont les étiquettes sur les noeuds sont des symboles dans $\Sigma\cup V \cup\{\epsilon\}$~:
+        \begin{itemize}
+            \item $\Sigma \cup \{\epsilon\}$ pour les feuilles
+            \item $V$ pour les noeuds internes (racine comprise)
+        \end{itemize}
+        \item dont la racine est étiquettée par $S$
+        \item pour tout noeud interne $n$ d'étiquette $X \in V$, de fils d'étiquettes $x_1, \dots, x_k$, on a $(X,x_1,\dots x_k) \in P$
+    \end{itemize}
+    On appelle alors \notion{frontière} de l'arbre d'analyse le mot obtenu en concaténant les symboles des feuilles de gauche à droite : c'est $w$.
+\end{definition}
+
+\begin{exemple}{}{d'arbre d'analyse}
+    Pour $G : S \rightarrow aSb \vert \espilon$, Voir Fig.9
+\end{exemple}
+
+
+\begin{remarque}{}{propriété de l'arbre d'analyse}
+    L'arbre de l'arbre d'analyse est la  preuve qu'un mot est engendré par une grammaire. Il rend compte de toutes les règles de production utilisées mais pas entièrement de l'ordre. On le verra au prochain cours.
+\end{remarque}
 
 \input{../../stock/pied.tex}

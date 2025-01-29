@@ -12,10 +12,10 @@
     \begin{itemize}
         \item le \notion{segment de données}, qui constitue une zone de mémoire "fixe" pour stocker les variables globales, ainsi que les constantes.
         \item le \notion{tas}, où sont stockées les variables allouées dynamiquement.
-        \item la \notion{pile}, une zone de mémoire de taille variable où sont stockés~:
+        \item la \notion{pile}, une zone de mémoire de taille variable où sont stockés pour chaque \notion{fil d'exécution}~:
         \begin{itemize}
-            \item les \notion{blocs d'activation} pour chaque appel de fonction contenant les variables locales aux fonctions.
-            \item un \notion{pointeur d'instruction} vers le segment de code qui contient l'adresse de la prochaine instruction dans le \notion{segment de code}.
+            \item le \notion{bloc d'activation} contenant les variables locales aux fonctions appelées par le fil.
+            \item un \notion{pointeur d'instruction} vers le segment de code qui contient l'adresse de la prochaine instruction du fil dans le \notion{segment de code}.
         \end{itemize}
         \item le \notion{segment de code}, où sont stockés les instructions du programme.
     \end{itemize}
