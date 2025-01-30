@@ -78,4 +78,24 @@
     $$\proba\Bigg(\bigcap_{k=1}^nA_k\Bigg) = \prod_{k=1}^n\proba\bigg( A_k\, \bigg\vert\,\bigcap_{i=1}^{k-1} A_j \bigg)$$
 \end{theoreme}
 
+\begin{theoreme}{15.28}{formule de probabilités totales}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_i)_{i \in I}$ un système complet d'évènement de probabilités non nulles, où $I$ est au plus dénombrable. Pour tout $B \in \tribu$~:
+    $$\proba(B) = \sum_{i \in I} \proba(B \cap A_i)$$
+\end{theoreme}
+
+\begin{theoreme}{15.32}{formule de Bayes}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_i)_{i \in I}$ un système complet d'évènement de probabilités non nulles, où $I$ est au plus dénombrable. Pour tout $B \in \tribu$ de probabilité non nulle~: 
+    $$\forall j \in I,\, \proba_B(A_j) = \frac{\proba_{A_j}(B)}{\displaystyle \sum_{i \in I} \proba_{A_i}(B)\proba(A_i)}$$
+\end{theoreme}
+
+\begin{definition}{15.37}{évènements mutuellement indépendants}
+    Soit $(\univ, \tribu, \proba)$ un espace probabilisé. Soit $(A_i)_{i \in I}$ un système complet d'évènement, où $I$ est au plus dénombrable. $(A_i)_{i \in I}$ est une \notion{famille d'évènements mutuellement indépendants} si~:
+    $$\forall J \in \mc{P}_f(I),\, \proba\Bigg(\bigcap_{j \in J} A_j\Bigg) = \prod_{j \in J}\proba(A_j)$$
+\end{definition}
+
+\begin{definition}{15.38}{prédicat vrai sur un ensemble au plus dénombrable}
+    Soit $P$ un prédicat sur $I$ un ensemble au plus dénombrable. On dit que \notion{$P$ est vrai sur $I$} si~:
+    $$\forall J \in \mc{P}_f(I),\, \forall x \in J,\, P(x)$$
+\end{definition}
+
 \input{../../stock/pied.tex}

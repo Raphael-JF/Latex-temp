@@ -183,10 +183,14 @@
         \{x\}\{y\}^*\{z\} \subset L
     \end{cases*}$$
 \end{theoreme}
-
+  
 
 \begin{theoreme}{2.26}{lemme d'Arden}
-    Soit $A$ et $B$ deux langages sur un même alphabet $\Sigma$. Si $\epsilon \notin A$, l'équation $L = (A\cdot L)\cup B$ admet pour unique solution le langage $A^*B$.
+    Soit $A$ et $B$ deux langages sur un même alphabet $\Sigma$. l'équation $L = AL\cup B$ admet $A^*B$ pour solution. Plus précisément, pour $L$ une solution~:
+    \begin{itemize}
+        \item $A^*B \subset L$
+        \item si $\epsilon \notin A$, alors $L \subset A^*B$. La solution est unique.
+    \end{itemize}
 \end{theoreme}
 
 \input{../../stock/pied.tex}

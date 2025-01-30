@@ -269,7 +269,7 @@ Voir Démo 2 (elle est incomplète)
 
 Démo 3.
 
-subsection{Système d'équations d'une grammaire}
+\subsection{Système d'équations d'une grammaire}
 
 \begin{definition}{}{}
     Soit $G = (\Sigma, V, P,S)$ une grammaire hors contexte avec $V = \{S, X_1, \dots, X_n\}$. Soit $L = (L_0,\, \dots,\, L_n)$ un $(n+1)$-uplet de langages sur $\Sigma$. On définit par induction~:
@@ -293,12 +293,12 @@ subsection{Système d'équations d'une grammaire}
 \end{remarque}
 
 \begin{exemple}{}{}
-    $\begin{align*}
+    \begin{align*}
         G_1 :&\\ 
         &S \rightarrow aX_1b\\
         &X_1 \rightarrow cX_2d\\
         &X_2 \rightarrow \epsilon \vert S
-    \end{align*}$
+    \end{align*}
     Avec cette grammaire, on obtient le système suivant~:
     $$\begin{cases*}
         L_0 = \{a\}L_1\{b\}\\
@@ -341,13 +341,6 @@ Démo 6
     Voir Démo 7
 \end{exemple}
 
-Rappel
-\begin{theoreme}{}{lemme d'Arden (revisité mdr)}
-    Soit $A$ et $B$ deux langages sur un même alphabet $\Sigma$. Toute solution de $L = AL\cup B$ continet $A^*B$. En particulier $A^*B$ est solution et elle est unique si $\epsilon \notin A$.
-    On a un résultat analogue pour LA et AL !
-\end{theoreme}
-Revoir la démo de ça et traiter les 4 cas.
-
 \begin{exemple}{}{pénible}
     Pour $S\rightarrow aSb \vert \epsilon$,
     On ne peut pas appliquer le lemme d'Arden, il faut faire une induction~:
@@ -360,9 +353,9 @@ Revoir la démo de ça et traiter les 4 cas.
     Pour $\mc{S}(G)$, on justifie par une phrase en s'appuyant sur la première règle utilisée et on donne $\mc{S}(G)$.
 \end{remarque}
 
-\subsection{1.4}
+\subsection{Liens avec les définitions inductives}
 
-Passe 2
+Les définitions des grammaires hors contexte sont très liées aux définitions inductives.
 
 \subsection{Hiérarchie de Chomsky - HP, culture générale}
 
@@ -378,7 +371,7 @@ Passe 2
     Voir Fig.8
 \end{theoreme}
 
-section{Arbre d'analyse}
+\section{Arbre d'analyse}
 
 \begin{definition}{}{arbre d'analyse}
     Un \notion{arbre d'analyse} (ou \notion{arbre d'analyse syntaxique}, ou \notion{arbre de dérivation}) pour une grammaire hors contexte $G = (\Sigma, V,P,S)$ et un mot $w \in \leng{G}{S}$ est un arbre~:
@@ -395,7 +388,7 @@ section{Arbre d'analyse}
 \end{definition}
 
 \begin{exemple}{}{d'arbre d'analyse}
-    Pour $G : S \rightarrow aSb \vert \espilon$, Voir Fig.9
+    Pour $G : S \rightarrow aSb \vert \epsilon$, Voir Fig.9
 \end{exemple}
 
 
