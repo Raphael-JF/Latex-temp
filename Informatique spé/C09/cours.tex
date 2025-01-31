@@ -193,13 +193,13 @@
     Pour noter rapidement un ensemble de règles de production utilisant le même symbole non terminal comme départ~:
     $$\{\rp{X,$\alpha_1$},\, \dots,\, \rp{X}{$\alpha_k$}\} \subset P$$
     avec $X\in V$,\, on note~:
-    $$X \rightarrow \alpha_1 \vert \cdots \vert \alpha_k$$
+    $$X \rightarrow \alpha_1 \,\vert\, \cdots \,\vert\, \alpha_k$$
     Ce n'est qu'une notation, on a bien $k$ règles de production derrière ça.
 \end{remarque}
 
 \begin{exemple}{}{exploitant ce raccourci}
     $G_1$ s'écrit~:
-    $$S_1 \rightarrow aS_1b \vert \epsilon$$
+    $$S_1 \rightarrow aS_1b \,\vert\, \epsilon$$
 \end{exemple}
 
 \subsection{Langages réguliers et langages hors contexte}
@@ -251,7 +251,7 @@ Voir Démo 2 (elle est incomplète)
 \end{definition}
 
 \begin{remarque}{}{existence de langages linéaires non réguliers}
-    $$\code{S} \rightarrow \code{aSb} \vert \epsilon$$ est linéaire et engendre $\{a^n b^n,\, n \in \N\}$
+    $$\code{S} \rightarrow \code{aSb} \,\vert\, \epsilon$$ est linéaire et engendre $\{a^n b^n,\, n \in \N\}$
 \end{remarque}
 
 \begin{proposition}{}{pour un langage, régulier $\ssi$ linéaire droit $\ssi$ linéaire gauche} 
@@ -297,7 +297,7 @@ Démo 3.
         G_1 :&\\ 
         &S \rightarrow aX_1b\\
         &X_1 \rightarrow cX_2d\\
-        &X_2 \rightarrow \epsilon \vert S
+        &X_2 \rightarrow \epsilon \,\vert\, S
     \end{align*}
     Avec cette grammaire, on obtient le système suivant~:
     $$\begin{cases*}
@@ -329,10 +329,10 @@ Démo 6
 
 \begin{exemple}{}{pratique}
     En pratique on peut résoudre le système en utilisant le lemme d'Arden pour déterminer le langage engendré par une grammaire hors contexte pas trop complexe. D'après la théorie précédente, la solution sera l'unique solution minimale pour le système de grammaire.
-    $\begin{align*}
-        G : &S \rightarrow  SX_1 \vert \epsilon\\
-        &X_1 \rightarrow aX_1 \vert b 
-    \end{align*}$
+    \begin{align*}
+        G : &S \rightarrow  SX_1 \,\vert\, \epsilon\\
+        &X_1 \rightarrow aX_1 \,\vert\, b 
+    \end{align*}
 
     $$\begin{cases*}
         L_0 = L_0L_1 \cup \{\epsilon\}\\
@@ -342,7 +342,7 @@ Démo 6
 \end{exemple}
 
 \begin{exemple}{}{pénible}
-    Pour $S\rightarrow aSb \vert \epsilon$,
+    Pour $S\rightarrow aSb \,\vert\, \epsilon$,
     On ne peut pas appliquer le lemme d'Arden, il faut faire une induction~:
     $$L = (A_1LA_2) \cup B$$
     Une solution minimale est $\{m_1 m_0 m_2,\, k \in \N,\, m_1 \in A_1^k,\, m_2 \in A_2^k,\, m_0 \in B\}$. La démo est celle du lemme d'Arden mais il ne couvre pas ce cas c'est tout.
@@ -388,12 +388,210 @@ Les définitions des grammaires hors contexte sont très liées aux définitions
 \end{definition}
 
 \begin{exemple}{}{d'arbre d'analyse}
-    Pour $G : S \rightarrow aSb \vert \epsilon$, Voir Fig.9
+    Pour $G : S \rightarrow aSb \,\vert\, \epsilon$, Voir Fig.9
 \end{exemple}
 
 
 \begin{remarque}{}{propriété de l'arbre d'analyse}
-    L'arbre de l'arbre d'analyse est la  preuve qu'un mot est engendré par une grammaire. Il rend compte de toutes les règles de production utilisées mais pas entièrement de l'ordre. On le verra au prochain cours.
+    L'arbre de d'analyse est la  preuve qu'un mot est engendré par une grammaire. Il rend compte de toutes les règles de production utilisées mais pas entièrement de l'ordre. Voir Fig 10.
 \end{remarque}
+
+\begin{exemple}{}{d'arbre d'analyse}
+    On se donne une grammmaire hors contexte qui engendre un langage de bon parenthésage.
+    $$G : S \rightarrow \epsilon \,\vert\, SS \,\vert\, (S) \,\vert\, [S]$$
+    $w = (([])())[]() \in \leng{G}{S}$
+    On peut construire plusieurs arbres d'analyse pour ce mot, qui sont représentés en Fig.11
+\end{exemple}
+
+\begin{remarque}{}{applications de l'arbre d'analyse}
+    À partir d'un arbre d'analyse on peut reconstruire, on peut reconstruire une ou plusieurs dérivations correspondant exactement à l'arbre (mêmes règles utilisées) en suivant un parcours en profondeur (préfixe)~:\\
+    On applique les règles sur les symboles non terminaux dans l'ordre dans lequel on les rencontre dans le parcours en commençant arbitrairement par la gauche (préfixe gauche) ou la droite (préfixe droite).
+\end{remarque}
+
+\begin{definition}{}{dérivation à gauche}
+    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. On appelle \notion{dérivation à gauche} de $S$ en $w \in \Sigma^*$ une suites de dérivations immédiates de la forme~:
+    $$u_iX_i\alpha_i \Rightarrow u_i \beta_i \alpha_i$$
+    partant du mot $u_0X_0\alpha_0 = S$, jusqu'au mot $w$.\\
+    Moralement, on ne remplace que le premier symbole non terminal le plus à gauche.
+\end{definition}
+pareil pour la droite.
+
+\begin{proposition}{}{lien avec l'arbre d'analyse}
+    Le parcours en profondeur à gauche (préfixe gauche) d'un arbre d'analyse permet de produire une dérivation à gauche.
+\end{proposition}
+résultat analogue pour la droite.
+
+\begin{exemple}{}{d'exploitation de cette proposition}
+    $G : S \rightarrow AB,\, S \rightarrow aA\,\vert\, \epsilon,\, B \rightarrow bB\,\vert\, \epsilon$.\\
+    Soit $aab \in \leng{G}{S}$. Voir Fig 12.
+\end{exemple}
+
+
+\begin{definition}{}{grammaire ambiguë}
+    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. $G$ est \notion{ambiguë} s'il existe un mot de $\leng{G}(S)$ admettant au moins deux arbres d'analyse distincts, (donc de même frontière).
+\end{definition}
+
+\begin{definition}{}{non ambiguité d'un langage}
+    Un langage hors contexte est dit \notion{non ambigu} lorsque l'une des grammaires l'engendrant n'est pas ambiguë.
+    Sinon il est dit \notion{inhéremment ambigu}.
+\end{definition}
+
+\begin{remarque}{}{}
+    Il existe des langages hors contextes inhéremment ambigu~: 
+    $$L = \{a^ib^jc^k,\, i=j \text{ ou } j=k,\, (i,j,k)\in \N^3\}$$
+    Voir Fig.13.
+\end{remarque}
+
+\begin{remarque}{}{grammaires ambiguë}
+    Les grammaires ambiguë posent problèment pour les compilateurs ! Ils ne savent pas quel arbre choisir.
+\end{remarque}
+
+\begin{remarque}{}{condition suffisante d'ambiguité}
+    Avec une grammaire hors contexte avec une règle du type $X \rightarrow XX$ utilisée par au moins une dérivation d'un mot engendré, on peut toujours montrer l'ambiguité. en particulier $S \rightarrow SS$ rend le langage ambiguë : on l'a vu. Voir Fig.14.
+\end{remarque}
+Passe 3
+
+
+Comment lever une ambiguité ?
+Aucune méthode précise n'est attendue. On doit savoir "bidouiller" pour des cas simples.
+
+\subsubsection{Première méthode}
+
+Ajouter de nouveaux symboles Pour imposer des règles de priorité ou forcer un ordre... C'est la méthode au programme (On doit se débrouiller quoi).
+
+\subsubsection{Deuxième méthode (HP)}
+Ajout de \notion{méta-règles}, extérieures à la grammaire qui définissent des priorités sur les règles à appliquer.\\
+
+\begin{definition}{}{faible équivalence de deux grammaires hors contexte}
+    On dit de deux grammaires $G$ et $G'$ hors contexte qu'elles sont \notion{faiblement équivalentes} si elles engendrent un même langage~:
+    $$\leng{G}{S} = \leng{G'}{S'}$$
+\end{definition}
+
+\begin{remarque}{}{faible équivalence}
+    Pour certaines grammaires ambiguë, il existe une grammaire non ambiguë faiblement équivalente. (pas toujours).
+\end{remarque}
+
+\begin{definition}{}{forte équivalence de deux grammaires (HP)}
+    Deux grammaires sont \notion{fortement équivalentes} lorsqu'elles engendrent le même langage et utilisent les mêmes dérivations pour un même mot à l'ordre près.
+\end{definition}
+
+\subsection{Exemple des expression arithmétiques}
+On peut engendrer les langages des expressions arithmétiques avec une grammaire hors contexte naïve~:
+$$S \rightarrow S + S \,\vert\, S - S \,\vert\, S / S \,\vert\, S \times S \,\vert\, N$$
+$$N \rightarrow  0 \,\vert\, \dots \,\vert\, 9 \,\vert\, NN$$
+
+Le mot  $1 + 2 + 3 \times 4$ est dans $\leng{G}{S}$ et admet deux arbres d'analyse distincts. Voir Fig.15.\\\\
+Première solution~: On rajoute des parenthèses~:
+$$S \rightarrow (S+S) \,\vert\, (S-S) \,\vert\, (S / S) \,\vert\, (S \times S) \,\vert\, N $$
+$$C \rightarrow 0 \,\vert\, \dots \,\vert\, 9$$
+$$N \rightarrow CN \,\vert\, C$$
+
+Ce n'est plus ambiguë, mais le langage engendré n'est plus le même :/\\\\
+
+Deuxième solution~: (méthode à connaître)
+$$S \rightarrow S + D \,\vert\, D \qquad \text{(somme)}$$
+$$D \rightarrow D - P \,\vert\, P \qquad \text{(différence)}$$
+$$P \rightarrow P \times Q \,\vert\, Q \qquad \text{(produit)}$$
+$$Q \rightarrow Q / N \,\vert\, N \,\vert\, (S)\qquad \text{(quotient)}$$
+$$N \rightarrow CN \,\vert\, C \qquad \text{(nombre)}$$
+$$C \rightarrow 0 \,\vert\, \dots \,\vert\, 9 \qquad \text{(chiffre)}$$
+On a rajouté des parenthèses, mais on peut les enlever, on limitera alors les opérations imbriquées. Par contre, on a imposé un ordre de prioriété qui rend le langage engendré non ambigu.
+
+\subsection{Problème du "sinon" pendant ("dangling else")}
+
+On considère la grammaire suivante correspondant à une partie du langage C pour les blocs conditionnels~:
+
+$$\rp{I}{if(E)I}$$
+$$\rp{I}{if(E)I else I}$$
+$$\rp{I}{E;I}\,\vert\, \epsilon$$
+$$\rp{E}{x=2} \,\vert\, \code{E<E} \,\vert\, \code{E>E} \,\vert\, \code{E==E} \,\vert\, \dots$$
+
+On considère le morceau de code~:
+
+$$\code{if (x>4) if (x<5) x=10; else x=42;}$$
+
+Deux interprétations possibles~: Voir Fig.16.
+Deux solutions~:
+\begin{itemize}
+    \item Savoir coder dignement (avec des accolades)
+    \item En C, on a une \notion{méta-règle} utilisée par le compilateur : le \code{else} est associé au \code{if} le plus proche (antérieurement) non déjà associé à un autre bloc \code{else}.s
+\end{itemize}
+
+\section{Automats à pile (HP)}
+
+Les automates à pile constituent une extension des automates finis~: on rajoute une mémoire, sous la forme d'une pile, à un automate fini.\\
+Les transitions dépilent un symbole et en empilent d'autres.\\
+Ainsi les langages reconnus par les automates à pile sont exactement les langages hors contexte.
+
+\begin{definition}{}{automate à pile}
+    On appelle \notion{automate à pile} un sixtuplet $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ tel que~:
+    \begin{itemize}
+        \item $\Sigma$ est un alphabet fini dit \notion{alphabet d'entrée}. C'est l'alphabet des mots que l'automate reconnaît.
+        \item $S$ est un alphabet fini dit \notion{alphabet de pile}. C'est l'ensemble des symboles que l'on peut utiliser dans la pile
+        \item $z_0 \in Z$ est un \notion{symbole initial}. La pile contient initialement $z_0$.
+        \item $Q$ est un \notion{ensemble fini d'états}.
+        \item $q_0 \in Q$ est un état initial
+        \item $\delta$ est la \notion{fonction de transition}~:
+        $$\delta : \Big(\Sigma \cup \{\epsilon\}\Big)\times Q\times Z \to \mc{P}(Q\times Z^*)$$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}{}{transition dans un automate à pile}
+    Soit $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ un automate à pile. On note une \notion{transition de $A$} de la façon suivante. Voir Fig.17
+\end{definition}
+
+\begin{definition}{}{configuration dans un calcul sur un automate à pile}
+    Soit $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ un automate à pile. Une \notion{configuration dans un calcul sur $A$} est un couple $(q,w) \in Q \times Z^*$ tel que~:
+    \begin{itemize}
+        \item $q$ est l'état courant
+        \item $w$ est le mot représentant l'état de la pile
+    \end{itemize}
+    Moralement, il s'agit de l'information de l'état actuel de l'automate.
+    Voir Fig.18. p19
+\end{definition}
+
+\begin{definition}{}{étape de calcul d'un automate à pile}
+    Soit $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ un automate à pile. On appelle \notion{étape de calcul} dans $A$ le passage d'une configuration $C \in Q\times Z^*$ à une configuration $C' \in Q\times Z^*$ associée à $y \in \Sigma \cup \{\epsilon\}$, notée $C \xrightarrow{y} C'$ avec~:
+    \begin{itemize}
+        \item $C = (q,zw)$
+        \item $C' = (q',hw)$
+        \item $(q,z) \xrightarrow{y} (q',h)$ une transition de $A$
+        \item $w \in Z^*$
+    \end{itemize}
+    $z$ est ici dépilé, tandis que $h$ est empilé au cours de cette \notion{étape de calcul}.
+\end{definition}
+
+\begin{definition}{}{calcul}
+    Un \notion{calcul} dans l'automate à pile $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ est une suite d'étapes de calculs~:
+    $$C_0 \xrightarrow{y_1} C_1 \xrightarrow{y_2} \dots \xrightarrow{y_n} C_n$$
+    On appelle $y = y_1 \dots y_n$ \notion{l'étiquette du calcul}.
+\end{definition}
+
+\begin{definition}{}{calcul acceptant}
+    Un calcul $C_0 \xrightarrow{y_1} C_1 \xrightarrow{y_2} \dots \xrightarrow{y_n} C_n$ est \notion{accpetant} lorsuqe~:
+    \begin{itemize}
+        \item $C_0 = (q_0,z_0)$ est la configuration initiale de l'automate à pile : celle par laquelle il commence ses calculs.
+        \item $C_n$ est une configuration finale.
+    \end{itemize}
+\end{definition}
+
+Il existe différents modes d'acceptation, correspondant à des ensembles de configurations finales distinctes~:
+\begin{itemize}
+    \item par \notion{pile vide} : $(q,\epsilon)$ pour $q \in Q$ est une configuration finale
+    \item par \notion{états finaux} : $(q_f, w) \in F \times Z^*$ est une configuration finale.
+    \item par \notion{sommet de la pile} : on ajoute $Z_f \subset Z$ un ensemble de symboles finaux~:
+    $$(q, z_fw) \in Q \times (Z_fZ^*)$$
+    est alors une configuration finale.
+\end{itemize}
+On peut utiliser aussi une combinaison de ces trois modes.
+
+\begin{exemple}{}{d'automate à pile}
+    Voir Fig.19 (p19)
+\end{exemple}
+
+\begin{proposition}{}{peu importe le mode d'acceptation}
+    Les différents modes d'acceptation permettent de reconnaître le même ensemble de langages.
+\end{proposition}
+
 
 \input{../../stock/pied.tex}
