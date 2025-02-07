@@ -376,15 +376,11 @@ Les définitions des grammaires hors contexte sont très liées aux définitions
 \begin{definition}{}{arbre d'analyse}
     Un \notion{arbre d'analyse} (ou \notion{arbre d'analyse syntaxique}, ou \notion{arbre de dérivation}) pour une grammaire hors contexte $G = (\Sigma, V,P,S)$ et un mot $w \in \leng{G}{S}$ est un arbre~:
     \begin{itemize}
-        \item dont les étiquettes sur les noeuds sont des symboles dans $\Sigma\cup V \cup\{\epsilon\}$~:
-        \begin{itemize}
-            \item $\Sigma \cup \{\epsilon\}$ pour les feuilles
-            \item $V$ pour les noeuds internes (racine comprise)
-        \end{itemize}
-        \item dont la racine est étiquettée par $S$
-        \item pour tout noeud interne $n$ d'étiquette $X \in V$, de fils d'étiquettes $x_1, \dots, x_k$, on a $(X,x_1,\dots x_k) \in P$
+        \item dont la racine est étiquetée par $S$
+        \item dont tout noeud interne d'étiquette $X \in V$, de fils d'étiquettes $x_1, \dots, x_k$ (numérotation de gauche à droite), est tel que $(X,x_1\dots x_k) \in P$
+        \item dont les feuilles sont dans $\Sigma \cup \{\epsilon\}$
     \end{itemize}
-    On appelle alors \notion{frontière} de l'arbre d'analyse le mot obtenu en concaténant les symboles des feuilles de gauche à droite : c'est $w$.
+    On appelle alors \notion{frontière} de l'arbre d'analyse le mot obtenu en concaténant de gauche à droite les symboles des feuilles de l'arbre d'analyse : c'est $w$.
 \end{definition}
 
 \begin{exemple}{}{d'arbre d'analyse}
@@ -393,7 +389,7 @@ Les définitions des grammaires hors contexte sont très liées aux définitions
 
 
 \begin{remarque}{}{propriété de l'arbre d'analyse}
-    L'arbre de d'analyse est la  preuve qu'un mot est engendré par une grammaire. Il rend compte de toutes les règles de production utilisées mais pas entièrement de l'ordre. Voir Fig 10.
+    L'arbre de d'analyse est la preuve qu'un mot est engendré par une grammaire. Il rend compte de toutes les règles de production utilisées mais pas entièrement de l'ordre. Voir Fig 10.
 \end{remarque}
 
 \begin{exemple}{}{d'arbre d'analyse}
@@ -409,10 +405,27 @@ Les définitions des grammaires hors contexte sont très liées aux définitions
 \end{remarque}
 
 \begin{definition}{}{dérivation à gauche}
-    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. On appelle \notion{dérivation à gauche} de $S$ en $w \in \Sigma^*$ une suites de dérivations immédiates de la forme~:
-    $$u_iX_i\alpha_i \Rightarrow u_i \beta_i \alpha_i$$
-    partant du mot $u_0X_0\alpha_0 = S$, jusqu'au mot $w$.\\
-    Moralement, on ne remplace que le premier symbole non terminal le plus à gauche.
+    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. On appelle \notion{dérivation à gauche} de $S$ en $w \in \Sigma^*$ une suites de dérivations immédiates $(u_iX_iv_i \Rightarrow u_i \beta_i v_i)_{i \in \intint{0}{n}}$ avec pour $i \in \intint{1}{n} $~:
+    \begin{itemize}
+        \item $u_i \in \Sigma^*$ 
+        \item $(X_i,\beta_i) \in P $
+        \item $v_i \in (\Sigma \cup V)^*$
+        
+    \end{itemize}   
+    et $u_0X_0v_0 = S$, $u_nX_nv_n = w$.\\
+    Moralement, pour arriver à $w$ on ne remplace que le premier symbole non terminal le plus à gauche.
+\end{definition}
+
+\begin{definition}{}{dérivation à droite}
+    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. On appelle \notion{dérivation à droite} de $S$ en $w \in \Sigma^*$ une suites de dérivations immédiates $(u_iX_iv_i \Rightarrow u_i \beta_i v_i)_{i \in \intint{0}{n}}$ avec pour $i \in \intint{1}{n} $~:
+    \begin{itemize}
+        \item $u_i \in (\Sigma \cup V)^*$ 
+        \item $(X_i,\beta_i) \in P $
+        \item $v_i \in \Sigma^*$
+        
+    \end{itemize}   
+    et $u_0X_0v_0 = S$, $u_nX_nv_n = w$.\\
+    Moralement, pour arriver à $w$ on ne remplace que le premier symbole non terminal le plus à droite.
 \end{definition}
 pareil pour la droite.
 
@@ -428,12 +441,11 @@ résultat analogue pour la droite.
 
 
 \begin{definition}{}{grammaire ambiguë}
-    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. $G$ est \notion{ambiguë} s'il existe un mot de $\leng{G}(S)$ admettant au moins deux arbres d'analyse distincts, (donc de même frontière).
+    Soit $G = (\Sigma, V,P,S)$ une grammaire hors contexte. $G$ est \notion{ambiguë} s'il existe un mot de $\leng{G}{S}$ admettant au moins deux arbre d'analyse (de même frontière) distincts.
 \end{definition}
 
-\begin{definition}{}{non ambiguité d'un langage}
-    Un langage hors contexte est dit \notion{non ambigu} lorsque l'une des grammaires l'engendrant n'est pas ambiguë.
-    Sinon il est dit \notion{inhéremment ambigu}.
+\begin{definition}{}{inhérente ambiguité d'un langage}
+    Un langage hors contexte est dit \notion{inhéremment ambigu} lorsque toutes les grammaires l'engendrant sont ambiguës. Sinon il est dit \notion{non ambigu}.
 \end{definition}
 
 \begin{remarque}{}{}
@@ -517,52 +529,52 @@ Deux solutions~:
     \item En C, on a une \notion{méta-règle} utilisée par le compilateur : le \code{else} est associé au \code{if} le plus proche (antérieurement) non déjà associé à un autre bloc \code{else}.s
 \end{itemize}
 
-\section{Automats à pile (HP)}
+\section{Automates à pile (HP)}
 
 Les automates à pile constituent une extension des automates finis~: on rajoute une mémoire, sous la forme d'une pile, à un automate fini.\\
 Les transitions dépilent un symbole et en empilent d'autres.\\
 Ainsi les langages reconnus par les automates à pile sont exactement les langages hors contexte.
 
 \begin{definition}{}{automate à pile}
-    On appelle \notion{automate à pile} un sixtuplet $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ tel que~:
+    On appelle \notion{automate à pile} un sixtuplet $A = (\Sigma, Z, z_0, Q, q_0, \delta)$ tel que~:
     \begin{itemize}
         \item $\Sigma$ est un alphabet fini dit \notion{alphabet d'entrée}. C'est l'alphabet des mots que l'automate reconnaît.
-        \item $S$ est un alphabet fini dit \notion{alphabet de pile}. C'est l'ensemble des symboles que l'on peut utiliser dans la pile
-        \item $z_0 \in Z$ est un \notion{symbole initial}. La pile contient initialement $z_0$.
+        \item $Z$ est un alphabet fini dit \notion{alphabet de pile}. Il contient symboles que l'on peut utiliser dans la pile
+        \item $z_0 \in Z$ est le \notion{symbole initial}. La pile contient initialement $z_0$.
         \item $Q$ est un \notion{ensemble fini d'états}.
-        \item $q_0 \in Q$ est un état initial
+        \item $q_0 \in Q$ est l'\notion{état initial}.
         \item $\delta$ est la \notion{fonction de transition}~:
         $$\delta : \Big(\Sigma \cup \{\epsilon\}\Big)\times Q\times Z \to \mc{P}(Q\times Z^*)$$
     \end{itemize}
 \end{definition}
 
 \begin{definition}{}{transition dans un automate à pile}
-    Soit $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ un automate à pile. On note une \notion{transition de $A$} de la façon suivante. Voir Fig.17
+    Soit $A = (\Sigma, Z, z_0, Q, q_0, \delta)$ un automate à pile. On note une \notion{transition de $A$} de la façon suivante. Voir Fig.17
 \end{definition}
 
 \begin{definition}{}{configuration dans un calcul sur un automate à pile}
-    Soit $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ un automate à pile. Une \notion{configuration dans un calcul sur $A$} est un couple $(q,w) \in Q \times Z^*$ tel que~:
+    Soit $A = (\Sigma, Z, z_0, Q, q_0, \delta)$ un automate à pile.\\
+    Une \notion{configuration dans un calcul sur $A$} est un couple $(q,w) \in Q \times Z^*$ tel que~:
     \begin{itemize}
         \item $q$ est l'état courant
         \item $w$ est le mot représentant l'état de la pile
     \end{itemize}
     Moralement, il s'agit de l'information de l'état actuel de l'automate.
-    Voir Fig.18. p19
 \end{definition}
+Voir Fig.18. p19
 
 \begin{definition}{}{étape de calcul d'un automate à pile}
-    Soit $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ un automate à pile. On appelle \notion{étape de calcul} dans $A$ le passage d'une configuration $C \in Q\times Z^*$ à une configuration $C' \in Q\times Z^*$ associée à $y \in \Sigma \cup \{\epsilon\}$, notée $C \xrightarrow{y} C'$ avec~:
+    Soit $A = (\Sigma, Z, z_0, Q,q_0, \delta)$ un automate à pile. On appelle \notion{étape de calcul} dans $A$ le passage d'une configuration $(q,uz) \in Q\times Z^*$ à une configuration $(q',vz) \in Q\times Z^*$ associé à $y \in \Sigma \cup \{\epsilon\}$, avec~:
     \begin{itemize}
-        \item $C = (q,zw)$
-        \item $C' = (q',hw)$
-        \item $(q,z) \xrightarrow{y} (q',h)$ une transition de $A$
-        \item $w \in Z^*$
+        \item $u \in Z$ est le symbole dépilé au cours de l'étape.
+        \item $v \in Z^*$ est le mot empilé en échange
+        \item $z \in Z^*$ est le contenu inchangé de la pile
     \end{itemize}
-    $z$ est ici dépilé, tandis que $h$ est empilé au cours de cette \notion{étape de calcul}.
+    On note $(q,uz) \xrightarrow{y} (q',vz)$ une telle étape de calcul : $y$ est son \notion{étiquette}.
 \end{definition}
 
 \begin{definition}{}{calcul}
-    Un \notion{calcul} dans l'automate à pile $A = (\Sigma, Z, z_0, Q, Q_0, \delta)$ est une suite d'étapes de calculs~:
+    Un \notion{calcul} dans l'automate à pile $A = (\Sigma, Z, z_0, Q, q_0, \delta)$ est une suite d'étapes de calculs~:
     $$C_0 \xrightarrow{y_1} C_1 \xrightarrow{y_2} \dots \xrightarrow{y_n} C_n$$
     On appelle $y = y_1 \dots y_n$ \notion{l'étiquette du calcul}.
 \end{definition}
@@ -592,6 +604,90 @@ On peut utiliser aussi une combinaison de ces trois modes.
 \begin{proposition}{}{peu importe le mode d'acceptation}
     Les différents modes d'acceptation permettent de reconnaître le même ensemble de langages.
 \end{proposition}
+
+\section{Analyse syntaxique}
+
+L'analyse syntaxique est correspond à la résolution de plusieurs problèmes~:
+\begin{itemize}
+    \item Déterminer si un mot est dans le langage engendré par une grammaire (on parle de "problème du mot"). ça permet de vérifier la bonne syntaxe d'un code
+    \item Construire un arbre d'analyse pour un mot engendré par une grammaire afin de l'interpréter. ça permet de convertir en langage machine.
+\end{itemize}
+
+Pour certaines grammaires il existe des méthodes systématiques~:
+\begin{itemize}
+    \item grammaire LL1 (voir TP9), table d'analyse syntaxique à partir de $\code{NUL}(G)$
+    \item pour les grammaires sous forme normale de Chomsky, on peut utiliser l'algorithme de Cocke-Younger-Kasami (HP) qui relève de la programmation dynamique.
+\end{itemize}
+
+Au proramme, on doit savoir se débrouiller pour des cas simples. Traitons donc de tels cas.
+
+\subsection{Exemple niveau programme MPI}
+
+    C'est littéralement l'exemple mentionné dans le programme officiel.
+
+    $G = (\{a,b,c\},{S,T},P,S)$ avec $P$ défini par~:
+    $$S \rightarrow TS \vert c$$
+    $$T \rightarrow aSb$$
+
+\begin{lstOCaml}
+    type sigma = A | B | C (* symboles terminaux *)
+    type var = T | S (* symboles non terminaux *)
+    type arbre_syntaxe = F of sigma | N of var*(arbre_syntaxe list)
+\end{lstOCaml}
+    On souhaite écrire une fonction qui construit l'arbre d'analyse d'un mot si possible ou échoue si n'est pas un mot engendré. Sa signature est la suivante~:
+
+\begin{lstOCaml}
+    analyse : sigma list -> arbre_syntaxe (*sigma list modélise un mot*)
+\end{lstOCaml}
+
+\begin{lstOCaml}
+    let analyse p = 
+        let rec parseS suffixe = 
+            match suffixe with
+            | C::q -> (N (S,[F(C)]),q) (* S -> c : c'est un cas de base *)
+            | _ -> (*S -> T(s)*)
+                let a1, suf1 = parseT suf in
+                let a2, suf2 = parseS suf1 in
+                N(S,[a1;a2]), suf2
+        and parseT suf = (*mutuellement récursives car on a besoin de savoir analyser depuis l'un vers l'autre -> interdépendance requise ici : la grammaire elle-même est mutuellement récursive.*)
+            match suf with (* T -> aSb*)
+            | let a1, suf1 = parseS q in begin
+                match suf1 with
+                    | B::suf2 -> N(T, [F(A);a1;F(B)],suf2)
+                    | _ -> failwith "arbre inexistant" (*le mot donné n'appartient pas au langage engendré*)
+                end
+            | _ -> failwith "arbre inexistant" (*le mot donné n'appartient pas au langage engendré*)
+        in let a, reste = parseS p in 
+        if reste = [] then
+            a
+        else 
+            failwith "arbre inexistant" (*le mot donné n'appartient pas au langage engendré*)
+\end{lstOCaml}
+
+\textbf{Idées~:}\\\\
+Des fonctions auxiliaires mutuellement récursives : une pour chaque symbole non terminal. Voir Fig.20 p.20.\\
+
+En fonction du début du suffixe, on teste toutes les règles possibles pour ce début en utilisant du rattrapage d'exception si plusieurs sont disponibles.
+
+\begin{remarque}{}{grammaires pathologiques}
+    La méthode marche moins bien pour une grammaire du type~:
+    $$S \rightarrow SS | (S) | \epsilon$$
+    Il faut l'adapter, on teste d'abord $S \rightarrow (S)$ et $S \rightarrow \epsilon$ puis traite $S \rightarrow SS$ autrement. Il faut suivre cet ordre pour éviter une pile d'appel débordée, à cause des rappels de \code{parseS} sur le suffixe.
+\end{remarque}
+
+\subsection{Lien avec les langages de programmation}
+C'est pas du hors programme les étapes 1 et 2 !\\\\
+Les langages de programmations, de requêtes et de balisage suvient les règles syntaxique d'une grammaire généralement hors contexte !\\
+L'\notion{analyse syntaxique} est une des étapes de la compilation ou de l'interprétation. En fait~:
+\begin{enumeratebf}
+    \item Le code source est d'abord traité par un \notion{analyseur lexical}~: il est transformé en liste de \notion{tokens}, \notion{lexèmes} (mots-clefs, nombres, noms de variable, etc.)
+    \item la liste de lexèmes est traitée par \notion{analyse syntaxique}. On obtient à l'issue de cette analyse un \notion{arbre de syntaxe superficielle}. C'est à cette deuxième étape que les erreurs de syntaxe sont repérées.
+    \item L'arbre obtenu est traité par un \notion{analyseur sémantique}. On obtient un \notion{arbre de syntaxe profonde}. On repère les erreurs de types et d'utilisation des fonctions définies (nombre d'arguments).
+    \item L'\notion{arbre de syntaxe profonde} est transformé en code machine.
+\end{enumeratebf}
+
+
+
 
 
 \input{../../stock/pied.tex}

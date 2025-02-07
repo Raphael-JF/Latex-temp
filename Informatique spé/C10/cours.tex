@@ -1,0 +1,144 @@
+\input{../../stock/en-tete_v4.tex}
+\begin{document}
+\begin{adjustwidth}{-3cm}{-3cm}
+\input{../../stock/commands.tex}
+\newcounter{chapitre}
+\setcounter{chapitre}{10}
+
+\title{Chapitre 10 : Décidabilité}
+\maketitle
+
+Au programme : concepts à comprendre, démonstration à connaître !
+
+\section{Problème de décision et décidabilité}
+
+\begin{definition}{}{problème de décision}
+    Un \notion{problème de décision} est un problème dont la réponse attendue est binaire : Vrai ou Faux. Plus précisément, un problème $\mc{P}$ est la donnée de~:
+    \begin{itemize}
+        \item $I$ un ensemble d'instances
+        \item $S$ un ensemble de solutions : l'union des solutions pour chaque instance.
+        \item $f : I \to S$ ou pour $i$ une instance, $f(i)$ est la réponse attendue pour l'instance $i$.
+    \end{itemize}
+    Pour un problème de décision, $S = \{\mr{Vrai}, \mr{Faux}\}$. On appelle la fonction $f$ \notion{fonction de prédicat} du problème $\mc{P}$ de décision.\\\\
+    $\mc{P}$ peut aussi être défini à l'aide d'un sous-ensemble $P$ de $I \times S$ tel que ~:
+    $$(i,s) \in P \Leftrightarrow s \text{ solution de $\mc{P}$ pour l'instance $i$}$$
+\end{definition}
+
+
+
+Pour $\mc{P}$ un problème de décision, défini par $f : I \to \{\mr{Vrai},\, \mr{Faux}\}$ sa fonction de prédicat, on définit~:
+$$I_{\mc{P}}^+ = \{i \in I,\, f(i) = \mr{Vrai}\}$$
+l'ensemble des \notion{instances passives} du problème $\mc{P}$ de décision.
+
+
+\begin{definition}{}{décidabilité d'un problème de décision}
+    Un problème de décision $\mc{P}$ est dit \notion{décidable} lorsqu'il existe $\mc{A}$ un algorithme qui pour toute instance du problème $\mc{P}$ renvoie la solution attendue.\\
+    Autrement dit, pour $f : I \to S$ la fonction de prédicat de $\mc{P}$, il existe un algorithme $\mc{A}$ tel que~:
+    $$\forall i \in I, f(i) = \mc{A}(i)$$
+    $f(i)$ est ici la solution attendue tandis que $\mc{A}(i)$ est la solution attendue pour $i$.\\\\
+    Le cas échéant, $\mc{A}$ termine pour toute instance.
+    \notion{$\mc{A}$ résout $\mc{P}$} ou que \notion{$\mc{P}$ est décidé par $\mc{A}$}.
+\end{definition}
+
+\begin{definition}{}{indécidabilité d'un problème}
+    Un problème de décision $\mc{P}$ est dit \notion{indécidable} lorsqu'il n'existe pas d'algorithme resolvant $\mc{P}$.
+\end{definition}
+
+\begin{remarque}{}{sur l'indécidabilité}
+    Un problème indécidable est un problème intrinsèquement infaisable~: inutile d'essayer de le résoudre car c'est impossible.
+\end{remarque}
+
+\begin{exemple}{}{de problème décidable}
+    $f : I \to S = \{\mr{Vrai},\, \mr{Faux}\}$\\
+    $$f(\code{l}) = \mr{Vrai} \Leftrightarrow \text{\code{l} a exactement 5 éléments}$$
+    $f$ est la fonction de prédicat d'un problème de décision~:
+    \begin{itemize}
+        \item \textbf{Instance}~: \code{l} une liste d'entiers
+        \item \textbf{Question}~: Est-ce que \code{l} contient 5 éléments.
+    \end{itemize}
+    Ce problème est décidable car on peut écrire en OCaml~:
+    \begin{lstOCaml}
+    let longueur 5 l =
+        match l with
+        | e1::e2::e3::e4::e5::[] -> true
+        | _ -> false
+    \end{lstOCaml}
+\end{exemple}
+
+\subsection{semi-décidabilité (HP)}
+
+\begin{definition}{}{semi-décidabilité d'un problème}
+    Un problème de décision $\mc{P}$ défini par $f:I \to \{\mr{Vrai},\, \mr{Faux}\}$ est dit \notion{semi-décidable} lorsqu'il existe un algorithme $\mc{A}$ tel que pour $i \in I$~:
+    \begin{itemize}
+        \item si $f(i) = \mr{Vrai}$ alors $\mc{A}(i) = f(i)$ et $\mc{A}$ termine sur $i$.
+        \item si $f(i) = \mr{Faux}$, alors $\mc{A}(i) = f(i)$ et $\mc{A}$ termine ou bien $\mc{A}$ ne termine pas sur $i$. Ecrire systeme.
+    \end{itemize}
+\end{definition}
+
+\begin{exemple}{}{important}
+    Il existe des problèmes non semi-décidables. On considère par exemple le suivant~:
+    \begin{itemize}
+        \item \textbf{Instance}~: une fonction \code{f : string -> bool} et \code{f} son code source.
+        \item \textbf{Question}~: est ce que l'appel \code{f code\_f} ne renvoie pas true ? \ie est ce que l'appel renvoie false ou bien ne termine pas ? N'a-t-on que ces deux possibilités ?
+    \end{itemize}
+    Montrons que ce problème n'est pas semi-décidable.\\\\
+    Supposons par l'absurde qu'il existe un algorithme $\mc{A}$ implémenté par une fonction \code{diag : string -> bool} qui semi-décide le problème. Par définition~:
+    \begin{enumerate}
+        \item \code{diag code\_f} renvoie \code{true} lorsque \code{f code\_f} ne renvoie pas \code{true}
+        \item \code{diag code\_f} renvoie \code{false} ou ne termine pas lorsque \code{f code\_f} revoie true.
+    \end{enumerate}
+    On applique la fonction \code{diag} à son propre code, noté \code{code\_diag}.
+    \begin{itemize}
+        \item Si \code{diag code\_diag} renvoie \code{false}~: par définition de \code{diag} (2.), on a \code{diag code\_diag} renvoie \code{true}. Il y a alors contradiction.
+        \item Si \code{diag code\_diag} renvoie \code{true}. Par définition de \code{diag} (1.), on a \code{diag code\_diag} ne renvoie pas \code{true}. C'est également absurde.
+        \item Si \code{diag code\_diag} ne termine pas ou échoue, par définition de \code{diag} (2.), \code{diag code\_diag} renvoie \code{true}. On a une contradiction.
+    \end{itemize}
+    Aucune possibilité n'est viable. D'où l'absurdité de l'hypothèse.
+\end{exemple}
+
+\subsection{Problème de l'arrêt (au programme)}
+
+\begin{definition}{}{problème de l'arrêt}
+    Le \notion{problème de l'arrêt} est le problème qui consiste à décider si un programme ou un algorithme termine sur une entrée.
+    \begin{itemize}
+        \item \textbf{Instance}~: un programme \code{p} donné par son code \code{code\_p} et une entrée \code{x}
+        \item \textbf{Question}~: est ce que l'appel \code{p x} termine ?
+    \end{itemize}
+\end{definition}
+
+\begin{theoreme}{}{indécidabilité du problème de l'arrêt}
+    Le problème de l'arrêt est indécidable.
+\end{theoreme}
+La démonstration est la suivante. Elle est à connaître impérativement.\\\\
+\begin{demonstration}
+    Supposons par l'absurde qu'il existe $\mc{A}$ un algorithme implément par une fonction \code{arret} qui résout le problème de l'arrêt. Par définition de décidabilité~:
+    \begin{enumerate}
+        \item \code{arret code\_p x} renvoie \code{true} lorsque \code{p x} termine.
+        \item \code{arret code\_p code\_x} renvoie \code{false} lorsque \code{p x} ne termine pas.
+    \end{enumerate}
+    On écrit~:
+    \begin{lstOCaml}
+        let rec boucle (b:bool) :int =
+            match b with
+            | true -> boucle true
+            | false -> 0
+    
+        let absurde code_p = boucle (arret code_p code_p)
+    \end{lstOCaml}
+    
+    On s'intéresse à l'appel \code{arret code\_absurde code\_absurde}.
+    \begin{itemize}
+        \item Si \code{arret code\_absurde code\_absurde} renvoie \code{true}, par définition de \code{arret} (1.), \code{absurde code\_absurde} termine.
+        Or cet appel \code{absurde code\_absurde} correspond à \code{boucle (arret code\_absurde code\_absurde)} qui ne termine pas par construction, alors que \code{arret code\_absurde code\_absurde} renvoie \code{true} : ceci constitue une contradiction.
+        \item Si \code{arret code\_absurde code\_absurde} renvoie \code{false}. Par définition de \code{arret} (2.), \code{absurde code\_absurde} ne termine pas.
+        Or \code{absurde code\_absurde} correspond à \code{boucle (arret code\_absurde code\_absurde)} qui termine par construction, alors que \notion{arret code\_absurde code\_absurde} renvoie \code{false}. Contradiction.
+    \end{itemize}
+\end{demonstration}
+
+
+
+\begin{remarque}{}{usage de chaînes de caractères}
+    Dans les démonstrations, on préfèrera la manipulation de chaînes de caractères associées à ce qui n'en est pas. En effet, en machine, tout est représenté par des chaînes et en particulier les machines de Turing ne manipulent que ça. C'est plus formel.
+\end{remarque}
+
+\input{../../stock/pied.tex}
