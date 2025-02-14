@@ -141,4 +141,145 @@ La démonstration est la suivante. Elle est à connaître impérativement.\\\\
     Dans les démonstrations, on préfèrera la manipulation de chaînes de caractères associées à ce qui n'en est pas. En effet, en machine, tout est représenté par des chaînes et en particulier les machines de Turing ne manipulent que ça. C'est plus formel.
 \end{remarque}
 
+Fin cours 12/02/2025
+
+\section{Réduction (entre problèmes de décision)}
+
+\newcommand{\algo}[]{\mc{A}}
+
+
+\begin{definition}{}{fonction calculable}
+    Une fonction $f : E \to F$ est dite \notion{calculable} lorsqu'il existe un algorithme $\algo$ tel que pour toute entrée $e \in E$, $\algo$ appliqué à $e$ termine et renvoie $f(e)$ en un temps fini.
+\end{definition}
+
+\begin{remarque}{}{importante sur les fonctions calculables}
+    Il existe des fonctions qui ne sont pas calculables~:
+    \begin{itemize}
+        \item $\{0;1\}^\N$ est indénombrable
+        \item l'ensemble des algorithmes est dénombrable, car on peut numéroter chaque possibilité du $i$-ème caractère, puis le produit cartésien d'ensembles dénombrables est dénombrables~:
+        $$\abs{\algo} \leq \abs{\Sigma^*} = \abs{\bigcup_{n \in \N}\Sigma^n}$$
+        On peut les énumérer par taille.
+    \end{itemize}
+\end{remarque}
+
+\begin{remarque}{}{}
+    Il existe moins d'algorithmes que de fonctions.
+\end{remarque}
+\newcommand{\pbm}[]{\mc{P}}
+
+
+\begin{definition}{}{réduction calculatoire}
+    Soit $\pbm_1$ et $\pbm_2$ deux problèmes de décision définis par leurs fonction de prédicat $f_1 : I_1 \to \{\mr{Vrai},\, \mr{Faux}\}$ et $f_2 : I_2 \to \{\mr{Vrai},\, \mr{Faux}\}$. On dit que \notion{$\pbm_1$ se réduit calculatoirement à $\pbm_2$} ($\pbm_1 \leq_m \pbm_2$), lorsqu'il existe $g : I_1 \to I_2$ une fonction calculable telle que~:
+    $$\forall e \in I_1,\, f_1(e) = f_2\Big(g(e)\Big)$$
+\end{definition}
+
+\begin{remarque}{}{réduction calculatoire}
+    $\pbm_1 \leq_m \pbm_2$ revient à dire que "$\pbm_1$ est plus facile que $\pbm_2$".\\
+    On note $\algo_2$ un algorithme qui résout $\mc{P}_2$ et $\mc{A}_g$ un algorithme qui calcule la fonction $g$. On pose alors $\mc{A}_1$ l'algorithme~:
+    \begin{lstLNat}
+    $\algo_1$(e):
+        e' = $\algo_g$(e)
+        renvoyer $\algo_2$(e')
+    \end{lstLNat}
+    $\algo_1$ résout alors $\pbm_1$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $\pbm_1$ et $\pbm_2$ deux problèmes de décision définis par leurs fonction de prédicat $f_1 : I_1 \to \{\mr{Vrai},\, \mr{Faux}\}$ et $f_2 : I_2 \to \{\mr{Vrai},\, \mr{Faux}\}$. Si $\pbm_1 \leq_m \pbm_2$ et $\mc{P}_1$ est indécidable, alors $\pbm_2$ est indécidable.
+\end{proposition}
+
+\begin{demonstration}
+    Supposons par l'absurde $\pbm_2$ décidable, alors il existe $\algo_2$ un algorithme qui résout $\pbm_2$. $\pbm_1 \leq_m \pbm_2$ donne l'existence de $g : I_1 \to I_2$ calculable telle que~:
+    $$\forall e \in I_1,\, f_1(e) = f_2\Big(g(e)\Big)$$
+    On construit $\mc{A_1}$ comme dans la remarque précédente, il résout $\mc{P_1}$. D'où la contradiction.
+\end{demonstration}
+
+\begin{exemple}{}{problème ZERO (V1)}
+    Le problème ZERO est le suivant~:
+    \begin{itemize}
+        \item \textbf{Instance} : Une fonction (en programmation) \code{f} de code \code{code_f} et une entrée \code{x}.
+        \item \textbf{Question} : Est-ce que \code{f} appliquée à \code{x} renvoie \code{0} ?
+    \end{itemize}
+    On cherche à montrer que ZERO est indécidable. Pour cela on peut montrer~:
+    $$\mr{ARRET} \leq_m \mr{ZERO}$$
+    On pose~:
+    $$g : (\code{f},\, \code{x}) \mapsto (\code{f'},\, \code{x})$$
+    où \code{f'} est définie par~:
+    \begin{lstLNat}
+    let f' x = let _ = f x in 0
+    \end{lstLNat}
+    qui calcule \code{f x}, et renvoie \code{0}.\\\\
+
+    $g$ est calculable, car un algorithme transformant $(\code{f},\, \code{x})$ en $(\code{f'},\, \code{x})$ est le suivant~:
+    \begin{lstLNat}
+    let g f =
+        let f' x = let _ 0 = f x in 0
+        in f'
+    \end{lstLNat}
+    \begin{itemize}
+        \item Si $(\code{f},\, \code{x}) \in \mr{ARRET}^+$ (instance positive de ARRET), alors \code{f x} termine, puis \code{f' x} termine et renvoie \code{0}. On a bien $(\code{f'},\, \code{x}) \in \mr{ZERO}^+$
+        \item Si $(\code{f},\, \code{x}) \notin \mr{ARRET}^+$, alors $\code{f x}$ ne termine pas, donc $\code{f' x}$ ne termine pas et ne renvoie pas \code{0}, donc $(\code{f'},\, \code{x}) \notin \mr{ZERO}^+$
+    \end{itemize}
+    On a $(\code{f},\, \code{x}) \in \mr{ARRET}^+ \Leftrightarrow (\code{f'},\, \code{x}) \in \mr{ZERO}^+$
+\end{exemple}
+
+\begin{exemple}{numero}{problème ZERO (V2)}
+    à recopier
+\end{exemple}
+
+\begin{remarque}{}{many to one}
+    Cette façon de faire des réductions entre problèmes s'appelle réduction "\notion{many to one}" car la fonction $g$ n'est pas toujours injective : on peut avoir plusieurs instances pour une seule et même sortie (en parlant de $g$).
+\end{remarque}
+
+\section{Complément HP : coproblème}
+
+\newcommand{\copbm}[]{\mr{co}\mc{P}}
+
+
+\begin{definition}{}{coproblème}
+    Soit $\pbm$ un problème de décision défini par $f:I \to \{\mr{Vrai},\mr{Faux}\}$. On définit le \notion{coproblème} de $\pbm$, noté $\copbm$ par la fonction de prédicat~:
+    \fonction{\mr{co}f}{I}{\{\mr{Vrai},\, \mr{Faux}\}}{e}{\begin{cases*}
+    \mr{Vrai} &si $f(e) = \mr{Faux}$ \\
+    \mr{Faux} &si $f(e) = \mr{Vrai}$
+    \end{cases*}}
+    Autrement dit, on fait la négation de la question correspondante.
+\end{definition}
+
+\begin{exemple}{}{coARRET}
+    \begin{itemize}
+        \item \textbf{Instance}~: un programme \code{p} donné par son code \code{code\_p} et une entrée \code{x}
+        \item \textbf{Question}~: est ce que l'appel \code{p x} ne termine pas ?
+    \end{itemize}
+\end{exemple}
+
+\begin{proposition}{}{}
+    Soit $\pbm$ un problème de décision. Si $\pbm$ et $\copbm$ sont semi-décidable, alors ils sont décidables.
+\end{proposition}
+
+\begin{demonstration}
+    On a $\algo$ et $co\algo$ deux algorithmes qui semi-décident $\mc{P}$ et $\copbm$.\\
+    Pour une instance positive de $\pbm$, $\algo$ termine et pour une instance négative, c'est $co\algo$ termine. On les lance en parallèle~:
+    \begin{lstLNat}
+    semaphore s initialise à 0
+    r variable globale
+    RESOUT(e):
+        r = $\mr{A}$(e)
+        s.post()
+    
+    CORESOUT(e):
+        r = NOT(co$\mc{A}$(e))
+        s.post()
+
+    ALGORITHME(e):
+        T1 = fil réalisant RESOUT(e)
+        T2 = fil réalisant CORESOUT(e)
+        s.wait()
+        renvoyer r
+    \end{lstLNat}
+\end{demonstration}
+
+\begin{definition}{}{co-semi-décidabilité}
+    Pour $\pbm$ un problème de décision, lorsque $\copbm$ est semi-décidable, on dit que \notion{$\mc{P}$ est co-semi-décidable}.
+\end{definition}
+
 \input{../../stock/pied.tex}
