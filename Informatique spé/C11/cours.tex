@@ -9,7 +9,10 @@
 \section{Classes de complexité pour un problème de décision}
 \subsection{Complexité}
 
-\newcommand{\pbm}[]{\mc{P}}
+\newcommand{\pbm}{\mc{P}}
+\newcommand{\algo}{\mc{A}}
+\newcommand{\reductibleP}{\leq_m^\mr{P}}
+
 
 \begin{definition}{}{}
     Soit $\mc{P}$ un problème abstrait défini par une fonction $f:I\to S$. On considère un algorithme $\mc{A}$ "abstrait" qui le résout.\\
@@ -32,7 +35,7 @@
 \end{exemple}
 
 \begin{remarque}{}{relative aux problèmes}
-    Selon l'importance des entiers dans le problème, on peut "ignorer" qe les entier prennent beaucoup de place~:
+    Selon l'importance des entiers dans le problème, on peut "ignorer" que les entier prennent beaucoup de place~:
     \begin{itemize}
         \item pour un graphe pondéré, la taille des entiers est ignorée.
         \item pour le problème du sac à dos, la taille des entiers est prise en compte.
@@ -61,7 +64,7 @@
 \end{exemple}
 
 \begin{remarque}{}{}
-    La taille de l'entrée est à rapprocher de la taille du mot de $\{0;1\}$ que l'on écrit initialement sur une machine de Turing exécutant l'algorithme sur ce mot.
+    La taille de l'entrée est à rapprocher de la taille du mot de $\Sigma = \{0;1\}$ que l'on écrit initialement sur une machine de Turing exécutant l'algorithme sur ce mot.
 \end{remarque}
 
 \subsection{Classe P}
@@ -81,7 +84,7 @@
 
 \begin{remarque}{}{classe EXP}
     La \notion{classe EXP} (ou \notion{classe EXPTIME}) est la classe de problèmes de décision pour lesquels il existe un algorithme de résolution de complexité exponentielle~:
-    $$\mc{O}(P(\abs{e})\exp(\abs{e}))$$
+    $$\mc{O}\Big(P(\abs{e})\exp(\abs{e})\Big)$$
     où $P$ est un polynôme réel et $\abs{e}$ est la taille de l'entrée.
 \end{remarque}
 
@@ -115,7 +118,7 @@
         \item \textbf{Instance}~: $\varphi$ une formule de la logique propositionnelle sous forme normale conjonctive dont les clauses sont de taille au plus 2.
         \item \textbf{Question}~: $\varphi$ est-elle satisfiable ?
     \end{itemize}
-    On a 2-SAT $\in$ P. En effet, on peut construire le graphe d'implications puis lui appliquer l'algorithme de Kosaraju qui renvoie les composantes fortement connexes du graphe d'implications. On vérifie que pour $x \in \mc{V}_\varphi$, $x$ et $\lnot x$ ne sont pas dans la même composante fortement connexe. $\vaphi = C_1 \wedge \dots \wedge C_k$ de taille $\mc{O}(k) = \abs{\varphi}$.\\\\
+    On a 2-SAT $\in$ P. En effet, on peut construire le graphe d'implications puis lui appliquer l'algorithme de Kosaraju qui renvoie les composantes fortement connexes du graphe d'implications. On vérifie que pour $x \in \mc{V}_\varphi$, $x$ et $\lnot x$ ne sont pas dans la même composante fortement connexe. $\varphi = C_1 \wedge \dots \wedge C_k$ de taille $\mc{O}(k) = \abs{\varphi}$.\\\\
     \notion{Construction du graphe}~:
     \begin{itemize}
         \item au plus $4k$ sommets (un par littéral)
@@ -243,14 +246,11 @@ Le problème de décision associé est "moins compliqué". En particulier, si po
 \begin{remarque}{}{}
     Si le problème de décision est de classe P, on peut s'approcher le plus possible de la valeur optimale par dichotomie en utilisant plusieurs appels à l'algorithme de résolution en temps polynomial.
 \end{remarque}
-\\
 On introduit la notation hors programme suivante.\\
 La classe des problèmes d'optimisation dont le problème de décision associé est de classe P s'appelle la classe PO.
 De même, pour la classe NP, la classe NPO.
 
 \section{Réduction polynomiale}
-
-\newcommand{\reductibleP}[]{\leq_m^\mr{P}}
 
 
 \begin{definition}{}{réduction polynomiale}
