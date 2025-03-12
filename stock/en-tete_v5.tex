@@ -16,12 +16,23 @@
 \pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows}
 \usepackage{forest}
-\usepackage{hyperref}
+\usepackage{titlesec}
 \setlength{\parindent}{0pt}
 
 \pretitle{\begin{center}\Huge\bfseries}
-\posttitle{\end{center}\vspace{1cm}}
+\posttitle{\end{center}}
 \date{}
+\renewcommand{\thesection}{\Roman{section}} 
+\titleformat{\section}
+  {\Large\bfseries} % Style du titre
+  {\thesection} % Numéro de section
+  {0.5cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentaire
+\titleformat{\subsection}
+  {\large\bfseries} % Style du titre
+  {\thesubsection} % Numéro de section
+  {0.4cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentair
 
 
 \newenvironment{enumeratebf}{

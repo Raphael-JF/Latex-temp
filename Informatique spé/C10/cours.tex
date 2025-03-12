@@ -1,11 +1,12 @@
-\input{../../stock/en-tete_v4.tex}
-\begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
-\input{../../stock/commands.tex}
+\input{../../stock/en-tete_v5.tex}
 \newcounter{chapitre}
 \setcounter{chapitre}{10}
 
-\title{Chapitre 10 : Décidabilité}
+\renewcommand{\newline}{\\}
+\title{\Large Chapitre 10 \newline \Huge Décidabilité}
+
+\begin{document}
+\input{../../stock/commands.tex}
 \maketitle
 
 Au programme : concepts à comprendre, démonstration à connaître !
@@ -145,7 +146,7 @@ Fin cours 12/02/2025
 
 \section{Réduction (entre problèmes de décision)}
 
-\newcommand{\algo}[]{\mc{A}}
+\newcommand{\algo}{\mc{A}}
 
 
 \begin{definition}{}{fonction calculable}
@@ -165,7 +166,7 @@ Fin cours 12/02/2025
 \begin{remarque}{}{}
     Il existe moins d'algorithmes que de fonctions.
 \end{remarque}
-\newcommand{\pbm}[]{\mc{P}}
+\newcommand{\pbm}{\mc{P}}
 
 
 \begin{definition}{}{réduction calculatoire}
@@ -197,7 +198,7 @@ Fin cours 12/02/2025
 \begin{exemple}{}{problème ZERO (V1)}
     Le problème ZERO est le suivant~:
     \begin{itemize}
-        \item \textbf{Instance} : Une fonction (en programmation) \code{f} de code \code{code_f} et une entrée \code{x}.
+        \item \textbf{Instance} : Une fonction (en programmation) \code{f} de code \code{code\_f} et une entrée \code{x}.
         \item \textbf{Question} : Est-ce que \code{f} appliquée à \code{x} renvoie \code{0} ?
     \end{itemize}
     On cherche à montrer que ZERO est indécidable. Pour cela on peut montrer~:
@@ -233,7 +234,7 @@ Fin cours 12/02/2025
 
 \section{Complément HP : coproblème}
 
-\newcommand{\copbm}[]{\mr{co}\mc{P}}
+\newcommand{\copbm}{\mr{co}\mc{P}}
 
 
 \begin{definition}{}{coproblème}
@@ -282,4 +283,4 @@ Fin cours 12/02/2025
     Pour $\pbm$ un problème de décision, lorsque $\copbm$ est semi-décidable, on dit que \notion{$\mc{P}$ est co-semi-décidable}.
 \end{definition}
 
-\input{../../stock/pied.tex}
+\end{document}

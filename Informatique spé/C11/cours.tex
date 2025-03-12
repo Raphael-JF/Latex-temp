@@ -1,17 +1,27 @@
-\input{../../stock/en-tete_v4.tex}
-\begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
-\input{../../stock/commands.tex}
+\input{../../stock/en-tete_v5.tex}
+
 \newcounter{chapitre}
 \setcounter{chapitre}{11}
-\title{Classes de complexité}
+
+\title{\Large Chapitre 11 \\ \Huge Classes de complexité}
+
+\begin{document}
+\input{../../stock/commands.tex}
 \maketitle
+
+
 \section{Classes de complexité pour un problème de décision}
 \subsection{Complexité}
 
 \newcommand{\pbm}{\mc{P}}
 \newcommand{\algo}{\mc{A}}
 \newcommand{\reductibleP}{\leq_m^\mr{P}}
+\newcommand{\troissat}{\textbf{3-SAT}\,}
+\newcommand{\deuxsat}{\textbf{2-SAT}\,}
+\newcommand{\cnfsat}{\textbf{CNF-SAT}\,}
+\newcommand{\sat}{\textbf{SAT}\,}
+\newcommand{\cheminham}{\textbf{CHEMIN-HAM}\,}
+\newcommand{\cycleham}{\textbf{CYCLE-HAM}\,}
 
 
 \begin{definition}{}{}
@@ -113,12 +123,12 @@
     Le problème précédent (valuations) est de classe $P$ car linéaire et particulier polynomial.
 \end{exemple}
 
-\begin{exemple}{}{problème 2-SAT}
+\begin{exemple}{}{problème \deuxsat}
     \begin{itemize}
         \item \textbf{Instance}~: $\varphi$ une formule de la logique propositionnelle sous forme normale conjonctive dont les clauses sont de taille au plus 2.
         \item \textbf{Question}~: $\varphi$ est-elle satisfiable ?
     \end{itemize}
-    On a 2-SAT $\in$ P. En effet, on peut construire le graphe d'implications puis lui appliquer l'algorithme de Kosaraju qui renvoie les composantes fortement connexes du graphe d'implications. On vérifie que pour $x \in \mc{V}_\varphi$, $x$ et $\lnot x$ ne sont pas dans la même composante fortement connexe. $\varphi = C_1 \wedge \dots \wedge C_k$ de taille $\mc{O}(k) = \abs{\varphi}$.\\\\
+    On a \deuxsat $\in$ P. En effet, on peut construire le graphe d'implications puis lui appliquer l'algorithme de Kosaraju qui renvoie les composantes fortement connexes du graphe d'implications. On vérifie que pour $x \in \mc{V}_\varphi$, $x$ et $\lnot x$ ne sont pas dans la même composante fortement connexe. $\varphi = C_1 \wedge \dots \wedge C_k$ de taille $\mc{O}(k) = \abs{\varphi}$.\\\\
     \notion{Construction du graphe}~:
     \begin{itemize}
         \item au plus $4k$ sommets (un par littéral)
@@ -137,7 +147,7 @@
 \end{definition}
 
 \begin{exemple}{}{}
-    Pour le problème SAT, la donnée d'une valuation est un certificat. En effet, on vérifie que la valuation satisfait la formule pour vérifier qu'elle est satisfiable donc que c'est une instance positive.
+    Pour le problème \sat, la donnée d'une valuation est un certificat. En effet, on vérifie que la valuation satisfait la formule pour vérifier qu'elle est satisfiable donc que c'est une instance positive.
     Pour toute formule $\varphi$, il existe une valuation $v$ telle que l'algorithme vérificateur confirme que $\varphi$ est satisfiable est satisfable.
 \end{exemple}
 
@@ -154,7 +164,7 @@
     La classe NP est l'ensemble des problèmes de décision pour lesquels il existe un \notion{algorithme vérificateur} permettant de \notion{vérifier} qu'une instance est positive à partir d'un couple (instance, certificat) en temps polynomial en la taille de l'instance, avec un certificat de taille polynomiale en fonction de cette taille.
 \end{definition}
 
-\begin{exemple}{}{problème SAT}
+\begin{exemple}{}{problème \sat}
     Soit $\varphi$ une instance positive (une formule satisfiable) et $v$ un certificat associé à $\varphi$ (un modèle de $\varphi$)~:
     $$\abs{v} = \abs{\mc{V}_\varphi} = \abs{\varphi}$$
     L'algorithme vérificateur repose sur un parcours de l'arbre représentant $\varphi$ en $\mc{O}\Big(\abs{\varphi}\Big)$
@@ -180,13 +190,18 @@
     A montrer à ChatGPT, il saura m'expliquer.
 \end{remarque}
 
+\begin{remarque}{}{sur la définition}
+    Pour tout instance positive, l'algorithme vérificateur doit renvoyer Vrai pour l'instance accompagnée d'un certificat valide en temps polynomial en la taille de l'entrée.\\\\
+    Pour toute instance négative, l'algorithme vérificateur doit renvoyer Faux pour cette instance, quel que soit le certificat qui l'accompagne.
+\end{remarque}
+
 \begin{definition}{}{formelle de classe NP}
     Soit $\mc{P}$ un problème de décision défini par sa fonction de prédicat $f: I \to \{Vrai, Faux\}$. $\mc{P}$ est de classe NP lorsqu'il existe~:
     \begin{enumeratebf}
         \item $\Sigma$ un alphabet permettant d'encoder un ensemble $C$ de certificats
         \item $\mc{P}'$ un problème de prédicat~:
         $$f': I\times \Sigma^* \to  S=\{Vrai, Faux\}$$
-        \item $g$ une fonction polynomiale telle que pour tout $e\in I$, $f(e)$ est Vrai ssi~:
+        \item $g : I_1 \to I_2$ une fonction polynomiale telle que pour tout $e\in I$, $f(e)$ est Vrai ssi~:
         $$\exists c \in C,\, \abs{c} \leq g(\code{e}) \quad \text{et} \quad f'(e,\abs{c}) = Vrai$$
         ($\abs{\cdot}$ désigne la taille de représentation)
         \item le problème $\mc{P}'$ est dans $\mc{P}$.
@@ -279,7 +294,7 @@ Voir suite par Gwénolé.
 
 \section{NP-completude, NP-difficile}
 
-\subsection{Définitions et problème SAT}
+\subsection{Définitions et problème \sat}
 
 \begin{definition}{}{}
     Un problème de décision est \notion{NP-difficile} ou \notion{NP-dur} lorsqu'il est possible de se ramener à tout problème de classe NP par une réduction polynomiale depuis ce problème.\\
@@ -293,8 +308,291 @@ Voir suite par Gwénolé.
 \end{definition}
 
 \begin{remarque}{}{}
-    Pour montrer qu'un problème est NP-diffficile, on montre que SAT se réduit polynomialement à ce problème~: $\mr{SAT} \reductibleP \pbm$.
+    Pour montrer qu'un problème est NP-diffficile, on montre que \sat se réduit polynomialement à ce problème~: $\mr{\sat} \reductibleP \pbm$.
     On utilise donc la transitivité de $\reductibleP$.
 \end{remarque}
 
-\input{../../stock/pied.tex}
+\subsection{Rédution polynomiale et NP-difficulté}
+
+
+\begin{proposition}{}{}
+    Soit $\pbm_1$ et $\pbm_2$ deux prolbèmes de décision. Si $\pbm_1 \reductibleP \pbm_2$ et $\pbm_1$ est NP-difficile, alors $\pbm_2$ est NP-difficile.
+\end{proposition}
+
+\begin{demonstration}
+    $\reductibleP$ est une relation transitive. On va l'utiliser. On a~:
+    $$ \begin{cases*}
+        \forall \pbm \in NP,\,\pbm \reductibleP \pbm_1\\
+        \pbm_1 \reductibleP \pbm_2
+    \end{cases*} $$
+    Par transitivité,
+    $$\forall \pbm \in NP,\,\pbm \reductibleP \pbm_2$$
+    $\pbm_2$ est bien NP-difficile.
+\end{demonstration}
+
+\begin{remarque}{}{}
+    Pour montrer qu'un problème $\pbm$ est NP-complet~:
+    \begin{itemize}
+        \item on montre qu'il est de classe NP  l'aide d'un certificat et d'un algorithme vérificateur.
+        \item On choisit un problème $\pbm_ref$ de référence (\sat, FNC-\sat/\cnfsat ou \troissat sont permis), et on montre que $\pbm_ref \reductibleP \pbm$.
+    \end{itemize}
+\end{remarque}
+
+\subsection{Exemple du problème FNC-\sat ou \cnfsat}
+
+\begin{definition}{}{problème \cnfsat}
+    \begin{itemize}
+        \item \textbf{Instance} : $\varphi$ une formule de la logique propositionnelle sous forme normale conjonctive (FNC)
+        \item \textbf{Question} : Est-ce que $\varphi$ est satisfiable ?
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    CNF est NP-complet.
+\end{proposition}
+
+\begin{remarque}{}{}
+    Utilisable sans rappel au concours. (on l'a dit avant, c'est le cas pour trois problèmes)
+\end{remarque}
+
+\begin{demonstration}
+    Par étapes habituelles. La méthode suivie est décrite en \textit{italique}.
+    Montrons que \cnfsat est de classe NP.\\
+    On choisit comme ensemble de certificats l'ensemble des valuations. \textit{Justifions que pour une instance positive au problème, il existe un certificat}. Pour une formule $\varphi$ satisfiable, il existe $v_\varphi$ un modèle de $\varphi$ sur $\mc{V}_\varphi$ l'ensemble des variables que $\varphi$ comporte. $v_\varphi$ est de taille en $\mc{O}(\abs{\varphi})$.\\\\
+    Un algorithme vérificateur : on parcourt l'arbre de la formule en utilisant la valuation pour obtenir les valeurs de vérité pour les variables et on procède récursivement. Moralement, on regarde si la valuation est un modèle.
+    \begin{lstOCaml}
+        type formule =  X of int | Not of formule | Or of formule*formule 
+        | And of formule*formule | Top | Bot
+
+        let rec verifie f (v:bool array) = 
+            match f with
+            | X (i) -> v.(i)
+            | Top -> true
+            | Bot -> false
+            | Or (f1, f2) -> (verifie f1 v) || (verifie f2 v)
+            | And (f1, f2) -> (verifie f1 v) && (verifie f2 v)
+            | Not f1 -> not (verifie f1 v)
+    \end{lstOCaml}
+\end{demonstration}
+
+\begin{demonstration}
+    Montrons que $\sat \reductibleP \cnfsat$\\\\
+    On doit définir une fonction $g$ qui transforme une instance $\varphi$ de \sat en une instance de \cnfsat $g(\varphi)$ telle que~:
+    $$\varphi \text{ satisfiable } \Leftrightarrow g(\varphi) \text{ satifiable}$$
+    On décrit un algorithme permettant de passer de $\varphi$ à $g(\varphi)$~:
+    \begin{enumeratebf}
+        \item On élimine tous les connecteurs $\rightarrow$ et $\leftrightarrow$ en appliquant les équivalences~:
+        $$\begin{cases*}
+            \varphi_1 \rightarrow \varphi_2 \equiv \lnot \varphi_1 \vee \varphi_2\\
+            \varphi_1 \leftrightarrow \varphi_2 (\lnot \varphi_1 \vee \varphi_2) \wedge (\lnot \varphi_2 \vee \varphi_1)
+        \end{cases*}$$
+        Cela s'effectue en $\mc{O}(\abs{\varphi})$, si on considère que la suppression des $\leftrightarrow$ ne duplique pas réellement les variables $\varphi_1$ et $\varphi_2$ (avec des pointeurs par exemple).
+        \item On applique ensuite les lois de De Morgan~:
+    \begin{lstOCaml}
+    let rec morgan phi =
+        match phi with
+        | Not (And (phi1, phi2)) -> Or (morgan (Not phi1), morgan (Not phi2))
+        | Not (Or (phi1, phi2)) -> And (morgan (Not phi1), morgan (Not phi2))
+        | Not (Top) -> Bot
+        | Not (Bot) -> Top
+        | Not (Not phi1) -> morgan phi1
+        | And (phi1, phi2) -> And (morgan phi1, morgan phi2)
+        | Or (phi1, phi2) -> Or (morgan phi1, morgan phi2)
+        | _ -> phi
+    \end{lstOCaml}
+    Cela s'effectue en $\mc{O}(\abs{\varphi})$. On obtient à l'issue une forme normale négative ($\lnot$ uniquement permis devant des variables seules, et uniquement $\wedge$ et $\vee$).
+    \item  À partir de $\hat{\varphi}$ la formule obtenue à l'étape 2, on construit inductivement $g(\varphi)$. On transforme donc une forme normale négative $f = \hat{\varphi}$ en une forme normale conjonctive $F$.
+    \begin{itemize}
+        \item Cas de base~: $f$ est un littéral $\top$ ou $\bot$, on pose $F = f$
+        \item Cas inductifs~:
+        \begin{itemize}
+            \item $f = f_1 \wedge f_2$. On construit $F_1$ et $F_2$ à partir de $f_1$ et $f_2$. On pose $F = F_1 \wedge F_2$.
+            \item $f = f_1 \vee f_2$. Ça se complique. On construit inductivement $F_1$ et $F_2$, à partir de $f_1$ et $f_2$. On pose $F' = (F_1 \vee y) \wedge (F_2 \vee \lnot y)$ avec $g$ qui n'apparait pas dans $F_1$ et $F_2$.\\
+            $F'$ n'est pass une FNC. On la transforme en $F$ en distribuant les littéraux $y$ et $\lnot y$ dans toutes les clauses de $F_1$ et $F_2$ (resp.).
+        \end{itemize}
+    \end{itemize}
+    \end{enumeratebf}
+\end{demonstration}
+
+\begin{demonstration}
+    On a alors $F = g(\varphi)$. Montrons que $f$ est satisfiable si et seulement si $F$ est satisfiable. Évidemment, on n'a pas directement $F = f$. On pose $\mc{V}_F$ les vriables de $F$, pareil pour$f$. On a $\mc{V}_f \subset \mc{V}_F$. On va montrer que
+    \begin{itemize}
+        \item $\mr{Mod}(F) \subset \mr{Mod}(f)$ si on restreint aux variables de $f$ les modèles.
+        \item $\mr{Mod}(f) \subset \mr{Mod}(F)$ si on prolonge aux variables de $F$ les modèles.
+    \end{itemize}
+    On procède par induction~: LE DEBUT EST MANQUANT
+    \begin{itemize}
+        \item Cas de base~: $F = f$, donc on a $v$ ....
+        \item \begin{itemize}
+            \item $f = f_1 \vee f_2$. On construit encore $F$ via $F' = (F_1 \vee y) \wedge (F_2 \vee \lnot y)$ en distribuant. Soit $v$ un modèle de $F$, c'est un modèle de $F'$.
+            \begin{itemize}
+                \item Si $v(y) = F$, nécessairement, $v$ est un modèle de $F_1$ pour satisfaire $(F_1 \vee y)$. Par hypothèse d'induction, $v_{|v_f}$ modèle de $f_1$. Donc modèle de $f$.
+                \item Si $v(y) = V$, le cas est symétrique.
+            \end{itemize}
+            Soit $v$ un modèle de $f$.
+            \begin{itemize}
+                \item si $v$ est un modèle de $f_1$, alors par hypothèse d'induction, on peut prolonger $v$ en $v_1$ modèle de $F_1$. On pose alors $\widetilde{v} : y \mapsto F; x \mapsto v_1(x)$ pour $x \neq y$.
+                \item si $v$ est un modèle de $f_2$, le cas est symétrique.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    Il reste à justifier que 
+\end{demonstration}
+
+Photos du vendredi 07/03 à recopier ici.
+
+Récapulatif
+\begin{proposition}{}{}
+    \troissat est un problème NP-complet
+\end{proposition}
+
+\begin{demonstration}
+    \textbf{Etape 1} : \troissat est de classe NP (\textit{algo vérificateur} avec une valuation comme \textit{certificat} en temps \textit{polynomial}) (les mots-clés sont en italique)\\
+    \textbf{Etape 2} : montrer que $\cnfsat \reductibleP \troissat$.\\
+    L'idée est la suivante. Convertir $(l_1 \vee \dots \vee l_k)$ en $(l_1 \vee l_2 \vee x_{2,3})\wedge(\lnot x_{2,3} \vee l_3 \vee x_{3,4})$.\\
+    On définit une fonction $g$ qui prend une formule $\varphi$ sous FNC (instance de \cnfsat) et construit une instance de \troissat $g(\varphi)$ qui vérifie~:
+    $$\varphi \text{ satisfiable } \Longleftrightarrow g(\varphi) \text{ satisfiable }$$
+    Soit $\varphi$ une telle FNC, qu'on écrit~:
+    $$\varphi = \bigwedge_{i=1}^n C_i$$
+    Pour $i \in \intint{1}{n}$, on construit la formule~:
+    $$F_i = \begin{cases*}
+        C_i &si $C_i$ est de taille au plus 3.\\
+        h(C_i) &sinon
+    \end{cases*}$$
+    où $h(C_i)$, pour $C_i = (l_{1,i} \vee \dots \vee l_{k,i})$ ($k \geq 4$), on introduit $k-3$ variables propositionnelles spécifiques à la clause (non déjà présente dans $\mc{V}_\varphi$), notées $(x_{j,j+1,i})_{j \in \intint{2}{k-2}}$. Ainsi~:
+    $$F_i = (l_{1,i} \vee l_{2,i} \vee x_{2,3,i}) \wedge (\lnot x_{2,3,i} \vee l_{3,i} \vee x_{3,4,i}) \wedge \dots \wedge (\lnot x_{k-2, k-1, i}\vee l_{k-1,i} \vee l_{k,i})$$
+    Ainsi, $\abs{F_i} = \mc{O}(\abs{C_i})$ (on triple la taille).\\
+    On pose alors~:
+    $$g(\varphi) = \bigwedge_{i=1}^nF_i$$
+    Les $F_i$ sont toutes des 3-FNC donc $g(\varphi)$ est une 3-FNC. De plus, $\abs{g(\varphi)} = \mc{O}(\abs{\varphi})$ et est constructible en temps linéaire.
+\end{demonstration}
+
+\begin{demonstration}
+    Il reste à montrer que~:
+    $$\varphi \text{ satisfiable } \Longleftrightarrow g(\varphi) \text{ satisfiable }$$
+
+    \begin{itemize}
+        \item $\boxed{\implies}$ : Si $\varphi$ est satisfiable, soit $v$ un modèle de $\varphi$. On souhaite le prolonger sur les nouvelles variables en $\widetilde{v}$ de sorte que $\widetilde{v}$ satisfasse $g(\varphi)$.\\
+        On considère une clause $C_i$~:
+        \begin{itemize}
+            \item Si $F_i = C_i$, $v$ convient déjà
+            \item Si $F_i \neq C_i$, écrivons $C_i = (l_{1,i}\vee \dots l_{k,i})$.\\
+        \end{itemize}
+        $v$ satisfait $C_i$ donc $v$ satisfait un littéral $l_{j,i}$ parmi ceux-là. Dans $F_i$, voir Figure 100.\\
+        On peut prolonger $v$ en posant~:
+        $$\widetilde{v}(x_{p,p+1,i}) = \begin{cases*}
+            V &si $p \leq j-1$\\
+            F &sinon
+        \end{cases*}$$
+        $\widetilde{v}$ satisfait bien $F_i$.
+        On applique cela pour tous les $F_i$ et comme les variables sont spécifiques à une clause, il n'y a pas de contradiction (au sens doublon de variable). $\widetilde{v}$ satisfait $g(\varphi)$. Donc $g(\varphi)$ est satisfiable.
+        \item $\boxed{\impliedby}$ : Supposons que $g(\varphi)$ satisfiable.\\
+        Soit $v$ un modèle de $g(\varphi)$. Montrons que $v$ satisfait $\varphi$ (même s'il est défini sur plus que $\mc{V}_\varphi$).\\
+        On considère une clause $C_i$~:
+        \begin{itemize}
+            \item Si $F_i = C_i$, $v$ satisfait $F_i$ donc $C_i$
+            \item Si $F_i \neq C_i$, notons~:
+            \begin{align*}
+                F_i =& (l_{1,i} \vee l_{2,i} \vee x_{2,3,i}) \wedge \\
+                 &\dots \wedge\\
+                 & (\lnot x_{j, j+1,i} \vee l_{j+1,i} \vee x_{j+1,j+2,i}) \wedge\\
+                 &\dots \wedge\\
+                 & (\lnot x_{k-2, k-1,i} \vee l_{k-1,i} \vee l_{k,i})
+            \end{align*}
+            Supposons par l'absurde que $v$ ne satisfait aucun $l(j,i)$.\\
+            La première clause est satisfaite donc $v(x_{2,3,i}) = V$ nécessairement. Par propagation de clause en clause, on a $v(x{j,j+1,i}) = V$ pour tout $j$, et la dernière clause ne peut être satisfaite dans ces conditions. absurde.\\
+            $v$ satisfait donc au moins un littéral $l_i$ donc la clause $C_i$.\\\\
+            Au totale, $v$ satisfait toutes les clauses de $\varphi$, qui est donc satisfiable.\\
+        \end{itemize}
+        Donc $g$ est bien une réduction polynomiale~:
+        $$\cnfsat \reductibleP \troissat$$
+        Puis $\cnfsat$ est NP-complet. Ainsi $\troissat$ est NP-difficle.
+    \end{itemize}
+    Au total avec ces deux tirets principaux, on a bien que $\troissat$ est NP-complet.
+\end{demonstration}
+
+\subsection{Chemin hamiltonien}
+
+\begin{definition}{}{chemin hamiltonien}
+    Dans un graphe $G = (S,A)$, un \notion{chemin hamiltonien} de $s\in S$ à $t \in S$ est un chemin de départ $s$, d'arrivée $t$ passant exactement une fois par chacun des sommets de $S$.
+\end{definition}
+
+\begin{definition}{}{cycle hamiltonien}
+    Dans un graphe $G = (S,A)$, un \notion{cycle hamiltonien} est un chemin hamiltonien d'origine et d'extrémité égales.
+\end{definition}
+
+On définit deux problèmes
+
+\begin{definition}{}{Problème \cheminham}
+    \textbf{Instance} : Un graphe $G=(S,A)$ orienté, $s$ et $t$ deux sommets de $S$.
+    \textbf{Question} : Existe-t-il un chemin hamiltonien de $s$ à $t$ ?
+\end{definition}
+
+\begin{definition}{}{Problème \cycleham}
+    \textbf{Instance} : Un graphe $G=(S,A)$ orienté
+    \textbf{Question} : Existe-t-il un cycle hamiltonien dans $G$?
+\end{definition}
+
+\begin{proposition}{}{concernant ces deux problèmes}
+    \cheminham et \cycleham sont NP-Complets.
+\end{proposition}
+
+\begin{demonstration}
+    Les mots-clés sont en italique.
+    \begin{itemize}
+        \item Montrons qu'ils sont de classe NP. On choisit comme ensemble des \textit{certificats} les suites des sommets.\\
+        On peut construire un \textit{algorithme vérificateur} de complexité en la taille de la liste des sommets qui vérifie que chaque sommet du graphe apparaît une et une seule fois (avec un tableau de booléens), qu'il y a bien des arêtes entre deux sommets consécutifs (cela se fait en $\mc{O}(1)$ avec des matrices d'adjacence) et éventuellement que l'on a le bon départ, la bonne arrivée.\\
+        Moralement, on vérifie que c'est bien un cycle hamiltonien ou un chemin hamiltonien.\\
+        Pour une instance positive, il existe un bon certificat de taille $\abs{S}$ qui permet de renvoyer Vrai avec l'algorithme vérificateur en \textit{temps polynomial}.\\
+        Pour une instance négative, l'algorihtme renvoie bien sûr toujours faux.
+        \item Montrons maintenant que $\troissat \reductibleP \cycleham$ et $\troissat \reductibleP \cheminham$.\\
+        Pour $\varphi$ une 3-FNC, on cherche à construire le graphe $G_\varphi$ tel que~:
+        $$\varphi \in \troissat^+ \Longleftrightarrow (G_\varphi,s,t) \in \cheminham^+$$
+        $\troissat^+$ est l'ensemble des instances positives du problème \troissat. \\
+        De même on cherche un graphe $G_{\varphi'}$ tel que~:
+        $$\varphi \in \troissat^+ \Longleftrightarrow G_{\varphi'} \in \cycleham^+$$
+        $G_\varphi$ et $G_{\varphi'}$ doivent être de taille polynomiale en $\abs{\varphi}$ et constructible en temps polynomial.\\
+        On pose~:
+            $$\varphi = \bigwedge_{i=1}^kC_i$$
+        Avec pour $i \in \intint{1}{k}$, $C_i = (l_{1,i} \vee l_{2,i} \vee l_{3,i})$
+        On pose le graphe gadget suivant~: (Figure 101).\\
+        Ce graphe gadget a la particularité de présenter exactement deux chemins hamiltoniens de $s$ à $t$~:
+        \begin{itemize}
+            \item $s \rightarrow g \rightarrow \dots \rightarrow d \rightarrow t$
+            \item $s \rightarrow d \rightarrow \dots \rightarrow g \rightarrow t$
+        \end{itemize}
+    \end{itemize}
+\end{demonstration}
+
+\begin{demonstration}
+        On pose alors $\mc{V}_\varphi = \{x_1, \dots, x_n\}$ l'ensemble des variables qui vont apparaître dans $\varphi$.\\
+        On construit le graphe $G_{\mc{V}_\varphi}$ en utilisant $n$ fois ce graphe gadget : une fois pour chaque variable ! (Voir figure 102).\\
+        $G_{v_\varphi}$ a exactement $2^n$ chemins hamiltoniens (deux possibilités à chaque fois) de $s$ à $t$, auxquels on peut faire correspondre une valuation du $\mc{V}_\varphi$.\\
+        À un chemin hamiltonien de $s$ à $t$, on fait correspondre une valuation $v$ telle que pour $i \intint{1}{n}$~:
+        $$v(x_i)  = \begin{cases*}
+            V &si $g_i$ apparaît avant $d_i$ dans le chemin hamiltonien\\
+            F &sinon
+        \end{cases*}$$
+        Pour chaque classe $C_j$, on rajoute un sommet en fonction des cas, comme dans la figure 103.\\
+        On obtient un graphe $G_\varphi = (S_\varphi, A_\varphi)$, avec~:
+        $$\begin{cases*}
+            \abs{S_\varphi} = \underbrace{k}_{\text{clauses}} + \underbrace{2}_{s,t} + n\underbrace{(2k+4)}_\text{gadget} &bien polynomiale en $\abs{\varphi}$\\
+            \abs{A_\varphi} \leq \underbrace{(2k+3)}_\text{gadget}2n + \underbrace{n + 1}_{\text{lien entre les gadget}} + \underbrace{6k}_{\text{clauses}} &polynomiale en $\abs{\varphi}$.
+        \end{cases*}$$
+        $G_\varphi$ est bien constructible en temps polynomial.\\
+        On construit $G_{\varphi'}$ à partir de $G_\varphi$ en rajoutant une arête de $t$ à $s$. \textbf{C'est la seule chose qui les sépare, d'où l'intérêt de factoriser les démos} Montrons que~:
+        \begin{align*}
+            &\varphi \in \troissat^+\\
+            \Longleftrightarrow \quad &(G_\varphi,s,t) \in \cheminham^+\\
+            \Longleftrightarrow \quad &G_{\varphi'} \in \cycleham^+
+        \end{align*}
+        On doit la dernière équivalence au fait que $(t,s)$ est nécessaire dans le cycle. On montre la première.
+        \begin{itemize}
+            \item $\boxed{\implies}$ : Si $\varphi$ est satisfiable, soit $v$ un modèle de $\varphi$. On s'intéresse au chemin hamiltonien dans $G_{v_\varphi}$.\\
+            Pour chaque clause $C_j$, on a au moins un littéral satisfait, on transforme le chemin hamiltonien dans $G_{v_\varphi}$ en chemin hamiltonien dans $G_\varphi$ en prenant le détour vers $C_j$ correspondant au littéral satisfait.
+            \item Si $(G_\varphi, s, t) \in \cheminham^+$, on considère la valuation correspondant au chemin hamiltonien existant. on a au moins un détour pris par clause donc chacune est satisfiable.
+        \end{itemize}
+\end{demonstration}
+
+
+\end{document}
