@@ -334,7 +334,7 @@ Voir suite par Gwénolé.
     Pour montrer qu'un problème $\pbm$ est NP-complet~:
     \begin{itemize}
         \item on montre qu'il est de classe NP  l'aide d'un certificat et d'un algorithme vérificateur.
-        \item On choisit un problème $\pbm_ref$ de référence (\sat, FNC-\sat/\cnfsat ou \troissat sont permis), et on montre que $\pbm_ref \reductibleP \pbm$.
+        \item on montre qu'il est NP-difficile en choisissant un problème $\pbm_\mr{ref}$ NP-difficile de référence (\sat, \cnfsat ou \troissat sont permis), et on montre que $\pbm_\mr{ref} \reductibleP \pbm$.
     \end{itemize}
 \end{remarque}
 
@@ -593,6 +593,406 @@ On définit deux problèmes
             \item Si $(G_\varphi, s, t) \in \cheminham^+$, on considère la valuation correspondant au chemin hamiltonien existant. on a au moins un détour pris par clause donc chacune est satisfiable.
         \end{itemize}
 \end{demonstration}
+
+Fin à copier
+
+
+Cours du 14/03
+\subsection{Réductions classiques}
+
+Voir Fig.104
+
+\section{Machines de Turing (HP)}
+
+\begin{definition}{}{classe P avec machines de Turing}
+    La \notion{classe P dans modèle de calcul des machines de Turing} correspond aux problèmes de décision que l'on peut résoudre avec une \notion{machine de Turing déterministe} en temps polynomial en la taille de l'instance.
+\end{definition}
+
+\begin{definition}{}{classse NP avec machines de Turing}
+    La \notion{classse NP dans le modèle de calcul des machines de Turing} correspond aux problèmes de décision que l'on peut résoudre à l'aide d'une \notion{machine de Turing non déterministe} en temps polynomial en la taille de l'instance.
+\end{definition}
+
+\begin{remarque}{}{implication entre ces classes}
+    $P \subset NP$ car une \notion{machine de Turing déterministe} est en particulier une \notion{machine de Turing non déterministe}.\\\\
+    Si on sait déterminiser une machine de Turing sans faire exploser (en complexité exponentielle) la taille des calculs, on peut montrer que $P=  NP$ (évidemment ce n'est pas encore découvert).
+\end{remarque}
+
+\begin{remarque}{}{introduction aux machines de Turing}
+    Les machines de Turing constituent une extension de la notion d'automate. Elles utilisent une \notion{bande}infinie sur laquelle elles peuvent lire, écrire, et se déplacer à gauche ou à droite.
+
+    \begin{center}
+        \begin{tikzpicture}
+            % Dessiner les cases
+            \foreach \x in {-3,-2,-1,0,1,2} {
+                \draw (\x,0) rectangle (\x+1,1);
+            }
+        
+            % Ajouter les pointillés aux extrémités
+            \node at (-3.5,0.5) {\dots};
+            \node at (3.5,0.5) {\dots};
+        
+            % Ajouter des symboles dans les cases
+            \node at (-3.5,0.5) {\dots};
+            \node at (-2.5,0.5) {1};
+            \node at (-1.5,0.5) {0};
+            \node at (-0.5,0.5) {1};
+            \node at (0.5,0.5) {B};
+            \node at (1.5,0.5) {1};
+            \node at (2.5,0.5) {0};
+            \node at (3.5,0.5) {\dots};
+        
+            % Ajouter une tête de lecture
+            \draw[thick,->] (0.5,1.2) -- (0.5,1);
+        
+        \end{tikzpicture}
+    \end{center}
+
+    Les machines de Turing constituent une abstraction des ordinateurs tels qu'on les connaît aujourd'hui. Voir Fig 105. On peut aussi se limiter à une demi-droite en guise de bande.
+\end{remarque}
+
+\begin{definition}{}{Machine de Turing}
+    Une machine de turing est la donnée d'un 7-uplet $\mc{M} = (\Sigma, \Gamma, Q, q_0, F, T, \#)$, où~:
+    \begin{itemize}
+        \item $\Sigma$ est l'\notion{alphabet d'entrée}. C'est l'ensemble fini des lettres que l'on utilise pour écrire le mot donné en entrée à $\mc{M}$.
+        \begin{center}
+            \begin{tikzpicture}
+                % Dessiner les cases
+                \foreach \x in {-3,-2,-1,0,1,2,3} {
+                    \draw (\x,0) rectangle (\x+1,1);
+                }
+            
+                % Ajouter les pointillés aux extrémités
+                \node at (-3.5,0.5) {\dots};
+                \node at (3.5,0.5) {\dots};
+            
+                % Ajouter des symboles dans les cases
+                % \node at (-3.5,0.5) {\#};
+                \node at (-2.5,0.5) {$w_1$};
+                \node at (-1.5,0.5) {\dots};
+                \node at (-0.5,0.5) {$w_n$};
+                \node at (0.5,0.5) {\#};
+                \node at (1.5,0.5) {\dots};
+                \node at (2.5,0.5) {\#};
+                \node at (3.5,0.5) {\dots};
+            \end{tikzpicture}
+        \end{center}
+        $w = w_1 \dots w_n \in \Sigma^*$ est l'entrée donnée. On a ici représenté la configuration initiale de la bande pour cette entrée.
+        \item $\#$ est le \notion{symbole blanc}, il sert à remplir les cases non occupées de la bande.
+        \item $\Gamma$ est l'\notion{alphabet de bande}. Il est fini, et on a~:
+        $$\Sigma \cup \{\#\} \subset \Gamma$$
+        \item $Q$ est un \notion{ensemble fini d'états}
+        \item $q_0 \in Q$ est l'\notion{état initial}.
+        \item $F \subset Q$ est l'\notion{ensemble des états finaux}.
+        \item $T$ est l'\notion{ensemble des transitions}. Il vérifie~:
+        $$T \subset Q \times \Gamma \times Q \times \Gamma \times \{\triangleleft, \triangleright \}$$
+        Une transition est alors~:
+        \begin{itemize}
+            \item soit de la forme $(q_1, a) \rightarrow (q_2, b, \triangleright)$, auquel cas on est dans l'état $q_1$, on lit $a$, on remplace $a$ par $b$ dans la bande, puis on avance d'une case vers la droite, et on se place en l'état $q_2$.
+            \item soit de la forme $(q_1, a) \rightarrow (q_2, b, \triangleleft)$, symétriquement.
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\begin{exemple}{}{de machine de Turing}
+    Voir Fig.106
+    
+\end{exemple}
+
+\begin{remarque}{}{concernant les machines de Turing}
+    La bande est infinie à droite. Lors d'un calcul le nombre de cases occupées (cases sans symbole blanc) peut croître indéfiniment et on peut de fait avoir des calculs infinis. Pour autant, on ne peut pas avoir un nombre infini de cases occupées.
+\end{remarque}
+
+\begin{definition}{}{configuration d'une machine de Turing}
+    On appelle \notion{configuration d'une machine de Turing} est la donnée de l'état d'une machine de Turing~:
+    \begin{itemize}
+        \item l'état actuel, appelé \notion{état de contrôle}
+        \item le contenu de la bande
+        \item la position de la tête de lecture
+    \end{itemize}
+    On note une $C = (u,q,z) = u\,q\,v$ une telle configuration, où~:
+    \begin{itemize}
+        \item $u$ est le contenu de la bande strictement avant la tête de lecture
+        \item $q$ est l'état courant
+        \item $v$ est le contenu de la bande après la tête de lecture jusqu'à la dernière case occupée incluse. (tous les symboles blancs suivant sont omis)
+    \end{itemize}
+\end{definition}
+
+\begin{exemple}{}{de configuration dans une machine de Turing}
+    Pour la machine de Turing suivante, Voir fig.107, la configuration représentée est $abca \, q_1 \, \#a $
+\end{exemple}
+
+\begin{definition}{}{configuration initale dans une machine de Turing}
+    La \notion{configuration initale} dans une machine de Turing lorsqu'on lit un mot $w$ sur une machine de Turing $\mc{M}$ est~:
+    $$q_0\, w = (\epsilon, q_0, w)$$
+\end{definition}
+
+\begin{definition}{}{étape de calcul dans une machine de Turing}
+    Une \notion{étape de calcul} dans une machine de Turing est un couple $(C,C')$ de configurations, noté $C \rightarrow C'$ telle que~:
+    \begin{itemize}
+        \item Soit on a $C = uc\,q\,av$ et $C' = u\, q'\, cbv$  et $(q,a) \rightarrow (q',b,\triangleleft)$ est une transition, avec~:
+        \begin{itemize}
+            \item $u,v \in \Gamma^*$
+            \item $q,q' \in Q$ 
+            \item $a,b,c \in \Gamma$
+        \end{itemize}
+        \item Soit on a $C = u\,q\,av$ et $C' = ub\, q'\, v$  et $(q,a) \rightarrow (q',b,\triangleright)$ est une transition, avec~:
+        \begin{itemize}
+            \item $u,v \in \Gamma^*$
+            \item $q,q' \in Q$ 
+            \item $a,b \in \Gamma$
+        \end{itemize}
+    \end{itemize}
+    Là encore, on appelle \notion{calcul} une suite d'étapes de calcul~:
+    $$C_1 \to \dots \to C_n$$
+\end{definition}
+
+\begin{definition}{}{calcul acceptant dans une machine de Turing}
+    Un \notion{calcul $C_1 \to \dots \to C_n$ acceptant} dans une machine de Turingv vérifie~:
+    \begin{itemize}
+        \item $C_0 = q_0\,w$ une configuration initiale
+        \item $C_k = u\,q\,v$ avec $q \in F$
+    \end{itemize}
+    On dit que \notion{$\mc{M}$ accepte $w$} (et non plus "reconnaît").
+    On note $\mc{L}(\mc{M})$ le langage des mots reconnus par $\mc{M}$
+\end{definition}
+
+\begin{remarque}{}{concernant les calculs acceptants}
+    Si le calcul est amené à sortie de la bande par la gauche (dans la convention où cette bande est une demi-droite), on dit que \notion{le calcule échoue}.
+\end{remarque}
+
+\begin{exemple}{}{de calcul sur une machine de Turing}
+    En reprenant la précédente machine de Turing, lisant mot $w = a^8$~:
+    \begin{align*}
+        &q_0\,aaaaaaaa \\
+        \rightarrow & \#\, q_1\, aaaaaaa \\
+        \rightarrow & \#a\, q_2\, aaaaaa \\
+        \rightarrow & \#aA\, q_3\, aaaaa \\
+        \rightarrow & \#aAa\, q_2\, aaaa  \\
+        \rightarrow & \#aAaA\, q_3\, aaa \\
+        \rightarrow & \#aAaAa\, q_2\, aa  \\
+        \rightarrow & \#aAaAaA\, q_3\, a \\
+        \rightarrow & \#aAaAaAa\, q_2 \\
+        \rightarrow & \#aAaAaA\, q_3\, a  \\
+        \rightarrow^* & q_4\, aAaAaAa \\
+        \rightarrow & \#\,q_0\, aAaAaAa \\
+        \rightarrow & \#\#\, q_1\, AaAaAa \\
+        \rightarrow & \#\# A\, q_1 \, aAaAa \\
+        \rightarrow & \#\#Aa\, q_2\, AaAa\\\\
+        \rightarrow^* \#\#A\#AAA\#\#\, q_5
+    \end{align*}
+    Le mot est accepté car le cacul termine. (le tableau deux n'a pas été copié).\\
+    On peut montrer que $\mc{L}(\mc{M}) = \{a^{2^n},\,  n\in \N\}$. L'idée est que l'on réalise un "tour"~:
+    $$q_0 \to q_1 \to \begin{cases*}
+        q_2\\ q_3
+    \end{cases*} \to q_4 \to q_0$$
+    pour elever la moitié des $a$ jusqu'à en avoir un unique.\\
+    Si on a un nombre impaire de $a$, on échoue en $q_3$ devant un symbole blanc.
+\end{exemple}
+
+\begin{definition}{}{Machine de Turing déterministe}
+    Une machine de Turing est \notion{déterministe} lorsque~:
+    $$\forall (q,a) \in Q \times \Gamma,\, \abs{\{(q,a,q',c,x) \in T,\, (q',c,x) \in Q\times F\times\{\triangleleft,\, \triangleright\}\}} \leq 1$$
+\end{definition}
+
+\begin{remarque}{}{variantes de machines de Turing}
+    Il existe plusieurs variantes de machines de Turing~:
+    \begin{itemize}
+        \item plusieurs bandes
+        \item bi-infinie
+    \end{itemize}
+    mais leur puissance de calcul est la même.
+\end{remarque}
+\begin{definition}{}{langage récursivement énumérable}
+    Un langage $L$ sur un alphabet $\Sigma$ est dit \notion{récursivement énumérable} lorsqu'il existe une machine de Turing $\mc{M}$ telle que $L = \mc{L}(\mc{M})$
+\end{definition}
+
+\begin{definition}{}{}
+    Soit $\pbm$ un problème de décision, défini par un ensemble $I$ d'instances et une fonction $f: I \to \{vrai, Faux\}$ de prédicat. On peut associer un $\pbm$ un langage.\\
+    Pour $i \in I$ une instance de problème, on note $<i>$ un encodage de $i$ (on suppose que l'encodage est unique à toute instance).\\
+    On note $\mc{L}_{\pbm} = \{<i>,\, i \in I,\, f(i) = Vrai\}$. C'est le langage des instances positives.
+\end{definition}
+
+\begin{remarque}{}{}
+    Por résoudre un problème $\pbm$, on peut utiliser une machine de Turing $\mc{M}$ telle que $\mc{L}(\mc{M}) = \mc{L}_\pbm$
+\end{remarque}
+
+\begin{exemple}{}{d'encodages}
+    Pour les arbres : $\Sigma = \{N,F,(,)\}$.
+    $$N(FN(FF)N(N(FF)F))$$
+    est un encodage de l'arbre~:
+    \begin{center}
+        \begin{forest}
+            [N[FN[FF]N[N[FF]F]]]
+        \end{forest}
+    \end{center}
+    Pour les entiers, $\Sigma = \{0,1\}$ : écriture en base $2$.
+    Pour les graphes, nombre de sommets et liste d'arêtes ($\Sigma = \{0,1,(,),|\}$).
+    $$((11)|((0|1)|(1|10)))$$
+    est un encodage de : Voir fig.108
+\end{exemple}
+
+\begin{definition}{}{problème récursivement énumérable}
+    Un problème de décision $\pbm$ tel que $\mc{L}_\pbm$ est récursivmeent énumérable est dit \notion{récursivement énumérable}~: cela correspond aux problèmes \notion{semi-décidables}. Pour une instance positive, on a un calcul fini qui permet de savoir que l'instance est positive.\\
+    Pour une instance négative, on peut avoir des calculs infinis~: cela ne permet donc pas de conclure.
+\end{definition}
+
+\begin{definition}{}{langage décidable}
+    Un langage $L$ écrit sur un alphabet $\Sigma$ est dit \notion{décidable} lorsqu'il existe une machine de Turing sans calcul infini acceptant $L$.\\
+    On dit alors que la machine \notion{décide le langage $L$}
+\end{definition}
+
+\begin{proposition}{}{équivalence entre deux notions}
+    Poour $\pbm$ un problème de décision~:
+    $$\mc{L}_\pbm \Longleftrightarrow \mc{P} \text{ décidable}$$
+    On appelle aussi ces langages des \notion{langages récursifs}.
+\end{proposition}
+
+\begin{proposition}{}{}
+    Si un langage $L$ est tel que~:
+    \begin{itemize}
+        \item $L$ est récursivement énumérable
+        \item $\Sigma^* \setminus L$ est récursivement énumérable
+    \end{itemize}
+    Alors $L$ est récursif.
+\end{proposition}
+
+\begin{remarque}{}{}
+    C'est analogue au fait que si $\pbm$ et $co\pbm$ sont semi-décidables, alors $\mc{P}$ est décidable.
+\end{remarque}
+
+\begin{definition}{}{encodage d'une machine de Turing}
+    Soit $\mc{M}$ une machine de Turing, $w \in \Sigma^*$. On note~:
+    \begin{itemize}
+        \item $<\mc{M}>$ l'encodage de $\mc{M}$
+        \item $<w>$ l'encodage de $w$
+        \item $<\mc{M}, w>$ l'encdage de $\mc{M}, w$~:
+        $$<\mc{M, w}> = <\mc{M}>\$<w>$$
+        où $\$$ est un symbole séparateur tiers.
+    \end{itemize}
+    On note~:
+    $$L_\in = \{<\mc{M},w>,\, w \in \mc{L}(\mc{M}),\, \mc{M} \text{ est une machine de Turing et }  w \in \Sigma^*\}$$
+    $L_\in$ est appelé \notion{langage d'acceptation}. C'est un \notion{langage récursivement énumérable} (ADMIS).\\\\
+\end{definition}
+
+\begin{definition}{}{machine de Turing universelle}
+    Une machine de Turing $\mc{M}_u$ telle que $\mc{L}(\mc{M}_u) = \mc{L}_\in$ existe : on l'appelle \notion{machine universelle}.
+\end{definition}
+
+\begin{remarque}{}{}
+    Le problème~:
+    \begin{itemize}
+        \item \textbf{Instance}~: $\mc{M}$ machine de Turing, $w \in \Sigma^*$ 
+        \item \textbf{Question}~: Est-ce que $\mc{M}$ accepte $w$ ?
+    \end{itemize}
+    est un problème semi-décidable. Il est indécidable. Donc $L_\in$ n'est pas récursif. On montre cela comme pour le problème de l'arrêt mais avec des calculs des machines de Turing.\\\\
+    L'existence d'une machine universelle $\mc{M}_u$ telle que $\mc{L}(\mc{M}_u) = \mc{L}_\in$ vient du fait que l'on peut simuler le calcul de $\mc{M}$ sur $w$ à partir de $<\mc{M}, w>$
+\end{remarque}
+
+\begin{definition}{}{mach}
+    Soit fonction $f: \Sigma^* \to \Gamma^*$ avec $\Sigma$ et $\Gamma$ deux alphabets finis et $\Sigma \subset \Gamma$. \notion{$f$ est calculable} lorsqu'il existe une machine de Turing $\mc{M}$ qui pour toute entrée $w \in \Sigma^*$ admet un unique calcul acceptant qui s'arrête avec exactement $f(w)$ sur la bande.
+\end{definition}
+
+\begin{definition}{}{réduction Turing}
+    Soit $A$ et $B$ deux problèmes de décision et $L_A$ et $L_B$ les langages associés d'alphabets de supports $\Sigma_A$ et $\Sigma_B$. Une \notion{réduction Turing} de $A$ vers $B$ (notée $A \leq_T B$) correspond à une fonction $f : \Sigma_A^* \to \Sigma_B^*$ calculable qui permet de transformer une instance du problème $A$ en une instance du problème $B$ telle que~:
+    $$w \in L_A \longleftrightarrow f(w) \in L_B$$
+\end{definition}
+
+
+\begin{remarque}{}{idée}
+    L'idée est que la machine qui calcule $f$ permet de passer d'une configuration $q_0 \, w$ à une configuration $q_0' \, f(w)$. Ensuite, on peut utiliser si elle existe, la machine $\mc{M}_B$ telle que $\mc{L}(\mc{M}) = L_B$ pour savoir si $f(w) = L_B$, donc si $w \in L_A$.
+\end{remarque}
+
+\begin{definition}{}{propriété non triviale}
+    Une propriété non triviale est une propriété $\pbm$ telle que~:
+    \begin{itemize}
+        \item il existe $L$ récursivement énumérable qui vérifie $\mc{P}$
+        \item et il existe $L$ récursivement énumérable qui ne vérifie pas $\pbm$.
+    \end{itemize}
+\end{definition}
+
+\begin{theoreme}{}{de Rice}
+    Pour toute propriété \notion{non triviale} $\pbm$ sur les langages récursivement énumérabbles, le problème de savoir si le langage $\mc{L}(\mc{M})$ accepté par une machine $\mc{M}$ vérifie $\pbm$ est indécidable.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\pbm$ une propriété non triviale sur les langages récursivement énumérables.\\
+    On a au moins~:
+    \begin{itemize}
+        \item $L_1$ récursivement énumérable qui vérifie $\mc{P}$
+        \item $L_2$ récursivement énumérable qui ne vérifie pas $\mc{P}$
+    \end{itemize}
+    On pose $L_\pbm = \{<\mc{M}>,\, \mc{L}(\mc{M}) \text{ vérifie } \mc{P}\}$. Montrons que $L_\pbm$ n'est pas un langage décidable en utilisant une réduction faisant intervenir $L_\in$ qui est lui-même indécidable.\\\\
+    On peut écrire $L_\in \leq_T L_\pbm$ pour la réduction Turing concernant les problèmes associés aux langages.\\
+    Quitte à considérer $co\pbm$, on peut supposer sans perte de généralité que $\varnothing$ ne vérifie pas $\pbm$. Donc $L_1 \neq \varnothing$. On pose $\mc{M}_1$ une machine de Turing telle que $\mc{L}(\mc{M}_1) = L_1$.\\
+    Soit $\mc{M},w$ une instance du problème associée à $L_\in$. ON construit une machine $\mc{M}_w$ qui simule l'algorithme suivant~:
+    \begin{lstLNAT}
+    $M_w$($u \in \Sigma^*$):
+        SI $\mc{M}$ accepte $w$:
+            Calculer $u$ sur $\mc{M}_1$ (quitte à calculer, rejeter, échouer, ne pas terminer)
+        SINON:
+            Rejeter
+    \end{lstLNAT}
+    On admet que l'on peut construire $\mc{M}_w$ à partir de $\mc{M}$, $w$ et $\mc{M}_1$. Montrons que~:
+    $$<\mc{M},w> \in L_\in \longleftrightarrow <\mc{M}_w> = L_\pbm$$
+    \begin{itemize}
+        \item $\boxed{\implies}$ : Si $<\mc{M},w> \in L_\in$, \ie $\mc{M}$ acceptant, on a $\mc{L}(\mc{M}_w) = L_1$, car on est toujours dans le premier cas de l'algorithme. Or $L_1$ vérifie $\pbm$, donc $<\mc{M}_w> \in L_\pbm$.
+        \item $\boxed{\impliedby}$ : par contraposée.\\
+        Si $<\mc{M},w> \notin L_\in$, \ie $\mc{M}$ n'accepte pas $w$~:
+        \begin{itemize}
+            \item si le calcul de $\mc{M}$ sur $w$ ne termine pas, pour tout $u$, $\mc{M}_w$ ne termine pas, car vérifier si $\mc{M}$ accepte $w$ ne termine pas donc $\mc{L}(\mc{M}_w) = \varnothing$
+            \item Si $\mc{M}$ rejette $w$, on va dans le "sinon" dans tous lescas et tout mot $u$ est rejeté donc $\mc{L}(\mc{M}_w) = \varnothing$
+        \end{itemize}
+        Or $\varnothing$ ne vérifie pas $\pbm$ donc $<\mc{M}_w> \notin L_\pbm$
+    \end{itemize}
+\end{demonstration}
+
+\begin{definition}{}{complexité, la vraie}
+    Soit $\mc{M}$ une machine de Turing et $\gamma : C_0 \to \dots C_k$ un calcul sur une entrée $w \in \Sigma^*$.\\
+    Le \notion{temps de clacul} du calcul $\gamma$ est~:
+    $$t_\mc{M}(\gamma) = k$$
+    L'espace utilisé par le calcul est~:
+    $$s_\mc{M}(\gamma) = \max_{0\leq i \leq k} \abs{C_i}$$
+    Pour une entrée $w$, la \notion{complexité temporelle} est définie comme~:
+    $$t_\mc{M}(w) = \min_{\gamma \text{ calcul de $w$ sur $\mc{M}$}} \Big(t_\mc{M}(\gamma)\Big)$$
+    la \notion{complexité spatiale} est définie par~:
+    $$s_\mc{M}(w) = \min_{\gamma \text{ calcul de $w$ sur $\mc{M}$}} \Big(s_\mc{M}(\gamma)\Big)$$
+\end{definition}
+
+\begin{remarque}{}{}
+    On peut définir pour une machine de Turing $\mc{M}$, pour tout $n \in \N$~:
+    $$t_\mc{M}(n) = \max_{\abs{w} = n}\Big(t_\mc{M}(w)\Big)$$
+    et~:
+    $$s_\mc{M}(n) = \max_{\abs{w} = n}\Big(s_\mc{M}(w)\Big)$$
+\end{remarque}
+
+\begin{definition}{}{classes de complexité}
+    Soit $f : \N \to \R_+$ (souvent $\N$).
+    \begin{enumeratebf}
+        \item $TIME(f(n))$ est l'ensemble des problèmes de décision résolus par une machine de Turing déterministe telle que~:
+         $$t_\mc{M}(n) = \mc{O}\Big(f(n)\Big)$$
+        \item $NTIME(f(n))$ est l'ensemble des problèmes de décision résolus par une machine de Turing non déterministe telle que~:
+        $$t_\mc{M}(n) = \mc{O}\Big(f(n)\Big)$$
+        \item On a toujours $TIME(f(n)) \subset NTIME(f(n))$.\\
+        $$P = \Bigcup_{k \geq 0}TIME(n^k)$$
+        $$NP = \Bigcup_{k \geq 0}NTIME(n^k)$$
+        $$EXP = EXPTIME = \bigcup_{k \geq 0} TIME(2^{n^k})$$
+        $$NEXP = NEXPTIME = \bigcup_{k \geq 0} NTIME(2^{n^k})$$
+    \end{enumeratebf} 
+\end{definition}
+
+\begin{proposition}{}{machine de Turing}
+    Pour toute machine de Turing $\mc{M}$ non déterministe, il existe une machine $\mc{M}'$ déterministe tell que~:
+    $$t_{\mc{M}'}(n) = \mc{O}(t_\mc{M}(n)2^{t_\mc{M}(n)})$$
+\end{proposition}
+
+\begin{remarque}{}{}
+    En pratique, c'est pour cela que les problèmes NP-complets sont résolus en temps EXP.
+\end{remarque}
+
+\begin{proposition}{}{}
+    $P \subset NP \subset EXP \subset NEXP$.
+\end{proposition}
+
 
 
 \end{document}
