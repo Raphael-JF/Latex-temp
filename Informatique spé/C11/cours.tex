@@ -470,44 +470,46 @@ Récapulatif
 \begin{demonstration}
     Il reste à montrer que~:
     $$\varphi \text{ satisfiable } \Longleftrightarrow g(\varphi) \text{ satisfiable }$$
-
+    $\boxed{\implies}$ : Si $\varphi$ est satisfiable, soit $v$ un modèle de $\varphi$. On souhaite le prolonger sur les nouvelles variables en $\widetilde{v}$ de sorte que $\widetilde{v}$ satisfasse $g(\varphi)$.\\
+    On considère une clause $C_i$~:
     \begin{itemize}
-        \item $\boxed{\implies}$ : Si $\varphi$ est satisfiable, soit $v$ un modèle de $\varphi$. On souhaite le prolonger sur les nouvelles variables en $\widetilde{v}$ de sorte que $\widetilde{v}$ satisfasse $g(\varphi)$.\\
-        On considère une clause $C_i$~:
-        \begin{itemize}
-            \item Si $F_i = C_i$, $v$ convient déjà
-            \item Si $F_i \neq C_i$, écrivons $C_i = (l_{1,i}\vee \dots l_{k,i})$.\\
-        \end{itemize}
-        $v$ satisfait $C_i$ donc $v$ satisfait un littéral $l_{j,i}$ parmi ceux-là. Dans $F_i$, voir Figure 100.\\
-        On peut prolonger $v$ en posant~:
-        $$\widetilde{v}(x_{p,p+1,i}) = \begin{cases*}
-            V &si $p \leq j-1$\\
-            F &sinon
-        \end{cases*}$$
-        $\widetilde{v}$ satisfait bien $F_i$.
-        On applique cela pour tous les $F_i$ et comme les variables sont spécifiques à une clause, il n'y a pas de contradiction (au sens doublon de variable). $\widetilde{v}$ satisfait $g(\varphi)$. Donc $g(\varphi)$ est satisfiable.
-        \item $\boxed{\impliedby}$ : Supposons que $g(\varphi)$ satisfiable.\\
-        Soit $v$ un modèle de $g(\varphi)$. Montrons que $v$ satisfait $\varphi$ (même s'il est défini sur plus que $\mc{V}_\varphi$).\\
-        On considère une clause $C_i$~:
-        \begin{itemize}
-            \item Si $F_i = C_i$, $v$ satisfait $F_i$ donc $C_i$
-            \item Si $F_i \neq C_i$, notons~:
-            \begin{align*}
-                F_i =& (l_{1,i} \vee l_{2,i} \vee x_{2,3,i}) \wedge \\
-                 &\dots \wedge\\
-                 & (\lnot x_{j, j+1,i} \vee l_{j+1,i} \vee x_{j+1,j+2,i}) \wedge\\
-                 &\dots \wedge\\
-                 & (\lnot x_{k-2, k-1,i} \vee l_{k-1,i} \vee l_{k,i})
-            \end{align*}
-            Supposons par l'absurde que $v$ ne satisfait aucun $l(j,i)$.\\
-            La première clause est satisfaite donc $v(x_{2,3,i}) = V$ nécessairement. Par propagation de clause en clause, on a $v(x{j,j+1,i}) = V$ pour tout $j$, et la dernière clause ne peut être satisfaite dans ces conditions. absurde.\\
-            $v$ satisfait donc au moins un littéral $l_i$ donc la clause $C_i$.\\\\
-            Au totale, $v$ satisfait toutes les clauses de $\varphi$, qui est donc satisfiable.\\
-        \end{itemize}
-        Donc $g$ est bien une réduction polynomiale~:
-        $$\cnfsat \reductibleP \troissat$$
-        Puis $\cnfsat$ est NP-complet. Ainsi $\troissat$ est NP-difficle.
+        \item Si $F_i = C_i$, $v$ convient déjà
+        \item Si $F_i \neq C_i$, écrivons $C_i = (l_{1,i}\vee \dots l_{k,i})$.\\
     \end{itemize}
+    $v$ satisfait $C_i$ donc $v$ satisfait un littéral $l_{j,i}$ parmi ceux-là. Dans $F_i$, voir Figure 100.\\
+    \begin{center}
+    \includegraphics[width=0.6\textwidth]{100.jpg}
+    \end{center}
+    On peut prolonger $v$ en posant~:
+    $$\widetilde{v}(x_{p,p+1,i}) = \begin{cases*}
+        V &si $p \leq j-1$\\
+        F &sinon
+    \end{cases*}$$
+    $\widetilde{v}$ satisfait bien $F_i$.
+    On applique cela pour tous les $F_i$ et comme les variables sont spécifiques à une clause, il n'y a pas de contradiction (au sens doublon de variable). $\widetilde{v}$ satisfait $g(\varphi)$. Donc $g(\varphi)$ est satisfiable.
+\end{demonstration}
+\begin{demonstration} 
+    $\boxed{\impliedby}$ : Supposons que $g(\varphi)$ satisfiable.\\
+    Soit $v$ un modèle de $g(\varphi)$. Montrons que $v$ satisfait $\varphi$ (même s'il est défini sur plus que $\mc{V}_\varphi$).\\
+    On considère une clause $C_i$~:
+    \begin{itemize}
+        \item Si $F_i = C_i$, $v$ satisfait $F_i$ donc $C_i$
+        \item Si $F_i \neq C_i$, notons~:
+        \begin{align*}
+            F_i =& (l_{1,i} \vee l_{2,i} \vee x_{2,3,i}) \wedge \\
+                &\dots \wedge\\
+                & (\lnot x_{j, j+1,i} \vee l_{j+1,i} \vee x_{j+1,j+2,i}) \wedge\\
+                &\dots \wedge\\
+                & (\lnot x_{k-2, k-1,i} \vee l_{k-1,i} \vee l_{k,i})
+        \end{align*}
+        Supposons par l'absurde que $v$ ne satisfait aucun $l(j,i)$.\\
+        La première clause est satisfaite donc $v(x_{2,3,i}) = V$ nécessairement. Par propagation de clause en clause, on a $v(x{j,j+1,i}) = V$ pour tout $j$, et la dernière clause ne peut être satisfaite dans ces conditions. absurde.\\
+        $v$ satisfait donc au moins un littéral $l_i$ donc la clause $C_i$.\\\\
+        Au totale, $v$ satisfait toutes les clauses de $\varphi$, qui est donc satisfiable.\\
+    \end{itemize}
+    Donc $g$ est bien une réduction polynomiale~:
+    $$\cnfsat \reductibleP \troissat$$
+    Puis $\cnfsat$ est NP-complet. Ainsi $\troissat$ est NP-difficle.
     Au total avec ces deux tirets principaux, on a bien que $\troissat$ est NP-complet.
 \end{demonstration}
 
@@ -555,7 +557,10 @@ On définit deux problèmes
         On pose~:
             $$\varphi = \bigwedge_{i=1}^kC_i$$
         Avec pour $i \in \intint{1}{k}$, $C_i = (l_{1,i} \vee l_{2,i} \vee l_{3,i})$
-        On pose le graphe gadget suivant~: (Figure 101).\\
+        On pose le graphe gadget suivant~:
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{101.jpg}
+        \end{center}
         Ce graphe gadget a la particularité de présenter exactement deux chemins hamiltoniens de $s$ à $t$~:
         \begin{itemize}
             \item $s \rightarrow g \rightarrow \dots \rightarrow d \rightarrow t$
@@ -566,14 +571,22 @@ On définit deux problèmes
 
 \begin{demonstration}
         On pose alors $\mc{V}_\varphi = \{x_1, \dots, x_n\}$ l'ensemble des variables qui vont apparaître dans $\varphi$.\\
-        On construit le graphe $G_{\mc{V}_\varphi}$ en utilisant $n$ fois ce graphe gadget : une fois pour chaque variable ! (Voir figure 102).\\
+        On construit le graphe $G_{\mc{V}_\varphi}$ en utilisant $n$ fois ce graphe gadget : une fois pour chaque variable !
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{102.jpg}
+        \end{center}
         $G_{v_\varphi}$ a exactement $2^n$ chemins hamiltoniens (deux possibilités à chaque fois) de $s$ à $t$, auxquels on peut faire correspondre une valuation du $\mc{V}_\varphi$.\\
         À un chemin hamiltonien de $s$ à $t$, on fait correspondre une valuation $v$ telle que pour $i \intint{1}{n}$~:
         $$v(x_i)  = \begin{cases*}
             V &si $g_i$ apparaît avant $d_i$ dans le chemin hamiltonien\\
             F &sinon
         \end{cases*}$$
-        Pour chaque classe $C_j$, on rajoute un sommet en fonction des cas, comme dans la figure 103.\\
+        Pour chaque classe $C_j$, on rajoute un sommet en fonction des cas, comme dans la figure suivante.
+        \begin{center}
+            \includegraphics[width=0.6\textwidth]{103.jpg}
+        \end{center}
+\end{demonstration}
+\begin{demonstration}
         On obtient un graphe $G_\varphi = (S_\varphi, A_\varphi)$, avec~:
         $$\begin{cases*}
             \abs{S_\varphi} = \underbrace{k}_{\text{clauses}} + \underbrace{2}_{s,t} + n\underbrace{(2k+4)}_\text{gadget} &bien polynomiale en $\abs{\varphi}$\\
@@ -600,7 +613,9 @@ Fin à copier
 Cours du 14/03
 \subsection{Réductions classiques}
 
-Voir Fig.104
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{104.jpg}
+\end{center}
 
 \section{Machines de Turing (HP)}
 
@@ -647,7 +662,11 @@ Voir Fig.104
         \end{tikzpicture}
     \end{center}
 
-    Les machines de Turing constituent une abstraction des ordinateurs tels qu'on les connaît aujourd'hui. Voir Fig 105. On peut aussi se limiter à une demi-droite en guise de bande.
+    Les machines de Turing constituent une abstraction des ordinateurs tels qu'on les connaît aujourd'hui.
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{105.jpg}
+    \end{center}
+    On peut aussi se limiter à une demi-droite en guise de bande.
 \end{remarque}
 
 \begin{definition}{}{Machine de Turing}
@@ -694,7 +713,9 @@ Voir Fig.104
 \end{definition}
 
 \begin{exemple}{}{de machine de Turing}
-    Voir Fig.106
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{106.jpg}
+    \end{center}
     
 \end{exemple}
 
@@ -718,7 +739,11 @@ Voir Fig.104
 \end{definition}
 
 \begin{exemple}{}{de configuration dans une machine de Turing}
-    Pour la machine de Turing suivante, Voir fig.107, la configuration représentée est $abca \, q_1 \, \#a $
+    Pour la machine de Turing suivante,
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{107.jpg}
+    \end{center}
+    La configuration représentée est $abca \, q_1 \, \#a $
 \end{exemple}
 
 \begin{definition}{}{configuration initale dans une machine de Turing}
@@ -828,7 +853,10 @@ Voir Fig.104
     Pour les entiers, $\Sigma = \{0,1\}$ : écriture en base $2$.
     Pour les graphes, nombre de sommets et liste d'arêtes ($\Sigma = \{0,1,(,),|\}$).
     $$((11)|((0|1)|(1|10)))$$
-    est un encodage de : Voir fig.108
+    est un encodage de~:
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{108.jpg}
+    \end{center}
 \end{exemple}
 
 \begin{definition}{}{problème récursivement énumérable}
@@ -865,13 +893,13 @@ Voir Fig.104
     \begin{itemize}
         \item $<\mc{M}>$ l'encodage de $\mc{M}$
         \item $<w>$ l'encodage de $w$
-        \item $<\mc{M}, w>$ l'encdage de $\mc{M}, w$~:
-        $$<\mc{M, w}> = <\mc{M}>\$<w>$$
+        \item $<\mc{M}, w>$ l'encodage de $\mc{M}, w$~:
+        $$<\mc{M},w> \quad = \quad <\mc{M}>\$<w>$$
         où $\$$ est un symbole séparateur tiers.
     \end{itemize}
     On note~:
     $$L_\in = \{<\mc{M},w>,\, w \in \mc{L}(\mc{M}),\, \mc{M} \text{ est une machine de Turing et }  w \in \Sigma^*\}$$
-    $L_\in$ est appelé \notion{langage d'acceptation}. C'est un \notion{langage récursivement énumérable} (ADMIS).\\\\
+    $L_\in$ est appelé \notion{langage d'acceptation}. C'est un \notion{langage récursivement énumérable} (ADMIS).
 \end{definition}
 
 \begin{definition}{}{machine de Turing universelle}
