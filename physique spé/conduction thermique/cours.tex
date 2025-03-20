@@ -17,4 +17,29 @@
     où $\lambda$ est la \notion{conductivité thermique} du matériau. Elle s'exprime en $\mr{W}\cdot\mr{m}^{-1}\cdot\mr{K}^{-1}$
 \end{theoreme}
 
+\begin{theoreme}{}{loi de Newton}
+    Un solide à la température $T_\mr{solide}$ en contact avec un fluide à la température $T_\mr{fluide}$ reçoit algébriquement de la puissance thermique de la part du fluide, modélisée par la densité volumique de flux thermique~:
+    $$\vec{j}_{\mr{conduction}+\mr{convection}} = h(T_\mr{fluide} - T_\mr{solide}) \vec{n_{\mr{fluide} \to \mr{solide}}}$$
+    avec ici $h$ le \notion{coefficient conducto-convectif}, s'exprimant en $\mr{W}\cdot \mr{m}^{-2} \cdot \mr{K}^{-1}$.
+\end{theoreme}
+
+\begin{remarque}{}{loi de Newton}
+    La loi de Newton joue un rôle clé dans la continuité du flux thermique à l’interface entre le fluide et le solide. Elle s'applique à l'interface entre ces deux milieux.
+\end{remarque}
+
+\begin{proposition}{}{résistance thermique}
+    En régime stationnaire (quand la température est indépendante du temps), le flux thermique au travers d'un système et l'écart de température à ses extrémités sont proportionnels~:
+    $$\Delta T = R_\mr{th} \Phi$$
+    Ceci est vrai si $\Phi$ et $\Delta T$ sont orientés dans la même convention.
+\end{proposition}
+
+\begin{definition}{}{résistances thermiques en série}
+    Deux résistances thermiques $R_1$ et $R_2$ sont dites \notion{associées en série} lorsqu’elles sont traversées par le même flux thermique, mais soumises à des différences de température différentes. Les résistances s'associent virtuellement en une résistance thermique $R$ associée à l'union des systèmes respectifs~:
+    $$R = R_1 + R_2$$
+\end{definition}
+
+\begin{definition}{}{résistances thermiques en parallèle}
+    Deux résistances thermiques $R_1$ et $R_2$ sont dites \notion{associées en parallèle} lorsqu’elles sont soumises à une même différence de température mais sont traversées par des flux thermiques différents. Les résistances s'associent virtuellement en une résistance thermique $R$ associée à l'union des systèmes respectifs~:
+    $$\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$$
+\end{definition}
 \input{../../stock/pied.tex}

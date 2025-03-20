@@ -1,0 +1,41 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{19}
+
+\title{\Large Chapitre 19 \\ \Huge Calcul différentiel}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\begin{definition}{19.1}{application différentiable}
+    Soit $E$ et $F$ deux espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$, $f:U\to F$ une fonction.\\\\
+    On dit que \notion{$f$ est différentiable} en un point $a$ de $U$ lorsqu'il existe $L_a \in \mc{L}(E,F)$ telle que~:
+    $$f(x+a) \underset{x \to 0}{=} f(a) + L_a(x) + o(x)$$
+    L'application $L_a$ est alors appelée \notion{différentielle $\d{f}_a$ de $f$ en $a$}.
+\end{definition}
+
+\begin{proposition}{19.7}{différentielle d'une fonction d'une seule variable réelle}
+    Soit $F$ un espace vectoriel normé de dimension finie, $U$ un ouvert de $\R$, $f:U\to F$ une fonction.\\\\
+    $f$ est différentiable en $a$ si seulement si $f$ est dérivable en $a$. Le cas échéant~:
+    \fonction{\d{f}_a}{\R}{F}{x}{xf'(a)}
+    et en particulier, $\d{f}_a(1) = f'(a)$.
+\end{proposition}
+
+\begin{definition}{19.8}{dérivée selon un vecteur}
+    Soit $E$ et $F$ deux espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$, $f:U\to F$ une fonction. Soit $u \in E$, $a \in U$. Il existe $V \in \mc{V}_\R(0)$ tel que pour tout $t \in V,\, a+tu \in U$\\\\
+    On dit que \notion{$f$ admet une dérivée selon le vecteur $u$ au point $a$} lorsque la fonction $t \mapsto f(a + tu)$, définie de $V$ à valeurs dans $F$, est dérivable en $0_\R$. \\
+    Le vecteur dérivé correspondant est appelé la \notion{dérivée de $f$ suivant le vecteur $u$}, et noté~:
+    $$D_uf(a) = \lim_{t \to 0} \frac{f(a+tu)-f(a)}{t}$$
+\end{definition}
+
+\begin{theoreme}{19.9}{différentiabilité $\implies$ existence de dérivée selon tout vecteur}
+    Soit $E$ et $F$ deux espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$, $f:U\to F$ une fonction.\\\\
+    Si $f$ est différentiable en $a$, alors pour tout vecteur $u \in E$,\, $f$ admet une dérivée selon $u$ en $a$ et~:
+    $$D_uf(a) = \d{f}_a(u)$$
+\end{theoreme}
+
+
+
+\end{document}
