@@ -1,7 +1,13 @@
-\input{../../stock/en-tete_v4.tex}
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{7}
+
+\title{\Large Chapitre 7 \\ \Huge Déduction naturelle}
+
 \begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
 \input{../../stock/commands.tex}
+\maketitle
 
 \begin{definition}{7.1}{système de preuve}
     Un système de preuve est un cadre formel permettant de dériver des énoncés logiques à partir de règles bien définies et d'hypothèses. On le caractérise par~:
@@ -221,7 +227,6 @@
     $$\frac{\Gamma \these \exists x.A(x) \quad \Gamma,\,A(x) \these B}{\Gamma \these B}(\mr{e}\exists)$$
     valable si $x$ est non libre dans $\Gamma$ et dans $B$ \ie si toutes les occurrences de $x$ dans $B$ et les formules de $\Gamma$ sont liées.\\
     telle est la \notion{règle d'élimination du quantificateur existentiel}.
-\end{definition}
+\end{definition} 
 
-
-\input{../../stock/pied.tex}
+\end{document}

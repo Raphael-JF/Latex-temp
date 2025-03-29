@@ -42,4 +42,16 @@
     Deux résistances thermiques $R_1$ et $R_2$ sont dites \notion{associées en parallèle} lorsqu’elles sont soumises à une même différence de température mais sont traversées par des flux thermiques différents. Les résistances s'associent virtuellement en une résistance thermique $R$ associée à l'union des systèmes respectifs~:
     $$\frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}$$
 \end{definition}
+
+\begin{theoreme}{}{équation de diffusion unidimensionnelle cartésienne}
+    Pour un mur d'épaisseur quelconque, en supposant que le phénomène de conduction dépend du temps~:
+    $$\derivepar{}{T}{t} = D \derivepar{2}{T}{x}$$
+    où $\displaystyle D = \frac{\lambda}{\rho c}$ est la \notion{diffusivité thermique} du milieu, en $\mr{m}^2 \cdot \mr{s}^{-1}$.
+\end{theoreme}
+
+\begin{proposition}{}{paramètre de diffusion thermique sur une distance}
+    En ordre de grandeur, la diffusion thermique pendant une durée $\Delta t$ a un effet sur une distance~:
+    $$\ell \sim \sqrt{D \Delta t}$$
+\end{proposition}
+
 \input{../../stock/pied.tex}

@@ -1,0 +1,34 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{100}
+
+\title{\Large Chapitre 100 (HP) \\ \Huge Amplificateur Linéaire Intégré}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+
+\begin{definition}{}{amplificateur linéaire intégré idéal}
+    Un  \notion{amplificateur linéaire intégré idéal} est représenté ainsi~:
+    \begin{center}
+        \begin{tikzpicture}
+            
+            \draw[] (0,0) rectangle (1,1.5);
+            \node[] (plus) at (0.2,0.300) {$+$};
+            \node[] (moins) at (0.2,1.200) {$-$};
+            
+            \node[] (infini) at (0.6,0.75) {$\infty$};
+            \draw[] (-0.25,0.300) -- (0,0.300);
+            \draw[] (-0.25,1.200) -- (0,1.200);
+            \draw[] (1,0.75) -- (1.25 ,0.75);
+        \end{tikzpicture}
+    \end{center}
+    Pour un tel ALI,
+    $$I_+ = I_-$$
+\end{definition}
+
+
+
+\end{document}

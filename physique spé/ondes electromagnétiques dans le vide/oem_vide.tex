@@ -1,0 +1,26 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{23}
+
+\title{\Large Chapitre 23 \\ \Huge Ondes électromagnétiques dans le vide}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\begin{theoreme}{}{formule du double rotationnel}
+    Pour $A$ une fonction vectorielle de l'espace~:
+    $$\rot \Big( \rot(\vec{A}) \Big) = \grad(\div \vec{A} ) - \vec{\Delta} (\vec{A})$$
+    où intervient l'opérateur \notion{laplacien vectoriel}, s'écrivant en coordonnées cartésiennes~:
+    $$\vec{\Delta}(\vec{A}) = \derivepar{2}{\vec{A}}{x} + \derivepar{2}{\vec{A}}{y} + \derivepar{2}{\vec{A}}{z}$$
+\end{theoreme}
+
+\begin{theoreme}{}{équation de d'Alembert}
+    Dans le vide, les champs électrique et magnétique vérifient tous deux une même équation de propagation, dite \notion{équation de d'Alembert}~:
+    $$\vec{\Delta}(\vec{E}) = \frac{1}{c^2} \derivepar{2}{\vec{E}}{t} \qquad \mr{et} \qquad \vec{\Delta}(\vec{B}) = \frac{1}{c^2} \derivepar{2}{\vec{B}}{t}$$
+    où $\displaystyle c = \frac{1}{\sqrt{\varepsilon_0 \mu_0}}$ est la célérité de l'onde électromagnétique.
+\end{theoreme}
+
+
+\end{document}
