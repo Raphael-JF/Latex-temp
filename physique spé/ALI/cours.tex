@@ -16,19 +16,188 @@
         \begin{tikzpicture}
             
             \draw[] (0,0) rectangle (1,1.5);
-            \node[] (plus) at (0.2,0.300) {$+$};
-            \node[] (moins) at (0.2,1.200) {$-$};
+            \node[] (plus) at (0.3,0.300) {$+$};
+            \node[] (moins) at (0.3,1.200) {$-$};
             
             \node[] (infini) at (0.6,0.75) {$\infty$};
             \draw[] (-0.25,0.300) -- (0,0.300);
+            \draw[densely dashed] (-0.25,0.300) -- (-0.9,0.300);
             \draw[] (-0.25,1.200) -- (0,1.200);
+            \draw[densely dashed] (-0.25,1.200) -- (-0.9,1.200);
             \draw[] (1,0.75) -- (1.25 ,0.75);
+            \draw[densely dashed] (1.25 ,0.75) -- (1.9 ,0.75);
         \end{tikzpicture}
     \end{center}
-    Pour un tel ALI,
-    $$I_+ = I_-$$
+    Un tel ALI est doté d'une résistance d'entrée hypothétiquement infinie~:
+    $$I_+ = I_- = 0$$
 \end{definition}
 
+\begin{definition}{}{comportement linéaire de l'ALI}
+    Le régime se détermine en fonction du montage.
+    \begin{center}
+        \begin{tikzpicture}
+            
+            \draw[] (0,0) rectangle (1,1.5);
+            \node[] (plus) at (0.3,0.300) {$+$};
+            \node[] (moins) at (0.3,1.200) {$-$};
+            
+            \node[] (infini) at (0.6,0.75) {$\infty$};
+            \draw[] (-0.25,0.300) -- (0,0.300);
+            \draw[densely dashed] (-0.25,0.300) -- (-0.9,0.300);
+            \draw[] (-0.25,1.200) -- (0,1.200);
+            \draw[densely dashed] (-0.25,1.200) -- (-0.9,1.200);
+            \draw[] (1,0.75) -- (1.25 ,0.75);
+            \draw[densely dashed] (1.25 ,0.75) -- (1.9 ,0.75);
+
+            \node[fill=black, circle, inner sep=1pt, label=below:$V_+$] at (-0.25,0.300) {};
+            \node[fill=black, circle, inner sep=1pt, label=above:$V_-$] at (-0.25,1.200) {};
+            \node[fill=black, circle, inner sep=1pt, label=above:$V_s$] at (1.25,0.75) {};
+
+            \draw[-to] (-1.125,1.25) -- (-1.125,0.25) node[midway,left] {$\varepsilon$};
+        \end{tikzpicture}
+    \end{center}
+    Quand un ALI fonctionne en \notion{régime linéaire}~:
+    $$V_+ = V_- \qquad \text{\ie} \qquad \varepsilon = 0$$
+    Le cas échéant, le potentiel $V_s$ se détermine grâce au \notion{théorème de Millman}.
+\end{definition}
+
+\begin{definition}{}{comportement saturant de l'ALI}
+    Le régime se détermine en fonction du montage.
+    \begin{center}
+        \begin{tikzpicture}
+            
+            \draw[] (0,0) rectangle (1,1.5);
+            \node[] (plus) at (0.3,0.300) {$+$};
+            \node[] (moins) at (0.3,1.200) {$-$};
+            
+            \node[] (infini) at (0.6,0.75) {$\infty$};
+            \draw[] (-0.25,0.300) -- (0,0.300);
+            \draw[densely dashed] (-0.25,0.300) -- (-0.9,0.300);
+            \draw[] (-0.25,1.200) -- (0,1.200);
+            \draw[densely dashed] (-0.25,1.200) -- (-0.9,1.200);
+            \draw[] (1,0.75) -- (1.25 ,0.75);
+            \draw[densely dashed] (1.25 ,0.75) -- (1.9 ,0.75);
+
+            \node[fill=black, circle, inner sep=1pt, label=below:$V_+$] at (-0.25,0.300) {};
+            \node[fill=black, circle, inner sep=1pt, label=above:$V_-$] at (-0.25,1.200) {};
+            \node[fill=black, circle, inner sep=1pt, label=above:$V_s$] at (1.25,0.75) {};
+
+            \draw[-to] (-1.125,1.25) -- (-1.125,0.25) node[midway,left] {$\varepsilon$};
+        \end{tikzpicture}
+    \end{center}
+    Quand un ALI fonctionne en \notion{régime saturant}, le potentiel $V_s$ est régi par~:
+    $$\begin{cases*}
+        V_s = V_\mr{sat}& si $V_+ > V_-$\\
+        V_s = -V_\mr{sat}& si $V_+ <V_-$
+    \end{cases*} \qquad \text{\ie} \qquad
+    \begin{cases*}
+        V_s = V_\mr{sat}& si $\varepsilon > 0$\\
+        V_s = -V_\mr{sat}& si $\varepsilon < 0$
+    \end{cases*}$$
+\end{definition}
+
+\begin{exemple}{}{de montage impliquant l'ALI}
+    \begin{center}
+        \begin{tikzpicture}
+            
+            \draw[] (0,0) rectangle (1,1.5);
+            \node[] (plus) at (0.3,0.300) {$+$};
+            \node[] (moins) at (0.3,1.200) {$-$};
+            
+            \node[] (infini) at (0.6,0.75) {$\infty$};
+            \draw[] (0,0.300)--(-0.5,0.300);
+            \draw[densely dashed] (-0.5,0.300) -- (-1.3,0.300);
+            \draw[] (0,1.200) -- (-0.5,1.200);
+            \draw[densely dashed] (-0.5,1.200) -- (-1.3,1.200);
+
+            \draw[] (1,0.75) -- (1.5 ,0.75);
+            \draw[densely dashed] (1.5 ,0.75) -- (2.3 ,0.75);
+
+            \draw[] (-0.25,1.2) -- (-0.25 ,2) -- (0.125,2);
+            \draw[] (0.125,1.75) rectangle (0.875,2.25);
+            \node at (0.5,2) {$R$};
+            \draw[] (0.875 ,2) -- (1.25 ,2) -- (1.25,0.75);
+        \end{tikzpicture}
+    \end{center}
+    Cet ALI fonctionne en régime linéaire car lui est imposée une boucle de rétroaction sur la borne $\circleddash$.
+\end{exemple}
+
+\begin{exemple}{}{de montage impliquant l'ALI}
+    \begin{center}
+        \begin{tikzpicture}
+        
+            \draw[] (0,0) rectangle (1,1.5);
+            \node[] (plus) at (0.3,0.300) {$-$};
+            \node[] (moins) at (0.3,1.200) {$+$};
+            
+            \node[] (infini) at (0.6,0.75) {$\infty$};
+            \draw[] (0,0.300)--(-0.5,0.300);
+            \draw[densely dashed] (-0.5,0.300) -- (-1.3,0.300);
+            \draw[] (0,1.200) -- (-0.5,1.200);
+            \draw[densely dashed] (-0.5,1.200) -- (-1.3,1.200);
+    
+            \draw[] (1,0.75) -- (1.5 ,0.75);
+            \draw[densely dashed] (1.5 ,0.75) -- (2.3 ,0.75);
+    
+            \draw[] (-0.25,1.2) -- (-0.25 ,2) -- (0.125,2);
+            \draw[] (0.125,1.75) rectangle (0.875,2.25);
+            \node at (0.5,2) {$R$};
+            \draw[] (0.875 ,2) -- (1.25 ,2) -- (1.25,0.75);
+        \end{tikzpicture}
+    \end{center}
+    Cet ALI fonctionne en régime saturé car lui est imposée une boucle de rétroaction sur la borne $\oplus$.
+\end{exemple}
+
+\begin{exemple}{}{de montage impliquant l'ALI}
+    \begin{center}
+        \begin{tikzpicture}
+            
+            \draw[] (0,0) rectangle (1,1.5);
+            \node[] (plus) at (0.3,0.300) {$+$};
+            \node[] (moins) at (0.3,1.200) {$-$};
+            
+            \node[] (infini) at (0.6,0.75) {$\infty$};
+            \draw[] (0,0.300)--(-0.5,0.300);
+            \draw[densely dashed] (-0.5,0.300) -- (-1.3,0.300);
+            \draw[] (0,1.200) -- (-0.5,1.200);
+            \draw[densely dashed] (-0.5,1.200) -- (-1.3,1.200);
+    
+            \draw[] (1,0.75) -- (1.5 ,0.75);
+            \draw[densely dashed] (1.5 ,0.75) -- (2.3 ,0.75);
+        \end{tikzpicture}
+    \end{center}
+    Cet ALI fonctionne en régime saturé car ne lui est imposée aucune boucle de rétroaction.
+\end{exemple}
+
+\begin{theoreme}{}{de Millman}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}
+            % Noeud commun en haut
+            \draw (-1.5,2) -- (1,2); 
+            \draw[densely dashed] (1,2) -- (2,2);
+            \draw (2,2) -- (2.5,2);  
+            \filldraw (0,2) circle (1.5pt); % Point pour VM
+            \node[above] at (0,2.1) {$V_M$};
+        
+            % Résistances en parallèle
+            \foreach \x/\z/\v in {-1.5/Z_1/V_1, -0.5/Z_2/V_2, 0.5/Z_3/V_3, 2.5/Z_N/V_N} {
+                \draw (\x,2) -- (\x,1.5);
+                \draw (\x-0.25,1.5) rectangle (\x+0.25,0.5);
+                \node at (\x,1) {\small $\z$};
+                \draw (\x,0.5) -- (\x,0);
+                \node[below] at (\x,0) {\small $\v$};
+            }
+        \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.5\textwidth}
+        Le théorème de Millman lie le potentiel $V_M$ aux $V_1,\, \dots,\, V_N$ comme suit~:
+        \[
+        \underline{V_M}=\dfrac{\displaystyle\sum_{k=1}^{N}\underline{V_k}\,\underline{Y_k}}{\displaystyle\sum_{k=1}^{N}\underline{Y_k}}
+        \]
+    \end{minipage}
+\end{theoreme}
 
 
 \end{document}
