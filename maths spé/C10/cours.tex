@@ -79,12 +79,13 @@
 \end{theoreme}
 
 \begin{theoreme}{10.66}{primitivation d'une limite uniforme de suite de fonctions}
-    Soit $(f_n)_{n \in \N} \in \mc{F}(I,E)^\N$. Sous réserve des hypothèses suivantes,
+    Soit $(f_n)_{n \in \N} \in \mc{F}(\seg{a}{b},E)^\N$. Sous réserve des hypothèses suivantes,
     \begin{enumeratebf}
-        \item $\forall n \in \N,\, f_n \in \mc{C}^0(I,E)$.
-        \item $(f_n)_{n \in \N}$ converge uniformément vers une même fonction $f$ sur tout segment inclus dans $I$.
+        \item $\forall n \in \N,\, f_n \in \mc{C}^0(\seg{a}{b},E)$.
+        \item $(f_n)_{n \in \N}$ converge uniformément vers une fonction $f$ sur $\seg{a}{b}$, alors continue.
     \end{enumeratebf}
-    Pour tout $a \in I$, sur tout segment de $I$, la suite $(F_n)_{n \in \N}$ des primitives des $f_n$ respectives s'annulant en $a$ converge uniformément vers la primitive de $f$ s'annulant en $a$.
+    Pour tout $\alpha \in \seg{a}{b}$, la suite $(F_n)_{n \in \N}$ des primitives des $f_n$ respectives s'annulant en $\alpha$ converge uniformément vers la primitive de $f$ s'annulant en $\alpha$~:
+    $$\Bigg\lVert\int_\alpha^\cdot f_n(t)\d{t} - \int_\alpha^\cdot f(t)\d{t}\Bigg\lVert_{\infty}^{\seg{a}{b}} \xrightarrow{n \to + \infty} 0$$
 \end{theoreme}
 
 \begin{theoreme}{10.66}{dérivation d'une limite uniforme de suite de fonctions}

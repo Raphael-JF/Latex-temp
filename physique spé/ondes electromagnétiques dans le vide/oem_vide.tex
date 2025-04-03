@@ -22,5 +22,57 @@
     où $\displaystyle c = \frac{1}{\sqrt{\varepsilon_0 \mu_0}}$ est la célérité de l'onde électromagnétique.
 \end{theoreme}
 
+\begin{definition}{}{surface d'onde}
+    On appelle \notion{surface d'onde} une surface de l'espace sur laquelle le champ électromagnétique est uniforme à tout instant.\\
+    Moralement, tous les points d'une surface d'onde sont dans le même état vibratoire à tout instant.
+\end{definition}
+
+\begin{definition}{}{onde plane}
+    Une onde est dite \notion{plane} si ses surfaces d'onde sont des plans parallèles.
+\end{definition}
+
+\begin{proposition}{}{ondes planes}
+    Une onde plane ne dépend que du temps et d'une dimension cartésienne, puisque tous les plans d'ondes sont parallèles et que la perturbation est la même sur ces plans.
+\end{proposition}
+
+\begin{definition}{}{onde plane progressive}
+    Une onde plane est dite \notion{progressive} lorsqu'elle se propage~:
+    \begin{enumeratebf}
+        \item dans un sens bien déterminé
+        \item sans étalement
+        \item sans déformation
+    \end{enumeratebf}
+    En pratique, l'expression du signal doit présenter un couplage linéaire entre les variables temporelle et spatiale.
+\end{definition}
+
+\begin{definition}{}{onde plane progressive sinusoïdale}
+    Une onde plane progressive est dite \notion{sinusoïdale}, ou bien \notion{harmonique} si son signal physique réel s'écrit~:
+    $$\vec{A}(x,t) = A_0 \cos(\omega t \pm kx + \varphi)\vec{e_p}$$
+    Son signal physique complexe s'écrit~:
+    \begin{align*}\vecc{A}(x,t) &= A_0 e^{i(\omega t \pm kx + \varphi)}\vec{e_p}\\
+        &= \vecc{A_0} e^{i(\omega t \pm kx)}
+    \end{align*}
+    où $\vecc{A_0} = A_0 e^{i\varphi}\vec{e_p}$.
+\end{definition}
+
+\begin{theoreme}{}{équation de dispersion dans le vide}
+    L'équation de dispersion lie les pulsations spatiale et temporelle d'une onde plane progressive harmonique. Pour une OPPH électromagnétique dans le vide, la relation de dispersion est la suivante~:
+    $$\omega = kc \qquad \text{ soit } \qquad \lambda = \frac{c}{f}$$
+\end{theoreme}
+
+\begin{definition}{}{vecteur d'onde d'une OPPH}
+    On appelle \notion{vecteur d'onde} d'une OPPH le vecteur de norme $k$, de direction et sens ceux de la propagation de l'onde~:
+    $$\vec{k} = \frac{2\pi}{\lambda}\vec{u}$$
+\end{definition}
+
+\begin{definition}{}{opérateur nabla appliqué à une représentation complexe d'OPPH}
+    Pour $\vecc{E}(x,t) &= \underline{E_0} e^{i(\omega t - \vec{k} \cdot \vec{OM})}\vec{e_p}$, on a~:
+    $$\begin{cases*}
+        \displaystyle\derive{}{\vecc{E}}{x} = -ik_x\vecc{E}\\
+        \displaystyle\derive{}{\vecc{E}}{y} = -ik_y\vecc{E}\\
+        \displaystyle\derive{}{\vecc{E}}{z} = -ik_z\vecc{E}\\
+    \end{cases*}$$
+    On identifie alors $\vec{\nabla} = -i\vec{k}$.
+\end{definition}
 
 \end{document}
