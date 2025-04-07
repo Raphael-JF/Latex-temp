@@ -36,10 +36,27 @@
     $$D_uf(a) = \d{f}_a(u)$$
 \end{theoreme}
 
-\begin{theoreme}{19.18}{composition d'applications différentiables}
-    
-\end{theoreme}
+\begin{definition}{19.13}{matrice jacobienne}
+    Soit $E$ et $F$ deux espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$, $f:U\to F$ une fonction différentiable en $a \in U$.\\\\
+    On appelle \notion{matrice jacobienne de $f$ en un point $a \in U$ relativement aux bases $\mc{B}$ et $\mc{B}'$} la matrice~:
+    $$J_f(a) = \mat{\mc{B},\mc{B}'}(\d{f}_a)$$
+\end{definition}
 
+\begin{proposition}{19.13 bis}{expression de la matrice jacobienne}
+    Soit $E$ et $F$ deux espaces vectoriels normés de dimension finie, $U$ un ouvert de $E$, $f:U\to F$ une fonction différentiable en $a \in U$.\\\\
+    La matrice jacobienne de $f$ en $a$ prend la forme~:
+    $$J_f(a) = \begin{pmatrix}
+        \displaystyle\derivepar{}{f_1}{x_1}(a) & \displaystyle \derivepar{}{f_1}{x_2}(a) & \displaystyle \dots & \displaystyle \derivepar{}{f_1}{x_n}(a)\\
+        \displaystyle\derivepar{}{f_2}{x_1}(a) & \displaystyle \derivepar{}{f_2}{x_2}(a) & \displaystyle \dots & \displaystyle \vdots\\
+        \displaystyle\vdots & \displaystyle \vdots & \displaystyle \ddots & \displaystyle \vdots\\
+        \displaystyle\derivepar{}{f_n}{x_1}(a) & \displaystyle \derivepar{}{f_n}{x_2}(a ) & \displaystyle \dots & \displaystyle \derivepar{}{f_n}{x_n}(a)
+    \end{pmatrix}$$ 
+\end{proposition}
 
+\begin{definition}{19.14}{déterminant jacobien}
+    Soit $E$ et $F$ deux espaces vectoriels normés de dimension finie \textit{commune}, $U$ un ouvert de $E$, $f:U\to F$ une fonction différentiable en $a \in U$.\\\\
+    Puisqu'ici $E$ et $F$ sont de même dimension, la matrice $J_f(a)$ est carrée. On appelle \notion{déterminant jacobien} son déterminant, noté~:
+    $$\frac{D(f_1,\, \dots,\, f_n)}{D(x_1,\, \dots,\, x_n)}(a) = \mr{det}\,J_f(a)$$
+\end{definition}
 
 \end{document}
