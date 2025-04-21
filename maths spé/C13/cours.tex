@@ -1,10 +1,30 @@
-\input{../../stock/en-tete_v4.tex}
-\begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
-\input{../../stock/commands.tex}
+\input{../../stock/en-tete_v5.tex}
+
 \newcounter{chapitre}
 \setcounter{chapitre}{13}
 
+\title{\Large Chapitre 13 \\ \Huge Espaces préhilbertiens réels}
 
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
 
-\input{../../stock/pied.tex}
+\begin{definition}{}{matrice d'une forme bilinéaire symétrique}
+    Soit $E$ un $\R$-espace vectoriel de base $\mc{B} = (e_1,\, \dots,\, e_n)$. Pour $\varphi \in \mc{BS}(E)$ une forme bilinéaire symétrique sur $E$, on appelle \notion{matrice associée à $\varphi$} la matrice~:
+    $$\mat{\mc{B}}(\varphi) = \big(\varphi(e_i, e_j)\big)_{(i,j) \in \intint{1}{n}^2}$$
+    De cette sorte, pour $X$ et $Y$ dans $\R^n$ les coordonnées respectives dans $\mc{B}$ de $x$ et $y$~:
+    $$\varphi(x,y) = X^\top \mat{\mc{B}}(\varphi)Y$$
+    En particulier la matrice du produit scalaire canonique sur $\R^n$ est $I_n$.
+\end{definition}
+
+\begin{proposition}{13.45}{relation de Pythagore}
+    Soit $(E, \big(\cdot \vert \cdot)\big)$ un espace préhilbertien réel et $(x_1,\, \dots,\, x_p)$ une famille orthogonale de vecteurs de $E$. Alors~:
+    $$\left\Vert \sum_{k=1}^p x_k \right\Vert^2 = \sum_{k=1}^p \norme{x_k}^2$$
+\end{proposition}
+
+\begin{theoreme}{13.50}{expression d'une projection dans une base orthonormée}
+    Soit $(E, \big(\cdot \vert \cdot)\big)$ un espace préhilbertien réel et $F$ un sous-espace vectoriel de dimension finie. Soit $(e_1,\, \dots,\, e_p)$ une base orthonormée de $F$. Alors~:
+    $$\forall x \in E,\, p_F(x) = \sum_{i=1}^{p}(x \vert e_i)e_i$$
+\end{theoreme}
+
+\end{document}

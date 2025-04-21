@@ -1,0 +1,31 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{14}
+
+\title{\Large Chapitre 14 \\ \Huge Isométries vectorielles, endomorphismes auto-adjoints}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\begin{theoreme}{14.4}{de représentation de Riesz}
+    Soit $E$ un espace vectoriel euclidien. Pour tout forme $f \in \mc{L}(E,\R)$, il existe un unique vecteur $y$ tel que~:
+    $$\forall x \in E,\, f(x) = \scal{x}{y}$$
+    Ainsi tout forme linéaire $f$ s'écrit de façon unique sous la forme $f = \scal{\cdot}{y}$.
+\end{theoreme}
+
+\begin{definition}{14.6}{adjoint d'un endomorphisme}
+    Soit $E$ un espace vectoriel euclidien, et $u$ un endomorphisme de $E$. Il existe un unique endomorphisme $u^*$ tel que~:
+
+    $$\forall (x,y) \in E^2,\, \scal{u(x)}{y} = \scal{x}{u^*(y)}$$
+    Cet endomorphisme est appelé \notion{adjoint de $u$}.
+\end{definition}
+
+\begin{definition}{14.10}{ensemble $O(E)$}
+    Soit $E$ un espace euclidien. $O(E)$ est l'ensemble des endomorphismes de $E$ qui conservent le produit scalaire, dits \notion{isométries vectorielles}~:
+    $$\forall (x,y) \in E^2,\,  \scal{u(x)}{u(y)} = \scal{x}{y}$$
+    De tels endomorphismes sont injectifs et donc bijectifs, c'est pourquoi on les appelle aussi \notion{automorphismes orthogonaux}.
+\end{definition}
+
+\end{document}
