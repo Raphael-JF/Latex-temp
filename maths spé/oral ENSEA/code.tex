@@ -1,0 +1,109 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan
+}
+
+% Commandes perso utiles
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\abs}[1]{\vert #1 \vert}
+
+
+\title{Planche d'oral de Mathématiques de l’ENSEA}
+\author{MPI Session 2025}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Premier exercice - Énoncé}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Déterminer le rayon de convergence de la série entière $\sum_n a_n z^n$ lorsque pour $n \in \N^*$, $\displaystyle a_n = \frac{n^2+1}{3^n}$
+    \item Pour $(a_n)_{n \in \N} \in \C^\N$, en supposant qu'il existe $z_0 \in \C$ tel que la série $\sum_n a_n z^n$ semi-converge, déterminer le rayon $R$ de la série entière associée à $(a_n)_{n \in \N}$.
+\end{enumerate}
+
+\section*{Premier exercice - Corrigé}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Le rayon vaut $3$ par critère de d'Alembert.
+    \item On conjecture facilement que $R = \abs{z_0}$ car intuitivement le seul moyen d'avoir convergence simple et non absolue est de se trouver sur le cercle de convergence. La démonstration est la suivante~:
+    \begin{itemize}
+        \item $\boxed{R \leq \abs{z_0}}$ - Soit $\abs{z} > \abs{z_0}$. Par opérations~:
+        $$\abs{a_n}\abs{z}^n \geq \abs{a_n}\abs{z_0}^n$$
+        Par hypothèse, $\abs{a_n}\abs{z_0}^n$ est le terme général d'une série divergente. Par théorème de comparaison de séries à termes positifs on a le résultat.
+        \item $\boxed{R \geq \abs{z_0}}$ - Soit $\abs{z} < \abs{z_0}$. La suite $(a_n z_0^n)_{n \in \N}$ est bornée. Par Lemme d'Abel il en est de même pour $(a_n z^n)_{n \in \N}$. On a le résultat.
+    \end{itemize}
+\end{enumerate}
+
+\section*{Second exercice}
+
+On munit $\mathcal{M}_n(\R)$ du produit scalaire $(\cdot \vert \cdot) : (A,B) \mapsto \mathrm{tr}(A^\top B)$.
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Montrer que $(\cdot \vert \cdot)$ définit un produit scalaire sur $\mathcal{M}_n(\R)$.
+    \item Montrer que $\mathcal{S}_n(\R)$, l'espace vectoriel des matrices symétriques réelles et $\mathcal{A}_n(\R)$, l'espace vectoriel des matrices antisymétriques sont supplémentaires orthogonaux dans $\mathcal{M}_n(\R)$.
+    \item Pour $M \in \mathcal{M}_n(\R)$ quelconque, déterminer la distance de $M$ à $\mathcal{S}_n(\R)$.
+    \item Calculer la distance à $\mathcal{S}_n(\R)$ de la matrice~:
+    $$\begin{pmatrix}
+        1&\dots&1\\
+        2&\dots&2\\
+        \vdots&\ddots&\vdots\\
+        n&\dots&n
+    \end{pmatrix}$$
+\end{enumerate}
+
+\section*{Second exercice - Corrigé}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item On montre la \textit{symétrie} par invariance de la trace par transposition. La linéarité selon la première variable découle de la linéarité de la trace et de la bilinéarité du produit matriciel, puis on a la \textit{bilinéarité} par symétrie. Par calcul on montre que~:
+    $$(A\vert A) = \sum_{i=1}^n \sum_{j=1}^n a_{i,j}^2$$
+    Le caractère \textit{défini positif} en découle.
+    \item Premièrement, tout matrice $M \in \mathcal{M}_n(\R)$ s'écrit~:
+    $$M = \underbrace{\frac{M + M^\top}{2}}_{\in \mathcal{S}_n(\R)} + \underbrace{\frac{M - M^\top}{2}}_{\in \mathcal{A}_n(\R)}$$
+    Deuxièmement, Si $A \in \mathcal{A}_n(\R)$ et $S \in \mathcal{S}_n(\R)$, on a~:
+    $$(A\vert S) = \begin{cases}
+        \mathrm{tr}(A^\top S) = \mathrm{tr}(-AS) = -\mathrm{tr}(AS)\\
+        \mathrm{tr}(AS^\top) = \mathrm{tr}(AS)
+    \end{cases} $$ 
+    D'où $(A \vert S) = 0$.
+    Finalement, on a la supplémentarité orthogonale ($\mathcal{S}_n(\R) \cap \mathcal{A}_n(\R) = \{0\}$ découle de l'orthogonalité).
+    \item Cette distance $\mathrm{d}(M)$ vaut la norme de la projection orthogonale sur $\mathcal{A}_n(\R)$ de $M$ qui vaut comme vu précédemment~:
+    $$p_{\mathcal{A}_n(\R)}(M) = \frac{M-M^\top}{2}$$
+    \begin{align*}
+        \mathrm{d}(M)^2 &= \mathrm{tr}\left(\frac{M-M^\top}{2} \left(\frac{M-M^\top}{2}\right)^\top\right)\\
+        &= \frac{\mathrm{tr}(MM^\top) - \mathrm{tr}(M^2)}{2}\\
+    \end{align*}
+    \item On calcule~:
+    \begin{align*}
+        \mathrm{tr}(MM^T) &= \sum_{i=1}^n \sum_{j=1}^n m_{i,j}^2\\
+        &= \sum_{i=1}^n \sum_{j=1}^n i^2\\
+        &= n \sum_{i=1}^n i^2\\
+        &= \frac{n^2 (n+1) (2n+1)}{2}
+    \end{align*}
+    Et~:
+    \begin{align*}
+        (M^2)_{i,i} &= \sum_{k=1}^n m_{i,k} m_{k,i}\\
+        &= \sum_{k=1}^n ik\\
+        &= \frac{in(n+1)}{2}
+    \end{align*}
+    donc $\displaystyle \mathrm{tr}(M^2) = \frac{n^2(n+1)}{2}$. Après calcul (sans oublier la racine carrée)~:
+    $$\mathrm{d}(M) = \sqrt{\frac{n}{2}}$$
+\end{enumerate}
+
+\vspace{1cm}
+
+\section*{Remarques personnelles}
+\textit{Examinateur rassurant, alerte à la moindre erreur commise par le candidat et favorable à sa rectification (ce n'est pas le cas de tous les examinateurs).}
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=cyan
+}
+
+% Commandes perso utiles
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+
+
+\title{Planche d'oral de Mathématiques du CCINP}
+\author{MPI Session 2025}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Premier exercice sur huit points}
+
+    Exercice 102 concernant le minimum de variables aléatoires.
+
+
+\section*{Second exercice sur douze points}
+
+Pour $a \in [-1;1[$, on définit pour $x>0$, et $n \in \N^*$~:
+$$u_n(x)=\frac{a^n}{x+n}$$
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Étudier les convergences de $\sum_{n > 0}u_n$. Si existence, on note $S(x) = \sum_{n=1}^{+\infty}u_n(x)$.
+    \item Montrer que $S$ est continue.
+    \item Montrer que $S$ est de classe $\mathcal{C}^1$ sur $\R_+^*$
+\end{enumerate}
+
+\section*{Second exercice - Corrigé}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item Pour $x > 0$, $n \in \N^*$, et $a \in ]-1;1[$~:
+        $$\vert u_n(x) \vert \leq \frac{\vert a \vert^n}{n}$$
+    La majoration est indépendante de la variable de $u_n$. Ainsi~:
+    \begin{align*}
+        \lVert u_n \rVert_\infty^{\R_+^*} &\leq \frac{\vert a \vert^n}{n}\\
+        &\leq \vert a \vert^n \qquad \text{car $n \in \N^*$}
+    \end{align*}
+    Comme $a \in ]-1;1[$, $\sum_{n>0} \vert a \vert^n $ converge. Par théorème de comparaison de séries à termes positifs par majoration, $\sum_{n > 0}u_n$ converge normalement sur $\R_+^*$ si $a \in ]-1;1[$.\\
+    Pour $a = -1$, Le critère spécial des séries alternées s'applique pour tout $x$~: il y a convergence simple de $\sum_{n > 0}u_n$ sur $\R_+^*$. En outre~:
+    \begin{align*}
+        \vert R_n(x)\vert &\leq \vert u_{n+1}\vert\\
+        &=\frac{1}{n+1+x} \\
+        &\leq \frac{1}{n+1}
+    \end{align*}
+    La majoration est indépendante de la variable de $R_n$. Ainsi~:
+    $$\lVert R_n \rVert_\infty^{\R_+^*} \leq \frac{1}{n+1}\xrightarrow{n \to +\infty} 0$$
+    On a donc la convergence uniforme sur $\R_+^*$ dans le cas où $a = -1$. Cependant, la convergence normale est perdue~:
+    $$2 \geq \lVert u_n \rVert_\infty^{\R_+^*} \geq  \vert u_n(x) \vert = \frac{1}{n+x} \underset{n \to +\infty}{\sim} \frac{1}{n}$$
+    Par théorème de comparaison de séries à termes positifs par minoration avec un terme semblable au terme général de la série harmonique, $\sum_{n > 0}u_n$ ne converge pas normalement sur $\R_+^*$.
+    \item D'après la question précédente on a convergence uniforme sur $\R_+^*$ de $\sum_{n > 0}u_n$. Or $(\sum_{i=1}^{n}u_i)_{n \in \N^*}$ est une suite de fonctions continues sur $\R_+^*$, d'où la continuité de sa limite uniforme.
+    \item On applique le théorème de la classe $\mathcal{C}^1$ d'une limite uniforme~:
+    \begin{itemize}
+        \item $\sum_{n>0}u_n$ converge simplement sur $\R_+^*$. On le doit à la première question.
+        \item pour $n>0$ et $a$ fixé, $u_n$ est de classe $\mathcal{C}^1$~:
+            $$u_n'(x) = \frac{-a^n}{(n+x)^2}$$
+        \item $\sum_{n>0}u_n'$ converge uniformément sur $\R_+^*$. En effet~:
+        $$\vert u_n'(x) \vert \leq \frac{1}{n^2}$$
+        La majoration est indépendante de la variable de $u_n'$. Ainsi~:
+        $$\lVert u_n' \rVert_\infty^{\R_+^*}\leq \frac{1}{n^2}$$
+        Par comparaison de séries à termes positifs par majoration avec le terme général d'une série de Riemann convergente, on a la convergence normale, et donc la converge uniforme.
+    \end{itemize}
+    D'après le théorème, $S$ est de classe $\mathcal{C}^1$ sur $\R_+^*$.
+\end{enumerate}
+
+\vspace{1cm}
+\end{document}
