@@ -1,0 +1,58 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{24}
+
+\title{\Large Chapitre 24 \\ \Huge Ondes électromagnétiques et milieux conducteurs}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\begin{proposition}{}{CS de validité de la loi d'Ohm locale}
+    Dans un métal, la loi d'Ohm locale est valide pour des fréquences faibles devant $10^{14} \, \mr{Hz}$~:
+    $$f \ll 10^{14}\, \mr{Hz} $$
+\end{proposition}
+
+\begin{theoreme}{}{charge au sein d'un conducteur ohmique}
+    Un conducteur vérifiant la loi d'Ohm locale est toujours localement neutre~:
+    $$\rho = 0$$
+\end{theoreme}
+
+\begin{theoreme}{}{CS d'ARQS magnétique}
+    Un métal vérifiant la loi d'Ohm locale peut toujours être considéré dans l'ARQS magnétique (car dans un certain sens on néglige les variations temporelles de $\vec{E}$)~:
+    $$\varepsilon_0 \left\Vert \derivepar{}{\vec{E}}{t}\right\Vert \ll \left\Vert\vec{j}\right\Vert $$
+    Ainsi, l'équation de Maxwell-Ampère s'écrit~:
+    $$\rot(\vec{B}) \approx \mu_0 \vec{j}$$
+\end{theoreme}
+
+\begin{theoreme}{}{équation de diffusion dans un conducteur ohmique}
+    Dans un conducteur ohmique, le champ électromagnétique vérifie une équation de propagation autre que celle de d'Alembert dans le vide~:
+    $$\Delta \vec{E} = \mu_0 \gamma \derivepar{}{\vec{E}}{t} \qquad \text{et} \qquad \Delta \vec{B} = \mu_0 \gamma \derivepar{}{\vec{B}}{t}$$
+\end{theoreme}
+
+\begin{proposition}{}{effet de peau}
+    Lorsqu’un conducteur ohmique est parcouru par un courant alternatif,
+    celui-ci est de moins en moins perceptible à mesure que l'on pénètre dans le conducteur. On parle d'\notion{effet de peau}.
+\end{proposition}
+
+\begin{enumeratebf}
+    \item Quelle hypothèse fait-on quant à ce qu'il se produit dans le conducteur ?
+    \item Justifier l'existence d'une onde réfléchie.
+    \item Déduire qualitativement l'expression du signal d'une telle onde.
+    \item Rappeler la définition du coefficient de réflexion en amplitude. Que vaut-il ici ?
+    \item Calculer le champ électrique total résultant de cette réflexion. Qu'a de particulier ce signal ? En déterminer les ventres et noeuds de cette onde.
+    \item Calculer le champ magnétique total résultant de cette réflexion. Que dire de ses ventres et noeuds ?
+    \item Mettre en évidence l'existence d'un courant surfacique.
+\end{enumeratebf}
+
+\begin{proposition}{}{conservation de la polarisation en reflexion incidente}
+    La réflexion en incidence normale conserve la polarisation de l’onde incidente.
+\end{proposition}
+
+\begin{definition}{}{coefficient de réflexion en amplitude}
+    On appelle \notion{coefficient de réflexion en amplitude} d’une onde à l’interface entre deux milieux quelconques le rapport des amplitudes complexes du champ réfléchi et du champ incident~:
+    $$\underline{r} = \frac{\underline{E_{0, \mr{réfléchi}}}}{\underline{E_{0, \mr{incident}}}}$$
+\end{definition}
+
+\end{document}
