@@ -1,22 +1,42 @@
-\input{../../stock/en-tete_v4.tex}
-\begin{document}
-\begin{adjustwidth}{-3cm}{-3cm}
-\input{../../stock/commands.tex}
+\input{../../stock/en-tete_v5.tex}
 
-\begin{theoreme}{7.1}{Loi de Faraday}
+\newcounter{chapitre}
+\setcounter{chapitre}{18}
+
+\title{\Large Chapitre 18 \newline \Huge Phénomènes inductifs}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\begin{theoreme}{}{Loi de Faraday}
     Les variations de flux magnétique au travers d’un circuit fermé se modélisent électriquement par l’\notion{ajout d’un générateur induit dans le circuit}, dont la \notion{force électromotrice induite $e$} est reliée au flux magnétique $\Phi$ au travers du circuit par la relation~:
     $$e = - \derive{}{\Phi}{t}$$
 \end{theoreme}
 
-\begin{theoreme}{7.2}{loi de modération de Lenz}
+\begin{theoreme}{}{loi de modération de Lenz}
     Par leurs conséquences, les phénomènes d’induction tendent à atténuer leurs causes.
 \end{theoreme}
 
-\begin{definition}{7.3}{force de Laplace}
+\begin{definition}{}{force de Laplace}
     Un tronçon élémentaire de conducteur parcouru par un courant $i$ indépendant d'un champ $\vec{B}$ extérieur le traversant subit une force appelée \notion{force de Laplace}~:
     $$\vec{\d{F_\mc{L}}} = i\vec{\d{\ell}}\wedge \vec{B}$$
     Le vecteur déplacement élémentaire $\vec{\d{\ell}}$ est ici dirigé dans le sens de $i$. Pour un tronçon d'extrémités $M_1$ et $M_2$~:
     $$\vec{F_\mc{L}} = \int_{M_1}^{M_2} i\vec{\d{\ell}}\wedge \vec{B}$$
 \end{definition}
 
-\input{../../stock/pied.tex}
+\begin{definition}{}{moment magnétique d'un circuit}
+    Le moment magnétique quantifie la réactivité d'un circuit électrique traversé par un courant $i$, face à un champ magnétique~:
+    $$\vec{m} = iS\vec{n}$$
+    où $\vec{n}$ est orienté selon la règle de la main droite suivant $\vec{i}$.
+\end{definition}
+
+\begin{definition}{}{couple de Laplace}
+    Quand un circuit mobile est placé dans un champ uniforme $\vec{B}$, il subit le couple de Laplace~:
+    $$\vec{\Gamma_\mc{\L}} = \vec{m} \wedge \vec{B}$$
+    où $\vec{m} = iS\vec{n}$.
+\end{definition}
+
+
+
+\end{document}

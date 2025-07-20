@@ -59,4 +59,16 @@
     $$\frac{D(f_1,\, \dots,\, f_n)}{D(x_1,\, \dots,\, x_n)}(a) = \mr{det}\,J_f(a)$$
 \end{definition}
 
+\begin{theoreme}{19.18}{composition d'applications différentiables}
+    Soit $E$, $F$ et $G$ trois espaces vectoriels normés de dimension finie. Soit $f$ une application d'un ouvert $U$ de $E$ vers $F$, $g$ une application d'un ouvert $V$ de $F$ vers $G$, telles que $f(U) \subset V$. Supposons que $f$ est différentiable en $a \in U$ et que $g$ est différentiable en $f(a)$.\\\\
+    Alors $g\circ f$ est différentiable en $a$ avec~:
+    $$\d{(g\circ f)}_a = \d{g}_{f(a)} \circ \d{f}_a$$
+\end{theoreme}
+
+\begin{theoreme}{19.19}{règle de la chaîne}
+    Soit $E$, $F$ et $G$ trois espaces vectoriels normés de dimension finie. Soit $f$ une application d'un ouvert $U$ de $E$ vers $F$, $g$ une application d'un ouvert $V$ de $F$ vers $G$, telles que $f(U) \subset V$. Supposons que $f$ est différentiable en $a \in U$ et que $g$ est différentiable en $f(a)$.\\\\
+    La matrice jacobienne de $g \circ f$ en $a$ est le produit des matrices jacobiennes de $g$ en $f(a)$ et de $f$ en $a$. Plus précisément, en manipulant les bases $\mc{B}_E$, $\mc{B}_F$ et $\mc{B}_G$ appropriées, on a~:
+    $$\mat{\mc{B}_E,\mc{B}_G}\Big(\d{(g \circ f)_a}\Big) = \mat{\mc{B}_F,\mc{B}_G}\Big(\d{g}_{f(a)}\Big) \times \mat{\mc{B}_E,\mc{B}_F}\Big(\d{g}_{a}\Big)$$
+\end{theoreme}
+
 \end{document}

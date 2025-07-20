@@ -24,9 +24,10 @@
         \item Si les $(f_n)_{n \in \N}$ sont continues, alors il en est de même pour $f$.
     \end{enumeratebf}
 \end{theoreme}\begin{theoreme}{9.17}{de la double limite}
-    Soit $E$ un $\K$-espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$ convergeant uniformément vers $f:A\to E$. Soit $a \adh{a}$.\\
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, $A \subset E$ et $(f_n)_{n \in \N} \in \mc{F}(A,\K)^\N$ convergeant uniformément vers $f:A\to E$. Soit $a \in \adh{A}$.\\
     Si pour tout $n \in \N$, $f_n$ admet en $a$ limite $l_n$, alors la suite $(l_n)_{n \in \N}$ converge et $f$ converge en $a$ vers sa limite~:
-    $$\lim_{x \to a} \bigg(\lim_{n \to + \infty} f_n(x)\bigg) = \lim_{n \to + \infty} \bigg(\lim_{x \to a} f_n(x)\bigg)$$
+    $$\lim_{n \to + \infty} \Big(\lim_{x \to a} f_n(x)\Big) = \lim_{x \to a} \bigg(\lim_{n \to + \infty} f_n(x)\bigg)\qquad\Big( = f(a) \quad (\star)\Big)$$
+    $(\star)$~: si $f$ est continue.
 \end{theoreme}
 
 \begin{definition}{9.19}{convergence uniforme d'une série de fonctions}
@@ -63,8 +64,15 @@
 
 \begin{theoreme}{9.49}{deuxième de Weierstrass}
     Toute fonction continue sur $\R$, à valeurs réelles ou complexes, $T$-périodique est limite uniforme d’une suite de \notion{fonctions polynomiales trigonométriques}, fonctions de la forme~:
-    $$t \mapsto \sum_{k=1}^n \alpha_k e^{\frac{2ik\pi}{T}t}$$
+    $$\bigg(t \mapsto \sum_{k=1}^n \alpha_k e^{\frac{2ik\pi}{T}t}\bigg)_{n \in \N}$$
 
 \end{theoreme}
+
+
+Maître Corbeau, sur un arbre perché, \\
+Tenait en son bec un fromage.
+
+
+Les programmes de mathématiques des classes préparatoires scientifiques MPSI, PCSI, PTSI, MP2I, MP, PC, PSI, PT, MPI sont conçus comme un socle cohérent et ambitieux de connaissances et de  capacités, avec l'objectif de préparer les étudiantes et étudiants à poursuivre avec succès dans les écoles et les universités un cursus de formation aux métiers de l'ingénierie, de l’enseignement, de la recherche.
 
 \input{../../stock/pied.tex}
