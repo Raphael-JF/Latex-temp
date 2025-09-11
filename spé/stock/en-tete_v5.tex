@@ -1,0 +1,567 @@
+\documentclass{article}
+\usepackage{titling} % Personnalisation du titre
+\usepackage[left=20mm, right=20mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{esint} % intégrale avec un round
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows}
+\usepackage{forest}
+\usepackage{titlesec}
+\setlength{\parindent}{0pt}
+
+\pretitle{\begin{center}\Huge\bfseries}
+\posttitle{\end{center}}
+\date{}
+\renewcommand{\thesection}{\Roman{section}} 
+\titleformat{\section}
+  {\Large\bfseries} % Style du titre
+  {\thesection} % Numéro de section
+  {0.5cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentaire
+\titleformat{\subsection}
+  {\large\bfseries} % Style du titre
+  {\thesubsection} % Numéro de section
+  {0.4cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentair
+
+
+\newenvironment{enumeratebf}{
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+}
+{
+    \end{enumerate}
+}
+  
+\definecolor{oranges}{RGB}{255, 242, 230}
+\definecolor{rouges}{RGB}{255, 230, 230}
+\definecolor{rose}{RGB}{255, 204, 204}
+
+% maths - info
+\definecolor{rouge_fonce}{RGB}{204, 0, 0}
+\definecolor{rouge}{RGB}{255, 0, 0}
+\definecolor{bleufonce}{RGB}{0, 0, 255}
+\definecolor{vert_fonce}{RGB}{0, 69, 33}
+\definecolor{vert}{RGB}{0,255,0}
+
+\definecolor{orange_foncee}{RGB}{255, 153, 0}
+\definecolor{myrtille}{RGB}{225, 225, 255}
+\definecolor{mayonnaise}{RGB}{255, 253, 233}
+\definecolor{magenta}{RGB}{224, 209, 240}
+\definecolor{pomme}{RGB}{204, 255, 204}
+\definecolor{mauve}{RGB}{255, 230, 255}
+
+
+% Cours
+
+\newmdenv[
+    nobreak=true,
+    topline=true,
+    bottomline=true,
+    rightline=true,
+    leftline=true,
+    linewidth=0.5pt,
+    linecolor=black,
+    backgroundcolor=mayonnaise,
+    innerleftmargin=10pt,
+    innerrightmargin=2.5em,
+    innertopmargin=5pt,
+    innerbottommargin=5pt,
+    skipabove=-0.5cm,
+    skipbelow=-0cm,
+]{boite_definition}
+
+\newcounter{boite}
+\setcounter{boite}{1}
+\newenvironment{definition}[2]
+{
+    \vspace{15pt}
+    \begin{boite_definition}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Définition \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{rouge}{Définition #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_definition}
+}
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=white,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_exemple}
+
+
+\newenvironment{exemple}[2]
+{
+    \vspace{15pt}
+    \begin{boite_exemple}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{bleufonce}{Exemple \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{bleufonce}{Exemple #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_exemple}
+}
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=magenta,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_proposition}
+
+\newenvironment{proposition}[2]
+{
+    \vspace{15pt}
+    \begin{boite_proposition}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Proposition \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{rouge}{Proposition #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_proposition}
+}
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=magenta,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_theoreme}
+
+
+\newenvironment{theoreme}[2]
+{
+    \vspace{15pt}
+    \begin{boite_theoreme}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Théorème \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{rouge}{Théorème #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_theoreme}
+}
+
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_demonstration}
+
+
+\newenvironment{demonstration}
+{
+    \vspace{15pt}
+    \begin{boite_demonstration}
+    \textbf{\textcolor{rouge}{Démonstration}}\\ \\
+}
+{
+    \end{boite_demonstration}
+    
+}
+
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=white,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_remarque}
+
+
+\newenvironment{remarque}[2]
+{
+    \vspace{15pt}
+    \begin{boite_remarque}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{bleufonce}{Remarque \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{bleufonce}{Remarque #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_remarque}
+}
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=bleufonce,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_implementation}
+
+
+\definecolor{keywordcolor}{RGB}{133, 153, 0}  % les mots-clés
+\definecolor{commentcolor}{RGB}{147, 161, 161} % les commentaires
+\definecolor{stringcolor}{RGB}{42, 161, 152}  % les chaînes de caractères
+
+\lstnewenvironment{lstOCaml}
+{\lstset{
+    language=[Objective]Caml,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    backgroundcolor=\color{white},
+    numbers=left,
+    numberstyle=\ttfamily,
+    numbersep=-1.5em,
+    stepnumber=1,
+    frame=l,
+    framexleftmargin=-2.25em,
+    tabsize=2,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ä}{{\"{a}}}1
+    {ë}{{\"{e}}}1
+    {ï}{{\"{i}}}1
+    {ö}{{\"{o}}}1
+    {ü}{{\"{u}}}1
+    {û}{{\^{u}}}1
+    {â}{{\^{a}}}1
+    {Â}{{\^{A}}}1
+    {Î}{{\^{I}}}1
+}}{}
+ 
+\lstnewenvironment{lstC}
+{\lstset{
+    language=C,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    backgroundcolor=\color{white},
+    numbers=left,
+    numberstyle=\ttfamily,
+    numbersep=-1.5em,
+    stepnumber=1,
+    frame=l,
+    framexleftmargin=-2.25em,
+    tabsize=2,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ä}{{\"{a}}}1
+    {ë}{{\"{e}}}1
+    {ï}{{\"{i}}}1
+    {ö}{{\"{o}}}1
+    {ü}{{\"{u}}}1
+    {û}{{\^{u}}}1
+    {â}{{\^{a}}}1
+    {Â}{{\^{A}}}1
+    {Î}{{\^{I}}}1
+}}{}
+
+
+\lstdefinelanguage{LNat}{
+    morekeywords={tant,que,pour,tout,si,sinon,initialiser,renvoyer,attendre la fin, afficher},
+    sensitive=false,
+    morecomment=[l]{//},
+}
+
+\lstnewenvironment{lstLNat}
+{\lstset{
+    language=LNat,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{keywordcolor},
+    commentstyle=\color{commentcolor},
+    stringstyle=\color{stringcolor},
+    backgroundcolor=\color{white},
+    numbers=left,
+    numberstyle=\ttfamily,
+    numbersep=-1.5em,
+    stepnumber=1,
+    frame=l,
+    mathescape=true,
+    framexleftmargin=-2.25em,
+    tabsize=2,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ä}{{\"{a}}}1
+    {ë}{{\"{e}}}1
+    {ï}{{\"{i}}}1
+    {ö}{{\"{o}}}1
+    {ü}{{\"{u}}}1
+    {û}{{\^{u}}}1
+    {â}{{\^{a}}}1
+    {Â}{{\^{A}}}1
+    {Î}{{\^{I}}}1}
+}{}
+
+\newenvironment{implementation}[1]
+{   
+    \vspace{15pt}
+    \begin{boite_implementation}
+    \textbf{\textcolor{bleufonce}{Implémentation}}\textit{ - #1}
+     \\ \\
+}
+{    
+    \end{boite_implementation}
+}
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=mayonnaise,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_question}
+
+
+\newenvironment{question}[2]
+{
+    \vspace{15pt}
+    \begin{boite_question}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Question \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{rouge}{Question #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_question}
+}
+
+\newmdenv[
+  nobreak=true,
+  topline=true,
+  bottomline=true,
+  rightline=true,
+  leftline=true,
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=white,
+  innerleftmargin=10pt,
+  innerrightmargin=2.5em,
+  innertopmargin=5pt,
+  innerbottommargin=5pt,
+  skipabove=-0.5cm,
+  skipbelow=-0cm,
+]{boite_corollaire}
+
+
+
+\newenvironment{corollaire}[2]
+{
+    \vspace{15pt}
+    \begin{boite_corollaire}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Corollaire \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{rouge}{Corollaire #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_corollaire}
+}

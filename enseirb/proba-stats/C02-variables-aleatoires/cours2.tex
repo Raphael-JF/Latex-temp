@@ -1,0 +1,29 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{2}
+
+\title{\Large Chapitre 2 \newline \Huge Variables aléatoires}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\begin{definition}{}{variable aléatoire}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. On appelle \notion{vecteur aléatoire} sur $\univ$ une application de $\univ$ dans $\R^n$.
+    Pour $n=1$, on parle de \notion{variable aléatoire}.
+\end{definition}
+
+\begin{remarque}{}{notation associée}
+    Pour $A \in \R^n$, on notera $\{X \in A\}$ l'évènement~:
+    $$\{\omega \in \univ,\, X(\omega) \in A\}$$
+\end{remarque}
+
+\begin{definition}{}{vecteur aléatoire discrète}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Un vecteur aléatoire $X$ sur $\Omega$ est dit \notion{discret} s'il existe $F \subset \R^n$ au plus dénombrable tel que~:
+    $$\proba(\{X \in F\}) = 1$$
+    
+\end{definition}
+
+
+\end{document}

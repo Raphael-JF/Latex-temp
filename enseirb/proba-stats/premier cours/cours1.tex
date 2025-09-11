@@ -1,0 +1,189 @@
+\input{../../stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{1}
+
+\title{\Large Chapitre 1 \\ \Huge Probabilités}
+
+\begin{document}
+\input{../../stock/commands.tex}
+\maketitle
+
+\newcommand{\tribu}[0]{\mathcal{T}}
+\newcommand{\univ}[0]{\Omega}
+\newcommand{\proba}[0]{\mathbb{P}}
+
+mail du prof : francois.dufour@math.u-bordeaux.fr
+\\ \\
+\textbf{Pourquoi des probas ?}
+\begin{itemize}
+    \item modéliser des réseaux de télécommunication de façon aléatoires (nombre de clients, temps de traitement, etc.).
+    \item théorie des algorithmes stochastiques~: une grande partie des modèles d'IA ont un lien avec ceux-là.
+\end{itemize}
+
+\section*{Espace de probabilité}
+
+\begin{definition}{}{ensemble des éventualités}
+    Dans la modélisation mathématique d'une expérience aléatoire, la première étape consiste à lister l'ensemble des résultats possibles de cette expérience. On note $\Omega$ un tel ensemble, appelé \notion{univers}, ou \notion{ensemble des réalisations}.
+\end{definition}
+
+\begin{exemple}{}{Pile ou Face}
+    Dans un jeu de Pile ou Face, on a $\Omega = \{\text{Pile},\, \text{Face}\}$.
+\end{exemple}
+
+\begin{exemple}{}{Jeu à dé à six faces}
+    Dans un jeu impliquant un dé à six faces, on a $\Omega = \{1,\, 2,\, 3,\, 4,\, 5,\, 6\}$
+    
+\end{exemple}
+
+\section{Notions d'évènements et de tribu}
+
+\begin{definition}{}{évènement}
+    On appelle \notion{évènement} une partie $A \subset \Omega$.
+\end{definition}
+
+\begin{exemple}{}{d'évènement}
+    Au jeu de dé à six faces, $A$ décrit par "le résultat du jeu de dé vaut 4 ou 5" est un évènement de $\Omega$.
+\end{exemple}
+
+\begin{proposition}{}{évènements axiomatiques}
+    Soit $\Omega$ un univers.
+    \begin{itemize}
+        \item l'évènement $\varnothing$ est un évènement de $\Omega$ appelé \notion{évènement impossible}
+        \item l'évènement $\Omega$ entier est un évènement.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}{}{tribu}
+    Pour un univers $\univ$ au plus dénombrable, on appelle \notion{tribu sur $\univ$} une partie $\tribu \subset \mc{P}(\univ)$ vérifiant~:
+    \begin{enumeratebf}
+        \item $\univ \in \tribu$
+        \item Pour tout $A \in \tribu, \overline{A} \in \tribu$
+        \item Pour toute suite $(A_n)_{n \in \N}$ d'éléments de $\tribu$, $\displaystyle \bigcup_{n \in \N}A_n \in \tribu$
+    \end{enumeratebf}
+    Le couple $(\univ, \tribu)$ est alors appelé \notion{espace mesurable} (ou \notion{espace probabilisable}).
+\end{definition}
+
+\begin{exemple}{}{de tribus}
+    Pour $\Omega$ un univers quelconque~:
+    \begin{itemize}
+        \item $\{\varnothing, \Omega\}$ est une tribu de $\Omega$
+        \item $\mc{P}(\Omega)$ est une tribu, dite \notion{tribu pleine de $\Omega$}
+        \item $\{\varnothing, A, \overline{A}, \Omega\}$ est une tribu pour $A \subset \Omega$. C'est la plus petite tribu de $\Omega$ qui contient $A$ pour l'inclusion.
+    \end{itemize}
+\end{exemple}
+
+\section{Probabilité}
+
+\begin{definition}{}{probabilité}
+    Soit $(\univ, \tribu)$ un espace mesurable. On appelle \notion{probabilité sur $(\univ, \tribu)$} une application $\proba : \tribu \to \seg{0}{1}$ telle que~:
+    \begin{enumeratebf}
+        \item \notion{principe de normalisation}$~: \proba(\univ) = 1$
+        \item \notion{$\sigma$-additivité}~: Pour toute suite $(A_n)_{n \in \N}$ d'évènements deux à deux incompatibles, la série de terme général $\proba(A_n)$ converge et~:
+        $$\proba\Bigg(\bigsqcup_{n \in \N}A_n\Bigg) = \sum_{n=0}^{+ \infty} \proba(A_n)$$
+    \end{enumeratebf}
+    On dit alors que $(\univ, \tribu, \proba)$ constitue un \notion{espace de probabilité} (ou \notion{espace de probabilité   }).
+\end{definition}
+
+\begin{definition}{}{événements négligeable, certain}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité.
+    \begin{itemize}
+        \item Un événement $A$ est dit \notion{négligeable} si $\proba(A) = 0$.
+        \item Un événement $A$ est dit \notion{certain} si $\proba(A) = 1$.
+    \end{itemize}
+\end{definition}
+
+
+\begin{remarque}{}{}
+    On munira souvent les univers $\univ$ finis de leur tribu pleine $\mc{P}(\univ)$
+\end{remarque}
+
+\begin{exemple}{}{}
+    Soit $\Omega = \{\omega_1,\, \dots,\, \omega_n\}$ un univers fini qu'on munit de la tribu pleine. On considère $\proba$ une probabilité sur cet espace mesurable telle que~:
+    $$\forall i \in \intint{1}{n},\, \proba(\omega_i) = p \in ]0,\,1]$$
+    $\proba$ est alors appelée probabilité uniforme. On vérifie que nécessairement~:
+    $$p = \frac{1}{\abs{\univ}}$$
+    et ainsi pour $A \in \tribu = \mc{P(A)}$~:
+    $$\proba(A) = \frac{\abs(A)}{\abs{\univ}}$$
+\end{exemple}
+
+\begin{proposition}{}{règles de calcul}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Pour $A$ et $B$ dans $\tribu$~:
+    \begin{enumeratebf}
+        \item $\proba(\overline{A}) = 1 - \proba(A)$
+        \item $\proba(A\cup B) = \proba(A) + \proba(B) - \proba(A \cap B)$
+        \item $\proba(A \cap B) = $ ?
+        \item Si $A \subset B$, alors $\proba(A) \leq \proba(B)$
+    \end{enumeratebf}
+\end{proposition}
+
+\section{Probabilité conditionnelle}
+
+On cherche à évaluer la probabilité d'un évènement $A$ sachant qu'un évènement $B$ est réalisé.
+
+\begin{definition}{}{probabilité conditionnelle}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Soit $A \in \tribu$ un événement non négligeable. Alors l'application~:
+    \fonction{\proba_A}{\tribu}{\seg{0}{1}}{B}{\frac{\proba(A \cap B)}{\proba(A)}}
+    est une probabilité, appelée \notion{probabilité conditionnelle sachant $A$}.
+\end{definition}
+
+\begin{exemple}{}{des deux enfants}
+    Un voisin a deux enfants. On note~:
+    \begin{itemize}
+        \item $A$ : "Il a au moins un garçon."
+        \item $B$ : "Il a au moins une fille."
+        \item $C$ : "Son deuxième enfant est une fille."
+    \end{itemize}
+    On a~:
+    $$\proba_B(A) = \frac{\proba(A \cap B)}{\proba(B)} = \frac{\abs{A \cap B}}{\abs{\univ}} \frac{\abs{\univ}}{\abs{B}} = \frac{2}{3}$$
+    De même, 
+    $$\proba_C(A) = \frac{\abs{A \cap C}}{\abs{C}} = \frac{1}{2}$$
+\end{exemple}
+
+
+\section{Indépendance d'évènements}
+
+\begin{definition}{}{évènements indépendants}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Deux évènements $A$ et $B$ sont indépendants si~:
+    $$\proba(A \cap B) = \proba(A) \proba(B)$$
+\end{definition}
+
+\begin{definition}{15.37}{évènements indépendants}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Soit $(A_i)_{i \in I}$ un système complet d'évènement, où $I$ est au plus dénombrable. $(A_i)_{i \in I}$ est une \notion{famille d'évènements indépendants} (aussi appelée \notion{famille d'évènements mutuellement indépendants}) si~:
+    $$\forall J \in \mc{P}_f(I),\, \proba\Bigg(\bigcap_{j \in J} A_j\Bigg) = \prod_{j \in J}\proba(A_j)$$
+\end{definition}
+
+\begin{proposition}{}{relation entre indépendance d'évènements et probabilité conditionnelle}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Soit $A$ et $B$ deux évènements. Les propriétés suivantes sont équivalentes~:
+    \begin{enumeratebf}
+        \item $A$ et $B$ sont indépendants.
+        \item $\proba_B(A) = \proba(A)$
+        \item $\proba_A(B) = \proba(B)$
+    \end{enumeratebf}
+    
+\end{proposition}
+
+\section{Identités et définitions}
+
+\begin{definition}{}{partition}
+    Soit $E$ un ensemble. On dit qu'une famille quelconque $(A_i)_{i\in I}$ de parties de $E$ est une \notion{partition} de $E$ si~:
+    $$E = \bigsqcup_{i \in I}A_i$$
+\end{definition}
+
+\begin{theoreme}{}{formule de Bayes}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Soit $(A_i)_{i \in I}$ un système complet d'évènement de probabilités non nulles, où $I$ est au plus dénombrable. Pour tout $B \in \tribu$ de probabilité non nulle~: 
+    $$\forall j \in I,\, \proba_B(A_j) = \frac{\proba_{A_j}(B)}{\displaystyle \sum_{i \in I} \proba_{A_i}(B)\proba(A_i)}$$
+\end{theoreme}
+
+\begin{theoreme}{}{formule de probabilités totales}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Soit $(A_i)_{i \in I}$ un système complet d'évènement de probabilités non nulles, où $I$ est au plus dénombrable. Pour tout $B \in \tribu$~:
+    $$\proba(B) = \sum_{i \in I} \proba(B \cap A_i)$$
+\end{theoreme}
+
+\begin{remarque}{}{formule des probabilités totales}
+    le système complet d'évènements peut n'être qu'une partition d'un évènement quelconque ! En effet, on peut écrire pour un tel évènement $A$~:
+    $$A = \bigsqcup_{n\in \N} (B_n \cap A)$$
+    La démonstration en découle alors.
+\end{remarque}
+
+\end{document}
