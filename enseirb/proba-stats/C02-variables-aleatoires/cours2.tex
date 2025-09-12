@@ -3,12 +3,21 @@
 \newcounter{chapitre}
 \setcounter{chapitre}{2}
 
-\title{\Large Chapitre 2 \newline \Huge Variables aléatoires}
+\title{\Large Chapitre 2 \\ \Huge Vecteurs aléatoires}
 
 \begin{document}
 \input{../../stock/commands.tex}
 \maketitle
 
+
+\newcommand{\tribu}[0]{\mathcal{T}}
+\newcommand{\univ}[0]{\Omega}
+\newcommand{\proba}[0]{\mathbb{P}}
+\newcommand{\probaset}[1]{\mathbb{P}\Big(\{#1\}\Big)}
+
+
+
+\section{Introduction}
 \begin{definition}{}{variable aléatoire}
     Soit $(\univ, \tribu, \proba)$ un espace de probabilité. On appelle \notion{vecteur aléatoire} sur $\univ$ une application de $\univ$ dans $\R^n$.
     Pour $n=1$, on parle de \notion{variable aléatoire}.
@@ -19,11 +28,91 @@
     $$\{\omega \in \univ,\, X(\omega) \in A\}$$
 \end{remarque}
 
-\begin{definition}{}{vecteur aléatoire discrète}
+\begin{definition}{}{vecteur aléatoire discret}
     Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Un vecteur aléatoire $X$ sur $\Omega$ est dit \notion{discret} s'il existe $F \subset \R^n$ au plus dénombrable tel que~:
-    $$\proba(\{X \in F\}) = 1$$
+    $$\proba\Bigl(\{X \in F\}\Bigr) = 1$$
     
 \end{definition}
 
+
+Nous émettrons dans le cadre du cours l'hypothèse suivante.
+\begin{remarque}{}{en lien avec la définition}
+    Si $X$ est un vecteur aléatoire sur $(\univ, \tribu, \proba)$, pour tout ouvert $A$ de $\R^n$~:
+    $$\{\omega \in \univ,\, X(\omega) \in A\} = \{X \in A\} \in \tribu$$
+\end{remarque}
+
+\begin{definition}{}{vecteur aléatoire à densité}
+    $X$ est un vecteur aléatoire définie sur $(\univ,\, \tribu,\, \proba)$ à valeurs dans $\R^n$ s'il il existe $p : \R^n \to \R_+$ qui vérifie~:
+    $$\forall \epsilon > 0,\, \forall a \in \R^n,\, \exists r > 0,\, \proba\Bigl(\{X \in B(a, r)\}\Bigr) = \int_A p(x)\d{x}$$
+    Autrement dit, pour tout $A$ ouvert de $\R^n$~:
+    $$\proba\Big(\{X \in A\}\Big) = \int_A p(x)\d{x}$$
+\end{definition}
+
+\begin{remarque}{}{à ce propos}
+    Pour $A = \R^n$,\, la probabilité précédemment évoquée vaut~:
+    $$P\Big(\{X \in \R^n\}\Big) = 1$$
+\end{remarque}
+\section{Lois usuelles}
+
+\begin{definition}{}{Loi d'une variable aléatoire}
+    La loi d'une variable aléatoire discret $X$ à valeurs dans $F$ (\ie $\proba\Big(\{X \in F\}\Big)=1$) est entièrement définie par la famille de réels positifs~:
+    $$\Bigg(\probaset{X = x}\Bigg)_{x \in F}$$
+    de somme 1.
+\end{definition}
+
+\begin{exemple}{}{loi de Bernoulli}
+    Pour une loi de Bernoulli~:
+    \begin{itemize}
+        \item $F = \{0, 1\}$
+        \item $\probaset{X = 1} = p$ et $\probaset{X = 0} = 1-p$
+    \end{itemize}
+    Une telle variable aléatoire mesure la probabilité de succès d'une épreuve de Bernoulli (succès de probabilité $p$, échec de probabilité $1-p$).
+\end{exemple}
+
+\begin{exemple}{}{loi binomiale}
+    Pour une loi binomiale~:
+    \begin{itemize}
+        \item $F = \intint{0}{n}$ où $n \in \N^*$
+        \item $\forall k \in \intint{0}{n},\, \probaset{X = k} = \binom{k}{n}p^k(1-p)^{n-k}$
+    \end{itemize}
+    Une telle variable aléatoire mesure le nombre de succès au terme de la répétition indépendante de $n$ épreuves de Bernoulli du même paramètre $p$.
+\end{exemple}
+
+\begin{exemple}{}{loi géométrique}
+    Pour une loi géométrique~:
+    \begin{itemize}
+        \item $F = \N^*$.
+        \item $\forall k \in \N^*,\, \probaset{X = k} = p (1-p)^{k-1}$
+    \end{itemize}
+    En numérotant à partir de 1 une suite d'épreuves de Bernoulli répétées indépendamment et indéfiniment, une telle variable aléatoire mesure l'indice du premier succès. 
+\end{exemple}
+
+\begin{exemple}{}{Loi de Poisson}
+    Pour une loi de Poisson~:
+    \begin{itemize}
+        \item $F = \N$
+        \item $\forall k \in \N,\, \probaset{X = k} = \frac{\lambda^k}{k!}e^{-\lambda}$
+        Une loi de Poisson a des intérêts multiples, comme celui d'approximer sous certaines conditions une loi binomiale.
+    \end{itemize}
+\end{exemple}
+
+\begin{remarque}{}{sur ces lois}
+    On retrouve par dénombrement l'expression de telles lois. Par exemple dans le cas de la loi géométrique, $\{X = k\}$ correspond à l'évènement "L'épreuve n°k est la première à réussir.". Cela revient à avoir vu échouer les $k-1$ épreuves précédentes~:
+    $$\probaset{X = k} = p (1-p)^{k-1}$$
+
+\end{remarque}
+
+
+\section{Lois marginales}
+
+\begin{proposition}{}{Formules des lois marginales}
+    
+\end{proposition}
+
+\section*{Questions de cours}
+
+\begin{enumeratebf}
+    \item Lois usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
+\end{enumeratebf}
 
 \end{document}

@@ -15,13 +15,13 @@
 
 mail du prof : francois.dufour@math.u-bordeaux.fr
 \\ \\
-\textbf{Pourquoi des probas ?}
+\section*{Pourquoi des probas ?}
 \begin{itemize}
     \item modéliser des réseaux de télécommunication de façon aléatoires (nombre de clients, temps de traitement, etc.).
     \item théorie des algorithmes stochastiques~: une grande partie des modèles d'IA ont un lien avec ceux-là.
 \end{itemize}
 
-\section*{Espace de probabilité}
+\section{Espace de probabilité}
 
 \begin{definition}{}{ensemble des éventualités}
     Dans la modélisation mathématique d'une expérience aléatoire, la première étape consiste à lister l'ensemble des résultats possibles de cette expérience. On note $\Omega$ un tel ensemble, appelé \notion{univers}, ou \notion{ensemble des réalisations}.
@@ -180,10 +180,5 @@ On cherche à évaluer la probabilité d'un évènement $A$ sachant qu'un évèn
     $$\proba(B) = \sum_{i \in I} \proba(B \cap A_i)$$
 \end{theoreme}
 
-\begin{remarque}{}{formule des probabilités totales}
-    le système complet d'évènements peut n'être qu'une partition d'un évènement quelconque ! En effet, on peut écrire pour un tel évènement $A$~:
-    $$A = \bigsqcup_{n\in \N} (B_n \cap A)$$
-    La démonstration en découle alors.
-\end{remarque}
 
 \end{document}
