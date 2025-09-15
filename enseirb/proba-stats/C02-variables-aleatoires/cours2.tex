@@ -1,4 +1,5 @@
 \input{../../stock/en-tete_v5.tex}
+\usepackage{dsfont}
 
 \newcounter{chapitre}
 \setcounter{chapitre}{2}
@@ -13,7 +14,7 @@
 \newcommand{\tribu}[0]{\mathcal{T}}
 \newcommand{\univ}[0]{\Omega}
 \newcommand{\proba}[0]{\mathbb{P}}
-\newcommand{\probaset}[1]{\mathbb{P}\Big(\{#1\}\Big)}
+\newcommand{\probaset}[1]{\mathbb{P}\big(\{#1\}\big)}
 
 
 
@@ -42,20 +43,18 @@ Nous émettrons dans le cadre du cours l'hypothèse suivante.
 \end{remarque}
 
 \begin{definition}{}{vecteur aléatoire à densité}
-    $X$ est un vecteur aléatoire définie sur $(\univ,\, \tribu,\, \proba)$ à valeurs dans $\R^n$ s'il il existe $p : \R^n \to \R_+$ qui vérifie~:
-    $$\forall \epsilon > 0,\, \forall a \in \R^n,\, \exists r > 0,\, \proba\Bigl(\{X \in B(a, r)\}\Bigr) = \int_A p(x)\d{x}$$
-    Autrement dit, pour tout $A$ ouvert de $\R^n$~:
+    $X$ est un vecteur aléatoire définie sur $(\univ,\, \tribu,\, \proba)$ à valeurs dans $F$ s'il il existe $p : F \to \R_+$ qui vérifie pour tout $A$ ouvert de $F$~:
     $$\proba\Big(\{X \in A\}\Big) = \int_A p(x)\d{x}$$
 \end{definition}
 
 \begin{remarque}{}{à ce propos}
-    Pour $A = \R^n$,\, la probabilité précédemment évoquée vaut~:
-    $$P\Big(\{X \in \R^n\}\Big) = 1$$
+    Pour $A = F$,\, la probabilité précédemment évoquée vaut~:
+    $$\probaset{X \in F} = 1$$
 \end{remarque}
 \section{Lois usuelles}
 
-\begin{definition}{}{Loi d'une variable aléatoire}
-    La loi d'une variable aléatoire discret $X$ à valeurs dans $F$ (\ie $\proba\Big(\{X \in F\}\Big)=1$) est entièrement définie par la famille de réels positifs~:
+\begin{definition}{}{loi d'une variable aléatoire}
+    La loi d'une variable aléatoire discrète $X$ à valeurs dans $F$ (\ie $\proba\Big(\{X \in F\}\Big)=1$) est entièrement définie par la famille de réels positifs~:
     $$\Bigg(\probaset{X = x}\Bigg)_{x \in F}$$
     de somme 1.
 \end{definition}
@@ -63,8 +62,8 @@ Nous émettrons dans le cadre du cours l'hypothèse suivante.
 \begin{exemple}{}{loi de Bernoulli}
     Pour une loi de Bernoulli~:
     \begin{itemize}
-        \item $F = \{0, 1\}$
-        \item $\probaset{X = 1} = p$ et $\probaset{X = 0} = 1-p$
+        \item $\displaystyle F = \{0, 1\}$
+        \item $\displaystyle \probaset{X = 1} = p$ et $\probaset{X = 0} = 1-p$
     \end{itemize}
     Une telle variable aléatoire mesure la probabilité de succès d'une épreuve de Bernoulli (succès de probabilité $p$, échec de probabilité $1-p$).
 \end{exemple}
@@ -72,8 +71,8 @@ Nous émettrons dans le cadre du cours l'hypothèse suivante.
 \begin{exemple}{}{loi binomiale}
     Pour une loi binomiale~:
     \begin{itemize}
-        \item $F = \intint{0}{n}$ où $n \in \N^*$
-        \item $\forall k \in \intint{0}{n},\, \probaset{X = k} = \binom{k}{n}p^k(1-p)^{n-k}$
+        \item $\displaystyle F = \intint{0}{n}$ où $n \in \N^*$
+        \item $\displaystyle \forall k \in \intint{0}{n},\, \probaset{X = k} = \binom{n}{k}p^k(1-p)^{n-k}$
     \end{itemize}
     Une telle variable aléatoire mesure le nombre de succès au terme de la répétition indépendante de $n$ épreuves de Bernoulli du même paramètre $p$.
 \end{exemple}
@@ -81,38 +80,141 @@ Nous émettrons dans le cadre du cours l'hypothèse suivante.
 \begin{exemple}{}{loi géométrique}
     Pour une loi géométrique~:
     \begin{itemize}
-        \item $F = \N^*$.
-        \item $\forall k \in \N^*,\, \probaset{X = k} = p (1-p)^{k-1}$
+        \item $\displaystyle F = \N^*$.
+        \item $\displaystyle \forall k \in \N^*,\, \probaset{X = k} = p (1-p)^{k-1}$
     \end{itemize}
     En numérotant à partir de 1 une suite d'épreuves de Bernoulli répétées indépendamment et indéfiniment, une telle variable aléatoire mesure l'indice du premier succès. 
 \end{exemple}
 
-\begin{exemple}{}{Loi de Poisson}
+\begin{exemple}{}{loi de Poisson}
     Pour une loi de Poisson~:
     \begin{itemize}
-        \item $F = \N$
-        \item $\forall k \in \N,\, \probaset{X = k} = \frac{\lambda^k}{k!}e^{-\lambda}$
-        Une loi de Poisson a des intérêts multiples, comme celui d'approximer sous certaines conditions une loi binomiale.
+        \item $\displaystyle F = \N$
+        \item $\displaystyle \forall k \in \N,\, \probaset{X = k} = \frac{\lambda^k}{k!}e^{-\lambda}$
+        
     \end{itemize}
+    Une loi de Poisson a des intérêts multiples, comme celui d'approximer sous certaines conditions une loi binomiale.
 \end{exemple}
 
 \begin{remarque}{}{sur ces lois}
-    On retrouve par dénombrement l'expression de telles lois. Par exemple dans le cas de la loi géométrique, $\{X = k\}$ correspond à l'évènement "L'épreuve n°k est la première à réussir.". Cela revient à avoir vu échouer les $k-1$ épreuves précédentes~:
+    On retrouve par dénombrement l'expression de telles lois. Par exemple dans le cas de la loi géométrique, $\{X = k\}$ correspond à l'évènement "La $k$-ème épreuve est la première à réussir.". Cela revient à avoir vu échouer les $k-1$ épreuves précédentes~:
     $$\probaset{X = k} = p (1-p)^{k-1}$$
-
 \end{remarque}
 
 
 \section{Lois marginales}
 
-\begin{proposition}{}{Formules des lois marginales}
-    
+\begin{proposition}{}{formule des lois marginales}
+    Soit $X$ et $Y$ deux vecteurs aléatoires discrètes sur $(\univ, \tribu, \proba)$, respectivement à valeurs dans $F$ et $G$. On a~:
+    \begin{enumeratebf}
+        \item $\displaystyle \forall x \in F,\, \probaset{X=x} = \sum_{g \in G}\probaset{Y = g}$
+        \item $\displaystyle \forall g \in G,\, \probaset{Y=g} = \sum_{x \in F}\probaset{X = x}$
+    \end{enumeratebf}
 \end{proposition}
+
+\begin{remarque}{}{démonstration}
+    On doit ceci à la formule des probabilités totales appliquée aux systèmes complets d'évènements $\Big( Y=g \Big)_{g \in G}$ et $\Big( X=x \Big)_{x \in F}$.
+\end{remarque}
+
+\section{Variables aléatoires à densité}
+
+Pour une \notion{variable aléatoire à densité}, on dira que la densité caractérise la loi de cette variable aléatoire~:
+
+\begin{definition}{}{variable aléatoire à densité}
+    Soit $X$ est une variable aléatoire sur $(\univ, \tribu, \proba)$ à valeurs dans $F$.
+    $X$ est qualifiée de \notion{variable aléatoire à densité} s'il existe $p : F \to \seg{0}{1}$, dite \notion{densité de probabilité}, vérifiant pour toute partie $A$ de $F$~:
+    $$\probaset{X \in A} = \int_A p(t)\d{t}$$
+\end{definition}
+
+\begin{remarque}{}{sur cette définition}
+    La donnée de $X$ est alors entièrement caractérisée par sa densité de probabilité $p$.
+\end{remarque}
+
+\begin{exemple}{}{loi de densité uniforme}
+    Pour une loi uniforme de paramètres $a<b$ dans $\R$~:
+    \begin{itemize}
+        \item $\displaystyle F = \seg{a}{b}$
+        \item $\displaystyle \forall x \in \seg{a}{b},\, \probaset{X = x} = \frac{\mathds{1}_{\seg{a}{b}}(x)}{b-a}$
+    \end{itemize}
+    La fonction \code{rand} en \code{C} suit une loi uniforme sur $\seg{0}{1}$.
+\end{exemple}
+
+\begin{exemple}{}{loi de densité gaussienne}
+    Pour une loi gaussienne de paramètres $\mu \in \R$ et $\sigma > 0$~:
+    \begin{itemize}
+        \item $\displaystyle F = \R$
+        \item $\displaystyle \forall x \in \seg{a}{b},\, p(x) = \frac1{\sigma \sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12\left(\frac{x-\mu}{\sigma}\right)^2\Bigg)$
+    \end{itemize}
+\end{exemple}
+
+
+\begin{exemple}{}{loi de densité exponentielle}
+    Pour une loi exponentielle de paramètre $\lambda > 0$~:
+    \begin{itemize}
+        \item $\displaystyle F = \R$
+        \item $\displaystyle \forall x \in \R,\, p(x) = \lambda e^{-\lambda x} \mathds{1}_{\R_+}(x)$
+    \end{itemize}
+\end{exemple}
+
+\begin{proposition}{}{formule des lois marginales de densité}
+    Soit $(X,Y)$ un couple de variables aléatoires à densité sur $(\univ, \tribu, \proba)$ à valeurs dans $F\times G$. On note $p_{(X,Y)}$ la densité de probablité du couple $(X,Y)$. \\ Alors $p_X$ et $p_Y$ vérifient~:
+    \begin{enumeratebf}
+        \item $\displaystyle \forall x \in F,\,  p_X(x) = \int_\R p_{(X,Y)}(x,y)\d{y}$
+        \item $\displaystyle \forall y \in G,\,  p_Y(y) = \int_\R p_{(X,Y)}(x,y)\d{x}$
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{demonstration}
+    On montre le premier résultat. Montrons que~:
+    $$\forall x \in \R,\,  p_X(x) = \int_\R p_{(X,Y)(x,y)\d{y}}$$
+    Ce qui revient par définition à montrer que~:
+    $$\forall A \subset F,\, \probaset{X \in A} = \int_A \underbrace{\int_\R p_{(X,Y)}(x,y)\d{y}}_{:=p_X(x)} \d{x}$$
+    Soit $A \subset F$. On a~:
+    \begin{align*}
+        \proba(X \in A) &= \proba\Big((X,Y) \in A \times G\Big)\\
+        &= \int_{A \times G} p_{(X,Y)}(x,y)\d{(x,y)} \\
+        &= \int_A \Bigg(\int_G p_{(X,Y)}(x,y)\d{y}\Bigg)\d{x}
+    \end{align*}
+    D'où le résultat.
+\end{demonstration}
+
+
+\section{Espérance d'une variable aléatoire}
+
+\begin{definition}{}{famille sommable de réels positifs}
+    On dit qu’une \notion{famille $(u_i)_{i \in I}$ de nombres réels positifs est sommable} lorsqu’il existe $M\geq 0$ tel que, pour toute partie finie $J \subset I$ , on ait $\sum_{j \in J}u_j \leq M$.
+    On définit alors \notion{la somme de la famille} par~:
+    $$\sum_{i \in I}u_i = \sup_{\substack{J \subset I \\ J\text{ finie}}} \sum_{j \in J} u_j$$
+\end{definition}
+
+\begin{definition}{}{espérance d'une variable aléatoire discrète}
+    Soit $X$ une variable aléatoire discrète à valeurs dans $F \subset \R$.
+    $X$ est dite \notion{sommable} si elle admet un moment d'ordre 1 \ie si la famille $\Big(x\probaset{X = x}\Big)_{x \in X}$ est sommable. On notera alors $\mb{E}(X)$ son espérance définie ainsi~:
+    $$\mb{E}(X) = \sum_{x \in F} x\probaset{X = x}$$
+    
+\end{definition}
+
+\begin{exemple}{}{espérance d'une fonction indicatrice}
+    Si $A$ est un évènement de $\univ$, alors $\mathds{1}_A : \univ \to \{0, 1\}$ est une variable aléatoire sommable (car $\mathds{1}_A(\univ)$ est fini). Puis~:
+    $$\mb{E}(\mathds{1}_A) = \proba(A)$$
+\end{exemple}
+
+\begin{theoreme}{}{formule de transfert pour une variable aléatoire discrète}
+    Soit $X$ une variable aléatoire discrète sommable à valeurs dans $F \subset \R$ et $g : F \to G$. Alors $g(X)$ est également une variable aléatoire sommable et~:
+    $$\mb{E}\Big(g(X)\Big) = \sum_{x \in F}g(x)\probaset{X = x}$$
+\end{theoreme}
+
+
+
+
+
 
 \section*{Questions de cours}
 
 \begin{enumeratebf}
-    \item Lois usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
+    \item Lois discrètes usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
+    \item Lois de densité usuelles 
+    \item Espérance d'une variable aléatoire discrète
 \end{enumeratebf}
 
 \end{document}
