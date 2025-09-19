@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  15 SEP 2025 17:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  19 SEP 2025 23:51
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1235,42 +1235,106 @@ Underfull \hbox (badness 10000) in paragraph at lines 167--169
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 184--184
+Underfull \hbox (badness 10000) in paragraph at lines 185--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--197
+Underfull \hbox (badness 10000) in paragraph at lines 191--191
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
+Underfull \hbox (badness 10000) in paragraph at lines 198--198
 
  []
 
-[7] (./cours2.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 203--203
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--210
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--217
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 259--259
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 277--277
+
+ []
+
+[10]
+
+! Package amsmath Error: \begin{cases*} allowed only in math mode.
+
+See the amsmath package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.294 \begin{cases*}
+                    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.294 \begin{cases*}
+                    
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.297 \end{cases*}
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[11] (./cours2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 38730 strings out of 474115
- 998034 string characters out of 5740620
- 1945190 words of memory out of 5000000
- 60508 multiletter control sequences out of 15000+600000
- 568695 words of font info for 85 fonts, out of 8000000 for 9000
+ 38751 strings out of 474115
+ 998467 string characters out of 5740620
+ 1946190 words of memory out of 5000000
+ 60529 multiletter control sequences out of 15000+600000
+ 569002 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,13n,112p,1638b,983s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,19n,112p,1638b,983s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
 10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfon
@@ -1282,20 +1346,21 @@ ype1/public/amsfonts/cm/cmr10.pfb><c:/Program Files/texlive/2024/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmr5.pfb><c:/Program Files/texlive/2024/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Program Files/texlive/2024/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Program Files/texlive/2024/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Program Files/texlive/2024
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Program Files/texlive
-/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/Program Files/te
-xlive/2024/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb><c:/Program F
-iles/texlive/2024/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb><c:/Pro
-gram Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.p
-fb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbol
-s/msbm7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-sup
-er/sfrm1000.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/st
-maryrd/stmary10.pfb>
-Output written on cours2.pdf (7 pages, 199012 bytes).
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/Program Files/texlive/2024
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Program Files/texlive/
+2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Program Files/tex
+live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/Program File
+s/texlive/2024/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb><c:/Progr
+am Files/texlive/2024/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb><c:
+/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
+10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msbm7.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm
+-super/sfrm1000.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/publi
+c/stmaryrd/stmary10.pfb>
+Output written on cours2.pdf (11 pages, 221488 bytes).
 PDF statistics:
- 127 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
+ 144 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

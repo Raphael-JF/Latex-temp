@@ -180,6 +180,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 
 
 \section{Espérance d'une variable aléatoire}
+\subsection{Variable aléatoire discrète}
 
 \begin{definition}{}{famille sommable de réels positifs}
     On dit qu’une \notion{famille $(u_i)_{i \in I}$ de nombres réels positifs est sommable} lorsqu’il existe $M\geq 0$ tel que, pour toute partie finie $J \subset I$ , on ait $\sum_{j \in J}u_j \leq M$.
@@ -204,9 +205,80 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     $$\mb{E}\Big(g(X)\Big) = \sum_{x \in F}g(x)\probaset{X = x}$$
 \end{theoreme}
 
+\subsection{variable aléatoire à densité}
+
+\begin{definition}{}{intégrabilité d'une variable aléatoire à densité}
+    Soit $X$ une variable aléatoire à densité à valeurs dans $F$ un espace vectoriel de dimension $n$. On dit de $X$ qu'elle est \notion{intégrable} si l'intégrale~:
+    $$\int_F \norme{x} p(x) \d{x}$$
+    converge. Le cas échéant on dit que $X$ admet une espérance $\mb{E}(X)$ vérifiant~:
+    $$\mb{E}(X) = \underbrace{\int_F \underbrace{x}_{\in F} \underbrace{p(x)}_{\in \R_+}\d{x}}_{\in F}$$
+\end{definition}
+
+\begin{remarque}{}{sur cette définition}
+    Il est commun d'avoir $F = \R$ muni de la valeur absolue classique ou $F = \R^n$ peu importe la norme (\textit{cf.} dimension finie).
+\end{remarque}
+
+\subsection{exemples}
+
+
+\begin{exemple}{}{espérance d'une loi de Bernoulli}
+    Si $X$ suit une loi de Bernoulli de paramètre $p \in \seg{0}{1}$, alors $X(\Omega) = \{0, 1\}$ est fini, $X$ est donc sommable et~:
+    \begin{align*}
+        \mb{E}(X) &= 0 \times (1-p) + 1 \times p \\
+        &= p
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}{}{espérance d'une loi binomiale}
+    Si $X$ suit une loi binomiale de paramètres $n \in \N^*$ et $p \in \seg{0}{1}$, alors $X(\Omega) = \intint{0}{n}$ est fini, $X$ est donc sommable et~:
+    \begin{align*}
+        \mb{E}(X) &= \sum_{k=1}^n k \binom{n}{k} p^k (1-p)^{n-k} \qquad &\text{premier terme nul}\\
+        &= \sum_{k=1}^n \frac{n!}{(k-1)!(n-k)!} p^k (1-p)^{n-k} \\
+        &= np \sum_{k=1}^n \frac{(n-1)!}{(k-1)!(n-k)!} p^{k-1} (1-p)^{n-k} \\
+        &= np \sum_{j=0}^{n-1} \frac{(n-1)!}{j!(n-j-1)!} p^j (1-p)^{n-1-j}\qquad &\text{changement d'indice}\\
+        &= np \Big(p + (1-p)\Big)^{n-1} \qquad &\text{formule du binôme de Newton}\\
+        &= np
+    \end{align*}
+    d'où le résultat.
+\end{exemple}
+
+\begin{exemple}{}{espérance d'une loi de Poisson}
+    Si $X$ suit une loi de Poisson de paramètres $n \in \N^*$ et $p \in \seg{0}{1}$, alors $X(\Omega) = \N$ est dénombrable, $X$ est donc sommable seulement si la quantité suivante admet une limite finie quand $N$ tend vers $+\infty$~:
+
+    \begin{align*}
+        \sum_{k=1}^N k \frac{\lambda^k}{k!}e^{-\lambda}\\
+        &= \sum_{k=1}^N \frac{\lambda^k}{(k-1)!}e^{-\lambda}\\
+        &= \lambda e^{-\lambda} \sum_{k=1}^N \frac{\lambda^{k-1}}{(k-1)!}\\
+        &= \lambda e^{-\lambda} \sum_{j=0}^{N-1} \frac{\lambda^j}{j!}\\
+        &\xrightarrow[N \to +\infty]{} \lambda e^{-\lambda} e^{\lambda} = \lambda
+    \end{align*}
+    $X$ est donc effectivement sommable, et son espérance vaut~:
+    $$\mb{E}(X) = \lambda$$
+\end{exemple}
+
+\begin{exemple}{}{espérance d'une loi géométrique}
+    Si $X$ suit une loi de géométrique de paramètre $p \in ]0; 1[$ (on évite les cas pathologiques), alors $X(\Omega) = \N$ est dénombrable, $X$ est donc sommable seulement si la quantité suivante admet une limite finie quand $N$ tend vers $+\infty$~:
+
+    \begin{align*}
+        \sum_{k=1}^N k p (1-p)^{k-1}\\
+        &= p \sum_{k=1}^N k (1-p)^{k-1}\\
+    \end{align*}
+    Ceci implique la dérivée d'une somme    géométrique de raison $(1-p)$, valant~:
+    $$\sum_{k=0}^{+\infty} (1-p)^k = \frac{1}{1-(1-p)} = \frac{1}{p}$$
+    Par dérivation terme à terme on a bien sommabilité de $X$, et on trouve~:
+    $$\mb{E}(X) = p\sum_{k=1}^{+\infty} k (1-p)^{k-1} = \frac{1}{p}$$
+\end{exemple}
 
 
 
+
+\section{Indépendance de variables aléatoires}
+
+\begin{definition}{}{indépendance de variables aléatoires}
+    Soit $X$ et $Y$ une famille de variables aléatoires sur $(\univ, \tribu, \proba)$ à valeurs dans $F$ et $G$ respectivement. On dit que $X$ et $Y$ sont \notion{indépendantes} si pour tous $x \in F$ et $y \in G$~:
+    $$\probaset{X = x} = \probaset{x_j}\probaset{X_j = x_j}$$
+    
+\end{definition}
 
 
 \section*{Questions de cours}
@@ -216,5 +288,24 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     \item Lois de densité usuelles 
     \item Espérance d'une variable aléatoire discrète
 \end{enumeratebf}
+
+$$v_n = \left( 1 + \frac{2}{\sqrt{5}}\right)\varphi^n+ \left( 1 - \frac{2}{\sqrt{5}}\right) \phi^n - 2$$
+
+\begin{cases*}
+    \varphi = \frac{1+\sqrt{5}}{2} & le nombre d'or\\
+    \phi = \frac{1-\sqrt{5}}{2} = 1 - \varphi = -\frac{1}{\varphi}
+\end{cases*}
+
+$$v_n = \begin{cases*}
+    0 &si $n=0$\\
+    1 &si $n=1$\\
+    v_{n-1} + v_{n-2} + 2 &si $n \geq 2$
+\end{cases*}$$
+
+$$x^n = \begin{cases*}
+    1 &si $n=0$\\
+    x^{\frac{n}{2}} \times x^{\frac{n}{2}} &si $n$ est pair\\
+    x^{\frac{n-1}{2}} \times x^{\frac{n-1}{2}} \times x &si $n$ est impair
+\end{cases*}$$
 
 \end{document}
