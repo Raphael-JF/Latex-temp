@@ -246,7 +246,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     Si $X$ suit une loi de Poisson de paramètres $n \in \N^*$ et $p \in \seg{0}{1}$, alors $X(\Omega) = \N$ est dénombrable, $X$ est donc sommable seulement si la quantité suivante admet une limite finie quand $N$ tend vers $+\infty$~:
 
     \begin{align*}
-        \sum_{k=1}^N k \frac{\lambda^k}{k!}e^{-\lambda}\\
+        \sum_{k=1}^N k \frac{\lambda^k}{k!}e^{-\lambda}
         &= \sum_{k=1}^N \frac{\lambda^k}{(k-1)!}e^{-\lambda}\\
         &= \lambda e^{-\lambda} \sum_{k=1}^N \frac{\lambda^{k-1}}{(k-1)!}\\
         &= \lambda e^{-\lambda} \sum_{j=0}^{N-1} \frac{\lambda^j}{j!}\\
@@ -260,13 +260,48 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     Si $X$ suit une loi de géométrique de paramètre $p \in ]0; 1[$ (on évite les cas pathologiques), alors $X(\Omega) = \N$ est dénombrable, $X$ est donc sommable seulement si la quantité suivante admet une limite finie quand $N$ tend vers $+\infty$~:
 
     \begin{align*}
-        \sum_{k=1}^N k p (1-p)^{k-1}\\
-        &= p \sum_{k=1}^N k (1-p)^{k-1}\\
+        \sum_{k=1}^N k p (1-p)^{k-1} = p \sum_{k=1}^N k (1-p)^{k-1}\\
     \end{align*}
     Ceci implique la dérivée d'une somme    géométrique de raison $(1-p)$, valant~:
     $$\sum_{k=0}^{+\infty} (1-p)^k = \frac{1}{1-(1-p)} = \frac{1}{p}$$
     Par dérivation terme à terme on a bien sommabilité de $X$, et on trouve~:
-    $$\mb{E}(X) = p\sum_{k=1}^{+\infty} k (1-p)^{k-1} = \frac{1}{p}$$
+    $$\mb{E}(X) = p\sum_{k=1}^{+\infty} k (1-p)^{k-1} = p\frac{1}{p^2} = \frac{1}{p}$$
+\end{exemple}
+
+\begin{exemple}{}{espérance d'une loi à densité exponentielle}
+    Si $X$ suit une loi exponentielle de paramètre $\lambda > 0$, alors $X(\Omega) = \R_+$ puis~:
+    \fonction{f}{\R_+}{\R}{x}{x\lambda e^{-\lambda x}}
+    est continue par morceaux, avec par croissances comparées~:
+    $$\lim_{x \to \infty} x^2 f(x) = 0$$
+    donc~:
+    $$f(x) \underset{x \to \infty}{=} o\left(\frac{1}{x^2}\right)$$
+    et $X$ est intégrable par comparaison avec une fonction de référence. Son espérance vaut alors~:
+    \begin{align*}
+        \mb{E}(X) &= \int_0^{+\infty} x \lambda e^{-\lambda x}\d{x}\\
+        &= \left[-xe^{-\lambda x}\right]_0^{+\infty} + \int_0^{+\infty} e^{-\lambda x}\d{x} \qquad &\text{intégration par parties}\\
+        &= 0 + \left[-\frac{1}{\lambda}e^{-\lambda x}\right]_0^{+\infty}\\
+        &= \frac{1}{\lambda}
+    \end{align*}
+    d'où le résultat.
+\end{exemple}
+
+\begin{exemple}{}{espérance d'une loi à densité gaussienne}
+    Si $X$ suit une loi gaussienne de paramètres $\mu \in \R$ et $\sigma > 0$, alors $X(\Omega) = \R$ puis~:
+    \fonction{f}{\R}{\R}{x}{x \frac1{\sigma \sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12\left(\frac{x-\mu}{\sigma}\right)^2\Bigg)}
+    est continue par morceaux, avec par croissances comparées~:
+    $$\lim_{x \to \infty} x^2 f(x) = 0$$
+    donc~:
+    $$f(x) \underset{x \to \infty}{=} o\left(\frac{1}{x^2}\right)$$
+    et $X$ est intégrable par comparaison avec une fonction de référence. Son espérance vaut alors~:
+    \begin{align*}
+        \mb{E}(X) &= \int_{-\infty}^{+\infty} x \frac1{\sigma \sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12\left(\frac{x-\mu}{\sigma}\right)^2\Bigg)\d{x}\\
+        &= \int_{-\infty}^{+\infty} (\sigma t + \mu) \frac1{\sigma \sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg) \sigma\d{t} \qquad\text{changement de variable } t = \frac{x-\mu}{\sigma}\\
+        &= \int_{-\infty}^{+\infty} t \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t} + \mu \int_{-\infty}^{+\infty}  \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t}\\
+        &= 0 + \mu\int_{-\infty}^{+\infty}  \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t} \qquad\text{la première intégrale est nulle par imparité}\\
+        &= \mu \qquad \text{la seconde intégrale vaut 1 (passer en coordonnées polaires)}
+    \end{align*}
+    d'où le résultat.
+    
 \end{exemple}
 
 
@@ -276,17 +311,74 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 
 \begin{definition}{}{indépendance de variables aléatoires}
     Soit $X$ et $Y$ une famille de variables aléatoires sur $(\univ, \tribu, \proba)$ à valeurs dans $F$ et $G$ respectivement. On dit que $X$ et $Y$ sont \notion{indépendantes} si pour tous $x \in F$ et $y \in G$~:
-    $$\probaset{X = x} = \probaset{x_j}\probaset{X_j = x_j}$$
+    $$\probaset{(X,Y) = (x,y)} = \probaset{X=x}\probaset{Y = y}$$
     
 \end{definition}
 
+\begin{theoreme}{}{caractérisation de l'indépendance de variables aléatoires}
+    Soit $X$ et $Y$ une famille de variables aléatoires sur $(\univ, \tribu, \proba)$ à valeurs dans $F$ et $G$ respectivement. Les assertions suivantes sont équivalentes~:
+    \begin{enumeratebf}
+        \item $X$ et $Y$ sont indépendantes.
+        \item Pour toutes fonctions $f$ et $g$ bornées de $F$ et $G$ respectivement dans $\R$~:
+        $$\mb{E}\Big(f(X)g(Y)\Big) = \mb{E}\Big(f(X)\Big)\mb{E}\Big(g(Y)\Big)$$
+    \end{enumeratebf}
+    
+\end{theoreme}
+
+\begin{remarque}{}{sur ce théorème}
+    Ce théorème sert en particulier dans son sens direct.
+\end{remarque}
+
+% 2 : lois à densité
+
+\begin{proposition}{}{caracatérisation de l'indépendance de variables aléatoires à densité}
+    Soit $X_1,\, \dots,\, X_n$ des variables aléatoires de densités respectives $p_1,\, \dots ,\\p_n$. Les $X_i$ sont mutuellement indépendantes si et seulement si $(X_1,\, \dots,\, X_n)$ est une variable aléatoire à densité de densité de probabilité~:
+    $$p : (x_1,\, \dots,\, x_n) \mapsto \prod_{i=1}^np_i(x_i)$$
+\end{proposition}
+
+\section{Propriétés de l'espérance}
+
+\begin{theoreme}{}{linéarité de l'espérance}
+    Soit $X$ et $Y$ deux variables aléatoires discrètes sommables (resp. intégrables) sur $(\univ, \tribu, \proba)$ à valeurs dans $F$. Alors pour tous $(\alpha, \beta) \in \R^2$, $\alpha X + \beta Y$ est une variable aléatoire discrète sommable (resp. intégrable) et~:
+    $$\mb{E}(\alpha X + \beta Y) = \alpha \mb{E}(X) + \beta \mb{E}(Y)$$
+\end{theoreme}
+
+\begin{theoreme}{}{croissance de l'espérance}
+    Soit $X$ et $Y$ deux variables aléatoires réelles discrètes sommables (resp. intégrables) sur $(\univ, \tribu, \proba)$. Si $X \leq Y$ presque sûrement, alors~:
+    $$\mb{E}(X) \leq \mb{E}(Y)$$
+\end{theoreme}
+
+\begin{theoreme}{}{de comparaison d'espérances}
+    Soit $X$ et $Y$ deux variables aléatoires sur $(\univ, \tribu, \proba)$ à valeurs dans $F$ telles que~:
+    \begin{itemize}
+        \item $Y$ est sommable (resp. intégrable)
+        \item $\norme{X}_F \leq \norme{Y}_F$ presque sûrement.
+    \end{itemize}
+    Alors $X$ est sommable.
+\end{theoreme}
+
+\subsection{Des inégalités}
+
+\begin{proposition}{}{inégalité de Markov}
+    Soit $X$ une variable aléatoire réelle positive sommable (resp. intégrable) sur $(\univ, \tribu, \proba)$. Alors~:
+    $$\forall a > 0,\, \probaset{X \geq a} \leq \frac{\mb{E}(X)}{a}$$
+\end{proposition}
+
+\begin{demonstration}
+    On a l'inégalité~:
+    $$a \mathds{1}_{Z \geq a} \leq Z\mathds{1}_{Z \geq a} \leq Z$$
+    Par croissance et linéarité de l'espérance~:
+    $$a \probaset{\mathds{1}_Z} \leq \mb{E}(Z)$$
+    Ainsi on a le résultat~:
+    $$ \proba(Z \geq a) \leq \frac{\mb{E}(Z)}{a}$$
+\end{demonstration}
 
 \section*{Questions de cours}
 
 \begin{enumeratebf}
-    \item Lois discrètes usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
-    \item Lois de densité usuelles 
-    \item Espérance d'une variable aléatoire discrète
+    \item lois discrètes usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
+    \item lois de densité usuelles
+    \item inégalité de Markov
 \end{enumeratebf}
 
 $$v_n = \left( 1 + \frac{2}{\sqrt{5}}\right)\varphi^n+ \left( 1 - \frac{2}{\sqrt{5}}\right) \phi^n - 2$$
