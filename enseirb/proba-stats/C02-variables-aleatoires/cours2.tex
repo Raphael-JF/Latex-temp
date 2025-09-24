@@ -156,7 +156,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     \end{itemize}
 \end{exemple}
 
-\begin{proposition}{}{formule des lois marginales de densité}
+\begin{proposition}{}{formule des lois marginales à densité}
     Soit $(X,Y)$ un couple de variables aléatoires à densité sur $(\univ, \tribu, \proba)$ à valeurs dans $F\times G$. On note $p_{(X,Y)}$ la densité de probablité du couple $(X,Y)$. \\ Alors $p_X$ et $p_Y$ vérifient~:
     \begin{enumeratebf}
         \item $\displaystyle \forall x \in F,\,  p_X(x) = \int_\R p_{(X,Y)}(x,y)\d{y}$
@@ -262,7 +262,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     \begin{align*}
         \sum_{k=1}^N k p (1-p)^{k-1} = p \sum_{k=1}^N k (1-p)^{k-1}\\
     \end{align*}
-    Ceci implique la dérivée d'une somme    géométrique de raison $(1-p)$, valant~:
+    Ceci implique la dérivée d'une somme géométrique de raison $(1-p)$, valant~:
     $$\sum_{k=0}^{+\infty} (1-p)^k = \frac{1}{1-(1-p)} = \frac{1}{p}$$
     Par dérivation terme à terme on a bien sommabilité de $X$, et on trouve~:
     $$\mb{E}(X) = p\sum_{k=1}^{+\infty} k (1-p)^{k-1} = p\frac{1}{p^2} = \frac{1}{p}$$
@@ -298,11 +298,28 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
         &= \int_{-\infty}^{+\infty} (\sigma t + \mu) \frac1{\sigma \sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg) \sigma\d{t} \qquad\text{changement de variable } t = \frac{x-\mu}{\sigma}\\
         &= \int_{-\infty}^{+\infty} t \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t} + \mu \int_{-\infty}^{+\infty}  \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t}\\
         &= 0 + \mu\int_{-\infty}^{+\infty}  \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t} \qquad\text{la première intégrale est nulle par imparité}\\
-        &= \mu \qquad \text{la seconde intégrale vaut 1 (passer en coordonnées polaires)}
+        &= \mu \qquad \text{la seconde intégrale vaut 1 (on le montre tout de suite après)}
     \end{align*}
-    d'où le résultat.
-    
+    Enfin montrons que $\displaystyle I = \int_{-\infty}^{+\infty}  \frac1{\sqrt{2\pi}}\operatorname \exp\Bigg(-\frac12 t^2\Bigg)\d{t} = 1$. On a~:
+    \begin{align*}
+        I^2 &= \frac{1}{2\pi} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} \operatorname \exp\Bigg(-\frac12 (x^2 + y^2)\Bigg)\d{x}\d{y} \qquad\text{Fubini pour intégrales}\\
+        &= \frac{1}{2\pi} \int_0^{2\pi} \int_0^{+\infty} re^{-\frac12 r^2}\d{r}\d{\theta} \qquad\text{changement de variable en coordonnées polaires}\\
+        &= \frac{1}{2\pi} \times 2\pi \times \left[-e^{-\frac12 r^2}\right]_0^{+\infty}\\
+        &= 1
+    \end{align*}
+    d'où $I = 1$ puis $\mb{E}(X) = \mu$.
 \end{exemple}
+
+\begin{remarque}{}{sur la démonstration précédente}
+    En passant en coordonnées polaires, on a utilisé le fait que~:
+    $$\d{(x,y)} = r\d{r}\d{\theta}$$
+    Ceci est une application du théorème de changement de variable en dimension quelconque~:
+    $$\int_{\varphi(U)} f(x)\d{x} = \int_{U} f\Big(\varphi(x)\Big)\Bigg\vert\det\Big(J_\varphi(x)\Big)\Bigg\vert\d{x}$$
+    où ici~: 
+    \fonction{\varphi}{U = \R_+ \times [0; 2\pi[}{\R^2}{(r,\theta)}{\Big(r \cos(\theta), r \sin(\theta)\Big)}
+    est un $\mc{C}^1$-difféomorphisme, de jacobien $\det\Big(J_\varphi(r,\theta)\Big)$ en $(r, \theta)$ valant $r$, d'où le résultat.
+    
+\end{remarque}
 
 
 
@@ -332,7 +349,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 % 2 : lois à densité
 
 \begin{proposition}{}{caracatérisation de l'indépendance de variables aléatoires à densité}
-    Soit $X_1,\, \dots,\, X_n$ des variables aléatoires de densités respectives $p_1,\, \dots ,\\p_n$. Les $X_i$ sont mutuellement indépendantes si et seulement si $(X_1,\, \dots,\, X_n)$ est une variable aléatoire à densité de densité de probabilité~:
+    Soit $X_1,\, \dots,\, X_n$ des variables aléatoires de densités respectives $p_1,\, \dots,\,  p_n$. Les $X_i$ sont mutuellement indépendantes si et seulement si $(X_1,\, \dots,\, X_n)$ est une variable aléatoire à densité de densité de probabilité~:
     $$p : (x_1,\, \dots,\, x_n) \mapsto \prod_{i=1}^np_i(x_i)$$
 \end{proposition}
 
@@ -373,31 +390,144 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     $$ \proba(Z \geq a) \leq \frac{\mb{E}(Z)}{a}$$
 \end{demonstration}
 
-\section*{Questions de cours}
+\begin{remarque}{}{importante ici}
+    Si $F \neq \R$ il n'y a qu'à considérer la variable aléatoire $\norme{X}_F$, bien à valeurs dans $\R_+$ et lui appliquer le résultat. Cette astuce est utile dans tous les énoncés suivants de la section.
+\end{remarque}
 
+\begin{proposition}{}{inégalité de Bienaymé-Tchebychev}
+    Soit $X$ une variable aléatoire réelle sommable sur $(\univ, \tribu, \proba)$ admettant une variance finie (ou si $X^2$ est sommable). Alors~:
+    $$\forall \varepsilon > 0,\, \probaset{\vert X - \mb{E}(X) \vert \geq \varepsilon} \leq \frac{\mb{V}(X)}{\varepsilon^2}$$
+\end{proposition}
+
+\begin{demonstration}
+    On applique l'inégalité de Markov à la variable aléatoire $(X - \mb{E}(X))^2$ qui est positive et sommable. On a~:
+    $$\probaset{\vert X - \mb{E}(X) \vert \geq \varepsilon} = \probaset{(X - \mb{E}(X))^2 \geq \varepsilon^2} \leq \frac{\mb{E}\Big((X - \mb{E}(X))^2\Big)}{\varepsilon^2} = \frac{\mb{V}(X)}{\varepsilon^2}$$
+\end{demonstration}
+
+
+\begin{proposition}{}{inégalité de Cauchy-Schwarz}
+    Soit $X$ et $Y$ deux variables aléatoires réelles sommables sur $(\univ, \tribu, \proba)$ telles que $XY$ est sommable. Alors~:
+    $$\vert \mb{E}(XY) \vert \leq \sqrt{\mb{E}(X^2)}\sqrt{\mb{E}(Y^2)}$$
+    
+\end{proposition}
+
+\begin{remarque}{}{cas particulier}
+    Pour $X$ réelle positive quelconque et $Y = \overline{1}$~:
+    $$\mb{E}(X) \leq \sqrt{\mb{E}(X^2)}$$
+\end{remarque}
+
+\begin{demonstration}
+    On considère pour tout $t \in \R$ la variable aléatoire~:
+    $$Z_t = X + tY$$
+    qui est sommable par linéarité. Par croissance de l'espérance~:
+    $$0 \leq \mb{E}(Z_t^2) = \mb{E}(X^2) + 2t\mb{E}(XY) + t^2\mb{E}(Y^2)$$
+    Le polynôme en $t$ de second degré $\mb{E}(Y^2)t^2 + 2\mb{E}(XY)t + \mb{E}(X^2)$ est donc à discriminant négatif ou nul~:
+    $$4\mb{E}(XY)^2 - 4\mb{E}(Y^2)\mb{E}(X^2) \leq 0$$
+    En effet, si le discriminant était strictement positif, le polynôme s'annulerait en deux points distincts, et serait négatif entre ces deux points. Or on a positivité du polynôme pour tout $t$. \\\\Le résultat découle de cette dernière égalité.
+\end{demonstration}
+
+\begin{remarque}{}{condition suffisante pour que $XY$ soit sommable}
+    Si $X$ et $Y$ sont deux variables aléatoires réelles sommables telles que $X^2$ et $Y^2$ sont sommables, alors $XY$ est sommable par inégalité de Young~:
+    $$\vert XY \vert \leq \frac{X^2}{2} + \frac{Y^2}{2}$$
+    Cette dernière inégalité se démontre en sachant que $(X-Y)^2 \geq 0$.
+\end{remarque}
+
+
+
+\section{Variance et covariance}
+
+\begin{definition}{}{variance d'une variable aléatoire}
+    Soit $X$ une variable aléatoire réelle sommable sur $(\univ, \tribu, \proba)$. On dit que $X$ admet \notion{une \notion{variance}} si $X^2$ est sommable. Dans ce cas on note $\mb{V}(X)$ la variance de $X$ définie par~:
+    $$\mb{V}(X) = \mb{E}\Big((X - \mb{E}(X))^2\Big)$$
+\end{definition}
+
+\begin{proposition}{}{formule de König-Huygens}
+    Soit $X$ une variable aléatoire réelle sommable sur $(\univ, \tribu, \proba)$. Si $X$ admet une variance, alors~:
+    $$\mb{V}(X) = \mb{E}(X^2) - \mb{E}(X)^2$$
+\end{proposition}
+
+\begin{demonstration}
+    On développe~:
+    \begin{align*}
+        \mb{V}(X) &= \mb{E}\Big((X - \mb{E}(X))^2\Big)\\
+        &= \mb{E}(X^2) - 2\mb{E}(X)\mb{E}(X) + \mb{E}(X)^2\\
+        &= \mb{E}(X^2) - \mb{E}(X)^2
+    \end{align*}
+\end{demonstration}
+
+\begin{definition}{}{covariance de deux variables aléatoires}
+    Soit $X$ et $Y$ deux variables aléatoires réelles sommables sur $(\univ, \tribu, \proba)$ telles que $XY$ est sommable. On appelle \notion{covariance de $X$ et $Y$} la quantité~:
+    $$\mr{Cov}(X,Y) = \mb{E}\Big(\big(X - \mb{E}(X)\big)\big(Y - \mb{E}(Y)\big)\Big)$$
+    En développant, on trouve~:
+    $$\mr{Cov}(X,Y) = \mb{E}(XY) - \mb{E}(X)\mb{E}(Y)$$
+    Le résultat est bien analogue à la formule de König-Huygens.
+\end{definition}
+
+\begin{proposition}{}{variance de la somme de deux variables aléatoires}
+    Soit $X$ et $Y$ deux variables aléatoires réelles sommables sur $(\univ, \tribu, \proba)$ telles que $X^2$ et $Y^2$ sont sommables. On a~:
+    $$\mb{V}(X+Y) = \mb{V}(X) + \mb{V}(Y) + \mr{Cov}(X,Y)$$
+    Si $X$ et $Y$ sont indépendantes, alors~:
+    $$\mb{V}(X+Y) = \mb{V}(X) + \mb{V}(Y)$$
+\end{proposition}
+
+\begin{demonstration}
+    On a~:
+    \begin{align*}
+        \mb{V}(X+Y) &= \mb{E}\Big((X+Y)^2\Big) - \mb{E}(X+Y)^2\\
+        &= \mb{E}(X^2) + 2\mb{E}(XY) + \mb{E}(Y^2) - \Big(\mb{E}(X) + \mb{E}(Y)\Big)^2\\
+        &= \mb{E}(X^2) + 2\mb{E}(XY) + \mb{E}(Y^2) - \Big(\mb{E}(X)^2 + 2\mb{E}(X)\mb{E}(Y) + \mb{E}(Y)^2\Big)\\
+        &= \underbrace{\mb{E}(X^2) - \mb{E}(X)^2}_{=\mb{V}(X)} + \underbrace{\mb{E}(Y^2) - \mb{E}(Y)^2}_{=\mb{V}(Y)} + 2\underbrace{\Big(\mb{E}(XY) - \mb{E}(X)\mb{E}(Y)\Big)}_{=\mr{Cov}(X,Y)}\\
+    \end{align*}
+    Puis si $X$ et $Y$ sont indépendantes, $\mb{E}(XY) = \mb{E}(X)\mb{E}(Y)$ donc $\mr{Cov}(X,Y) = 0$. D'où les résultats.
+\end{demonstration}
+
+\section{Outils pour le calcul de lois de variables aléatoires}
+
+\subsection{fonction génératrice des moments}
+
+
+Inutile mais je pose ça là.
+\begin{definition}{}{moment d'une variable aléatoire}
+    Soit $X$ une variable aléatoire à valeurs dans $F$ sur $(\univ, \tribu, \proba)$. On dit que $X$ admet un \notion{moment d'ordre $n$} si $\norme{X^n}_F$ est sommable. Dans ce cas on note $\mb{E}(X^n)$ le moment d'ordre $n$ de $X$. En particulier~:
+    \begin{itemize}
+        \item être sommable revient à admettre un moment d'ordre 1
+        \item admettre une variance revient à admettre un moment d'ordre 2.
+    \end{itemize}    
+\end{definition}
+
+\begin{definition}{}{fonction génératrice pour une VARD}
+    Soit $X$ une variable aléatoire réelle discrète admettant des moments d'ordre $n$ pour tout $n \in \N$. On appelle \notion{fonction génératrice de $X$} la fonction~:
+    \fonction{G_X}{\R}{\R}{t}{\mb{E}\Big(X^t\Big)}
+    Ainsi car $X$ est discrète~:
+    $$G_X(t) = \sum_{x \in X(\omega)} \probaset{X=x} t^x$$
+\end{definition}
+
+\begin{exemple}{}{fonction génératrice d'une loi de Bernoulli}
+    Si $X$ suit une loi de Bernoulli de paramètre $p \in \seg{0}{1}$, alors~:
+    $$G_X(t) = (1-p) + pt$$
+\end{exemple}
+
+\begin{exemple}{}{fonction génératrice d'une loi binomiale}
+    Si $X$ suit une loi binomiale de paramètres $n \in \N^*$ et $p \in \seg{0}{1}$, alors~:
+    $$G_X(t) = (1-p + pt)^n$$
+\end{exemple}
+
+
+\section*{Questions de cours et remarques}
+
+\subsection*{Questions de cours}
 \begin{enumeratebf}
     \item lois discrètes usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
     \item lois de densité usuelles
     \item inégalité de Markov
+    \item inégalité de Bienaymé-Tchebychev
+    \item covariance de la somme de variables aléatoires (et sa démonstration)
 \end{enumeratebf}
 
-$$v_n = \left( 1 + \frac{2}{\sqrt{5}}\right)\varphi^n+ \left( 1 - \frac{2}{\sqrt{5}}\right) \phi^n - 2$$
+\subsection*{Remarques}
 
-\begin{cases*}
-    \varphi = \frac{1+\sqrt{5}}{2} & le nombre d'or\\
-    \phi = \frac{1-\sqrt{5}}{2} = 1 - \varphi = -\frac{1}{\varphi}
-\end{cases*}
-
-$$v_n = \begin{cases*}
-    0 &si $n=0$\\
-    1 &si $n=1$\\
-    v_{n-1} + v_{n-2} + 2 &si $n \geq 2$
-\end{cases*}$$
-
-$$x^n = \begin{cases*}
-    1 &si $n=0$\\
-    x^{\frac{n}{2}} \times x^{\frac{n}{2}} &si $n$ est pair\\
-    x^{\frac{n-1}{2}} \times x^{\frac{n-1}{2}} \times x &si $n$ est impair
-\end{cases*}$$
+\begin{itemize}
+    \item Les énoncés sont à énoncer rigoureusement, en toute connaissance des hypothèses associées.
+\end{itemize}
 
 \end{document}
