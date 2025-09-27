@@ -1,5 +1,4 @@
 \input{../../stock/en-tete_v5.tex}
-\usepackage{dsfont}
 
 \newcounter{chapitre}
 \setcounter{chapitre}{2}
@@ -14,7 +13,7 @@
 \newcommand{\tribu}[0]{\mathcal{T}}
 \newcommand{\univ}[0]{\Omega}
 \newcommand{\proba}[0]{\mathbb{P}}
-\newcommand{\probaset}[1]{\mathbb{P}\big(\{#1\}\big)}
+\newcommand{\probaset}[1]{\mathbb{P}\left(\left\{#1\right\}\right)}
 
 
 
@@ -391,7 +390,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 \end{demonstration}
 
 \begin{remarque}{}{importante ici}
-    Si $F \neq \R$ il n'y a qu'à considérer la variable aléatoire $\norme{X}_F$, bien à valeurs dans $\R_+$ et lui appliquer le résultat. Cette astuce est utile dans tous les énoncés suivants de la section.
+    Si $F \neq \R$ il n'y a qu'à considérer la variable aléatoire $\norme{X}_F$, bien à valeurs dans $\R_+$ et lui appliquer le résultat. Cette astuce est valable dans tous les énoncés de cette section.
 \end{remarque}
 
 \begin{proposition}{}{inégalité de Bienaymé-Tchebychev}
@@ -405,29 +404,32 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 \end{demonstration}
 
 
-\begin{proposition}{}{inégalité de Cauchy-Schwarz}
-    Soit $X$ et $Y$ deux variables aléatoires réelles sommables sur $(\univ, \tribu, \proba)$ telles que $XY$ est sommable. Alors~:
-    $$\vert \mb{E}(XY) \vert \leq \sqrt{\mb{E}(X^2)}\sqrt{\mb{E}(Y^2)}$$
-    
-\end{proposition}
+\begin{theoreme}{}{inégalité de Cauchy-Schwarz}
+    Soit $X$ et $Y$ deux variables aléatoires réelles sommables sur $(\univ, \tribu, \proba)$ telles que $X^2$ et $Y^2$ soient sommables. Alors~:
+    $$\vert \mb{E}(XY) \vert \leq \sqrt{\esperance{X^2} \esperance{Y^2}}$$
+\end{theoreme}
 
 \begin{remarque}{}{cas particulier}
-    Pour $X$ réelle positive quelconque et $Y = \overline{1}$~:
+    En appliquant le théorème pour $X$ réelle positive quelconque et $Y = \overline{1}$~:
     $$\mb{E}(X) \leq \sqrt{\mb{E}(X^2)}$$
 \end{remarque}
 
 \begin{demonstration}
     On considère pour tout $t \in \R$ la variable aléatoire~:
-    $$Z_t = X + tY$$
+    $$Z_t = (X + tY)^2 \geq \overline{0}$$
     qui est sommable par linéarité. Par croissance de l'espérance~:
-    $$0 \leq \mb{E}(Z_t^2) = \mb{E}(X^2) + 2t\mb{E}(XY) + t^2\mb{E}(Y^2)$$
+    $$0 \leq \mb{E}(Z_t) = \mb{E}(X^2) + 2t\mb{E}(XY) + t^2\mb{E}(Y^2)$$
     Le polynôme en $t$ de second degré $\mb{E}(Y^2)t^2 + 2\mb{E}(XY)t + \mb{E}(X^2)$ est donc à discriminant négatif ou nul~:
     $$4\mb{E}(XY)^2 - 4\mb{E}(Y^2)\mb{E}(X^2) \leq 0$$
-    En effet, si le discriminant était strictement positif, le polynôme s'annulerait en deux points distincts, et serait négatif entre ces deux points. Or on a positivité du polynôme pour tout $t$. \\\\Le résultat découle de cette dernière égalité.
+    En effet, si le discriminant était strictement positif, le polynôme s'annulerait en deux points distincts, et serait négatif entre ces deux points. Or on a positivité du polynôme pour tout $t$. \\\\Le résultat découle de cette dernière égalité~:
+    \begin{align*}
+        &\esperance{XY}^2 \leq \esperance{X^2} \esperance{Y^2}\\
+        \text{donc}\quad&\Big\vert\esperance{XY}\Big\vert \leq \sqrt{\esperance{X^2} \esperance{Y^2}}
+    \end{align*}
 \end{demonstration}
 
 \begin{remarque}{}{condition suffisante pour que $XY$ soit sommable}
-    Si $X$ et $Y$ sont deux variables aléatoires réelles sommables telles que $X^2$ et $Y^2$ sont sommables, alors $XY$ est sommable par inégalité de Young~:
+    L'inégalité de Cauchy-Schwarz indique clairement que si $X^2$ et $Y^2$ sont sommables, alors il en est de même pour $XY$. Une autre façon de le démontrer est l'inégalité de Young, qui porte directement sur les variables, et non plus sur les espérances~:
     $$\vert XY \vert \leq \frac{X^2}{2} + \frac{Y^2}{2}$$
     Cette dernière inégalité se démontre en sachant que $(X-Y)^2 \geq 0$.
 \end{remarque}
@@ -460,7 +462,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     $$\mr{Cov}(X,Y) = \mb{E}\Big(\big(X - \mb{E}(X)\big)\big(Y - \mb{E}(Y)\big)\Big)$$
     En développant, on trouve~:
     $$\mr{Cov}(X,Y) = \mb{E}(XY) - \mb{E}(X)\mb{E}(Y)$$
-    Le résultat est bien analogue à la formule de König-Huygens.
+    Le résultat est analogue à la formule de König-Huygens.
 \end{definition}
 
 \begin{proposition}{}{variance de la somme de deux variables aléatoires}
@@ -497,7 +499,7 @@ Inutile mais je pose ça là.
 
 \begin{definition}{}{fonction génératrice pour une VARD}
     Soit $X$ une variable aléatoire réelle discrète admettant des moments d'ordre $n$ pour tout $n \in \N$. On appelle \notion{fonction génératrice de $X$} la fonction~:
-    \fonction{G_X}{\R}{\R}{t}{\mb{E}\Big(X^t\Big)}
+    \fonction{G_X}{\R}{\R}{t}{\mb{E}\Big(t^X\Big)}
     Ainsi car $X$ est discrète~:
     $$G_X(t) = \sum_{x \in X(\omega)} \probaset{X=x} t^x$$
 \end{definition}
@@ -509,8 +511,99 @@ Inutile mais je pose ça là.
 
 \begin{exemple}{}{fonction génératrice d'une loi binomiale}
     Si $X$ suit une loi binomiale de paramètres $n \in \N^*$ et $p \in \seg{0}{1}$, alors~:
-    $$G_X(t) = (1-p + pt)^n$$
+    \begin{align*}
+        G_X(t) &= \sum_{k=0}^n \binom{n}{k} p^k (1-p)^{n-k} t^k \\
+        &= \sum_{k=0}^n \binom{n}{k} (pt)^k (1-p)^{n-k} \\
+        &= (1-p + pt)^n \qquad &\text{formule du binôme de Newton}
+    \end{align*}
 \end{exemple}
+
+\begin{proposition}{}{fonction génératrice d'une somme de VARD indépendantes}
+    Soit $X$ et $Y$ des variables aléatoires réelles discrètes indépendantes de fonctions génératrices $G_X$ et $G_Y$ respectivement. Alors la fonction génératrice de $X + Y$ est ~:
+    $$G_{X+Y} = G_X \times G_Y$$
+    
+\end{proposition}
+
+\begin{exemple}{}{loi binomiale}
+    Soit $X_1,\, \dots,\, X_n$ des variables aléatoires indépendantes et identiquement distribuées (IID) suivant une loi de Bernoulli de paramètre $p \in \seg{0}{1}$. Alors la fonction génératrice de $Y = \sum_{i=1}^n X_i$ est~:
+    \begin{align*}
+        G_Y(t) &= \prod_{i=1}^n G_{X_i}(t) \qquad &\text{par indépendance}\\
+        &= \Big((1-p) + pt\Big)^n \qquad &\text{car les } X_i \text{ suivent une loi de Bernoulli de même paramètre}\\
+    \end{align*}
+    On retrouve bien le résultat.
+\end{exemple}
+
+\begin{exemple}{}{fonction génératrice d'une loi de Poisson}
+    Si $X$ suit une loi de Poisson de paramètre $\lambda > 0$, alors~:
+    \begin{align*}
+        G_X(t) &= \sum_{k=0}^{+\infty} \frac{\lambda^k}{k!}e^{-\lambda} t^k \\
+        &= e^{-\lambda} \sum_{k=0}^{+\infty} \frac{(\lambda t)^k}{k!} \\
+        &= e^{-\lambda} e^{\lambda t} \qquad &\text{série exponentielle}\\
+        &= e^{\lambda(t-1)}
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}{}{fonction génératrice d'une loi géométrique}
+    Si $X$ suit une loi géométrique de paramètre $p \in ]0; 1[$, alors~:
+    \begin{align*}
+        G_X(t) &= \sum_{k=1}^{+\infty} p(1-p)^{k-1} t^k \\
+        &= pt \sum_{k=0}^{+\infty} \Big((1-p)t\Big)^k \\
+        &= \frac{pt}{1-(1-p)t} \qquad &\text{série géométrique}\\
+    \end{align*}
+    On pourra retenir, en notant $q = 1-p$~:
+    $$G_X(t) = \frac{pt}{1-qt}$$
+    
+\end{exemple}
+
+\begin{exemple}{}{}
+    On considère $(X_i)_{i \in \N^*}$ une suite de variables aléatoires IID suivant une loi de géométrique de paramètre $p \in \seg{0}{1}$. On note $N$ une variable aléatoire indépendante des $X_i$, à valeurs dans $\N$. On pose alors~:
+    $$S : \omega \mapsto \begin{cases*}
+    0 & si $N(\omega) = 0$\\
+    \displaystyle \sum_{i=1}^{N(\omega)} X_i(\omega) & sinon
+    \end{cases*}$$
+    Déterminons la fonction génératrice de $S$ en fonction de celle de $N$. Deux démonstrations sont proposées ici.
+\end{exemple}
+
+\begin{demonstration}
+    Première démonstration proposée par M. DUFOUR, en manipulant les espérances. Par définition~:
+    \begin{align*}
+        G_S(t) &= \mb{E}(t^S)\\
+        &=\mb{E}(\indicatrice_\univ t^S)\\
+        &= \esperance{\indicatrice_{\bigsqcup_{n=0}^{+\infty} \{N=n\}} t^S} \qquad &\text{utilisation implicite de la FPT}\\
+        &= \esperance{\sum_{n=0}^{+\infty} \indicatrice_{\{N=n\}} t^S}\\
+        &= \sum_{n=0}^{+\infty} \esperance{\indicatrice_{\{N=n\}} t^S} \qquad &\text{linéarité de l'espérance}\\
+        &= \sum_{n=1}^{+\infty} \esperance{\indicatrice_{\{N=n\}} t^{\sum_{i=1}^N X_i}} + \esperance{\indicatrice_{\{N = 0\}}t^0} \qquad &\text{définition de } S\\
+        &= \sum_{n=1}^{+\infty} \esperance{\indicatrice_{\{N=n\}} t^{\sum_{i=1}^n X_i}} + \esperance{\indicatrice_{\{N = 0\}}t^0} \qquad &\text{dans le contexte de la somme, } N=n\\
+        &= \sum_{n=1}^{+\infty} \esperance{\indicatrice_{\{N=n\}}} \esperance{  t^{\sum_{i=1}^n X_i}} + \esperance{\indicatrice_{\{N = 0\}}} \qquad &\text{indépendance de } N \text{ avec les } X_i\\
+        &= \sum_{n=1}^{+\infty} \probaset{N=n} G_{X_1 + \dots + X_n}(t) + \probaset{N=0} \qquad &\text{esp. de } \indicatrice \text{ et déf. fonction génératrice}\\
+        &= \sum_{n=1}^{+\infty} \probaset{N=n} G_{X_1}(t)^n + \probaset{N=0} \qquad &\text{car les } X_i \text{ sont IID}\\
+        &= \sum_{n=0}^{+\infty} \probaset{N=n} G_{X_1}(t)^n \qquad &\text{en rajoutant le terme } n=0\\
+        &= G_N\Big(G_{X_1}(t)\Big) \qquad &\text{définition de la fonction génératrice}
+    \end{align*}
+\end{demonstration}
+
+\begin{demonstration}
+    Proposition alternative, en manipulant les probabilités. On a $S(\univ) = \N$. Puis par définition~:
+    $$G_S(t) = \sum_{n=0}^{+\infty} \proba(S=n)t^n$$
+    Pour $n \in \N$, calculons donc $\probaset{S=n}$. On a par formule des probabilités totales appliquée au système complet d'évènements $\Big( \{N = k\}\Big)_{k \in \N}$~:
+    \begin{align*}
+        \probaset{S=n} &= \sum_{k=0}^{+ \infty}\proba\Big(\{S = n\} \cap \{N = k\}\Big) \qquad\\
+        &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^N X_i = n\right\} \cap \{N = k\}\right)\\
+        &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^k X_i = n\right\} \cap \{N = k\}\right)\qquad &\text{car dans la probabilité, } N = n\\
+        &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^k X_i = n\right\}\right) \proba\left(\{N = k\}\right) \qquad &\text{indépendance de } N \text{ avec les } X_i
+    \end{align*}
+    Ensuite, écrivons~:
+    \begin{align*}
+        G_S(t) &= \sum_{n=0}^{+ \infty} \Bigg( \sum_{k=0}^{+ \infty}\proba\bigg(\bigg\{\sum_{i=1}^k X_i = n\bigg\}\bigg) \probaset{N = k} \Bigg)t^n\\
+        &= \sum_{k=0}^{+\infty} \probaset{N=k} \sum_{n=0}^{+\infty} \proba \bigg( \bigg\{ \sum_{i=1}^k X_i = n \bigg\}\bigg) t^n \qquad &\text{théorème de Fubini positif}\\
+        &= \sum_{k=0}^{+\infty} \probaset{N = k} G_{\sum_{i = 1}^k X_i} (t)\\
+        &= \sum_{k=0}^{+\infty} \probaset{N = k} \prod_{i = 1}^k G_{X_i}(t) \qquad & \text{indépendance des } X_i\\
+        &= \sum_{k=0}^{+\infty} \probaset{N=k} G_{X_1}(t)^k \qquad &\text{les } X_i \text{ sont identiquement distribuées}\\
+        &= G_N\Big(G_{X_1}(t)\B ig)
+    \end{align*}
+    On retrouve bien le résultat, via un point de vue probabiliste.
+
+\end{demonstration}
 
 
 \section*{Questions de cours et remarques}
