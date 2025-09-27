@@ -1,0 +1,30 @@
+\input{stock/en-tete_v5.tex}
+
+\newcounter{chapitre}
+\setcounter{chapitre}{0}
+
+\title{\Large Chapitre 0 \newline \Huge titre}
+
+\begin{document}
+\input{stock/commands.tex}
+\maketitle
+
+On note $u_n$ le nombre d’appels engendrés par un appel \code{puissance(x, n)}, sans tenir compte de cet appel lui-même. On rappelle l’algorithme décrit dans l’énoncé~:
+
+\begin{lstLNat}
+    fonction puissance(x : TYPE, n : entier long) TYPE
+    debut
+        si estNul(n) alors 
+            retourner elementNeutre()
+        sinon si estpair(n) alors
+            retourner carre(puissance(x,n>>1))
+        sinon
+            retourner produit(x , carre(puissance(x,n>>1)))
+    fin
+\end{lstLNat}
+
+
+Étant donné un tel algorithme, on a :
+
+
+\end{document}
