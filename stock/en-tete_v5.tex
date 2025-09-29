@@ -1,10 +1,12 @@
 \documentclass{article}
+\usepackage[french]{babel}   % <-- gère la langue
+\usepackage[utf8]{inputenc}  % si pas déjà inclus
+\usepackage[T1]{fontenc}
 \usepackage{titling} % Personnalisation du titre
 \usepackage[left=20mm, right=20mm]{geometry}
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{esint} % intégrale avec un round
 \usepackage{xcolor}
-\usepackage[utf8]{inputenc}
 \usepackage{listings}
 \usepackage{enumitem}
 \usepackage{multicol}
@@ -565,4 +567,30 @@
 }
 {
     \end{boite_corollaire}
+}
+
+
+\newenvironment{lemme}[2]
+{
+    \vspace{15pt}
+    \begin{boite_theoreme}
+    \if\relax\detokenize{#1}\relax
+        \textbf{\textcolor{rouge}{Lemme \arabic{chapitre}.\arabic{boite}}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+        \stepcounter{boite}
+    \else
+        \textbf{\textcolor{rouge}{Lemme #1}}%
+        \if\relax\detokenize{#2}\relax
+        \else
+            \textit{ - #2}
+        \fi
+    \fi \\
+    
+    
+}
+{
+    \end{boite_theoreme}
 }

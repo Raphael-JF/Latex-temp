@@ -6,7 +6,7 @@
 \title{\Large Chapitre 2 \\ \Huge Vecteurs aléatoires}
 
 \begin{document}
-\input{../../stock/commands.tex}
+\input{../../../stock/commands.tex}
 \maketitle
 
 
@@ -555,7 +555,7 @@ Inutile mais je pose ça là.
     
 \end{exemple}
 
-\begin{exemple}{}{}
+\begin{exemple}{}{composition de lois géométriques}
     On considère $(X_i)_{i \in \N^*}$ une suite de variables aléatoires IID suivant une loi de géométrique de paramètre $p \in \seg{0}{1}$. On note $N$ une variable aléatoire indépendante des $X_i$, à valeurs dans $\N$. On pose alors~:
     $$S : \omega \mapsto \begin{cases*}
     0 & si $N(\omega) = 0$\\
@@ -589,7 +589,7 @@ Inutile mais je pose ça là.
     \begin{align*}
         \probaset{S=n} &= \sum_{k=0}^{+ \infty}\proba\Big(\{S = n\} \cap \{N = k\}\Big) \qquad\\
         &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^N X_i = n\right\} \cap \{N = k\}\right)\\
-        &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^k X_i = n\right\} \cap \{N = k\}\right)\qquad &\text{car dans la probabilité, } N = n\\
+        &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^k X_i = n\right\} \cap \{N = k\}\right)\qquad &\text{car dans la probabilité, } N = k\\
         &= \sum_{k=0}^{+ \infty}\proba\left(\left\{\sum_{i=1}^k X_i = n\right\}\right) \proba\left(\{N = k\}\right) \qquad &\text{indépendance de } N \text{ avec les } X_i
     \end{align*}
     Ensuite, écrivons~:
@@ -599,12 +599,70 @@ Inutile mais je pose ça là.
         &= \sum_{k=0}^{+\infty} \probaset{N = k} G_{\sum_{i = 1}^k X_i} (t)\\
         &= \sum_{k=0}^{+\infty} \probaset{N = k} \prod_{i = 1}^k G_{X_i}(t) \qquad & \text{indépendance des } X_i\\
         &= \sum_{k=0}^{+\infty} \probaset{N=k} G_{X_1}(t)^k \qquad &\text{les } X_i \text{ sont identiquement distribuées}\\
-        &= G_N\Big(G_{X_1}(t)\B ig)
+        &= G_N\Big(G_{X_1}(t)\Big)
     \end{align*}
     On retrouve bien le résultat, via un point de vue probabiliste.
 
 \end{demonstration}
 
+\addtocounter{boite}{-1}
+
+\begin{exemple}{}{suite}
+    Si on admet que $N$ suit une loi géométrique de paramètre $p \in \seg{0}{1}$, et que les $X_i$ suivent une loi géométrique de paramètre $q \in \seg{0}{1}$, alors on a~:
+    \begin{align*}
+        G_S(t) = G_N\Big(G_{X_1}(t)\Big) &= G_N\left(\frac{qt}{1-(1-q)t}\right) \qquad &\text{fonction génératrice d'une loi géométrique}\\
+        &= \frac{p\frac{qt}{1-(1-q)t}}{1-(1-p)\frac{qt}{1-(1-q)t}} \qquad &\text{fonction génératrice d'une loi géométrique}\\
+        &= \frac{pqt}{1-(1-q)t - (1-p)qt}\\
+        &= \frac{pqt}{1 - t + qt - qt + pqt}\\
+        &= \frac{pqt}{1 - t + pqt}\\
+        &= \frac{pqt}{1 - t(1-pq)}
+    \end{align*}
+    On reconnaît la fonction génératrice d'une loi géométrique de paramètre $pq$. Ainsi, $S$ suit une loi géométrique de paramètre $pq$.
+\end{exemple}
+
+
+\subsection{Formule de changement de variable}
+
+On introduit dans ce cours à quelques outils qui permettront de démontrer le résultat le plus important de cette section, à savoir la formule de changement de variable pour les densités de probabilité.
+\begin{definition}{}{$\mc{C}^1$-difféomorphisme}
+    Soit $U$ un ouvert de $\R^n$. Une application $\varphi : U \to \varphi(U)$ est un \notion{$\mc{C}^1$-difféomorphisme} si~:
+    \begin{itemize}
+        \item $\varphi$ est bijective
+        \item $\varphi$ et $\varphi^{-1}$ sont de classe $\mc{C}^1$
+    \end{itemize}
+\end{definition}
+
+\begin{theoreme}{}{changement de variable intégral}
+    Soit $U$ un ouvert de $\R^n$ et $\varphi : U \to \varphi(U)$ un $\mc{C}^1$-difféomorphisme.
+   Soit $f : \varphi(U) \to \R$ continue par morceaux et intégrable. Alors~:
+   $$\int_{\varphi(U)} f(x)\d{x} = \int_U f\Big(\varphi(x)\Big) \Bigg\vert \det\Big(J_\varphi(x)\Big)\Bigg\vert \d{x}$$
+\end{theoreme}
+
+\begin{theoreme}{}{changement de variable et densité de probabilités}
+    Soit $U$ un ouvert de $\R^n$ et $\varphi : U \to \varphi(U)$ un $\mc{C}^1$-difféomorphisme.
+   Soit $X$ une variable aléatoire à valeurs dans $U$ et à densité $p_X$. Alors la variable aléatoire $Y = \varphi(X)$ à valeurs dans $\varphi(U)$ est à densité $p_Y$ vérifiant~:
+   $$\forall y \in \varphi(U),\,  p_Y(y) = p_X\Big(\varphi^{-1}(y)\Big) \Bigg\vert \det\Big(J_{\varphi^{-1}}(y)\Big)\Bigg\vert$$
+\end{theoreme}
+
+\begin{demonstration}
+    Il convient de récapituler les ensembles de départ et d'arrivée de chaque variable aléatoire~:
+    \begin{itemize}
+        \item $X : \univ \to U$
+        \item $Y : \univ \to \varphi(U)$
+    \end{itemize}
+    Comme dans la démonstration de la formule des lois marginales pour les variables aléatoires à densité, on montre que~:
+    $$\forall A \subset \varphi(U),\,  \probaset{Y \in A} = \int_A p_Y(t) \d{t}$$
+    où $p_Y$ est la fonction (on doit le montrer)~:
+    \fonction{p_Y}{\varphi(U)}{\R_+}{y}{p_X\Big(\varphi^{-1}(y)\Big) \Bigg\vert \det\Big(J_{\varphi^{-1}}(y)\Big)\Bigg\vert}
+    Soit donc $A \subset \varphi(U)$. On a~:
+    \begin{align*}
+        \probaset{Y \in A} &= \probaset{\varphi(X) \in A}\\
+        &= \probaset{X \in \varphi^{-1}(A)}\\
+        &= \int_{\varphi^{-1}(A)} p_X(x) \d{x} \qquad &\text{car } X \text{ est à densité } p_X\\
+        &= \int_A p_X\Big(\varphi^{-1}(y)\Big) \Bigg\vert \det\Big(J_{\varphi^{-1}}(y)\Big)\Bigg\vert \d{y} \qquad &\text{changement de variable intégral avec } \varphi^{-1}\\
+    \end{align*}
+    On a bien le résultat par identification.
+\end{demonstration}
 
 \section*{Questions de cours et remarques}
 
@@ -612,9 +670,10 @@ Inutile mais je pose ça là.
 \begin{enumeratebf}
     \item lois discrètes usuelles (de Bernoulli, binomiale, géométrique, de Poisson)
     \item lois de densité usuelles
-    \item inégalité de Markov
-    \item inégalité de Bienaymé-Tchebychev
+    \item inégalité de Markov (et sa démonstration)
+    \item inégalité de Bienaymé-Tchebychev (et sa démonstration)
     \item covariance de la somme de variables aléatoires (et sa démonstration)
+    \item exemple de la fonction générératrice d'une composition de lois géométriques
 \end{enumeratebf}
 
 \subsection*{Remarques}
