@@ -1,22 +1,57 @@
-\input{../../../stock/en-tete_v5.tex}
-\clearpage
-\newcounter{chapitre}
-\setcounter{chapitre}{X}
+\documentclass[12pt]{article}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2cm,right=2cm]{geometry}
 
-% -------- Infos du document --------
-\title{\Large Chapitre \thechapitre \\[1ex] \Huge Titre du chapitre}
-\author{Notes rédigées par Raphaël \\[0.5ex] Cours donné par Y}
-\date{\today}
+% Packages de base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel} % date et titres en français
+\usepackage{lipsum}        % texte d'exemple
+\usepackage{fancyhdr}      % pour personnaliser en-têtes et pieds
+
+% Réglages fancyhdr
+\pagestyle{fancy}
+\fancyhf{} % vide tout
+\newcommand{\titrechapitre}{Algèbre linéaire}
+\newcommand{\numerochapitre}{X}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF} 
+\fancyfoot[C]{\thepage} 
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
 
 \begin{document}
-\input{../../../stock/commands.tex}
+% Page de titre custom
+\begin{titlepage}
+  \centering
+  \vspace*{3cm}
+  {\Huge\bfseries Chapitre \numerochapitre \\[1ex] \titrechapitre\par}
+  \vspace{2cm}
+  {\Large Notes rédigées par Raphaël JONTEF\par}
+  {\Large Cours enseigné par François DUFOUR\par}
+  \vspace{4cm}
+  {\Big Enseirb-Matmeca\par}
+  {\Big filière informatique\par}
 
-\maketitle
+  \vfill
+  {\large \today\par}
+\end{titlepage}
 
-% -------- Table des matières --------
-\tableofcontents
+\tableofcontents % plan du cours
 \newpage
 
+% -----------Corps du document--------------
 
+\section{Introduction}
+\lipsum[1]
+
+\section{Deuxième partie}
+\lipsum[2]
+
+\section{Troisième partie}
+\lipsum[3] \lipsum[4]
 
 \end{document}
