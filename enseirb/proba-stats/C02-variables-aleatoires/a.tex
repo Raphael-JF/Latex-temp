@@ -1,16 +1,5 @@
-\documentclass[12pt]{article}
-\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2cm,right=2cm]{geometry}
+\input{../../../stock/en-tete_v6.tex}
 
-% Packages de base
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[french]{babel} % date et titres en français
-\usepackage{lipsum}        % texte d'exemple
-\usepackage{fancyhdr}      % pour personnaliser en-têtes et pieds
-
-% Réglages fancyhdr
-\pagestyle{fancy}
-\fancyhf{} % vide tout
 \newcommand{\titrechapitre}{Algèbre linéaire}
 \newcommand{\numerochapitre}{X}
 
@@ -24,34 +13,101 @@
 
 
 \begin{document}
-% Page de titre custom
-\begin{titlepage}
-  \centering
-  \vspace*{3cm}
-  {\Huge\bfseries Chapitre \numerochapitre \\[1ex] \titrechapitre\par}
-  \vspace{2cm}
-  {\Large Notes rédigées par Raphaël JONTEF\par}
-  {\Large Cours enseigné par François DUFOUR\par}
-  \vspace{4cm}
-  {\Big Enseirb-Matmeca\par}
-  {\Big filière informatique\par}
+\input{../../../stock/commands.tex}
 
-  \vfill
-  {\large \today\par}
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par} 
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par François DUFOUR\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
 \end{titlepage}
 
-\tableofcontents % plan du cours
+% plan du cours
+\tableofcontents 
 \newpage
 
+\newcommand{\tribu}[0]{\mathcal{T}}
+\newcommand{\univ}[0]{\Omega}
+\newcommand{\proba}[0]{\mathbb{P}}
+\newcommand{\probaset}[1]{\mathbb{P}\left(\left\{#1\right\}\right)}
+
 % -----------Corps du document--------------
-
 \section{Introduction}
-\lipsum[1]
+\begin{definition}{}{variable aléatoire}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. On appelle \notion{vecteur aléatoire} sur $\univ$ une application de $\univ$ dans $\R^n$.
+    Pour $n=1$, on parle de \notion{variable aléatoire réelle}.
+\end{definition}
 
-\section{Deuxième partie}
-\lipsum[2]
+\begin{remarque}{}{notation associée}
+    Pour $A \in \R^n$, on notera $\{X \in A\}$ l'évènement~:
+    $$\{\omega \in \univ,\, X(\omega) \in A\}$$
+\end{remarque}
 
-\section{Troisième partie}
-\lipsum[3] \lipsum[4]
+\begin{definition}{}{vecteur aléatoire discret}
+    Soit $(\univ, \tribu, \proba)$ un espace de probabilité. Un vecteur aléatoire $X$ sur $\Omega$ est dit \notion{discret} s'il existe $F \subset \R^n$ au plus dénombrable tel que~:
+    $$\proba\Bigl(\{X \in F\}\Bigr) = 1$$
+    
+\end{definition}
 
+
+Nous émettrons dans le cadre du cours l'hypothèse suivante.
+\begin{remarque}{}{en lien avec la définition}
+    Si $X$ est un vecteur aléatoire sur $(\univ, \tribu, \proba)$, pour tout ouvert $A$ de $\R^n$~:
+    $$\{\omega \in \univ,\, X(\omega) \in A\} = \{X \in A\} \in \tribu$$
+\end{remarque}
+
+\begin{definition}{}{vecteur aléatoire à densité}
+    $X$ est un vecteur aléatoire définie sur $(\univ,\, \tribu,\, \proba)$ à valeurs dans $F$ s'il il existe $p : F \to \R_+$ qui vérifie pour tout $A$ ouvert de $F$~:
+    $$\proba\Big(\{X \in A\}\Big) = \int_A p(x)\d{x}$$
+\end{definition}
+
+\begin{remarque}{}{à ce propos}
+    Pour $A = F$,\, la probabilité précédemment évoquée vaut~:
+    $$\probaset{X \in F} = 1$$
+\end{remarque}
+\section{Lois usuelles}
+
+\begin{definition}{}{loi d'une variable aléatoire}
+    La loi d'une variable aléatoire discrète $X$ à valeurs dans $F$ (\ie $\proba\Big(\{X \in F\}\Big)=1$) est entièrement définie par la famille de réels positifs~:
+    $$\Bigg(\probaset{X = x}\Bigg)_{x \in F}$$
+    de somme 1.
+\end{definition}
+
+\begin{exemple}{}{loi de Bernoulli}
+    Pour une loi de Bernoulli~:
+    \begin{itemize}
+        \item $\displaystyle F = \{0, 1\}$
+        \item $\displaystyle \probaset{X = 1} = p$ et $\probaset{X = 0} = 1-p$
+    \end{itemize}
+    Une telle variable aléatoire mesure la probabilité de succès d'une épreuve de Bernoulli (succès de probabilité $p$, échec de probabilité $1-p$).
+\end{exemple}
+
+\begin{exemple}{}{loi binomiale}
+    Pour une loi binomiale~:
+    \begin{itemize}
+        \item $\displaystyle F = \intint{0}{n}$ où $n \in \N^*$
+        \item $\displaystyle \forall k \in \intint{0}{n},\, \probaset{X = k} = \binom{n}{k}p^k(1-p)^{n-k}$
+    \end{itemize}
+    Une telle variable aléatoire mesure le nombre de succès au terme de la répétition indépendante de $n$ épreuves de Bernoulli du même paramètre $p$.
+\end{exemple}
+
+\begin{exemple}{}{loi géométrique}
+    Pour une loi géométrique~:
+    \begin{itemize}
+        \item $\displaystyle F = \N^*$.
+        \item $\displaystyle \forall k \in \N^*,\, \probaset{X = k} = p (1-p)^{k-1}$
+    \end{itemize}
+    En numérotant à partir de 1 une suite d'épreuves de Bernoulli répétées indépendamment et indéfiniment, une telle variable aléatoire mesure l'indice du premier succès. 
+\end{exemple}
 \end{document}
