@@ -1,0 +1,16 @@
+\babel@toc {french}{}\relax 
+\contentsline {section}{\numberline {I}Introduction}{2}{}%
+\contentsline {section}{\numberline {II}Lois usuelles}{3}{}%
+\contentsline {section}{\numberline {III}Lois marginales}{4}{}%
+\contentsline {section}{\numberline {IV}Variables aléatoires à densité}{5}{}%
+\contentsline {section}{\numberline {V}Espérance d'une variable aléatoire}{7}{}%
+\contentsline {subsection}{\numberline {V.1}Variable aléatoire discrète}{7}{}%
+\contentsline {subsection}{\numberline {V.2}variable aléatoire à densité}{7}{}%
+\contentsline {subsection}{\numberline {V.3}exemples}{8}{}%
+\contentsline {section}{\numberline {VI}Indépendance de variables aléatoires}{13}{}%
+\contentsline {section}{\numberline {VII}Propriétés de l'espérance}{14}{}%
+\contentsline {subsection}{\numberline {VII.1}Des inégalités}{14}{}%
+\contentsline {section}{\numberline {VIII}Variance et covariance}{17}{}%
+\contentsline {section}{\numberline {IX}Outils pour le calcul de lois de variables aléatoires}{19}{}%
+\contentsline {subsection}{\numberline {IX.1}fonction génératrice des moments}{19}{}%
+\contentsline {subsection}{\numberline {IX.2}Formule de changement de variable}{24}{}%

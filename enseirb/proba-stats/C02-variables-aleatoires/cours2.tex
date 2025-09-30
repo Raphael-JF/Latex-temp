@@ -1,21 +1,46 @@
-\input{../../../stock/en-tete_v5.tex}
+\input{../../../stock/en-tete_v6.tex}
 
-\newcounter{chapitre}
-\setcounter{chapitre}{2}
+\newcommand{\titrechapitre}{Variables aléatoires}
+\newcommand{\numerochapitre}{2}
 
-\title{\Large Chapitre 2 \\ \Huge Vecteurs aléatoires}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
 
 \begin{document}
 \input{../../../stock/commands.tex}
-\maketitle
 
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par François DUFOUR\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+    \tableofcontents
+\newpage
 
 \newcommand{\tribu}[0]{\mathcal{T}}
 \newcommand{\univ}[0]{\Omega}
 \newcommand{\proba}[0]{\mathbb{P}}
 \newcommand{\probaset}[1]{\mathbb{P}\left(\left\{#1\right\}\right)}
-
-
+% -----------Corps du document--------------
 
 \section{Introduction}
 \begin{definition}{}{variable aléatoire}
