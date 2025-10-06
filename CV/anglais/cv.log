@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  17 SEP 2025 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  6 OCT 2025 15:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -606,56 +606,37 @@ Package: babel 2024/02/07 v24.2 The Babel package
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read3
 \bbl@dirlevel=\count304
-(c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel-french/french.ldf
-Language: french 2024-02-29 v3.5s French support from the babel system
-Package babel Info: Hyphen rules for 'acadian' set to \l@french
-(babel)             (\language31). Reported on input line 91.
-Package babel Info: Hyphen rules for 'canadien' set to \l@french
-(babel)             (\language31). Reported on input line 92.
-\FB@stdchar=\count305
-Package babel Info: Making : an active character on input line 420.
-Package babel Info: Making ; an active character on input line 421.
-Package babel Info: Making ! an active character on input line 422.
-Package babel Info: Making ? an active character on input line 423.
-\FBguill@level=\count306
-\FBold@everypar=\toks38
-\FB@Mht=\dimen264
-\mc@charclass=\count307
-\mc@charfam=\count308
-\mc@charslot=\count309
-\std@mcc=\count310
-\dec@mcc=\count311
-\FB@parskip=\dimen265
-\listindentFB=\dimen266
-\descindentFB=\dimen267
-\labelindentFB=\dimen268
-\labelwidthFB=\dimen269
-\leftmarginFB=\dimen270
-\parindentFFN=\dimen271
-\FBfnindent=\dimen272
+
+(c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language23). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language23). Reported on input line 108.
 ))
-(c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel/locale/fr/babel-fre
-nch.tex
-Package babel Info: Importing font and identification data for french
-(babel)             from babel-fr.ini. Reported on input line 11.
-) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/carlisle/scalefnt.sty) (c
-:/Program Files/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+(c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel/locale/en/babel-eng
+lish.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
+) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count312
-\Gm@cntv=\count313
-\c@Gm@tempcnt=\count314
-\Gm@bindingoffset=\dimen273
-\Gm@wd@mp=\dimen274
-\Gm@odd@mp=\dimen275
-\Gm@even@mp=\dimen276
-\Gm@layoutwidth=\dimen277
-\Gm@layoutheight=\dimen278
-\Gm@layouthoffset=\dimen279
-\Gm@layoutvoffset=\dimen280
-\Gm@dimlist=\toks39
+\Gm@cnth=\count305
+\Gm@cntv=\count306
+\c@Gm@tempcnt=\count307
+\Gm@bindingoffset=\dimen264
+\Gm@wd@mp=\dimen265
+\Gm@odd@mp=\dimen266
+\Gm@even@mp=\dimen267
+\Gm@layoutwidth=\dimen268
+\Gm@layoutheight=\dimen269
+\Gm@layouthoffset=\dimen270
+\Gm@layoutvoffset=\dimen271
+\Gm@dimlist=\toks38
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
 
@@ -687,11 +668,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count315
+\c@section@level=\count308
 )
-\@linkdim=\dimen281
-\Hy@linkcounter=\count316
-\Hy@pagecounter=\count317
+\@linkdim=\dimen272
+\Hy@linkcounter=\count309
+\Hy@pagecounter=\count310
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -699,7 +680,7 @@ Now handling font encoding PD1 ...
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count318
+\Hy@SavedSpaceFactor=\count311
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -713,9 +694,9 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count319
+\c@Hy@tempcnt=\count312
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen282
+\XeTeXLinkMargin=\dimen273
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -723,9 +704,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count320
-\Field@Width=\dimen283
-\Fld@charsize=\dimen284
+\Fld@menulength=\count313
+\Field@Width=\dimen274
+\Fld@charsize=\dimen275
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -737,9 +718,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count321
-\c@Item=\count322
-\c@Hfootnote=\count323
+\Hy@abspage=\count314
+\c@Item=\count315
+\c@Hfootnote=\count316
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -749,8 +730,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count324
-\c@bookmark@seq@number=\count325
+\Fld@listcount=\count317
+\c@bookmark@seq@number=\count318
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfileche
 ck.sty
@@ -794,17 +775,17 @@ LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count326
-\scratchdimen=\dimen285
+\scratchcounter=\count319
+\scratchdimen=\dimen276
 \scratchbox=\box71
-\nofMPsegments=\count327
-\nofMParguments=\count328
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count329
-\MPscratchDim=\dimen286
-\MPnumerator=\count330
-\makeMPintoPDFobject=\count331
-\everyMPtoPDFconversion=\toks41
+\nofMPsegments=\count320
+\nofMParguments=\count321
+\everyMPshowfont=\toks39
+\MPscratchCnt=\count322
+\MPscratchDim=\dimen277
+\MPnumerator=\count323
+\makeMPintoPDFobject=\count324
+\everyMPtoPDFconversion=\toks40
 )
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.
 sty
@@ -837,14 +818,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Info: Redefining \degres on input line 15.
-Package french.ldf Info: Setting StandardItemizeEnv=true for
-(french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 15.
-Package french.ldf Info: Setting StandardEnumerateEnv=true for
-(french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 15.
-LaTeX Info: Redefining \up on input line 15.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -939,19 +912,11 @@ LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 24.
+(Font)              using `T1/cmss/bx/n' instead on input line 25.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 24.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 26.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 26.
+(Font)              using `T1/cmss/bx/n' instead on input line 25.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
@@ -959,10 +924,18 @@ LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
 
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 29.
+(Font)              using `T1/cmss/bx/n' instead on input line 28.
 
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
-9.
+
+LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
+(Font)              using `T1/cmss/bx/n' instead on input line 31.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
+(Font)              using `T1/cmss/bx/n' instead on input line 32.
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
+2.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -972,22 +945,22 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 30.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 31.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
 (Font)              using `T1/cmss/bx/n' instead on input line 33.
 
 
+LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
+(Font)              using `T1/cmss/bx/n' instead on input line 34.
+
+
+LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
+(Font)              using `T1/cmss/bx/n' instead on input line 36.
+
+
 LaTeX Font Warning: Font shape `T1/cmss/sb/n' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 61.
+(Font)              using `T1/cmss/m/n' instead on input line 64.
 
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-61.
+64.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -1012,16 +985,16 @@ L3 programming layer <2024-02-20>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `cv.out' has not changed.
-(rerunfilecheck)             Checksum: AAAB375EAD5262280B0860B376C615F7;429.
+(rerunfilecheck)             Checksum: FC1642450970AB8D64CCABAD863592D9;403.
  ) 
 Here is how much of TeX's memory you used:
- 28316 strings out of 474115
- 542376 string characters out of 5740620
- 1947190 words of memory out of 5000000
- 50149 multiletter control sequences out of 15000+600000
- 583852 words of font info for 98 fonts, out of 8000000 for 9000
+ 27557 strings out of 474115
+ 530494 string characters out of 5740620
+ 1948190 words of memory out of 5000000
+ 49392 multiletter control sequences out of 15000+600000
+ 583929 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 129i,13n,129p,999b,479s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 129i,13n,129p,999b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/fontawesome5/Fon
 tAwesome5Free-Regular.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1
 /public/fontawesome5/FontAwesome5Free-Solid.pfb><c:/Program Files/texlive/2024/
@@ -1037,7 +1010,7 @@ gram Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb><c:
 ><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx2488
 .pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt
 1095.pfb>
-Output written on cv.pdf (1 page, 235925 bytes).
+Output written on cv.pdf (1 page, 246416 bytes).
 PDF statistics:
  108 PDF objects out of 1000 (max. 8388607)
  77 compressed objects within 1 object stream
