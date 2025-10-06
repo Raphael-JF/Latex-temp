@@ -689,6 +689,92 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
     On a bien le résultat par identification.
 \end{demonstration}
 
+\begin{exemple}{}{application de la formule de changement de variable}
+    Soient $X$ et $Y$ deux variables aléatoires réelles de densités respectives $p_X$ et $p_Y$~:
+    On veut calculer la densité de la variable aléatoire $Z = X + Y$.
+    On poserait naïvement~:
+    \fonction{\varphi_\mr{guez}}{\R^2}{\R}{(x,y)}{x+y}
+    de telle sorte que $Z = \varphi_\mr{guez}(X,Y)$. Cependant, $\varphi_\mr{guez}$ n'est pas un difféomorphisme car non bijective. On pose donc~:
+    \fonction{\varphi}{\R^2}{\R^2}{(x,y)}{(x+y,y)}
+    Ainsi $Z$ est la première coordonnée du vecteur $\varphi(X,Y)$. Puis on a bien un difféomorphisme, de réciproque~:
+    \fonction{\varphi^{-1}}{\R^2}{\R^2}{(x,y)}{(x-y,y)}
+    et de jacobienne en $(u,v) \in \R^2$~:
+    \begin{align*}
+        J_{\varphi^{-1}}(x,y) &= \begin{pmatrix}
+        \derivepar{}{\varphi_1^{-1}}{u}(u,v) & \derivepar{}{\varphi_1^{-1}}{v}(u,v)\\
+        \derivepar{}{\varphi_2^{-1}}{u}(u,v) & \derivepar{}{\varphi_2^{-1}}{v}(u,v)\\
+        \end{pmatrix}\\
+        &= \begin{pmatrix}
+        1 & -1\\
+        0 & 1\\
+        \end{pmatrix}
+    \end{align*}
+    Donc de jacobienne de déterminant 1. Par la formule de changement de variable avec $(U,V) =  \varphi(X,Y)$~:
+    \begin{align*}
+        p_{(U,V)}(u,v) &= p_{(X,Y)}\Big(\varphi^{-1}(u,v)\Big) \Big\vert \det\Big(J_{\varphi^{-1}}(u,v)\Big)\Big\vert\\
+        &= p_{(X,Y)}(u-v,v) \qquad &\text{car } \Big\vert \det\Big(J_{\varphi^{-1}}(u,v)\Big)\Big\vert = 1\\
+        &= p_X(u-v)p_Y(v) \qquad &\text{car } X \text{ et } Y \text{ sont indép.}\\
+    \end{align*}
+    Mais par définition~:
+    $$p_{(U,V)}(u,v) = p_{(X+Y,Y)}(u,v)$$
+    Et en isolant la première composante par formule des lois marginales~:
+    $$p_{X+Y}(u) = \int_\R p_{(X+Y,Y)}(u,v) \d{v}$$
+    On a donc finalement~:
+    \begin{align*}
+        p_{X+Y}(u) &= \int_\R p_{(U,V)}(u,v) \d{v}\\
+        &= \int_\R p_X(u-v)p_Y(v) \d{v}
+    \end{align*}
+    
+\end{exemple}
+
+\subsection{Fonction de répartition d'une VAR}
+
+\begin{definition}{}{fonction de répartition}
+    Soit $X$ une variable aléatoire réelle sur $(\univ, \tribu, \proba)$. On appelle \notion{fonction de répartition} de $X$ la fonction~:
+    \fonction{F_X}{\R}{\seg{0}{1}}{x}{\probaset{X \leq x}}
+\end{definition}
+
+\begin{proposition}{}{propriétés de la fonction de répartition}
+    Soit $X$ une variable aléatoire réelle sur $(\univ, \tribu, \proba)$. Sa fonction de répartition $F_X$ vérifie~:
+    \begin{itemize}
+        \item $F_X$ est croissante
+        \item $\lim_{x \to -\infty} F_X(x) = 0$ et $\lim_{x \to +\infty} F_X(x) = 1$
+        \item $F_X$ est continue à droite
+    \end{itemize}
+\end{proposition}
+
+\begin{remarque}{}{fonction de répartition}
+    Si pour $X$ et $Y$ deux variables aléatoires réelles, $F_X = F_Y$, alors $X$ et $Y$ ont même loi. La propriété est la même que pour la fonction génératrice.
+\end{remarque}
+
+\begin{proposition}{}{expression de la fonction de répartition pour une variable à densité}
+    Pour $X$ une variable aléatoire réelle à densité $p_X$, on a~:
+    $$\forall x \in \R,\, F_X(x) = \int_{-\infty}^x p_X(t) \d{t}$$
+\end{proposition}
+
+\subsection{Fonction caractéristique d'une variable aléatoire}
+
+\begin{definition}{}{fonction caractéristique d'un vecteur aléatoire}
+    Soit $X$ une variable aléatoire à valeurs dans $\R^n$ sur $(\univ, \tribu, \proba)$. On appelle \notion{fonction caractéristique} de $X$ la fonction~:
+    \fonction{\varphi_X}{\R^n}{\C}{u}{\mb{E}\Big(e^{i\scal{u}{X}}\Big)}
+    où $\scal{u}{X}$ est le produit scalaire canonique dans $\R^n$.
+\end{definition}
+
+\begin{remarque}{}{cas d'une variable aléatoire réelle}
+    Si $X$ une variable aléatoire réelle sur $(\univ, \tribu, \proba)$, alors sa fonction caractéristique est~:
+    \fonction{\varphi_X}{\R}{\mc{C}}{t}{\mb{E}\Big(e^{itX}\Big)}
+\end{remarque}
+
+\begin{remarque}{}{fonction caractéristique}
+    Si pour $X$ et $Y$ deux variables aléatoires réelles, $F_X = F_Y$, alors $X$ et $Y$ ont même loi. La propriété est la même que pour les fonction génératrice et de répartition.
+\end{remarque}
+
+\begin{proposition}{}{caractérisation de l'indépendance par les fonctions caractéristiques}
+    $X_1,\, \dots,\, X_n$ des variables aléatoires à valeurs dans $\R^d$ sont indépendantes si et seulement si~:
+    $$\forall (u_1,\, \dots,\, u_n) \in (\R^d)^n,\, \varphi_{(X_1,\, \dots,\, X_n)}(u_1,\, \dots,\, u_n) = \prod_{k=1}^n \varphi_{X_k}(u_k)$$
+\end{proposition}
+
+
 \section*{Questions de cours et remarques}
 
 \subsection*{Questions de cours}
@@ -699,6 +785,7 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
     \item inégalité de Bienaymé-Tchebychev (et sa démonstration)
     \item covariance de la somme de variables aléatoires (et sa démonstration)
     \item exemple de la fonction générératrice d'une composition de lois géométriques
+    \item exemple conernant le changement de variable
 \end{enumeratebf}
 
 \subsection*{Remarques}

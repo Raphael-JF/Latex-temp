@@ -1,0 +1,170 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Convergence de suites de variables aléatoires}
+\newcommand{\numerochapitre}{3}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par François DUFOUR\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Loi des grands nombres}
+
+\begin{theoreme}{}{Loi des grands nombres}
+    Soit $(X_n)_{n\in \N^*}$ une suite de variables aléatoires i.i.d. admettant un moment d'ordre 2. On note $\overline{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$ sa moyenne empirique. Alors, pour tout $\varepsilon > 0$, on a~:
+    $$\proba\Big( \vert \overline{X}_n - \esperance{X_1} \vert \geq \varepsilon\Big) \xrightarrow{n \to +\infty} 0$$
+    Autrement dit, $\overline{X}_n$ converge en probabilité vers $\esperance{X_1}$.
+    
+\end{theoreme}
+
+\begin{demonstration}
+    Notons $\sigma^2$ la variance commune des $X_i$.    Par l'inégalité de Bienaymé-Tchebychev, on a~:
+    $$\proba\Big( \vert \overline{X}_n - \esperance{X_1} \vert \geq \varepsilon\Big) \leq \frac{\mb{V}({\overline{X}_n})}{\varepsilon^2}$$
+    Or par indépendance des variables aléatoires, on a~:
+    $$\mb{V}({\overline{X}_n}) = \frac{1}{n^2}\sum_{i=1}^n\mb{V}({X_i}) = \frac{1}{n}\mb{V}({X_1})$$
+    On en déduit que~:
+    $$\proba\Big( \vert \overline{X}_n - \esperance{X_1} \vert \geq \varepsilon\Big) \leq \frac{\mb{V}({X_1})}{n\varepsilon^2}$$
+    et le théorème s'en déduit.
+\end{demonstration}
+
+\begin{remarque}{}{convergence en probabilité}
+    On peut alors écrire en terme de probabilité que pour presque tout $\omega \in \Omega$~:
+    $$\frac{1}{n} \sum_{k=0}^nX_k(\omega) \xrightarrow{n \to +\infty} \esperance{X_1}$$
+\end{remarque}
+
+\begin{remarque}{}{applications}
+    La loi des grands nombres permet d'approximer une espérance. Ceci présente des applications en finance.
+\end{remarque}
+
+\section{Différents modes de convergentes de suites de variables aléatoires}
+Dans cette section, $k$ est un entier naturel non nul.
+\begin{definition}{}{convergence en moyenne d'ordre $k$}
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires admettant un moment d'ordre $k$ ($X_n^k$ est sommable ou intégrable, se note $x_n \in L^k$). On dit que $(X_n)_{n \in \N}$ converge vers $X \in L^k$ si 
+    $$\lim_{n \to +\infty} \esperance{\vert X_n - X \vert^k} = 0$$
+    On notera alors~:
+    $$X_n \xrightarrow[\;n \to +\infty\;]{L^k} X$$
+    
+\end{definition}
+
+\begin{definition}{}{convergence en probabilité}
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires. On dit que $(X_n)_{n \in \N}$ converge en probabilité vers $X$ si pour tout $\varepsilon > 0$~:
+    $$\lim_{n \to +\infty} \proba(\vert X_n - X \vert \geq \varepsilon) = 0$$
+    On notera alors~:
+        $$X_n \xrightarrow[\;n \to +\infty\;]{\proba} X$$
+\end{definition}
+
+\begin{definition}{}{convergence presque sûre}
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires. On dit que $(X_n)_{n \in \N}$ converge presque sûrement vers $X$ si~:
+    $$\proba\Big(\{\omega \in \Omega, \lim_{n \to +\infty} X_n(\omega) = X(\omega)\}\Big) = 1$$
+    On notera alors~:
+        $$X_n \xrightarrow[\;n \to +\infty\;]{\mr{p.s.}} X$$
+    
+\end{definition}
+\newpage
+On rappelle le théorème de convergence dominée pour les suites de fonctions définies sur un intervalle quelconque.
+
+\begin{theoreme}{}{de convergence dominée pour une suite de fonctions définies sur un intervalle}
+    Soit $(f_n)_{n \in \N} \in \mc{F}(I,\K)^\N$. Sous réserve des hypothèses suivantes,
+    \begin{enumeratebf}
+        \item $\forall n \in \N,\, f_n \in \mc{CM}(I,\K)$.
+        \item $(f_n)_{n \in \N}$ converge simplement sur $I$ et sa limite y est continue par morceaux.
+        \item \notion{hypothèse de domination} : il existe $\varphi \in \mc{CM}(I, \R_+)$ une fonction intégrable telle que pour tout $n \in \N$, $\abs{f_n} \leq \varphi$
+    \end{enumeratebf}
+    les fonctions $f_n$ sont intégrables, ainsi que leur limite simple et on peut échanger les symboles "$\lim$" et "$\int$"~:
+    $$\lim_{n \to +\infty} \int_{I} f_n = \int_{I} \lim_{n \to +\infty} f_n $$
+\end{theoreme}
+
+\begin{theoreme}{}{de convergence dominée pour les variables aléatoires}
+    Soit $(X_n)_{n \in \N}$ et $X$ des variables aléatoires telles que $X_n \xrightarrow[\;n \to +\infty\;]{\mr{p.s.}} X$. On suppose qu'il existe une variable aléatoire $Y$ intégrable telle que pour tout $n \in \N$, $\vert X_n \vert \leq Y$ presque sûrement. Alors $X$ est intégrable et~:
+    $$\lim_{n \to +\infty} \esperance{X_n} = \esperance{X}$$
+\end{theoreme}
+
+\begin{proposition}{}{caractérisation de la convergence en probabilité par l'espérance}
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires. Les propositions suivantes sont équivalentes~:
+    \begin{enumeratebf}
+        \item $X_n \xrightarrow[\;n \to +\infty\;]{\proba} X$
+        \item $ \displaystyle \lim_{n \to +\infty} \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} = 0$
+    \end{enumeratebf}
+\end{proposition}
+
+\begin{remarque}{}{}
+    Cette caractérisation est très puissante pour montrer une convergence en probabilité car elle repose sur l'intégration d'une fonction en $\frac{x}{1+x}$.
+\end{remarque}
+
+\begin{demonstration}
+    \begin{itemize}
+        \item $(1) \implies (2)$. On suppose que~:
+        $$\forall \varepsilon > 0,\, \lim_{n \to +\infty} \probaset{\vert X_n - X \vert \geq \varepsilon} = 0$$
+        Soit~:
+        $$\forall \varepsilon > 0,\, \lim_{n \to +\infty} \esperance{\indicatrice_{\vert X_n - X \vert \geq \varepsilon}} = 0$$
+        Puis pour $\varepsilon$ fixé~:
+        \begin{align*}
+            \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} &= \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert \geq \varepsilon}} + \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert < \varepsilon}}\\
+            &\leq  \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} \\
+            &= \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert \geq \varepsilon}} + \frac{\varepsilon}{1+\varepsilon}
+        \end{align*}
+
+        \item 
+    \end{itemize}
+
+
+\end{demonstration}
+
+\begin{proposition}{}{convergence presque sûre $\implies$ convergence en probabilité}
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires convergeant presque sûrement vers une variable aléatoire $X$. Alors $(X_n)_{n \in \N}$ converge en probabilité vers $X$~:
+    $$X_n \xrightarrow[\;n \to +\infty\;]{\mr{p.s}} X \quad\implies\quad X_n \xrightarrow[\;n \to +\infty\;]{\proba} X$$
+\end{proposition}
+
+\begin{demonstration}
+    Puisque $X_n \xrightarrow[\;n \to +\infty\;]{\mr{p.s}} X$, alors 
+\end{demonstration}
+
+\begin{theoreme}{}{hiérarchie des convergences en moyenne}
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires de $L^{k+1}$ convergent en moyenne vers $X$ à l'ordre $k+1$ pour $k \in \N^*$. Alors $(X_n)_{n \in \N}$ converge en moyenne vers $X$ à l'ordre $k$~:
+    $$X_n \xrightarrow[\;n \to +\infty\;]{L^{k+1}} X \quad\implies\quad X_n \xrightarrow[\;n \to +\infty\;]{L^k} X$$
+\end{theoreme}
+
+\begin{theoreme}{}{convergence en moyenne d'ordre 1 $\implies$ convergence eeen probabilité}
+    
+\end{theoreme}
+
+
+\section*{Questions de cours et remarques}
+
+\subsection{Questions de cours}
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\end{document}
