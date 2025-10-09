@@ -159,12 +159,61 @@ On rappelle le théorème de convergence dominée pour les suites de fonctions d
     
 \end{theoreme}
 
+énorme trou.
 
+\section{Loi des grands nombres}
+
+\begin{theoreme}{}{loi faible des grands nombres}
+    Soit $(X_n)_{n\in \N^*}$ une suite de variables aléatoires i.i.d. admettant un moment d'ordre 2. On note $\overline{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$ sa \notion{moyenne empirique}. Alors, pour tout $\varepsilon > 0$, on a~:
+    $$\proba\Big( \vert \overline{X}_n - \esperance{X_1} \vert \geq \varepsilon\Big) \xrightarrow{n \to +\infty} 0$$
+    Autrement dit, $\overline{X}_n$ converge en probabilité vers $\esperance{X_1}$~:
+    $$\overline{X}_n \xrightarrow[\;n \to +\infty\;]{\proba} \esperance{X_1}$$
+    
+\end{theoreme}
+
+démo à copier
+
+
+\begin{theoreme}{}{loi forte des grands nombres}
+    Soit $(X_n)_{n\in \N^*}$ une suite de variables aléatoires i.i.d. admettant un moment d'ordre 1. On note $\overline{X}_n = \frac{1}{n}\sum_{k=1}^n X_k$ sa \notion{moyenne empirique}. Alors, pour presque tout $\omega \in \Omega$~:
+    $$\frac{1}{n} \sum_{k=0}^nX_k(\omega) \xrightarrow{n \to +\infty} \esperance{X_1}$$
+    Autrement dit, $\overline{X}_n$ converge presque sûrement vers $\esperance{X_1}$~:
+    $$\overline{X}_n \xrightarrow[\;n \to +\infty\;]{\mr{p.s.}} \esperance{X_1}$$
+\end{theoreme}
+
+pas de démo
+
+\section{Convergence faible et théorème de la limite centrale}
+\subsection{Convergence faible}
+
+\begin{definition}{}{convergence en loi}
+    Soit $(X_n)_{n \in \N}$ et $X$ des variables aléatoires à valeurs dans $F$. On dit que $(X_n)_{n \in \N}$ converge en loi vers $X$ si pour toute fonction continue bornée $f : F \to G$, on a~:
+    $$\lim_{n \to +\infty} \esperance{f(X_n)} = \esperance{f(X)}$$
+    On notera alors~:
+    $$ X_n \xrightarrow[\;n \to +\infty\;]{\mc{L}} X$$
+    
+\end{definition}
+
+\subsection{Théorème de la limite centrale}
+Soient $(X_n)_{n \in \N}$ une suite de variables aléatoires i.i.d. admettant un moment d'ordre 2. En notant $\sigma^2 = \mb{V}(X_1)$, on a~:
+$$\frac{\sqrt{n}}{\sigma^2}\Big(\overline{X}_n - \esperance{X_1}\Big) \xrightarrow[\;n \to +\infty\;]{\mc{L}} Y$$
+où $Y$ suit la loi normale centrée réduite $\mc{N}(0,1)$~:
+\begin{itemize}
+    \item centrée car son espérance et paramètre $\mu$ vaut 0
+    \item réduite car sa variance vaut $\sigma^2 = 1$
+\end{itemize}
+
+
+\begin{remarque}{}{}
+    D'un point de vue informatique, on peut montrer que générer toute variable aléatoire revient à savoir générer une variable aléatoire suivant une loi uniforme. On peut alors simuler n'importe quelle loi à partir d'une loi uniforme !
+\end{remarque}
 \section*{Questions de cours et remarques}
 
 \subsection{Questions de cours}
 \begin{itemize}
-    \item 
+    \item Implications relatives aux convergences de suites de variables aléatoires et leur démonstration
+    \item Loi faible des grands nombres et sa démonstration
+    \item Loi forte des grands nombres
 \end{itemize}
 
 \end{document}

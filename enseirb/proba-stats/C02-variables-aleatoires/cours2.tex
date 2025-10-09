@@ -774,6 +774,18 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
     $$\forall (u_1,\, \dots,\, u_n) \in (\R^d)^n,\, \varphi_{(X_1,\, \dots,\, X_n)}(u_1,\, \dots,\, u_n) = \prod_{k=1}^n \varphi_{X_k}(u_k)$$
 \end{proposition}
 
+\begin{exemple}{}{fonction caractéristique d'une loi géométrique}
+    Si $X$ suit une loi géométrique de paramètre $p \in ]0; 1[$, alors~:
+    \begin{align*}
+        \varphi_X(t) &= \sum_{k=1}^{+\infty} p(1-p)^{k-1} e^{itk} \\
+        &= pe^{it} \sum_{k=0}^{+\infty} \Big((1-p)e^{it}\Big)^k \\
+        &= \frac{pe^{it}}{1-(1-p)e^{it}} \qquad &\text{série géométrique}\\
+    \end{align*}
+    On pourra retenir, en notant $q = 1-p$~:
+    $$\varphi_X(t) = \frac{pe^{it}}{1-qe^{it}}$$
+    
+\end{exemple}
+
 
 \section*{Questions de cours et remarques}
 
@@ -783,9 +795,9 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
     \item lois de densité usuelles
     \item inégalité de Markov (et sa démonstration)
     \item inégalité de Bienaymé-Tchebychev (et sa démonstration)
-    \item covariance de la somme de variables aléatoires (et sa démonstration)
-    \item exemple de la fonction générératrice d'une composition de lois géométriques
-    \item exemple conernant le changement de variable
+    \item variance de la somme de variables aléatoires (et sa démonstration)
+    \item définition d'une fonction génératrice
+    \item exemples de fonctions génératrices (toutes les lois discrètes)
 \end{enumeratebf}
 
 \subsection*{Remarques}
