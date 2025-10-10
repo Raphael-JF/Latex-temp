@@ -1,0 +1,7 @@
+# BEGIN:
+*.aux
+*.log
+*.out
+*.toc
+*.pdf
+# END:

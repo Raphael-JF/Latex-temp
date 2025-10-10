@@ -1,0 +1,2 @@
+beamer.plus -> des infos sur les beamer
+Tikz pour les impatientes -> tout faire facilement en tikz.
