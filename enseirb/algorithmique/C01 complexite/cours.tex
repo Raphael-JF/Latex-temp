@@ -1,0 +1,88 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Théorie de la complexité}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours d'algorithmique}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\large Suggestions concernant le cours de Denis LAPOIRE}
+
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\begin{definition}{}{domination asymptotique}
+    Soit $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N}$ deux suites réelles positives. On dit que \notion{$(u_n)_{n \in \N}$ est dominée par $v_n$} si~:
+    $$\exists C > 0,\, \forall n \in \N,\, u_n \leq C v_n$$
+    On note alors $\displaystyle u_n \symbolelim{n \to + \infty}{}{=} \mc{O}(v_n)$.
+\end{definition}
+
+\begin{definition}{}{équivalence asymptotique}
+    Soit $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N}$ deux suites réelles positives. On dit que \notion{$(u_n)_{n \in \N}$ est équivalente à $v_n$} si~:
+    $$\exists C_1 > 0,\, \exists C_2 > 0,\, \forall n \in \N,\, C_1 v_n \leq u_n \leq C_2 v_n$$
+    On note alors $\displaystyle u_n \symbolelim{n \to + \infty}{}{\sim} v_n$, ou bien dans le cadre de ce cours~: $\displaystyle u_n \symbolelim{n \to + \infty}{}{=} \Theta(v_n)$.
+\end{definition}
+
+\begin{theoreme}{}{lemme de sommation}
+    Soit $g : \R_+ \to \R_+$ une fonction continue et intégrable vérifiant~:
+    \begin{enumeratebf}
+        \item $g$ est croissante
+        \item toute primitive $G$ de $g$ vérifie $G(n) \symbolelim{n \to + \infty}{}{\sim} G(n+1)$
+    \end{enumeratebf}
+    Alors les suites solutions de $u_n = g(n) + u_{n-1}$ sont en $\Theta\Big(G(n)\Big)$ avec $G$ une primitive de $g$.
+\end{theoreme}
+
+\begin{remarque}{}{concernant l'énoncé}
+    Les conditions sont vérifiées dans le cas où $g$ est polynomiale, exponentielle ou bien encore logarithmique, et ce seront les seuls cas que nous étudierons dans un contexte d'étude de complexité.
+    En particulier, supposer que $g = \mc{O}(K^n)$ comme le fait M. LAPOIRE donne l'hypothèse 2, tandis que la croissance de $g$ est assurée par sa nature de complexité.
+    
+\end{remarque}
+
+\begin{demonstration}
+    Soit $(u_n)_{n \in \N}$ solution. On remarque déjà que~:
+    $$u_n = g(n) + g(n-1) + u_{n-2} = \sum_{k=1}^{n} g(k) + u_0$$
+    Montrons alors qu'il existe $C_1 > 0$ et $C_2 > 0$ tels que~:
+    $$C_1 G(n) \leq u_n \leq C_2 G(n)$$
+    Soit $i \in \N^*$ et $x \in \seg{i}{i+1}$. Comme $g$ est croissante, on a~:
+    $$g(x-1) \leq g(i) \leq g(x)$$
+    En intégrant entre $i$ et $i+1$, on obtient par croissance de l'intégrale~:
+    $$\int_{i}^{i+1} g(x-1) \d{x} \leq g(i) \leq \int_{i}^{i+1} g(x) \d{x}$$
+    En sommant entre $i=1$ et $i=n$, on a par relation de Chasles~:
+    $$\int_{0}^{n} g(x) \d{x} \leq \sum_{i=1}^{n} g(i) \leq \int_{1}^{n+1} g(x) \d{x}$$
+    Soit~:
+    $$ G(n) - G(0) \leq u_n - u_{0} \leq G(n+1) - G(1)$$
+    Mais encore~:
+    $$ \frac{G(n) - G(0) + u_{0}}{G(n)}G(n) \leq u_{n} \leq \frac{G(n+1) - G(1) + u_{0}}{G(n)}G(n)$$
+    Ces fractions admettent pour limite 1 lorsque $n$ tend vers $+\infty$ (par hypothèse). Elles sont donc bornées à partir d'un certain rang et en déduit l'existence de $C_1$ et $C_2$.
+\end{demonstration}
+
+\end{document}
