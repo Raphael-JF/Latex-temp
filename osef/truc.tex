@@ -45,7 +45,9 @@
     = m \times 2^m \qquad \text{pour } m = \log_2(n) \text{ la taille de l'entrée}
 \end{align*}
 
-En notant $I = \{k, \exists i_1,\, \dots,\, i_k \in \intint{1}{\abs{B}}\}$
+Notons~:
+$$I = \Big\{k,\quad  \exists i_1< \dots< i_k \in \intint{1}{\code{i}},\, \exists j_1< \dots< j_k \in \intint{1}{\code{j}},\, \quad\forall p \in \intint{1}{k},\, \code{B[}i_p\code{]} = \code{C[}j_p\code{]}\Big\}$$
+La quantité mentionnée vaut $\max(I)$. Elle existe par propriété fondamentale de $\Z$ puisque $I \subset \Z$ est non vide (il contient 0), et majoré par $\max(\code{i}, \code{j})$.
 
 $$\binom{100}{2} + 100 = \frac{100(100+1)}{2} = 5050$$
 
