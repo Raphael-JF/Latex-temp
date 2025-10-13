@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  6 OCT 2025 15:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.28)  13 OCT 2025 15:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -154,19 +154,11 @@ tter compatibility patches
 \cvcolumnautowidth=\skip67
 \bibindent=\skip68
 )
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvstylebanki
-ng.sty
-Package: moderncvstylebanking 2022-02-21 v2.3.1 modern curriculum vitae and let
-ter style scheme: banking
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/tex-gyre/tgpagella.sty
-Package: tgpagella 2009/09/27 v1.2 TeX Gyre Pagella as default roman family
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-(c:/Program Files/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)))
+(c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvstyleclass
+ic.sty
+Package: moderncvstyleclassic 2022-02-21 v2.3.1 modern curriculum vitae and let
+ter style scheme: classic
+
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncviconssymbo
 ls.sty
 Package: moderncviconssymbols 2021-12-12 v2.2.0 modern curriculum vitae icons s
@@ -336,11 +328,7 @@ File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yy=\dimen171
 \pgf@zx=\dimen172
 \pgf@zy=\dimen173
-LaTeX Font Info:    Trying to load font information for OT1+qpl on input line 9
-26.
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/tex-gyre/ot1qpl.fd
-File: ot1qpl.fd 2009/09/25 v1.2 font definition file for OT1/qpl
-))
+)
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepat
 hconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -494,21 +482,16 @@ File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/li
 braries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-)))))
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvheadiii.st
+))))) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvhead
+i.sty
+Package: moderncvheadi 2022-02-21 v2.3.1 modern curriculum vitae and letter hea
+der variant: 1
+\quotewidth=\skip69
+\makecvheadnamewidth=\skip70
+) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvbodyi.st
 y
-Package: moderncvheadiii 2022-02-21 v2.3.1 modern curriculum vitae and letter h
-eader variant: 3
-\makeheaddetailsbox=\box66
-\makeheaddetailstempbox=\box67
-\makeheaddetailswidth=\skip69
-\makeheaddetailsboxwidth=\skip70
-\quotewidth=\skip71
-)
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvbodyiii.st
-y
-Package: moderncvbodyiii 2022-02-21 v2.3.1 modern curriculum vitae and letter b
-ody variant: 3
+Package: moderncvbodyi 2022-02-21 v2.3.1 modern curriculum vitae and letter bod
+y variant: 1
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvskillmatri
 x.sty
@@ -516,15 +499,15 @@ Package: moderncvskillmatrix 2022-02-21 v2.3.1 modern curriculum vitae and lett
 er skill matrix
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip72
+\multirow@colwidth=\skip71
 \multirow@cntb=\count289
-\multirow@dima=\skip73
+\multirow@dima=\skip72
 \bigstrutjot=\dimen197
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/arydshln/arydshln.sty
 Package: arydshln 2019/02/21 v1.76 
 \dashlinedash=\dimen198
 \dashlinegap=\dimen199
-\adl@box=\box68
+\adl@box=\box66
 \adl@height=\dimen256
 \adl@heightsave=\dimen257
 \adl@depth=\dimen258
@@ -543,37 +526,38 @@ Package: arydshln 2019/02/21 v1.76
 \adl@everyvbox=\toks34
 \adl@LTpagetotal=\dimen261
 )
-\cvSkill@RectangleSize=\skip74
+\cvSkill@RectangleSize=\skip73
 \my@repeat@count=\count300
-\cvskill@width=\skip75
-\cvskill@descriptorwidth=\skip76
-\cvskill@experiencewidth=\skip77
-\skillmatrix@columnwidth=\skip78
-\skillmatrix@commentwidth=\skip79
-\skillmatrix@padding=\skip80
-\skillmatrix@hintscolumnwidth=\skip81
-\skillmatrix@bodylength=\skip82
-\cvskilllegend@leftdescriptorwidth=\skip83
-\cvskilllegend@rightdescriptorwidth=\skip84
-\skilllegend@hintscolumnwidth=\skip85
-\skilllegend@padding=\skip86
-\skilllegend@bodylength=\skip87
-\separatorrulewidth=\skip88
+\cvskill@width=\skip74
+\cvskill@descriptorwidth=\skip75
+\cvskill@experiencewidth=\skip76
+\skillmatrix@columnwidth=\skip77
+\skillmatrix@commentwidth=\skip78
+\skillmatrix@padding=\skip79
+\skillmatrix@hintscolumnwidth=\skip80
+\skillmatrix@bodylength=\skip81
+\cvskilllegend@leftdescriptorwidth=\skip82
+\cvskilllegend@rightdescriptorwidth=\skip83
+\skilllegend@hintscolumnwidth=\skip84
+\skilllegend@padding=\skip85
+\skilllegend@bodylength=\skip86
+\separatorrulewidth=\skip87
 )
-\hintscolumnwidth=\skip89
-\separatorcolumnwidth=\skip90
-\maincolumnwidth=\skip91
-\doubleitemcolumnwidth=\skip92
-\listitemsymbolwidth=\skip93
+\hintscolumnwidth=\skip88
+\separatorcolumnwidth=\skip89
+\maincolumnwidth=\skip90
+\doubleitemcolumnwidth=\skip91
+\listitemsymbolwidth=\skip92
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree0 on i
-nput line 87.
+nput line 48.
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefr
 ee0.fd)
-\listitemcolumnwidth=\skip94
-\listdoubleitemcolumnwidth=\skip95
-\cvitemwithcommentmainbox=\box69
-\cvitemwithcommentmainlength=\skip96
+\listitemcolumnwidth=\skip93
+\listdoubleitemcolumnwidth=\skip94
+\baseletterheight=\skip95
+\cvitemwithcommentbox=\box67
+\cvitemwithcommentskilllength=\skip96
 \cvitemwithcommentcommentlength=\skip97
 ))
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/moderncv/moderncvcolorblue.
@@ -585,27 +569,92 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip98
 \enit@outerparindent=\dimen262
 \enit@toks=\toks35
-\enit@inbox=\box70
+\enit@inbox=\box68
 \enit@count@id=\count301
 \enitdp@description=\count302
+) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count303
+\mult@box=\box69
+\multicol@leftmargin=\dimen263
+\c@unbalance=\count304
+\c@collectmore=\count305
+\doublecol@number=\count306
+\multicoltolerance=\count307
+\multicolpretolerance=\count308
+\full@width=\dimen264
+\page@free=\dimen265
+\premulticols=\dimen266
+\postmulticols=\dimen267
+\multicolsep=\skip99
+\multicolbaselineskip=\skip100
+\partial@page=\box70
+\last@line=\box71
+\mc@boxedresult=\box72
+\maxbalancingoverflow=\dimen268
+\mult@rightbox=\box73
+\mult@grightbox=\box74
+\mult@firstbox=\box75
+\mult@gfirstbox=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\c@minrows=\count309
+\c@columnbadness=\count310
+\c@finalcolumnbadness=\count311
+\last@try=\dimen269
+\multicolovershoot=\dimen270
+\multicolundershoot=\dimen271
+\mult@nat@firstbox=\box113
+\colbreak@box=\box114
+\mc@col@check@num=\count312
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks36
 \inpenc@posthook=\toks37
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+qpl on input line 11
-2.
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/tex-gyre/t1qpl.fd
-File: t1qpl.fd 2009/09/25 v1.2 font definition file for T1/qpl
-)) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel/babel.sty
+) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2024/02/07 v24.2 The Babel package
-\babel@savecnt=\count303
-\U@D=\dimen263
+\babel@savecnt=\count313
+\U@D=\dimen272
 \l@unhyphenated=\language89
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read3
-\bbl@dirlevel=\count304
+\bbl@dirlevel=\count314
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
@@ -625,27 +674,31 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count305
-\Gm@cntv=\count306
-\c@Gm@tempcnt=\count307
-\Gm@bindingoffset=\dimen264
-\Gm@wd@mp=\dimen265
-\Gm@odd@mp=\dimen266
-\Gm@even@mp=\dimen267
-\Gm@layoutwidth=\dimen268
-\Gm@layoutheight=\dimen269
-\Gm@layouthoffset=\dimen270
-\Gm@layoutvoffset=\dimen271
+\Gm@cnth=\count315
+\Gm@cntv=\count316
+\c@Gm@tempcnt=\count317
+\Gm@bindingoffset=\dimen273
+\Gm@wd@mp=\dimen274
+\Gm@odd@mp=\dimen275
+\Gm@even@mp=\dimen276
+\Gm@layoutwidth=\dimen277
+\Gm@layoutheight=\dimen278
+\Gm@layouthoffset=\dimen279
+\Gm@layoutvoffset=\dimen280
 \Gm@dimlist=\toks38
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
-
+(c:/Program Files/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys
 .sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-
+(c:/Program Files/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -667,12 +720,14 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/gettitlestring/gettitlest
 ring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+(c:/Program Files/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count318
 )
-\c@section@level=\count308
-)
-\@linkdim=\dimen272
-\Hy@linkcounter=\count309
-\Hy@pagecounter=\count310
+\@linkdim=\dimen281
+\Hy@linkcounter=\count319
+\Hy@pagecounter=\count320
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -680,7 +735,7 @@ Now handling font encoding PD1 ...
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count311
+\Hy@SavedSpaceFactor=\count321
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -694,9 +749,9 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count312
+\c@Hy@tempcnt=\count322
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen273
+\XeTeXLinkMargin=\dimen282
 (c:/Program Files/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -704,9 +759,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count313
-\Field@Width=\dimen274
-\Fld@charsize=\dimen275
+\Fld@menulength=\count323
+\Field@Width=\dimen283
+\Fld@charsize=\dimen284
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -718,9 +773,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count314
-\c@Item=\count315
-\c@Hfootnote=\count316
+\Hy@abspage=\count324
+\c@Item=\count325
+\c@Hfootnote=\count326
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -730,8 +785,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count317
-\c@bookmark@seq@number=\count318
+\Fld@listcount=\count327
+\c@bookmark@seq@number=\count328
 
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfileche
 ck.sty
@@ -744,47 +799,47 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 )
-\Hy@SectionHShift=\skip99
+\Hy@SectionHShift=\skip101
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 15.
-Package hyperref Info: Option `bookmarksopen' set `true' on input line 15.
+Package hyperref Info: Option `breaklinks' set `true' on input line 17.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 17.
 (./cv.aux)
 \openout1 = `cv.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-5.
+7.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) (c:/Program Files/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count319
-\scratchdimen=\dimen276
-\scratchbox=\box71
-\nofMPsegments=\count320
-\nofMParguments=\count321
+\scratchcounter=\count329
+\scratchdimen=\dimen285
+\scratchbox=\box115
+\nofMPsegments=\count330
+\nofMParguments=\count331
 \everyMPshowfont=\toks39
-\MPscratchCnt=\count322
-\MPscratchDim=\dimen277
-\MPnumerator=\count323
-\makeMPintoPDFobject=\count324
+\MPscratchCnt=\count332
+\MPscratchDim=\dimen286
+\MPnumerator=\count333
+\makeMPintoPDFobject=\count334
 \everyMPtoPDFconversion=\toks40
 )
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.
@@ -798,19 +853,19 @@ g
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 15.
-Package microtype Info: Applying patch `item' on input line 15.
-Package microtype Info: Applying patch `toc' on input line 15.
-Package microtype Info: Applying patch `eqnum' on input line 15.
-Package microtype Info: Applying patch `footnote' on input line 15.
-Package microtype Info: Applying patch `verbatim' on input line 15.
+LaTeX Info: Redefining \microtypecontext on input line 17.
+Package microtype Info: Applying patch `item' on input line 17.
+Package microtype Info: Applying patch `toc' on input line 17.
+Package microtype Info: Applying patch `eqnum' on input line 17.
+Package microtype Info: Applying patch `footnote' on input line 17.
+Package microtype Info: Applying patch `verbatim' on input line 17.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 15.
+LaTeX Info: Redefining \showhyphens on input line 17.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -852,90 +907,51 @@ Package microtype Info: Loading generic protrusion settings for font family
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 15.
+Package hyperref Info: Link coloring OFF on input line 17.
 (./cv.out) (./cv.out)
 \@outlinefile=\write4
 \openout4 = `cv.out'.
 
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 16.
-
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on i
-nput line 16.
-
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefr
-ee2.fd) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/microtype/mt-ppl.cf
-g
-File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
-)
-LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 1
-6.
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/tex-gyre/ts1qpl.fd
-File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
-)
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
-nput line 16.
-
-(c:/Program Files/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefr
-ee1.fd) (c:/Program Files/texlive/2024/texmf-dist/tex/latex/microtype/mt-cmr.cf
-g
+\makecvheaddetailsbox=\box116
+(c:/Program Files/texlive/2024/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 16.
+(Font)              <7> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 16.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 16.
+(Font)              <5> on input line 18.
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on i
+nput line 18.
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--16
+(c:/Program Files/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefr
+ee2.fd)
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
+nput line 18.
+
+(c:/Program Files/texlive/2024/texmf-dist/tex/latex/fontawesome5/ufontawesomefr
+ee1.fd)
+\makecvheadpicturebox=\box117
+\makecvheaddetailswidth=\skip102
+\makecvheadpicturewidth=\skip103
+\makecvheadnamebox=\box118
+
+LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <34> not available
+(Font)              size <35.83> substituted on input line 18.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
 
  []
 
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 18.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 21.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 22.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 22.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 25.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 25.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 28.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 28.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 31.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 32.
-
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 20.
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 3
-2.
+4.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -943,24 +959,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 33.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 34.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/b/n' undefined
-(Font)              using `T1/cmss/bx/n' instead on input line 36.
-
-
-LaTeX Font Warning: Font shape `T1/cmss/sb/n' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 64.
-
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-64.
+41.
 (c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -973,47 +973,45 @@ Package microtype Info: Loading generic protrusion settings for font family
 {c:/Program Files/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:
 /Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 }{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free
-2.enc}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.
-enc}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5f
-ree1.enc}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-
-super-ts1.enc}] (./cv.aux)
+2.enc}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa
+5free1.enc}{c:/Program Files/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/c
+m-super-ts1.enc}] (./cv.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.83pt have occurred.
 
 Package rerunfilecheck Info: File `cv.out' has not changed.
-(rerunfilecheck)             Checksum: FC1642450970AB8D64CCABAD863592D9;403.
+(rerunfilecheck)             Checksum: F0601D13F08CEC10DBE3FEE7040B1912;481.
  ) 
 Here is how much of TeX's memory you used:
- 27557 strings out of 474115
- 530494 string characters out of 5740620
- 1948190 words of memory out of 5000000
- 49392 multiletter control sequences out of 15000+600000
- 583929 words of font info for 99 fonts, out of 8000000 for 9000
+ 27492 strings out of 474115
+ 528742 string characters out of 5740620
+ 1955190 words of memory out of 5000000
+ 49338 multiletter control sequences out of 15000+600000
+ 573306 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  129i,13n,129p,999b,470s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/fontawesome5/Fon
 tAwesome5Free-Regular.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1
 /public/fontawesome5/FontAwesome5Free-Solid.pfb><c:/Program Files/texlive/2024/
-texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb><c:/Program Files/texlive/2024/
-texmf-dist/fonts/type1/public/cm-super/sfsi0800.pfb><c:/Program Files/texlive/2
+texmf-dist/fonts/type1/public/cm-super/sfsi1000.pfb><c:/Program Files/texlive/2
 024/texmf-dist/fonts/type1/public/cm-super/sfsi1095.pfb><c:/Program Files/texli
 ve/2024/texmf-dist/fonts/type1/public/cm-super/sfss0800.pfb><c:/Program Files/t
 exlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><c:/Program Fil
 es/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1095.pfb><c:/Program
- Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1200.pfb><c:/Pro
-gram Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb><c:
-/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1440.pfb
-><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx2488
-.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt
-1095.pfb>
-Output written on cv.pdf (1 page, 246416 bytes).
+ Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss1440.pfb><c:/Pro
+gram Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfss3583.pfb><c:
+/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfsx1095.pfb
+><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sftt1095
+.pfb>
+Output written on cv.pdf (1 page, 168938 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
- 6 named destinations out of 1000 (max. 500000)
- 32813 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 103 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
+ 7 named destinations out of 1000 (max. 500000)
+ 33333 words of extra memory for PDF output out of 35830 (max. 10000000)
 
