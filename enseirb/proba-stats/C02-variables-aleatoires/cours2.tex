@@ -731,7 +731,7 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
 
 \begin{definition}{}{fonction de répartition}
     Soit $X$ une variable aléatoire réelle sur $(\univ, \tribu, \proba)$. On appelle \notion{fonction de répartition} de $X$ la fonction~:
-    \fonction{F_X}{\R}{\seg{0}{1}}{x}{\probaset{X \leq x}}
+    \fonction{F_X}{X(\Omega)}{\seg{0}{1}}{x}{\probaset{X \leq x}}
 \end{definition}
 
 \begin{proposition}{}{propriétés de la fonction de répartition}
@@ -755,14 +755,14 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
 \subsection{Fonction caractéristique d'une variable aléatoire}
 
 \begin{definition}{}{fonction caractéristique d'un vecteur aléatoire}
-    Soit $X$ une variable aléatoire à valeurs dans $\R^n$ sur $(\univ, \tribu, \proba)$. On appelle \notion{fonction caractéristique} de $X$ la fonction~:
-    \fonction{\varphi_X}{\R^n}{\C}{u}{\mb{E}\Big(e^{i\scal{u}{X}}\Big)}
+    Soit $X$ une variable aléatoire sur $(\univ, \tribu, \proba)$ à valeurs dans $\Big(F, \scal{\cdot}{\cdot}\Big)$ un espace euclidien. On appelle \notion{fonction caractéristique} de $X$ la fonction~:
+    \fonction{\varphi_X}{F}{\C}{u}{\mb{E}\Big(e^{i\scal{u}{X}}\Big)}
     où $\scal{u}{X}$ est le produit scalaire canonique dans $\R^n$.
 \end{definition}
 
 \begin{remarque}{}{cas d'une variable aléatoire réelle}
     Si $X$ une variable aléatoire réelle sur $(\univ, \tribu, \proba)$, alors sa fonction caractéristique est~:
-    \fonction{\varphi_X}{\R}{\mc{C}}{t}{\mb{E}\Big(e^{itX}\Big)}
+    \fonction{\varphi_X}{\R}{\mb{C}}{t}{\mb{E}\Big(e^{itX}\Big)}
 \end{remarque}
 
 \begin{remarque}{}{fonction caractéristique}
@@ -773,6 +773,10 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
     $X_1,\, \dots,\, X_n$ des variables aléatoires à valeurs dans $\R^d$ sont indépendantes si et seulement si~:
     $$\forall (u_1,\, \dots,\, u_n) \in (\R^d)^n,\, \varphi_{(X_1,\, \dots,\, X_n)}(u_1,\, \dots,\, u_n) = \prod_{k=1}^n \varphi_{X_k}(u_k)$$
 \end{proposition}
+
+\begin{demonstration}
+    Lemme des coallitions aux variables aléatoires $\Big(e^{itX_k}\Big)_{k \in \intint{1}{n}}$, puis caractérisation de l'indépendance par l'espérance.
+\end{demonstration}
 
 \begin{exemple}{}{fonction caractéristique d'une loi géométrique}
     Si $X$ suit une loi géométrique de paramètre $p \in ]0; 1[$, alors~:
