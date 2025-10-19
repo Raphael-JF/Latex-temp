@@ -39,16 +39,34 @@
 
 % -----------Corps du document--------------
 
-\begin{align*}
-    \sum_{i=11}^n \log_2(i) &\leq \sum_{i=11}^n \log_2(n)\\
-    &\leq n \log_2(n)
-    = m \times 2^m \qquad \text{pour } m = \log_2(n) \text{ la taille de l'entrée}
-\end{align*}
+\begin{proposition}{première}{un équivalent}
+    On a~:
+    $$\frac{(2n)!}{(n!)^2} \symbolelim{n \to + \infty}{}{\sim} \frac{4^n}{\sqrt{\pi n}}$$
+\end{proposition}
 
-Notons~:
-$$I = \Big\{k,\quad  \exists i_1< \dots< i_k \in \intint{1}{\code{i}},\, \exists j_1< \dots< j_k \in \intint{1}{\code{j}},\, \quad\forall p \in \intint{1}{k},\, \code{B[}i_p\code{]} = \code{C[}j_p\code{]}\Big\}$$
-La quantité mentionnée vaut $\max(I)$. Elle existe par propriété fondamentale de $\Z$ puisque $I \subset \Z$ est non vide (il contient 0), et majoré par $\max(\code{i}, \code{j})$.
+\begin{demonstration}
+    On applique la formule de Stirling~:
+    \begin{align*}
+        (2n)! &\symbolelim{n \to + \infty}{}{\sim} \sqrt{4 \pi n} \left(\frac{2n}{e}\right)^{2n} \\
+        (n!)^2 &\symbolelim{n \to + \infty}{}{\sim} 2 \pi n \left(\frac{n}{e}\right)^{2n}
+    \end{align*}
+    On en déduit~:
+    $$\frac{(2n)!}{(n!)^2} \symbolelim{n \to + \infty}{}{\sim} \frac{4^n}{\sqrt{\pi n}}$$
+\end{demonstration}
 
-$$\binom{100}{2} + 100 = \frac{100(100+1)}{2} = 5050$$
+\begin{proposition}{finale}{équivalent de la quantité en jeu}
+    On a~:
+    $$\binom{2n-1}{n-1} \symbolelim{n \to + \infty}{}{\sim} \frac{1}{2\sqrt{\pi}} \frac{4^n}{\sqrt{n}}$$
+\end{proposition}
+
+\begin{demonstration}
+    On a~:
+    \begin{align*}
+        \binom{2n-1}{n-1} &= \frac{(2n-1)!}{n!(n-1)!}\\
+        &= \frac{n}{2n} \frac{(2n)!}{(n!)^2} \\
+        &\symbolelim{n \to + \infty}{}{\sim} \frac{1}{2} \frac{4^n}{\sqrt{\pi n}} \\
+    \end{align*}
+    D'où le résultat et le caractère exponentiel en $n$ de cette quantité.
+\end{demonstration}
 
 \end{document}
