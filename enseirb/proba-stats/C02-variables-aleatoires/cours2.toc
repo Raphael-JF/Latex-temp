@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {VII.1}Des inégalités}{14}{}%
 \contentsline {section}{\numberline {VIII}Variance et covariance}{16}{}%
 \contentsline {section}{\numberline {IX}Outils pour le calcul de lois de variables aléatoires}{18}{}%
-\contentsline {subsection}{\numberline {IX.1}fonction génératrice des moments}{18}{}%
+\contentsline {subsection}{\numberline {IX.1}Fonction génératrice des probabilités}{18}{}%
 \contentsline {subsection}{\numberline {IX.2}Formule de changement de variable}{23}{}%
 \contentsline {subsection}{\numberline {IX.3}Fonction de répartition d'une VAR}{26}{}%
 \contentsline {subsection}{\numberline {IX.4}Fonction caractéristique d'une variable aléatoire}{26}{}%
