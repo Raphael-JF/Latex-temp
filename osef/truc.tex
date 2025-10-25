@@ -39,34 +39,6 @@
 
 % -----------Corps du document--------------
 
-\begin{proposition}{première}{un équivalent}
-    On a~:
-    $$\frac{(2n)!}{(n!)^2} \symbolelim{n \to + \infty}{}{\sim} \frac{4^n}{\sqrt{\pi n}}$$
-\end{proposition}
 
-\begin{demonstration}
-    On applique la formule de Stirling~:
-    \begin{align*}
-        (2n)! &\symbolelim{n \to + \infty}{}{\sim} \sqrt{4 \pi n} \left(\frac{2n}{e}\right)^{2n} \\
-        (n!)^2 &\symbolelim{n \to + \infty}{}{\sim} 2 \pi n \left(\frac{n}{e}\right)^{2n}
-    \end{align*}
-    On en déduit~:
-    $$\frac{(2n)!}{(n!)^2} \symbolelim{n \to + \infty}{}{\sim} \frac{4^n}{\sqrt{\pi n}}$$
-\end{demonstration}
-
-\begin{proposition}{finale}{équivalent de la quantité en jeu}
-    On a~:
-    $$\binom{2n-1}{n-1} \symbolelim{n \to + \infty}{}{\sim} \frac{1}{2\sqrt{\pi}} \frac{4^n}{\sqrt{n}}$$
-\end{proposition}
-
-\begin{demonstration}
-    On a~:
-    \begin{align*}
-        \binom{2n-1}{n-1} &= \frac{(2n-1)!}{n!(n-1)!}\\
-        &= \frac{n}{2n} \frac{(2n)!}{(n!)^2} \\
-        &\symbolelim{n \to + \infty}{}{\sim} \frac{1}{2} \frac{4^n}{\sqrt{\pi n}} \\
-    \end{align*}
-    D'où le résultat et le caractère exponentiel en $n$ de cette quantité.
-\end{demonstration}
 
 \end{document}
