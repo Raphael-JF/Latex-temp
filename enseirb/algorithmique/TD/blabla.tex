@@ -86,21 +86,21 @@ Ce qui contredit le fait que $\frac{C_n}{n} \flechelim{n \to + \infty}{} 0$. D'o
 
 \subsubsection*{Question 2}
 
-Soit $\alpha \in ]0 ; 1[$. On suppose que $C_n \symbolelim{n \to + \infty}{}{\Theta(n^\alpha)}$. Alors il existe $K_1 > 0$ et $K_2 > 0$ tels que~:
+Soit $\alpha \in ]0 ; 1[$. On suppose que $C_n \symbolelim{n \to + \infty}{}{=} \Theta(n^\alpha)$. Alors il existe $K_1 > 0$ et $K_2 > 0$ tels que~:
 $$K_1 n^\alpha \leq C_n \leq K_2 n^\alpha$$
 Ainsi, si $n$ est la taille d'un tableau lu à moins de 1\%, alors~:
 \begin{align*}
     &C_n \leq \frac{n}{100}\\
     \text{donc} \qquad &K_1 n^\alpha \leq \frac{n}{100}\\
     \text{donc} \qquad &n^{\alpha-1} \leq \frac{1}{100 K_1}\\
-    \text{donc} \qquad &\ln(n) \geq \frac{100K_1}{1-\alpha}\\
-    \text{donc} \qquad &n \geq \bigg(e^{100K_1}\bigg)^{1-\alpha}
+    \text{donc} \qquad &\ln(n) \geq \frac{\ln(100K_1)}{1-\alpha}\\
+    \text{donc} \qquad &n \geq (100K_1)^{\frac{1}{1-\alpha}}
 \end{align*}
 
 Par souci de simplification, on peut prendre $K_1 = 1$, ce qui est notamment vérifié quand $C_n \symbolelim{n \to + \infty}{}{\sim} n^\alpha$ (assez commun quand on a un $\Theta$ en étude de complexité).
 \begin{itemize}
-    \item Pour $\alpha = \frac{1}{2}$, on obtient le minorant $n_\mr{min} = \bigg(e^{100}\bigg)^{1/2} = e^{50}$
-    \item Pour $\alpha = 0.9$, on obtient le minorant $n_\mr{min} = \bigg(e^{100}\bigg)^{0.9} = e^{90}$
+    \item Pour $\alpha = \frac{1}{2}$, on obtient le minorant $n_\mr{min} = 100^2 = 10^4$
+    \item Pour $\alpha = 0.9$, on obtient le minorant $n_\mr{min} = 100^{10} = 10^{20}$
 \end{itemize}
 
 À partir de telles tailles de tableau, l'algorithme ne lira pas plus d'un centième de l'entrée.
