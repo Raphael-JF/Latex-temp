@@ -1,0 +1,111 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{TD d'algorithmique}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par François DUFOUR\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section*{Séance 6}
+\begin{proposition}{première}{un équivalent}
+    On a~:
+    $$\frac{(2n)!}{(n!)^2} \symbolelim{n \to + \infty}{}{\sim} \frac{4^n}{\sqrt{\pi n}}$$
+\end{proposition}
+
+\begin{demonstration}
+    On applique la formule de Stirling~:
+    \begin{align*}
+        (2n)! &\symbolelim{n \to + \infty}{}{\sim} \sqrt{4 \pi n} \left(\frac{2n}{e}\right)^{2n} \\
+        (n!)^2 &\symbolelim{n \to + \infty}{}{\sim} 2 \pi n \left(\frac{n}{e}\right)^{2n}
+    \end{align*}
+    On en déduit~:
+    $$\frac{(2n)!}{(n!)^2} \symbolelim{n \to + \infty}{}{\sim} \frac{4^n}{\sqrt{\pi n}}$$
+\end{demonstration}
+
+\begin{proposition}{finale}{équivalent de la quantité en jeu}
+    On a~:
+    $$\binom{2n-1}{n-1} \symbolelim{n \to + \infty}{}{\sim} \frac{1}{2\sqrt{\pi}} \frac{4^n}{\sqrt{n}}$$
+\end{proposition}
+
+\begin{demonstration}
+    On a~:
+    \begin{align*}
+        \binom{2n-1}{n-1} &= \frac{(2n-1)!}{n!(n-1)!}\\
+        &= \frac{n}{2n} \frac{(2n)!}{(n!)^2} \\
+        &\symbolelim{n \to + \infty}{}{\sim} \frac{1}{2} \frac{4^n}{\sqrt{\pi n}} \\
+    \end{align*}
+    D'où le résultat et le caractère exponentiel en $n$ de cette quantité.
+\end{demonstration}
+
+\section*{Séance 7}
+
+\subsection*{Exercice 1}
+\subsubsection*{Question 1}
+Considérons par l'absurde un algorithme $\mc{A}$ de complexité en temps $C_n$ strictement inférieure à un $\mc{O}(n)$, tel que pour toute entrée \code{T} de taille $n$, $\mc{A}(\code{T})$ lit strictement plus de 1\% du tableau.\\
+Par définition de la stricte domination~:
+$$\frac{C_n}{n} \flechelim{n \to + \infty}{} 0$$
+Or, par hypothèse, pour tout $\code{T}$ de taille $n$, l'appel $\mc{A}(\code{T})$ a une complexité $C_n$ vérifiant~:
+$$C_n > \frac{n}{100}$$
+à constante multiplicative près. En effet, $C_n$ lit strictement plus d'un centième du tableau, effectuant alors plus de $\frac{n}{100}$ opérations élémentaires. Cela implique que~:
+$$\frac{C_n}{n} > \frac{1}{100}$$
+
+Ce qui contredit le fait que $\frac{C_n}{n} \flechelim{n \to + \infty}{} 0$. D'où l'absurdité puis le résultat.
+
+\subsubsection*{Question 2}
+
+Soit $\alpha \in ]0 ; 1[$. On suppose que $C_n \symbolelim{n \to + \infty}{}{=} \Theta(n^\alpha)$. Alors il existe $K_1 > 0$ et $K_2 > 0$ tels que~:
+$$K_1 n^\alpha \leq C_n \leq K_2 n^\alpha$$
+Ainsi, si $n$ est la taille d'un tableau lu à moins de 1\%, alors~:
+\begin{align*}
+    &C_n \leq \frac{n}{100}\\
+    \text{donc} \qquad &K_1 n^\alpha \leq \frac{n}{100}\\
+    \text{donc} \qquad &n^{\alpha-1} \leq \frac{1}{100 K_1}\\
+    \text{donc} \qquad &\ln(n) \geq \frac{\ln(100K_1)}{1-\alpha}\\
+    \text{donc} \qquad &n \geq (100K_1)^{\frac{1}{1-\alpha}}
+\end{align*}
+
+Par souci de simplification, on peut prendre $K_1 = 1$, ce qui est notamment vérifié quand $C_n \symbolelim{n \to + \infty}{}{\sim} n^\alpha$ (assez commun quand on a un $\Theta$ en étude de complexité).
+\begin{itemize}
+    \item Pour $\alpha = \frac{1}{2}$, on obtient le minorant $n_\mr{min} = 100^2 = 10^4$
+    \item Pour $\alpha = 0.9$, on obtient le minorant $n_\mr{min} = 100^{10} = 10^{20}$
+\end{itemize}
+
+À partir de telles tailles de tableau, l'algorithme ne lira pas plus d'un centième de l'entrée.
+
+
+
+
+\end{document}

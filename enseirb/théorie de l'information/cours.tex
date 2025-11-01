@@ -1,0 +1,185 @@
+\input{../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Introduction à la théorie de l'information}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Théorie de l'information}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par \newline à l'aide du modèle GPT-4 Mini\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par Pascal vallet\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique - première année\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+% -----------Corps du document--------------
+La théorie de l'information est une branche mathématique fondée en 1948 par Claude Elwood Shannon (1916-2001) à l'occasion de la publication de son article "A mathetical Theory of Communication".
+
+\begin{definition}{}{source}
+    La \notion{source} représente l'entité qui génère des données numériques, qui peuvent être de différentes natures.
+\end{definition}
+\begin{exemple}{}{}
+    des images, un signal de parole numérisé, des signaux binaires.
+\end{exemple}
+
+Un des objectifs de la théorie de l'information est de formaliser la notion d'\notion{information} que la source délivre~:
+\begin{itemize}
+    \item La source est modélise par une \notion{variable aléatoire discrète X} 
+    \item à toute information il existe une incertitude associée, quantifiée par Shannon par \notion{l'entropie $\mb{H}(X)$} définie par~:
+    $$\mb{H}(X) = -\sum_{x \in X(\univ)} \probaset{X=x} \ln\Big(\probaset{X = x}\Big)$$
+\end{itemize}
+
+\begin{proposition}{}{sur l'entropie}
+    L'entropie $\mb{H}(X)$ est maximale si et seulement si $X$ suit une loi uniforme.
+    Elle est nulle si et seulement si
+\end{proposition}
+
+\begin{remarque}{}{usage du $\log$}
+    Pour des variables aléatoires discrètes, on utilise souvent le logarithme en base 2, noté $\log_2$. En revanche pour des variables aléatoires continues, on utilise le logarithme népérien, noté $\ln$.
+\end{remarque}
+
+\subsection{le canal}
+
+\begin{definition}{}{canal}
+    le \notion{canal} représente le moyen par lequel la source transmet l'information. le canal introduit toujours des erreurs (bruit) que l'on modélise comme régies par une loi de probabilité.
+\end{definition}
+
+\begin{exemple}{}{}
+    voie hertzienne, câble, fibre optique.
+\end{exemple}
+
+\begin{proposition}{}{caractérisation du canal}
+    Si $Y$ désigne la variable aléatoire représentant le message reçu, le canal est représenté entièrement par la famille $\Big(\proba_{\{Y=y\}}\{X=x\}\Big)_{(x,y) \in X(\univ)\times Y(\univ)}$.
+\end{proposition}
+
+\begin{definition}{}{information mutuelle}
+    L'\notion{information mutuelle} représente l'incertitude soustraite sur $X$ une fois $Y$ connue~:
+    $$\mb{I}(X,Y) = \mb{H}(X) - \mb{H}(X|Y)$$(à vérifier)
+    ou~:
+    $$\mb{I}(X,Y) = \sum_{(x,y) \in X(\univ)\times Y(\univ)} \proba(\{X=x\}\cap\{Y=y\}) \log\Bigg(\frac{\proba(\{X=x\}\cap\{Y=y\})}{\probaset{X=x}\probaset{Y=y}}\Bigg)$$
+\end{definition}
+
+\subsection{le récepteur}
+\begin{definition}{}{récepteur}
+    le \notion{récepteur} représente l'entité qui reçoit le message transmis par la source via le canal. Le récepteur doit reconstruire le message initial $X$ à partir du message reçu $Y$. Il calcule pour celà une valeur $\hat{X}$ estimée de $X$ à partir de $Y$.
+\end{definition}
+
+Deux problématiques se dégagent des travaux fondateurs de Shannon : le codage source et le codage canal.
+
+\section{Le codage source}
+Le codage source a pour objectif de réduire la redondance dans le message $X$ émis par la source afin de minimiser le nombre de bits nécessaires à sa représentation. Ceci permet d'optimiser l'utilisation de la bande passante et de réduire les coûts de stockage.
+
+\begin{exemple}{}{table ASCII}
+    La table ASCII est un code source. Elle associe à chaque caractère un code binaire de 7 bits. Par exemple, la lettre '\code{A}' est représentée par le code binaire \code{1000001}.
+\end{exemple}
+
+\begin{exemple}{}{code Morse}
+    Le code Morse est un autre exemple de codage source. Il utilise des séquences de points et de traits pour représenter les lettres et les chiffres. Par exemple, la lettre '\code{A}' est représentée par "\code{.-}". Le code Morse est conçu pour être efficace en termes de longueur des séquences, avec des lettres plus fréquentes ayant des codes plus courts. On parle de \notion{codage entropique}.
+\end{exemple}
+
+\begin{exemple}{}{code Braille}
+    Le code Braille est un système de codage source utilisé par les personnes aveugles ou malvoyantes. Il utilise des motifs de points en relief pour représenter les lettres, les chiffres et les symboles. Chaque caractère Braille est constitué d'une cellule de six points disposés en deux colonnes de trois points chacune. Par exemple, la lettre '\code{A}' est représentée par un point en haut à gauche de la cellule. Encore ici, les lettres les plus fréquentes sont codées avec les motifs les plus simples.
+\end{exemple}
+
+\begin{definition}{}{code source}
+    Un \notion{code source} est une fonction $\varphi : F \subset \Sigma^* \to \Sigma^*  $ injective qui associe à chaque mot $x \in \Sigma^*$  un mot $\varphi(x) \in \Sigma^*$.
+\end{definition}
+Nous n'étudierons que des codes sources binaires, c'est-à-dire tels que $\Sigma = \{0,1\}$.
+
+\begin{remarque}{}{notation}
+    On notera $\ell(x)$ la longueur du mot $x$.
+\end{remarque}
+
+\begin{definition}{}{longueur moyenne d'un code source}
+    la \notion{longueur moyenne} d'un code source binaire $\varphi$ est définie par~:
+    $$\ell(\varphi) = \sum_{x \in X(\univ)} \ell\Big(\varphi(x)\Big) \probaset{X=x}$$
+\end{definition}
+
+Shannon se pose la question de l'existence d'un code source binaire optimal, c'est-à-dire un code qui minimise la longueur moyenne parmi tous les codes sources binaires. Il émet et démontre le thoérème suivant~:
+
+\begin{theoreme}{}{du codage source de Shannon}
+    
+\end{theoreme}
+
+
+\section{Le codage canal}
+Le codage canal vise à ajouter de la redondance contrôlée au message transmis afin de détecter et corriger les erreurs introduites par le canal de communication. Cela améliore la fiabilité de la transmission, en particulier dans les environnements bruyants.
+
+\begin{exemple}{}{cas du texte coquillé}
+    En lisant un texte dont beaucoup de lettres adjacentes sont permutées, on arrive souvent à reconstituer le texte original sans trop de difficulté. Ceci est dû au fait que le langage naturel contient une redondance importante, permettant au lecteur de deviner les mots corrects malgré les erreurs.
+\end{exemple}
+
+\begin{definition}{}{code canal}
+    Un \notion{code canal} est une fonction $\psi$ qui associe à chaque mot $m$ de longueur $k$ un vecteur binaire de longueur $n>k$. $n$ est alors appelé la \notion{longueur du code}. Le paramètre $k$ est appelé la \notion{dimension du code}, il représente le nombre de bits d'information utile dans chaque mot codé (quitte à couper le message initial en blocs de taille $k$).
+\end{definition}
+
+\begin{definition}{}{fonction de décodage}
+    On appelle \notion{fonction de décodage}, notée abusivement $\psi^{-1}$, une fonction qui associe à chaque mot reçu $y$ un mot estimé $\hat{m} = \psi^{-1}(y)$.
+\end{definition}
+
+\begin{definition}{}{rendement d'un code canal}
+    Le \notion{rendement} d'un code canal est le rapport $\displaystyle R = \frac{k}{n}$. Il mesure le taux de compression du code canal.
+\end{definition}
+
+\begin{definition}{}{probabilité d'erreur}
+    La \notion{probabilité d'erreur} d'un code canal est la probabilité que le mot estimé $\hat{m}$ soit différent du mot initial $m$~:
+    $$P_e = \probaset{\hat{m} \neq m}$$
+\end{definition}
+
+\begin{exemple}{}{}
+    On transmet sur un canal binaire symétrique sans mémoire (BSC) de paramètre $p=\frac{1}{3}$ (probabilité de bit erroné égale à $p$)~:
+    \begin{itemize}
+        \item sans codage canal ($\varphi = \mr{Id}$), on a $P_e = p = \frac{1}{3}$ et $R=1$.
+        \item (pas sûr) avec un codage par répétition à $n$ bits ($\psi(m) = mmm...m$), on a $R = \frac{1}{n}$ et $P_e = \sum_{k=\lceil \frac{n}{2} \rceil}^{n} \binom{n}{k} p^k (1-p)^{n-k}$.
+    \end{itemize}
+\end{exemple}
+
+Shannon se pose la question de l'existence d'un code canal optimal, c'est-à-dire un code qui minimise la probabilité d'erreur parmi tous les codes canaux de même rendement. Il émet et démontre le théorème suivant~:
+
+\begin{theoreme}{}{du codage canal de Shannon}
+    
+\end{theoreme}
+
+Quels sont les codes canaux qui approchent la borne de Shannon~? C'est une question ouverte à ce jour, étudiée dans la théorie des codes correcteurs d'erreurs.
+
+
+\section{État de l'art de la théorie de l'information}
+La théorie de l'information a connu de nombreuses avancées depuis les travaux fondateurs de Shannon. Parmi les développements récents, on peut citer~:
+\begin{itemize}
+    \item IEEE Transactions on Information Theory, une revue scientifique de premier plan qui publie des articles de recherche sur la théorie de l'information et ses applications.
+    \item Les codes LDPC (Low-Density Parity-Check) et les codes polaires, qui sont des codes correcteurs d'erreurs efficaces utilisés dans les communications modernes.
+    \item L'application de la théorie de l'information à la cryptographie, notamment dans le domaine de la sécurité des communications.
+    \item L'utilisation de la théorie de l'information dans l'apprentissage automatique et l'intelligence artificielle, notamment pour la compression des données et la modélisation des réseaux de neurones.
+\end{itemize}
+
+\section{Objectifs et évaluation du module}
+
+\begin{itemize}
+    \item Connaître les principaux outils de base en théorie de l'inforamtion (entropie, information mutuelle, capacité de canal).
+    \item 
+\end{itemize}
+\end{document}

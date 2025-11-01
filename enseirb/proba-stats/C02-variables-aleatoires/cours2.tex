@@ -35,11 +35,6 @@
 % plan du cours
     \tableofcontents
 \newpage
-
-\newcommand{\tribu}[0]{\mathcal{T}}
-\newcommand{\univ}[0]{\Omega}
-\newcommand{\proba}[0]{\mathbb{P}}
-\newcommand{\probaset}[1]{\mathbb{P}\left(\left\{#1\right\}\right)}
 % -----------Corps du document--------------
 
 \section{Introduction}
@@ -75,6 +70,8 @@ Nous émettrons dans le cadre du cours l'hypothèse suivante.
     Pour $A = F$,\, la probabilité précédemment évoquée vaut~:
     $$\probaset{X \in F} = 1$$
 \end{remarque}
+
+
 \section{Lois usuelles}
 
 \begin{definition}{}{loi d'une variable aléatoire}
@@ -216,7 +213,6 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     Soit $X$ une variable aléatoire discrète à valeurs dans $F \subset \R$.
     $X$ est dite \notion{sommable} si elle admet un moment d'ordre 1 \ie si la famille $\Big(x\probaset{X = x}\Big)_{x \in X}$ est sommable. On notera alors $\mb{E}(X)$ son espérance définie ainsi~:
     $$\mb{E}(X) = \sum_{x \in F} x\probaset{X = x}$$
-    
 \end{definition}
 
 \begin{exemple}{}{espérance d'une fonction indicatrice}
@@ -224,12 +220,42 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     $$\mb{E}(\mathds{1}_A) = \proba(A)$$
 \end{exemple}
 
+\begin{theoreme}{}{formule des probabilités totales pour les espérances}
+    Soit $X$ et $Y$ deux variables aléatoire sommables à valeurs dans $F$. Alors pour toute fonction $g$ telle que $g(X,Y)$ est sommable~:
+    $$\mb{E}\Big(g(X,Y)\Big) = \sum_{y \in Y(\univ)} \mb{E}\Big(g(X,y)\indicatrice_{\{Y=y\}}\Big)$$
+\end{theoreme}
+
+\begin{demonstration}
+    En notant $\overline{1}$ la variable aléatoire constante égale à 1, on a~:
+    \begin{align*}
+        \esperanceBig{g(X,Y)} &= \esperanceBig{g(X,Y)\times \overline{1}}\\
+        &= \esperanceBig{g(X,Y)\times\indicatrice_\univ} \qquad&\text{car } \indicatrice_\univ = \overline{1}\\
+        &= \esperanceBig{\displaystyle g(X,Y)\times \indicatrice_{\bigsqcup_{y \in Y(\univ)}\{Y = y\}}}\\
+        &= \esperancebigg{\displaystyle g(X,Y)\times \sum_{y \in Y(\univ)} \indicatrice_{\{Y = y\}}}\\
+        &= \esperancebigg{\sum_{y \in Y(\univ)}g(X,Y)\indicatrice_{\{Y=y\}}}\\
+        &= \sum_{y \in Y(\univ)} \mb{E}\Big(g(X,Y)\indicatrice_{\{Y=y\}}\Big) \qquad&\text{linéarité de l'espérance}\\
+        &= \sum_{y \in Y(\univ)}\esperance{g(X,y)\indicatrice_{\{Y=y\}}} \qquad&\text{dans la somme, }Y=y\\
+    \end{align*}
+\end{demonstration}
+
+
+\begin{remarque}{}{à propos du théorème}
+    Si $X$ et $Y$ sont de plus indépendantes, alors par lemme des coallitions~:
+    \begin{align*}
+        \esperanceBig{g(X,y)\indicatrice_{\{Y=y\}}} &= \esperanceBig{g(X,y)} \esperance{\indicatrice_{\{Y=y\}}}\\
+        &= \esperanceBig{g(X,y)} \probaset{Y=y}
+    \end{align*}
+    Ainsi dans ce cas~:
+    $$\esperanceBig{g(X,Y)} = \sum_{y \in Y(\univ)} \esperanceBig{g(X,y)}\probaset{Y=y}$$
+
+\end{remarque}
+
 \begin{theoreme}{}{formule de transfert pour une variable aléatoire discrète}
     Soit $X$ une variable aléatoire discrète sommable à valeurs dans $F \subset \R$ et $g : F \to G$. Alors $g(X)$ est également une variable aléatoire sommable et~:
     $$\mb{E}\Big(g(X)\Big) = \sum_{x \in F}g(x)\probaset{X = x}$$
 \end{theoreme}
 
-\subsection{variable aléatoire à densité}
+\subsection{Variables aléatoires     à densité}
 
 \begin{definition}{}{intégrabilité d'une variable aléatoire à densité}
     Soit $X$ une variable aléatoire à densité à valeurs dans $F$ un espace vectoriel de dimension $n$. On dit de $X$ qu'elle est \notion{intégrable} si l'intégrale~:
@@ -367,7 +393,7 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 \end{theoreme}
 
 \begin{remarque}{}{sur ce théorème}
-    Ce théorème sert en particulier dans son sens direct.
+    Ce théorème sert en particulier dans son sens direct, où il est appelé \notion{Lemme des coallitions}.
 \end{remarque}
 
 % 2 : lois à densité
@@ -434,11 +460,6 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
     $$\vert \mb{E}(XY) \vert \leq \sqrt{\esperance{X^2} \esperance{Y^2}}$$
 \end{theoreme}
 
-\begin{remarque}{}{cas particulier}
-    En appliquant le théorème pour $X$ réelle positive quelconque et $Y = \overline{1}$~:
-    $$\mb{E}(X) \leq \sqrt{\mb{E}(X^2)}$$
-\end{remarque}
-
 \begin{demonstration}
     On considère pour tout $t \in \R$ la variable aléatoire~:
     $$Z_t = (X + tY)^2 \geq \overline{0}$$
@@ -452,6 +473,12 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
         \text{donc}\quad&\Big\vert\esperance{XY}\Big\vert \leq \sqrt{\esperance{X^2} \esperance{Y^2}}
     \end{align*}
 \end{demonstration}
+
+\begin{remarque}{}{cas particulier}
+    En appliquant le théorème pour $X$ réelle positive quelconque et $Y = \overline{1}$~:
+    $$\mb{E}(X) \leq \sqrt{\mb{E}(X^2)}$$
+    Ceci permet notamment de démontrer que si $X$ admet un moment d'ordre $m$, alors elle admet un moment d'ordre $k$ pour tout $k \in \intint{1}{m}$.
+\end{remarque}
 
 \begin{remarque}{}{condition suffisante pour que $XY$ soit sommable}
     L'inégalité de Cauchy-Schwarz indique clairement que si $X^2$ et $Y^2$ sont sommables, alors il en est de même pour $XY$. Une autre façon de le démontrer est l'inégalité de Young, qui porte directement sur les variables, et non plus sur les espérances~:
@@ -510,10 +537,8 @@ Pour une \notion{variable aléatoire à densité}, on dira que la densité carac
 
 \section{Outils pour le calcul de lois de variables aléatoires}
 
-\subsection{fonction génératrice des moments}
+\subsection{Fonction génératrice des probabilités}
 
-
-Inutile mais je pose ça là.
 \begin{definition}{}{moment d'une variable aléatoire}
     Soit $X$ une variable aléatoire à valeurs dans $F$ sur $(\univ, \tribu, \proba)$. On dit que $X$ admet un \notion{moment d'ordre $n$} si $\norme{X^n}_F$ est sommable. Dans ce cas on note $\mb{E}(X^n)$ le moment d'ordre $n$ de $X$. En particulier~:
     \begin{itemize}
@@ -550,7 +575,7 @@ Inutile mais je pose ça là.
 \end{proposition}
 
 \begin{exemple}{}{loi binomiale}
-    Soit $X_1,\, \dots,\, X_n$ des variables aléatoires indépendantes et identiquement distribuées (IID) suivant une loi de Bernoulli de paramètre $p \in \seg{0}{1}$. Alors la fonction génératrice de $Y = \sum_{i=1}^n X_i$ est~:
+    Soit $X_1,\, \dots,\, X_n$ des variables aléatoires indépendantes et identiquement distribuées (i.i.d.) suivant une loi de Bernoulli de paramètre $p \in \seg{0}{1}$. Alors la fonction génératrice de $Y = \sum_{i=1}^n X_i$ est~:
     \begin{align*}
         G_Y(t) &= \prod_{i=1}^n G_{X_i}(t) \qquad &\text{par indépendance}\\
         &= \Big((1-p) + pt\Big)^n \qquad &\text{car les } X_i \text{ suivent une loi de Bernoulli de même paramètre}\\
@@ -581,7 +606,7 @@ Inutile mais je pose ça là.
 \end{exemple}
 
 \begin{exemple}{}{composition de lois géométriques}
-    On considère $(X_i)_{i \in \N^*}$ une suite de variables aléatoires IID suivant une loi de géométrique de paramètre $p \in \seg{0}{1}$. On note $N$ une variable aléatoire indépendante des $X_i$, à valeurs dans $\N$. On pose alors~:
+    On considère $(X_i)_{i \in \N^*}$ une suite de variables aléatoires i.i.d. suivant une loi de géométrique de paramètre $p \in \seg{0}{1}$. On note $N$ une variable aléatoire indépendante des $X_i$, à valeurs dans $\N$. On pose alors~:
     $$S : \omega \mapsto \begin{cases*}
     0 & si $N(\omega) = 0$\\
     \displaystyle \sum_{i=1}^{N(\omega)} X_i(\omega) & sinon
@@ -590,7 +615,7 @@ Inutile mais je pose ça là.
 \end{exemple}
 
 \begin{demonstration}
-    Première démonstration proposée par M. DUFOUR, en manipulant les espérances. Par définition~:
+    Première démonstration proposée par M. DUFOUR, faisant appel à la formule des proababilités totales pour les espérances. Par définition~:
     \begin{align*}
         G_S(t) &= \mb{E}(t^S)\\
         &=\mb{E}(\indicatrice_\univ t^S)\\
@@ -601,7 +626,7 @@ Inutile mais je pose ça là.
         &= \sum_{n=1}^{+\infty} \esperance{\indicatrice_{\{N=n\}} t^{\sum_{i=1}^n X_i}} + \esperance{\indicatrice_{\{N = 0\}}t^0} \qquad &\text{dans la somme, } N=n\\
         &= \sum_{n=1}^{+\infty} \esperance{\indicatrice_{\{N=n\}}} \esperance{  t^{\sum_{i=1}^n X_i}} + \esperance{\indicatrice_{\{N = 0\}}} \qquad &\text{indépendance de } N \text{ avec les } X_i\\
         &= \sum_{n=1}^{+\infty} \probaset{N=n} G_{X_1 + \dots + X_n}(t) + \probaset{N=0} \qquad &\text{esp. de } \indicatrice \text{ et déf. de }G\\
-        &= \sum_{n=1}^{+\infty} \probaset{N=n} G_{X_1}(t)^n + \probaset{N=0} \qquad &\text{car les } X_i \text{ sont IID}\\
+        &= \sum_{n=1}^{+\infty} \probaset{N=n} G_{X_1}(t)^n + \probaset{N=0} \qquad &\text{car les } X_i \text{ sont i.i.d.}\\
         &= \sum_{n=0}^{+\infty} \probaset{N=n} G_{X_1}(t)^n \qquad &\text{en rajoutant le terme } n=0\\
         &= G_N\Big(G_{X_1}(t)\Big) \qquad &\text{déf. de }G
     \end{align*}
@@ -623,7 +648,7 @@ Inutile mais je pose ça là.
         &= \sum_{k=0}^{+\infty} \probaset{N=k} \sum_{n=0}^{+\infty} \proba \bigg( \bigg\{ \sum_{i=1}^k X_i = n \bigg\}\bigg) t^n \qquad &\text{théorème de Fubini positif}\\
         &= \sum_{k=0}^{+\infty} \probaset{N = k} G_{\sum_{i = 1}^k X_i} (t)\\
         &= \sum_{k=0}^{+\infty} \probaset{N = k} \prod_{i = 1}^k G_{X_i}(t) \qquad & \text{indépendance des } X_i\\
-        &= \sum_{k=0}^{+\infty} \probaset{N=k} G_{X_1}(t)^k \qquad &\text{les } X_i \text{ sont ID}\\
+        &= \sum_{k=0}^{+\infty} \probaset{N=k} G_{X_1}(t)^k \qquad &\text{les } X_i \text{ sont i.d.}\\
         &= G_N\Big(G_{X_1}(t)\Big)
     \end{align*}
     On retrouve bien le résultat, via un point de vue probabiliste.
@@ -689,7 +714,7 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
     On a bien le résultat par identification.
 \end{demonstration}
 
-\begin{exemple}{}{application de la formule de changement de variable}
+\begin{exemplebreak}{}{application de la formule de changement de variable}
     Soient $X$ et $Y$ deux variables aléatoires indépendantes réelles de densités respectives $p_X$ et $p_Y$~:
     On veut calculer la densité de la variable aléatoire $Z = X + Y$.
     On poserait naïvement~:
@@ -724,8 +749,9 @@ On introduit dans ce cours à quelques outils qui permettront de démontrer le r
         p_{X+Y}(u) &= \int_\R p_{(U,V)}(u,v) \d{v}\\
         &= \int_\R p_X(u-v)p_Y(v) \d{v}
     \end{align*}
+    On dit alors que la densité de $X+Y$ est le \notion{produit de convolution} des densités de $X$ et $Y$.
     
-\end{exemple}
+\end{exemplebreak}
 
 \subsection{Fonction de répartition d'une VAR}
 

@@ -1,18 +1,18 @@
 \babel@toc {french}{}\relax 
-\contentsline {section}{\numberline {I}Introduction}{2}{}%
-\contentsline {section}{\numberline {II}Lois usuelles}{3}{}%
-\contentsline {section}{\numberline {III}Lois marginales}{4}{}%
-\contentsline {section}{\numberline {IV}Variables aléatoires à densité}{5}{}%
-\contentsline {section}{\numberline {V}Espérance d'une variable aléatoire}{7}{}%
-\contentsline {subsection}{\numberline {V.1}Variable aléatoire discrète}{7}{}%
-\contentsline {subsection}{\numberline {V.2}variable aléatoire à densité}{7}{}%
-\contentsline {subsection}{\numberline {V.3}exemples}{8}{}%
-\contentsline {section}{\numberline {VI}Indépendance de variables aléatoires}{13}{}%
-\contentsline {section}{\numberline {VII}Propriétés de l'espérance}{14}{}%
-\contentsline {subsection}{\numberline {VII.1}Des inégalités}{14}{}%
-\contentsline {section}{\numberline {VIII}Variance et covariance}{16}{}%
-\contentsline {section}{\numberline {IX}Outils pour le calcul de lois de variables aléatoires}{18}{}%
-\contentsline {subsection}{\numberline {IX.1}fonction génératrice des moments}{18}{}%
-\contentsline {subsection}{\numberline {IX.2}Formule de changement de variable}{23}{}%
-\contentsline {subsection}{\numberline {IX.3}Fonction de répartition d'une VAR}{26}{}%
-\contentsline {subsection}{\numberline {IX.4}Fonction caractéristique d'une variable aléatoire}{26}{}%
+\contentsline {section}{\numberline {I}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {II}Lois usuelles}{3}{section.2}%
+\contentsline {section}{\numberline {III}Lois marginales}{4}{section.3}%
+\contentsline {section}{\numberline {IV}Variables aléatoires à densité}{5}{section.4}%
+\contentsline {section}{\numberline {V}Espérance d'une variable aléatoire}{7}{section.5}%
+\contentsline {subsection}{\numberline {V.1}Variable aléatoire discrète}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {V.2}Variables aléatoires à densité}{8}{subsection.5.2}%
+\contentsline {subsection}{\numberline {V.3}exemples}{9}{subsection.5.3}%
+\contentsline {section}{\numberline {VI}Indépendance de variables aléatoires}{14}{section.6}%
+\contentsline {section}{\numberline {VII}Propriétés de l'espérance}{15}{section.7}%
+\contentsline {subsection}{\numberline {VII.1}Des inégalités}{15}{subsection.7.1}%
+\contentsline {section}{\numberline {VIII}Variance et covariance}{17}{section.8}%
+\contentsline {section}{\numberline {IX}Outils pour le calcul de lois de variables aléatoires}{19}{section.9}%
+\contentsline {subsection}{\numberline {IX.1}Fonction génératrice des probabilités}{19}{subsection.9.1}%
+\contentsline {subsection}{\numberline {IX.2}Formule de changement de variable}{24}{subsection.9.2}%
+\contentsline {subsection}{\numberline {IX.3}Fonction de répartition d'une VAR}{27}{subsection.9.3}%
+\contentsline {subsection}{\numberline {IX.4}Fonction caractéristique d'une variable aléatoire}{27}{subsection.9.4}%
