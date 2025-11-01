@@ -34,7 +34,7 @@
 \end{titlepage}
 
 % plan du cours
-\tableofcontents
+% \tableofcontents
 \newpage
 
 
@@ -46,17 +46,37 @@
     On note alors $\displaystyle u_n \symbolelim{n \to + \infty}{}{=} \mc{O}(v_n)$.
 \end{definition}
 
+\begin{definition}{}{comparabilité asymptotique}
+    Soit $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N}$ deux suites réelles positives. On dit que \notion{$(u_n)_{n \in \N}$ est comparable à $v_n$} si l'une peut toujours borner l'autre~:
+    $$\exists C_1 > 0,\, \exists C_2 > 0,\, \forall n \in \N,\, C_1 v_n \leq u_n \leq C_2 v_n$$
+    On note alors $\displaystyle u_n \symbolelim{n \to + \infty}{}{=} \Theta(v_n)$.
+\end{definition}
+
+\begin{remarque}{}{}
+    Malgré cette notation ordonnée, la comparabilité est une relation d'équivalence : pour toutes suites $(u_n)_{n \in \N}$, $(v_n)_{n \in \N}$ et $(w_n)_{n \in \N}$~:
+    \begin{itemize}
+        \item $u_n \symbolelim{n \to + \infty}{}{=} \Theta(u_n)$
+        \item $u_n \symbolelim{n \to + \infty}{}{=} \Theta(v_n) \Leftrightarrow v_n \symbolelim{n \to + \infty}{}{=} \Theta(u_n)$
+        \item $\Big(u_n \symbolelim{n \to + \infty}{}{=} \Theta(v_n) \quad \text{et}\quad v_n \symbolelim{n \to + \infty}{}{=} \Theta(w_n) \Big) \implies u_n \symbolelim{n \to + \infty}{}{=} \Theta(w_n)$
+    \end{itemize}
+\end{remarque}
+
 \begin{definition}{}{équivalence asymptotique}
     Soit $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N}$ deux suites réelles positives. On dit que \notion{$(u_n)_{n \in \N}$ est équivalente à $v_n$} si~:
-    $$\exists C_1 > 0,\, \exists C_2 > 0,\, \forall n \in \N,\, C_1 v_n \leq u_n \leq C_2 v_n$$
-    On note alors $\displaystyle u_n \symbolelim{n \to + \infty}{}{\sim} v_n$, ou bien dans le cadre de ce cours~: $\displaystyle u_n \symbolelim{n \to + \infty}{}{=} \Theta(v_n)$.
+    $$\lim_{n\to + \infty} \frac{u_n}{v_n} = 1$$
+    On note alors $\displaystyle u_n \symbolelim{n \to + \infty}{}{\sim} v_n$
 \end{definition}
+
+\begin{remarque}{}{cruciale}
+    Si l'équivalence entre deux suites implique leur comparabilité (en prenant $C_1 = C_2 = 1$), la réciproque est fausse.
+
+\end{remarque}
 
 \begin{theoreme}{}{lemme de sommation}
     Soit $g : \R_+ \to \R_+$ une fonction continue et intégrable vérifiant~:
     \begin{enumeratebf}
         \item $g$ est croissante
-        \item toute primitive $G$ de $g$ vérifie $G(n) \symbolelim{n \to + \infty}{}{\sim} G(n+1)$
+        \item toute primitive $G$ de $g$ vérifie $G(n) \symbolelim{n \to + \infty}{}{=} \Theta\Big(G(n+1)\Big)$
     \end{enumeratebf}
     Alors les suites solutions de $u_n = g(n) + u_{n-1}$ sont en $\Theta\Big(G(n)\Big)$ avec $G$ une primitive de $g$.
 \end{theoreme}
@@ -69,7 +89,7 @@
 
 \begin{demonstration}
     Soit $(u_n)_{n \in \N}$ solution. On remarque déjà que~:
-    $$u_n = g(n) + g(n-1) + u_{n-2} = \sum_{k=1}^{n} g(k) + u_0$$
+    $$u_n = g(n) + g(n-1) + u_{n-2} = \sum_{i=1}^{n} g(i) + u_0$$
     Montrons alors qu'il existe $C_1 > 0$ et $C_2 > 0$ tels que~:
     $$C_1 G(n) \leq u_n \leq C_2 G(n)$$
     Soit $i \in \N^*$ et $x \in \seg{i}{i+1}$. Comme $g$ est croissante, on a~:
@@ -82,7 +102,7 @@
     $$ G(n) - G(0) \leq u_n - u_{0} \leq G(n+1) - G(1)$$
     Mais encore~:
     $$ \frac{G(n) - G(0) + u_{0}}{G(n)}G(n) \leq u_{n} \leq \frac{G(n+1) - G(1) + u_{0}}{G(n)}G(n)$$
-    Ces fractions admettent pour limite 1 lorsque $n$ tend vers $+\infty$ (par hypothèse). Elles sont donc bornées à partir d'un certain rang et en déduit l'existence de $C_1$ et $C_2$.
+    Ces fractions sont bornées par hypothèse de comparabilité. Elles sont donc bornées à partir d'un certain rang et on en déduit l'existence de $C_1$ et $C_2$.
 \end{demonstration}
 
 \end{document}
