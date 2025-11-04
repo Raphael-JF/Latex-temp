@@ -1,0 +1,124 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Cours d'introduction}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Logique et preuve}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par Frédéric HERBRETEAU\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section*{Sommaire des chapitres}
+
+Les chapitres se présenteront dans l'ordre suivant~:
+\begin{enumeratebf}
+    \item* Technique de preuve (rappels en TD)
+    \item Introduction
+    \item Logique propositionnelle
+    \item Introduction à la logique des prédicats
+    \item Programmation logique, IA, solveurs
+    \item Induction structurelle
+    \item Ensemble bien fondés et terminaison
+    \item Machines à états et invariants
+    \item Machines à états et invariants
+    \item Spécification et preuve de programmes
+\end{enumeratebf}
+
+
+8h de cours de 1h20 chacuns, 7 séances de TD de 2h chacunes
+
+cours ici : https://thor.enseirb-matmeca.fr/sites/if107-main/
+
+\section{Introduction} 
+
+\begin{definition}{}{proposition}
+    Une \notion{proposition} est un énoncé qui est soit vrai, soit faux.
+\end{definition}
+
+\begin{exemple}{}{}
+    \begin{itemize}
+        \item $2+3 = 5$ est une proposition vraie.
+        \item "Pour tout $n \in \N$", $n^2 + n + 41$ est un nombre premier" est fausse (prendre $n=40$).
+    \end{itemize}
+\end{exemple}
+
+\begin{definition}{}{axiome}
+    Un \notion{axiome} est une proposition supposée vraie.
+\end{definition}
+
+\begin{exemple}{}{}
+    \begin{itemize}
+        \item La transitivité de la relation $\leq$ sur la classe des entiers relatifs.
+        \item Par toute paire de points passe une unique droite.
+    \end{itemize}
+\end{exemple}
+
+\begin{definition}{}{théorie}
+    Un ensemble d'axiomes définit une \notion{théorie}, qui fixe un cadre de raisonnement.
+\end{definition}
+
+\begin{exemple}{}{}
+    La théorie Euclidienne est une théorie de la géométrie basée sur les axiomes d'Euclide.
+\end{exemple}
+
+\begin{exemple}{}{}
+    En géométrie ellpitique~:
+    \begin{itemize}
+        \item étant donnée une droite $(D)$ et un point $A$ n'appartenant pas à $(D)$, il n'existe aucune droite parallaèle à $(D)$ passant par $A$.
+        \item la somme des anles d'un triangles faire entre 180 et 540 degrés.
+    \end{itemize}
+\end{exemple}
+
+\begin{definition}{}{consistance d'une théorie}
+    Une théorie est \notion{consistante} si elle ne permet pas de démontrer une propriété et son contraire (contradiction).
+\end{definition}
+
+\begin{definition}{}{complétude d'une théorie}
+    Une théorie est \notion{complète} si pour toute proposition $P$, soit $P$ est démontrable, soit sa négation $\neg P$ est démontrable.
+\end{definition}
+
+
+\begin{remarque}{}{}
+    une théorie peut être consistante sans être complète (exemple : arithmétique de Peano)
+\end{remarque}
+
+\begin{definition}{}{preuve}
+    On appelle \notion{preuve} la succession d'étapes de déductions, partant d'axiomes et aboutissant à la démonstration d'une proposition.
+\end{definition}
+
+
+
+
+
+\end{document}

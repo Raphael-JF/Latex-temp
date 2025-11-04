@@ -1,0 +1,313 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\numerochapitre}{1}
+\newcommand{\titrechapitre}{Chapitre \numerochapitre : Logique propositionnelle}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Logique et preuve}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    {\Large avec l'aide de Github Copilot\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par Frédéric HERBRETEAU\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Ambiguïté du langage naturel}
+
+Le language naturel est souvent ambigu~: un même énoncé peut avoir plusieurs interprétations différentes.
+
+\begin{exemple}{}{fromage ou dessert ?}
+    Peut-on manger du fromage et du dessert~?
+    \begin{itemize}
+        \item Oui, si on interprète le "ou" comme un "ou inclusif" (au moins un des deux)
+        \item Non, si on interprète le "ou" comme un "ou exclusif" (un seul des deux)
+\end{exemple}
+
+\begin{exemple}{}{20/20 chef ?}
+    Si on peut résoudre parfaitement n'importe quel exercice du TD pour avoir 20/20, 
+    \begin{itemize}
+        \item Peut-on avoir 20/20 en faisant n'importe quel exercice du TD ?
+        \item Doit-on avoir à faire tous les exercices du TD pour avoir 20/20 ?
+    \end{itemize}
+\end{exemple}
+
+\section{Introduction à la logique propositionnelle}
+
+En langage naturel, on combine les propositions avec des connecteurs logiques (et, ou, non, si... alors, si et seulement si) pour former des énoncés plus complexes.
+
+\begin{definition}{}{variable propositionnelle}
+    Une \notion{variable propositionnelle (ou booléenne)} est une lettre (p, q, r, ...) représentant une proposition à laquelle on associe une valeur de vérité (Vrai ou Faux).
+\end{definition}
+
+\begin{definition}{}{notations des connecteurs logiques}
+    Les connecteurs de la logique propositionnelle sont notés comme suit~:
+    \begin{itemize}
+        \item \notion{Négation} : $\neg p$ (non p)
+        \item \notion{Conjonction} : $p \land q$ (p et q)
+        \item \notion{Disjonction} : $p \lor q$ (p ou q)
+        \item \notion{Implication} : $p \implies q$ (si p alors q)
+        \item \notion{Équivalence} : $p \iff q$ (p si et seulement si q)
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{priorités des opérateurs}
+    Les priorités des opérateurs logiques sont, de la plus haute à la plus basse~:
+    \begin{enumeratebf}
+        \item Négation ($\neg$)
+        \item Conjonction ($\land$)
+        \item Disjonction ($\lor$)
+        \item Implication ($\implies$)
+        \item Équivalence ($\iff$)
+    \end{enumeratebf}
+\end{proposition}
+
+
+\begin{exemple}{}{}
+    Les énoncés suivants sont des formules de la logique propositionnelles~:
+    \begin{itemize}
+        \item $A$
+        \item $A \implies B \iff C$
+        \item $\neg\neg\neg(A \lor \neg B)$
+    \end{itemize}
+
+    Les suivantes n'en sont pas~:
+    \begin{itemize}
+        \item $A \implies$
+        \item $ A + B$
+        \item $A \neg B$
+\end{exemple}
+
+\begin{definition}{}{table de vérité}
+    Une \notion{table de vérité} est un tableau listant toutes les combinaisons possibles des valeurs de vérité des variables propositionnelles d'une formule, ainsi que la valeur de vérité de la formule elle-même pour chaque combinaison.
+\end{definition}
+
+\begin{proposition}{}{table de vérité de la négation}
+    La table de vérité de la négation est la suivante~:
+    \begin{center}
+        \begin{tabular}{c|c}
+            $p$ & $\neg p$ \\
+            \hline
+            V & F \\
+            F & V \\
+        \end{tabular}
+    \end{center}
+\end{proposition}
+
+\begin{proposition}{}{table de vérité de la conjonction}
+    La table de vérité de la conjonction est la suivante~:
+    \begin{center}
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \land q$ \\
+            \hline
+            V & V & V \\
+            V & F & F \\
+            F & V & F \\
+            F & F & F \\
+        \end{tabular}
+    \end{center}
+\end{proposition}
+
+\begin{proposition}{}{table de vérité de la disjonction}
+    La table de vérité de la disjonction est la suivante~:
+    \begin{center}
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \lor q$ \\
+            \hline
+            V & V & V \\
+            V & F & V \\
+            F & V & V \\
+            F & F & F \\
+        \end{tabular}
+    \end{center}
+\end{proposition}
+
+\begin{proposition}{}{table de vérité de l'implication}
+    La table de vérité de l'implication est la suivante~:
+    \begin{center}
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \implies q$ \\
+            \hline
+            V & V & V \\
+            V & F & F \\
+            F & V & V \\
+            F & F & V \\
+        \end{tabular}
+    \end{center}
+\end{proposition}
+
+\begin{proposition}{}{table de vérité de l'équivalence}
+    La table de vérité de l'équivalence est la suivante~:
+    \begin{center}
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \iff q$ \\
+            \hline
+            V & V & V \\
+            V & F & F \\
+            F & V & F \\
+            F & F & V \\
+        \end{tabular}
+    \end{center}
+\end{proposition}
+    
+
+\begin{definition}{}{valuation}
+    Une \notion{valuation} donne une valeur de vérité à chaque variable propositionnelle d'une formule.
+\end{definition}
+
+\begin{proposition}{}{généralisation des valuations aux formules}
+    Étant donnée une formule $F$ et une valuation $v$, la \notion{valeur de vérité de $F$ sous la valuation $v$} est notée $v(F)$ et est définie de manière inductive~:
+    \begin{itemize}
+        \item Si $F$ est une variable propositionnelle $p$, alors $v(F) = v(p)$.
+        \item Si $F$ est de la forme $\neg G$, alors $v(F) = 1$ si $v(G) = 0$, et $v(F) = 0$ si $v(G) = 1$.
+        \item Si $F$ est de la forme $G_1 \land G_2$, alors $v(F) = 1$ si $v(G_1) = 1$ et $v(G_2) = 1$, sinon $v(F) = 0$.
+        \item Si $F$ est de la forme $G_1 \lor G_2$, alors $v(F) = 1$ si au moins un des $v(G_i) = 1$, sinon $v(F) = 0$.
+        \item Si $F$ est de la forme $G_1 \implies G_2$, alors $v(F) = 0$ si $v(G_1) = 1$ et $v(G_2) = 0$, sinon $v(F) = 1$.
+        \item Si $F$ est de la forme $G_1 \iff G_2$, alors $v(F) = 1$ si $v(G_1) = v(G_2)$, sinon $v(F) = 0$.
+    \end{itemize}
+\end{proposition}
+
+\begin{exemple}{}{}
+    Si $v(A) = 0, v(B) = 1, v(C) = 1$, alors $v\Big(\underbrace{(A \implies B)}_1 \land \underbrace{(\neg A \implies C)}_1\Big) = 1$.
+
+\end{exemple}
+
+\begin{remarque}{}{}
+    Pour une formule comportant un nombre $n$ de variables propositionnelles, il y a $2^n$ valuations possibles, donc $2^n$ lignes dans la table de vérité.
+\end{remarque}
+
+\begin{definition}{}{validité d'une formule}
+    Une formule est \notion{valide} si elle est vraie pour toute valuation. On peut également qualifier une telle formule de \notion{tautologie}.
+\end{definition}
+
+\begin{remarque}{}{}
+    On peut donc montrer qu'une formule est valide en construisant sa table de vérité et en vérifiant que la colonne correspondant à la formule est remplie de Vrai.
+\end{remarque}
+
+\begin{definition}{}{notation}
+    Dans un système de preuve, une \notion{règle d'inférence} est constituée d'une \notion{famille de prémisses $P_1,\, \dots,\, P_k$}, et d'une \notion{conclusion $C$}. On représente une règle d'inférence par~:
+    $$\frac{P_1 \quad \dots \quad P_k}{C}$$
+\end{definition}
+
+\begin{remarque}{}{}
+    Affirmer que~:
+    $$\frac{P_1 \quad \dots \quad P_k}{C}$$
+    revient à démontrer que si toutes les prémisses sont vraies, alors la conclusion l'est aussi. Ce qui revient à montrer que~:
+    $$(P_1 \land \dots \land P_k) \implies C$$
+    est une tautologie.
+\end{remarque}
+
+\section{Moyens de preuve en logique propositionnelle}
+
+\subsection{Via table de vérité}
+    On peut montrer qu'une formule est valide en construisant sa table de vérité et en vérifiant que la colonne correspondant à la formule est remplie de Vrai.
+\subsection{Par preuve sémantique}
+    On prend une valuation quelconque, et on montre que la formule est vraie sous cette valuation, peu importe sa définition. C'est un raisonnement en langage naturel.s
+\section{équivalence de formules de la logique propositionnelle}
+
+\begin{definition}{}{équivalence de formules}
+    Deux formules $F$ et $G$ sont \notion{logiquement équivalentes} si pour toute valuation $v$, $v(F) = v(G)$. On note alors $F \equiv G$.
+\end{definition}
+
+Il existe plusieurs moyens de prouver l'équivalence de deux formules~:
+\subsection{Via comparaison des tables de vérité}
+    On construit la table de vérité des deux formules, et on vérifie que les colonnes correspondantes sont identiques.
+\subsection{Par preuve sémantique}
+    On prend une valuation quelconque, et on montre que $v(F) = v(G)$, peu importe la définition de $v$. C'est un raisonnement en langage naturel.
+    \begin{exemple}{}{}
+        Si $F = A \lor (\neg A \land B)$ est valide, alors $A\lor B$ est vraie. Soit $v$ une validation compatible. Alors $v(F) = 1$.
+        \begin{itemize}
+            \item Si $v(A) = 1$, alors $v(A \lor B) = 1$.
+            \item Si $v(A) = 0$, alors $v(\neg A) = 1$, donc $v(B) = 1$ et donc $v(A \lor B) = 1$.
+        \end{itemize}
+        On en déduit que pour toute valuation $v$, $v(A \lor B) = 1$, donc $A \lor B$ est valide. Ainsi, $F \equiv A \lor B$.
+    \end{exemple}
+
+\section{satisfiabilité de formules de la logique propositionnelle}
+
+
+\begin{definition}{}{satisfiabilité}
+    Une formule $F$ est \notion{satisfiable} s'il existe une valuation $v$ compatible telle que $v(F) = 1$. Dans le cas inverse, on dit que $F$ est \notion{insatisfiable}.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Une formule $F$ est insatisfiable si et seulement si sa négation $\neg F$ est valide.
+\end{theoreme}
+
+\subsection{Problème de satisfiabilité (SAT)}
+
+On définit le problème suivant~:
+\code{SAT}~:
+\begin{itemize}
+    \item \textbf{Entrée} : une formule $F$ de la logique propositionnelle
+    \item \textbf{Question} : $F$ est-elle satisfiable, \ie existe-t-il une valuation $v$ telle que $v(F) = 1$~?
+\end{itemize}
+
+\begin{remarque}{}{}
+    De nombreux problèmes algorithmiques peuvent être réduits au problème SAT, qui est NP-complet.
+\end{remarque}
+
+\section{Interlude de décidabilité}
+
+\begin{definition}{}{classe NP}
+    La classe NP est l'ensemble des problèmes de décision pour lesquels il existe un \notion{algorithme vérificateur} permettant de \notion{vérifier} qu'une instance est positive à partir d'un couple (instance, certificat) en temps polynomial en la taille de l'instance, avec un certificat de taille polynomiale en fonction de cette taille.
+\end{definition}
+
+
+\begin{definition}{}{réduction polynomiale}
+    Soit deux problèmes de décision $\mc{P}_1$ et $\mc{P}_2$ définis par $f_1$ et $f_2$ leurs fonctions de prédicats associées définies sur un $I_1$ et $I_2$ respectivement. On dit que \notion{$\mc{P}_1$ se réduit à $\mc{P}_2$ de façon polynomiale} (noté $\mc{P}_1 \leq_m^\mr{P} \mc{P}_2$) lorsqu'il existe $g:I_1 \to I_2$ calculable avec un algorithme de complexité polynomiale telle que~:
+    $$\forall e \in I_1,\, f_1(e) = f_2\Big(g(e)\Big)$$
+\end{definition}
+
+\begin{definition}{}{problème de décision NP-difficile}
+    Un problème de décision est \notion{NP-difficile} ou \notion{NP-dur} lorsqu'il est possible de se ramener à tout problème de classe NP par une réduction polynomiale depuis ce problème.\\
+    Moralement, il est plus difficile que tous les problèmes NP, mais on peut s'y ramener.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $\mc{P}$ un problème de décision. $\mc{P}$ est NP-difficile si et seulement si~:
+    $$\forall \mc{P}' \in \mr{NP},\, \mc{P}' \leq_m^\mr{P} \mc{P}$$
+    Si de plus $\mc{P}$ est dans NP, alors $\mc{P}$ est \notion{NP-complet}.
+\end{theoreme}
+
+
+\begin{remarque}{}{}
+    Pour montrer qu'un problème $\mc{P}$ est NP-complet~:
+    \begin{itemize}
+        \item on montre qu'il est de classe NP  l'aide d'un certificat et d'un algorithme vérificateur.
+        \item on montre qu'il est NP-difficile en choisissant un problème $\mc{P}_\mr{ref}$ NP-difficile de référence (Comme SAT par exemple), et on montre que $\mc{P}_\mr{ref} \leq_m^\mr{P} \mc{P}$.
+    \end{itemize}
+\end{remarque}  
+
+
+
+
+\end{document}
+
