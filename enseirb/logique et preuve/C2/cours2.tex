@@ -1,6 +1,6 @@
 \input{../../../stock/en-tete_v6.tex}
 
-\newcommand{\numerochapitre}{1}
+\newcommand{\numerochapitre}{2}
 \newcommand{\titrechapitre}{Chapitre \numerochapitre : Logique propositionnelle}
 
 \renewcommand{\headrulewidth}{0.4pt}
@@ -230,11 +230,19 @@ En langage naturel, on combine les propositions avec des connecteurs logiques (e
     On peut montrer qu'une formule est valide en construisant sa table de vérité et en vérifiant que la colonne correspondant à la formule est remplie de Vrai.
 \subsection{Par preuve sémantique}
     On prend une valuation quelconque, et on montre que la formule est vraie sous cette valuation, peu importe sa définition. C'est un raisonnement en langage naturel.s
-\section{équivalence de formules de la logique propositionnelle}
+\section{Équivalence de formules de la logique propositionnelle}
 
 \begin{definition}{}{équivalence de formules}
     Deux formules $F$ et $G$ sont \notion{logiquement équivalentes} si pour toute valuation $v$, $v(F) = v(G)$. On note alors $F \equiv G$.
 \end{definition}
+
+\begin{proposition}{}{lois de De Morgan}
+    Les lois de De Morgan sont les suivantes~:
+    \begin{itemize}
+        \item $\neg (A \land B) \equiv \neg A \lor \neg B$
+        \item $\neg (A \lor B) \equiv \neg A \land \neg B$
+    \end{itemize}
+\end{proposition}
 
 Il existe plusieurs moyens de prouver l'équivalence de deux formules~:
 \subsection{Via comparaison des tables de vérité}
@@ -306,6 +314,37 @@ On définit le problème suivant~:
     \end{itemize}
 \end{remarque}  
 
+\section{Formes normales}
+
+\begin{definition}{}{forme normale disjonctive}
+    Une formule est en \notion{forme normale disjonctive (FND)} si elle est une disjonction de clauses conjonctives, où~:
+    \begin{itemize}
+        \item une \notion{clause conjonctive} est une conjonction de littéraux
+        \item un \notion{littéral} est une variable propositionnelle ou sa négation.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}{}{}
+    La satisfiabilité d'une forme normale disjonctive repose sur celle d'au moins une des clauses conjonctives qui la constituent.
+\end{remarque}
+
+\begin{remarque}{}{}
+    Bien sûr toute formule de la logique propositionnelle est équivalente à une forme normale disjonctive, mais le problème consistant à trouver cette FND est NP-complet.
+\end{remarque}
+
+\begin{definition}{}{forme normale conjonctive}
+    Une formule est en \notion{forme normale conjonctive (FNC)} si elle est une conjonction de clauses disjonctives, où~:
+    \begin{itemize}
+        \item une \notion{clause disjonctive} est une conjonction de littéraux
+        \item un \notion{littéral} est une variable propositionnelle ou sa négation.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}{}{}
+    Là encore, toute formule de la logique propositionnelle est équivalente à une forme normale conjonctive, mais le problème consistant à trouver cette FNC est de classe P. En effet, il existe un algorithme la trouvant en temps polynomial en la taille de la formule d'entrée.
+\end{remarque}
+
+    
 
 
 
