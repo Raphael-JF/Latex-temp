@@ -65,7 +65,7 @@ Cela signifie que~:
 \newpage
 \subsection{Intérêt des nombres réels}
 
-L'ensemble des nombres rationnels $\mb{Q}$ est déjà très vaste, mais il ne contient pas tous les nombres que l'on peut rencontrer en mathématiques. Par exemple, le nombre $\sqrt{2}$ (la racine carrée de $2$) n'est pas un nombre rationnel. En effet, il a est possible de démontrer que $\sqrt{2}$ ne peut pas s'écrire comme le quotient de deux entiers~:
+L'ensemble des nombres rationnels $\mb{Q}$ est déjà très vaste, mais il ne contient pas tous les nombres que l'on peut rencontrer en mathématiques. Par exemple, le nombre $\sqrt{2}$ n'est pas un nombre rationnel.
 
 \begin{demonstration}
     Si par l'absurde on suppose que $\sqrt{2}$ est rationnel, alors il existe deux entiers $a$ et $b$ tels que~:
@@ -85,7 +85,7 @@ L'ensemble des nombres rationnels $\mb{Q}$ est déjà très vaste, mais il ne co
     $a$ et $b$ sont donc tous les deux pairs, ce qui contredit le fait que la fraction $\frac{a}{b}$ soit irréductible (définition de $\mb{Q}$). On en conclut que notre hypothèse de départ est fausse, et que $\sqrt{2}$ n'est pas un nombre rationnel.
 \end{demonstration}
 
-Ainsi, pour inclure des nombres comme $\sqrt{2}$, on introduit l'ensemble des nombres réels $\R$.
+Ainsi, pour inclure des nombres comme $\sqrt{2}$, appelés \notion{nombres irrationnels}, on introduit l'ensemble des nombres réels $\R$.
 
 \begin{remarque}{}{}
     Moralement, l'ensemble $\R$ est l'ensemble des nombres que l'on peut représenter sur une droite graduée, incluant à la fois les nombres rationnels (comme $\frac{3}{4}$, $-2$, $0.5$) et les nombres irrationnels (comme $\sqrt{2}$, $\pi$, $e$).
@@ -95,12 +95,12 @@ Ainsi, pour inclure des nombres comme $\sqrt{2}$, on introduit l'ensemble des no
 \section{Infinis et intervalles de nombres réels}
 
 \subsection{Infinis}
-En mathématiques, on utilise souvent les symboles $+\infty$ et $-\infty$ pour représenter des concepts d'infini positif et négatif. \underline{Ces symboles ne sont pas des nombres réels}, mais entrent en jeu dans la notation des intervalles.
+En mathématiques, on utilise souvent les symboles $+\infty$ et $-\infty$ pour représenter des concepts d'infini positif et négatif. \underline{Ces symboles ne sont pas des nombres réels}, mais entrent en jeu dans la notation des intervalles, où même dans la notion de limite en analyse (\textit{cf.} première spécialité maths)
 
 \subsection{Intervalles de nombres réels} 
 Un \notion{intervalle de $\R$} est un ensemble de nombres réels compris entre deux bornes.
 \begin{definition}{}{intervalle}
-    On dit qu'un ensemble $I \subset \R$ est un \notion{intervalle} de $\R$ si pour tous réels $a<b$ dans $I$, tout réel $x$ compris strictement entre $a$ et $b$ appartient aussi à $I$. \\\\Moralement, $I$ n'est pas troué : si deux de ses éléments sont choisis, tous les réels entre ces deux éléments font aussi partie de $I$.
+    On dit qu'un ensemble $I \subset \R$ est un \notion{intervalle} de $\R$ si pour tous réels $a<b$ dans $I$, tout réel $x$ compris strictement entre $a$ et $b$ appartient aussi à $I$. \\\\Moralement, $I$ n'est pas troué : si deux de ses éléments sont choisis, tous les réels entre ces deux éléments font aussi partie de $I$. On parle de \notion{connexité} de l'intervalle.
 \end{definition}
 
 \begin{exemple}{}{d'intervalles de $\R$ et leur notation}
@@ -120,28 +120,10 @@ Un \notion{intervalle de $\R$} est un ensemble de nombres réels compris entre d
     On devine ainsi pourquoi $+\infty$ et $-\infty$ sont toujours accompagnés de crochets ouverts dans la notation des intervalles : on ne peut pas inclure l'infini dans un intervalle, puisqu'il ne s'agit pas d'un nombre réel !
 \end{remarque}
 
-\begin{exemple}{}{à faire soi-même}
-    Caractériser les notations des intervalles suivants, à la façon de l'ensemble précédent~:
-    \begin{itemize} 
-        \item $[-1, 3[$
-        \item $]2, +\infty[$
-        \item $]-\infty, 0]$
-    \end{itemize}
-\end{exemple}
-
-\begin{exemple}{}{à faire soi-même}
-    Dans l'autre sens, simplifier les notations de ces ensembles~:
-    \begin{itemize} 
-        \item $\{ x \in \R \mid -5 \leq x \leq 2 \}$
-        \item $\{ x \in \R \mid x > 7 \}$
-        \item $\{ x \in \R \mid x \leq -1 \text{ ou } x \geq 3 \}$
-    \end{itemize}
-\end{exemple}
-
 \section{Notion de distance entre les réels}
 La \notion{distance} entre deux nombres réels $a$ et $b$ est une mesure de l'écart entre ces deux nombres sur la droite graduée. Elle est toujours un nombre réel positif ou nul.
 
-\subsection{valeur absolue d'un réel}
+\subsection{Valeur absolue d'un réel}
 
 On appelle \notion{valeur absolue} d'un nombre réel $x$, notée $|x|$, la distance entre $x$ et $0$ sur la droite graduée. Formellement, on définit la valeur absolue comme suit~:
 \begin{definition}{}{valeur absolue}
@@ -156,7 +138,7 @@ On appelle \notion{valeur absolue} d'un nombre réel $x$, notée $|x|$, la dista
     Soit $\abs{x} = \max(x,-x)$.
 \end{definition}
 
-\subsection{généralisation à la distance entre deux réels}
+\subsection{Généralisation à la distance entre deux réels}
 
 La distance entre deux réels $a$ et $b$ est définie comme la valeur absolue de leur différence~:
 \begin{definition}{}{distance entre deux réels}
@@ -176,8 +158,88 @@ La distance entre deux réels $a$ et $b$ est définie comme la valeur absolue de
 
 \begin{remarque}{}{par rapport à la valeur absolue}
     La valeur absolue peut être vue comme un cas particulier de la distance~: pour tout réel $x$, on a~:
-    $$ \abs{x} = \mr{d}(x, 0) $$
+    $$ \abs{x} = \abs{x-0   }=\mr{d}(x, 0) $$
     C'est bien pour cela qu'on dit que la valeur absolue d'un réel $x$ est sa distance à 0 !
 \end{remarque}
+
+\section{Compléments}
+\subsection{Nombres décimaux}
+Comme énoncé plus haut, un nombre décimal est un nombre réel qui peut s'écrire avec une partie décimale finie. Voici une caractérisation de $\mb{D}$~:
+\begin{proposition}{}{caractérisation de $\mb{D}$}
+    Un nombre est décimal si et seulement s'il peut s'écrire comme le quotient d'un entier par une puissance de $10$~:
+    $$ x \in \mb{D} \iff \exists a \in \Z,\,  \exists n \in \N,\,  x = \frac{a}{10^n} $$
+    Ou bien d'un point de vue ensembliste~:
+    $$ \mb{D} = \left\{ \frac{a}{10^n} \mid a \in \Z,\,  n \in \N \right\} $$
+\end{proposition}
+
+\subsection{Algorithme de la méthode d'approximation par balayage}
+
+L'algorithme de la méthode d'approximation par balayage permet de trouver une valeur approchée d'un nombre réel $x$ (même s'il est irrationnel, c'est là que ça sert !) à l'aide de nombres décimaux. Voici les étapes de l'algorithme~:
+\begin{enumeratebf}
+    \item Choisir un entier naturel $n$ qui détermine la précision de l'approximation (plus $n$ est grand, plus l'approximation sera précise).
+    \item Trouver l'entier $a$ tel que $a \leq x < a + 1$ (c'est la partie entière de $x$).
+    \item Pour chaque chiffre décimal de la partie décimale (de la première à la $n$-ième), faire~:
+    \begin{itemize}
+        \item Trouver le chiffre $d_i$ tel que $a + \frac{d_1}{10} + \frac{d_2}{10^2} + \dots + \frac{d_i}{10^i} \leq x < a + \frac{d_1}{10} + \frac{d_2}{10^2} + \dots + \frac{d_i + 1}{10^i}$
+    \end{itemize}
+    \item La valeur approchée de $x$ à $n$ décimales est alors~:
+    $$ x \approx a + \frac{d_1}{10} + \frac{d_2}{10^2} + \dots + \frac{d_n}{10^n} $$
+\end{enumeratebf}
+
+\newpage
+\section{Exercices}
+\begin{multicols}{2}
+\begin{exercice}{}{intervalles}
+    Décrire ces intervalles~:
+    \begin{enumeratebf} 
+        \item $[-1, 3[$
+        \item $]2, +\infty[$
+        \item $]-\infty, 0]$
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{intervalles}
+    Écrire ces ensembles en notation d'intervalle~:
+    \begin{enumeratebf} 
+        \item $\{ x \in \R \mid -5 \leq x \leq 2 \}$
+        \item $\{ x \in \R \mid x > 7 \}$
+        \item $\{ x \in \R \mid x \leq -1 \text{ ou } x \geq 3 \}$
+    \end{enumeratebf}
+\end{exercice}
+\end{multicols}
+
+\begin{exercice}{}{notion de voisinage}
+    Soit $a \in \R$, et $r > 0$. Noter l'intervalle $I$ des réels $x$ tels que la distance entre $x$ et $a$ soit inférieure ou égale à $r$~:
+    $$ I = \{ x \in \R \mid \abs{x - a} \leq r \} $$
+    Justifier pourquoi l'on dit que $I$ est le \notion{voisinage} de centre $a$ et de rayon $r$.\\
+    \textit{On pourra tenter de dessiner la situation sur une droite graduée pour mieux visualiser.}
+\end{exercice}
+
+\begin{exercice}{}{algorithmique, approximation par balayage}
+    Compléter l'algorithme suivant. Il permet d'approximer un réel $\code{x}$ à $\code{n}$ décimales selon la méthode par encadrement.
+    \begin{lstPython}
+    def approximer_balayage(x, n):
+        """
+        Approxime x à n décimales selon la méthode par encadrement.
+        """
+        a = int(x) # partie entière de x
+        resultat = a
+
+        for i in range(1, n + 1):
+            d_i = 0
+            # calcul de d_i
+            for d in range(10):
+                test = # à compléter 
+                if test > x:
+                    d_i = d - 1
+                    break
+                d_i = d
+            resultat = # à compléter 
+
+        return resultat
+    \end{lstPython}
+    %à compléter 1 : resultat + d / (10 ** i)
+    %à compléter 2 : resultat + d_i / (10 ** i)
+\end{exercice}
 
 \end{document}
