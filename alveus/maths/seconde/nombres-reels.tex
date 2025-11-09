@@ -1,0 +1,141 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Nombres réels}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{Mathématiques : Seconde}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{8cm}
+    {\Large Cours rédigé par Raphaël JONTEF\par}
+    \vspace{2em}
+    {\small \textit{raphaeljontef@hotmail.com}\par}
+    \vspace{2cm}
+
+    {\normalsize pour un enseignement dans le cadre  \par}
+    {\small d'un soutien scolaire encadré par \href{https://www.alveusclub.com/}{Alveus} \par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Introduction}
+
+Un \notion{nombre réel} est un nombre qui peut être représenté par une partie entière munie d'un signe positif ou négatif, et une liste finie ou infinie de décimales \footnote{D'après \href{https://fr.wikipedia.org/wiki/Nombre_réel}{Wikipédia}.}. On note \notion{$\R$ l'ensemble des nombres réels}.
+
+\subsection{Rappels sur la hiérarchie des ensembles de nombres}
+Du plus petit au plus grand (en terme d'inclusion), on a~:
+\begin{enumeratebf}
+    \item \notion{$\N$ l'ensemble des entiers naturels}, c'est à dire des entiers positifs ($0,\, 1,\, 2,\, \dots$)
+    \item \notion{$\Z$ l'ensemble des entiers relatifs}, c'est à dire des entiers positifs et négatifs ($\dots, -2, -1, 0, 1, 2, \dots$)
+    \item \notion{$\mb{D}$ l'ensemble des nombres décimaux}, c'est à dire des nombres pouvant s'écrire avec une partie entière et une partie décimale finie (par exemple $3.14$, $-0.75$, $2.0$)
+    \item \notion{$\mb{Q}$ l'ensemble des nombres rationnels}, c'est à dire des nombres pouvant s'écrire \underline{de façon irréductible} comme le quotient de deux entiers ($\frac{a}{b}$ avec $a, b \in \Z$ et bien sûr $b \neq 0$)
+\end{enumeratebf}
+\vspace{1em}
+L'ensemble des nombres réels $\R$ contient tous les ensembles précédents. On a donc l'inclusion suivante~:
+$$ \N \subset \Z \subset \mb{D} \subset \mb{Q} \subset \R $$
+Cela signifie que~:
+\begin{itemize}
+    \item tout entier naturel est un entier relatif
+    \item tout entier relatif est un nombre décimal
+    \item tout nombre décimal est un nombre rationnel
+    \item tout nombre rationnel est un nombre réel
+\end{itemize}
+\newpage
+\subsection{Intérêt des nombres réels}
+
+L'ensemble des nombres rationnels $\mb{Q}$ est déjà très vaste, mais il ne contient pas tous les nombres que l'on peut rencontrer en mathématiques. Par exemple, le nombre $\sqrt{2}$ (la racine carrée de $2$) n'est pas un nombre rationnel. En effet, il a est possible de démontrer que $\sqrt{2}$ ne peut pas s'écrire comme le quotient de deux entiers~:
+
+\begin{demonstration}
+    Si par l'absurde on suppose que $\sqrt{2}$ est rationnel, alors il existe deux entiers $a$ et $b$ tels que~:
+    $$ \sqrt{2} = \frac{a}{b} $$
+    Cette fraction est supposée irréductible par définition de $\mb{Q}$. En élevant au carré, on obtient~:
+    $$ 2 = \frac{a^2}{b^2} $$
+    Donc~:
+    $$ 2b^2 = a^2 $$
+    Cela signifie que $a^2$ est un multiple de $2$, donc $a$ est un multiple de $2$~: $a$ est pair. On peut ainsi écrire $a = 2k$ pour un certain entier $k$. En remplaçant dans l'équation précédente, on obtient~:
+    $$ 2b^2 = (2k)^2 $$
+    Donc~:
+    $$ 2b^2 = 4k^2 $$
+    En simplifiant par $2$, on obtient~:
+    $$ b^2 = 2k^2 $$
+    Ce qui signifie que $b^2$ est un multiple de $2$, donc $b$ est un multiple de $2$~: $b$ est pair.
+
+    $a$ et $b$ sont donc tous les deux pairs, ce qui contredit le fait que la fraction $\frac{a}{b}$ soit irréductible (définition de $\mb{Q}$). On en conclut que notre hypothèse de départ est fausse, et que $\sqrt{2}$ n'est pas un nombre rationnel.
+\end{demonstration}
+
+Ainsi, pour inclure des nombres comme $\sqrt{2}$, on introduit l'ensemble des nombres réels $\R$.
+
+\begin{remarque}{}{}
+    Moralement, l'ensemble $\R$ est l'ensemble des nombres que l'on peut représenter sur une droite graduée, incluant à la fois les nombres rationnels (comme $\frac{3}{4}$, $-2$, $0.5$) et les nombres irrationnels (comme $\sqrt{2}$, $\pi$, $e$).
+    C'est un fourre-tout très pratique en mathématiques !
+\end{remarque}
+
+\section{Infinis et intervalles de nombres réels}
+
+\subsection{Infinis}
+En mathématiques, on utilise souvent les symboles $+\infty$ et $-\infty$ pour représenter des concepts d'infini positif et négatif. \underline{Ces symboles ne sont pas des nombres réels}, mais entrent en jeu dans la notation des intervalles.
+
+\subsection{Intervalles de nombres réels} 
+Un \notion{intervalle de $\R$} est un ensemble de nombres réels compris entre deux bornes.
+\begin{definition}{}{intervalle}
+    On dit qu'un ensemble $I \subset \R$ est un \notion{intervalle} de $\R$ si pour tous réels $a<b$ dans $I$, tout réel $x$ compris strictement entre $a$ et $b$ appartient aussi à $I$. \\\\Moralement, $I$ n'est pas troué : si deux de ses éléments sont choisis, tous les réels entre ces deux éléments font aussi partie de $I$.
+\end{definition}
+
+\begin{exemple}{}{d'intervalles de $\R$ et leur notation}
+    Les ensembles suivants sont des intervalles de $\R$~:
+    \begin{itemize}
+        \item $[2, 5] = \{ x \in \R \mid 2 \leq x \leq 5 \}$ (intervalle fermé)
+        \item $] -3, 1 [ = \{ x \in \R \mid -3 < x < 1 \}$ (intervalle ouvert)
+        \item $[0, +\infty[ = \{ x \in \R \mid x \geq 0 \}$ (intervalle semi-ouvert)
+        \item $]-\infty, 4] = \{ x \in \R \mid x \leq 4 \}$ (intervalle semi-ouvert)
+        \item $\R = ]-\infty, +\infty[$ (l'unique intervalle de $\R$ non borné : lui-même !)
+    \end{itemize}
+\end{exemple}
+
+\begin{remarque}{}{concernant les bornes}
+    Dans la notation des intervalles, les crochets fermants $[$ et $]$ signifient que la borne est \underline{incluse} dans l'intervalle (on dit que l'intervalle est \notion{fermé} en cette borne). \\
+    À l'inverse, les crochets $]$ et $[$ signifient que la borne est \underline{exclue} de l'intervalle (on dit que l'intervalle est \notion{ouvert} en cette borne).\\\\
+    On devine ainsi pourquoi $+\infty$ et $-\infty$ sont toujours accompagnés de crochets ouverts dans la notation des intervalles : on ne peut pas inclure l'infini dans un intervalle, puisqu'il ne s'agit pas d'un nombre réel !
+\end{remarque}
+
+\begin{exemple}{}{à faire soi-même}
+    Caractériser les notations des intervalles suivants, à la façon de l'ensemble précédent~:
+    \begin{itemize} 
+        \item $[-1, 3[$
+        \item $]2, +\infty[$
+        \item $]-\infty, 0]$
+    \end{itemize}
+\end{exemple}
+
+\begin{exemple}{}{à faire soi-même}
+    Dans l'autre sens, simplifier les notations de ces ensembles~:
+    \begin{itemize} 
+        \item $\{ x \in \R \mid -5 \leq x \leq 2 \}$
+        \item $\{ x \in \R \mid x > 7 \}$
+        \item $\{ x \in \R \mid x \leq -1 \text{ ou } x \geq 3 \}$
+    \end{itemize}
+\end{exemple}
+
+\end{document}
