@@ -138,4 +138,46 @@ Un \notion{intervalle de $\R$} est un ensemble de nombres réels compris entre d
     \end{itemize}
 \end{exemple}
 
+\section{Notion de distance entre les réels}
+La \notion{distance} entre deux nombres réels $a$ et $b$ est une mesure de l'écart entre ces deux nombres sur la droite graduée. Elle est toujours un nombre réel positif ou nul.
+
+\subsection{valeur absolue d'un réel}
+
+On appelle \notion{valeur absolue} d'un nombre réel $x$, notée $|x|$, la distance entre $x$ et $0$ sur la droite graduée. Formellement, on définit la valeur absolue comme suit~:
+\begin{definition}{}{valeur absolue}
+    Pour tout réel $x$~:
+    \[
+    \abs{x} = 
+    \begin{cases} 
+    x & \text{si } x \geq 0 \\ 
+    -x & \text{si } x < 0 
+    \end{cases}
+    \]
+    Soit $\abs{x} = \max(x,-x)$.
+\end{definition}
+
+\subsection{généralisation à la distance entre deux réels}
+
+La distance entre deux réels $a$ et $b$ est définie comme la valeur absolue de leur différence~:
+\begin{definition}{}{distance entre deux réels}
+    Pour tous réels $a$ et $b$, la distance entre $a$ et $b$ est définie par~:
+    $$ \mr{d}(a, b) = \abs{a - b} $$
+\end{definition}
+
+\begin{remarque}{}{culture générale}
+    si $d : (a,b) \mapsto \abs{a-b}$, on a que~:
+    \begin{itemize}
+        \item $\mr{d}(a, b) = \mr{d}(b, a)$ pour tous réels $a$ et $b$ (symétrie)
+        \item $\mr{d}(a, c) \leq \mr{d}(a, b) + \mr{d}(b, c)$ pour tous réels $a$, $b$ et $c$ (inégalité triangulaire)
+        \item $\mr{d}(a, b) \geq 0$ pour tous réels $a$ et $b$, et que $\mr{d}(a, b) = 0$ si et seulement si $a = b$. (lemme de séparation)
+    \end{itemize}
+    Ces propriétés confirment que la distance est une notion de "mesure de l'écart" entre deux réels. Une application $d$ vérifiant ces trois propriétés est appelée une \notion{distance} ou \notion{métrique} en mathématiques. C'est une notion à la base de la branche de la topologie !
+\end{remarque}
+
+\begin{remarque}{}{par rapport à la valeur absolue}
+    La valeur absolue peut être vue comme un cas particulier de la distance~: pour tout réel $x$, on a~:
+    $$ \abs{x} = \mr{d}(x, 0) $$
+    C'est bien pour cela qu'on dit que la valeur absolue d'un réel $x$ est sa distance à 0 !
+\end{remarque}
+
 \end{document}
