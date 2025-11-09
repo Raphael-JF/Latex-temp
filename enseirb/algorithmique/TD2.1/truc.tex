@@ -1,0 +1,51 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{titre}
+\newcommand{\numerochapitre}{numéro}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par François DUFOUR\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+L'état initial est \code{(40,10,60,20,100,70)}
+\begin{enumeratebf}
+    \item \code{(10,40,20,60,70,100)}
+    \item \code{(10,20,40,60,70,100)}
+    \item \code{(10,20,40,60,70,100)}
+    \item \code{(10,20,40,60,70,100)}
+    \item \code{(10,20,40,60,70,100)}
+\end{enumeratebf}
+
+\end{document}

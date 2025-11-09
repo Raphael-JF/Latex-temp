@@ -76,18 +76,22 @@
     Soit $g : \R_+ \to \R_+$ une fonction continue et intégrable vérifiant~:
     \begin{enumeratebf}
         \item $g$ est croissante
-        \item toute primitive $G$ de $g$ vérifie $G(n) \symbolelim{n \to + \infty}{}{=} \Theta\Big(G(n+1)\Big)$
+        \item toute primitive $G$ de $g$ vérifie~:
+        \begin{itemize}
+            \item  $G(n) \symbolelim{n \to + \infty}{}{=} \Theta\Big(G(n+1)\Big)$
+            \item $G(n) \flechelim{n \to + \infty}{} +\infty$
+        \end{itemize}
     \end{enumeratebf}
     Alors les suites solutions de $u_n = g(n) + u_{n-1}$ sont en $\Theta\Big(G(n)\Big)$ avec $G$ une primitive de $g$.
 \end{theoreme}
 
 \begin{remarque}{}{concernant l'énoncé}
     Les conditions sont vérifiées dans le cas où $g$ est polynomiale, exponentielle ou bien encore logarithmique, et ce seront les seuls cas que nous étudierons dans un contexte d'étude de complexité.
-    En particulier, supposer que $g = \mc{O}(K^n)$ comme le fait M. LAPOIRE donne l'hypothèse 2, tandis que la croissance de $g$ est assurée par sa nature de complexité.
+    En particulier, supposer que $g = \mc{O}(K^n)$ comme le fait M. LAPOIRE donne l'hypothèse \textit{2}, tandis que la croissance de $g$ est assurée par sa nature de complexité.
     
 \end{remarque}
 
-\begin{demonstration}
+\begin{demonstrationbreak}
     Soit $(u_n)_{n \in \N}$ solution. On remarque déjà que~:
     $$u_n = g(n) + g(n-1) + u_{n-2} = \sum_{i=1}^{n} g(i) + u_0$$
     Montrons alors qu'il existe $C_1 > 0$ et $C_2 > 0$ tels que~:
@@ -101,8 +105,15 @@
     Soit~:
     $$ G(n) - G(0) \leq u_n - u_{0} \leq G(n+1) - G(1)$$
     Mais encore~:
-    $$ \frac{G(n) - G(0) + u_{0}}{G(n)}G(n) \leq u_{n} \leq \frac{G(n+1) - G(1) + u_{0}}{G(n)}G(n)$$
-    Ces fractions sont bornées par hypothèse de comparabilité. Elles sont donc bornées à partir d'un certain rang et on en déduit l'existence de $C_1$ et $C_2$.
-\end{demonstration}
+    $$ \underbrace{\frac{G(n) - G(0) + u_{0}}{G(n)}}_{A_n}G(n) \leq u_{n} \leq \underbrace{\frac{G(n+1) - G(1) + u_{0}} bbbb฿b b{G(n)}}_{B_n}G(n)$$
+    \begin{itemize}
+        \item On a $A_n \flechelim{n \to + \infty}{} 1$ par hypothèse \textit{2.2}. La suite $(A_n)_{n \in \N}$ est convergente, donc bornée.
+        \item On a $G(n+1) \symbolelim{n \to + \infty}{}{=} \Theta\Big(G(n)\Big)$. Ainsi, il existe $K_1$ et $K_2$ dans $\R_+^*$ telles que~:
+        $$K_1 \leq \frac{G(n+1)}{G(n)} \leq K_2$$
+        Puis $\displaystyle\frac{u_0 - G(1)}{G(n)} \flechelim{n\to + \infty}{}0$. Par théorème de conservation des inégalités larges par passage à la limite, on obtient~:
+        $$K_1 \leq B_n \leq K_2$$
+    \end{itemize}
+    Ces fractions $A_n$ et $B_n$ sont toutes les deux bornées pour les raisons qui précèdent. On en déduit l'existence de $C_1$ et $C_2$.
+\end{demonstrationbreak}
 
 \end{document}

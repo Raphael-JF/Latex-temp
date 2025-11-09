@@ -1,0 +1,132 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Logique des prédicats}
+\newcommand{\numerochapitre}{3}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+{\Large Avec l'aide de Github Copilot\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par Frédéric HERBRETEAU\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Quantificateurs}
+\begin{definition}{}{prédicat}
+    Un \notion{prédicat} est une fonction qui prend un ou plusieurs arguments et retourne une valeur de vérité (vrai ou faux).
+\end{definition}
+
+\begin{exemple}{}{}
+    le prédicat $P(x)$ peut être défini comme ``$x$ est un nombre pair''. Si l'on considère le domaine des entiers, alors $P(2)$ est vrai, tandis que $P(3)$ est faux.
+\end{exemple}
+
+\begin{definition}{}{quantificateur universel}
+    Le \notion{quantificateur universel} est noté $\forall$ et signifie "pour tout". Par exemple, l'expression $\forall x P(x)$ signifie que le prédicat $P(x)$ est vrai pour tous les éléments $x$ dans le domaine de discours.
+\end{definition}
+
+\begin{definition}{}{quantificateur existentiel}
+    Le \notion{quantificateur existentiel} est noté $\exists$ et signifie "il existe". Par exemple, l'expression $\exists x P(x)$ signifie qu'il existe au moins un élément $x$ dans le domaine de discours pour lequel le prédicat $P(x)$ est vrai.
+\end{definition}
+
+\begin{remarque}{}{}
+    Dans un prédicat, l'ordre des quantificateurs est crucial. Par exemple, les expressions $\forall x \exists y P(x, y)$ et $\exists y \forall x P(x, y)$ peuvent avoir des significations très différentes~:
+    \begin{center}
+        "Pour tout enfant il existe une maman qui l'aime."
+    \end{center}
+    \begin{center}
+        "Il existe une maman qui aime tous les enfants."
+    \end{center}
+    Ces deux prédicats ne sont visiblement pas équivalents : l'un est utopique, l'autre est déroutant.
+\end{remarque}
+
+\begin{remarque}{}{}
+    Par convention, une assertion universelle sur un domaine vide est considérée comme vraie, tandis qu'une assertion existentielle sur un domaine vide est considérée comme fausse.
+\end{remarque}
+
+
+\begin{definition}{}{logique du premier ordre, langage du premier ordre}
+    La \notion{logique du premier ordre} (ou logique des prédicats) est une extension de la logique propositionnelle, dans laquelle on travaille sur un \notion{langage du premier ordre}, défini par~:
+    \begin{itemize}
+        \item des symboles de constantes (comme $0$, $\varnothing$, $\pi$,...)
+        \item des symboles de fonctions, comme $+ (5,3)$
+        \item des symboles de relations, comme $=$, $\neq$, $\geq$, $>$.
+    \end{itemize}
+    où l'on introduit aussi des quantificateurs. Les constantes et images des symboles de fonctions sont des éléments d'un ensemble d'étude, appelé \notion{domaine}, qui dépend du langage du premier ordre.
+\end{definition}
+
+\begin{definition}{}{occurrence libre, occurrence liée}
+    Dans une formule de logique du premier ordre, une \notion{occurrence libre} d'une variable est une occurrence qui n'est pas introduite dans un quantificateur. Une \notion{occurrence liée} est une occurrence qui est sous la portée d'un quantificateur.
+\end{definition}
+
+\begin{definition}{}{interprétation}
+    Une \notion{interprétation} pour un langage du premier assigne des significations aux symboles de constantes, fonctions et relations dans un domaine donné~:
+    \begin{itemize}
+        \item Chaque symbole de constante est associé à un élément spécifique du domaine.
+        \item Chaque symbole de fonction est associé à une fonction définie sur le domaine.
+        \item Chaque symbole de relation est associé à une relation définie sur le domaine.
+\end{definition}
+
+\begin{remarque}{}{}
+    On peut voir une interprétation comme un analogue des valuations en logique propositionnelle, mais adapté à la logique du premier ordre.
+\end{remarque}
+
+\begin{definition}{}{forme normale négative}
+    Une formule est en \notion{forme normale négative (FNN)} si~:
+    \begin{itemize}
+        \item les seuls connecteurs logiques qu'elle utilise sont $\land$, $\lor$ et des quantificateurs.
+        \item les négations n'apparaissent que directement devant des variables propositionnelles (formant des littéraux).
+    \end{itemize} 
+\end{definition}
+
+\begin{definition}{}{satisfiabilité}
+    Une formule est \notion{satisfiable} s'il existe une interprétation qui la rend vraie.
+\end{definition}
+
+\begin{remarque}{}{}
+    Même si on a le choix sur l'interprétation, il existe des prédicats qui n'admettent aucune interprétation les rendant vrais. Par exemple, le prédicat $\forall x \Big(P(x) \land \lnegP(x)\Big)$ est insatisfiable.
+    De plus, la satisfiabilité en logique du premier ordre est  un problème algorithmique indécidable.
+\end{remarque}
+
+
+\begin{definition}{}{validité}
+    Une formule est \notion{valide} si elle est vraie dans toutes les interprétations possibles.
+\end{definition}
+
+\begin{exemple}{}{}
+    Montrons que le prédicat suivant est satisfiable~:
+    $$\forall x P(x) \implies \exists x P(x)$$
+    Considérons une interprétation satisfaisant $\forall x P(x)$. Pour une telle interprétation, il existe au moins un élément $a$ dans le domaine tel que $P(a)$ est vrai. Donc, cette interprétation satisfait aussi $\exists x P(x)$.\\
+    Le prédicat est donc valide.
+\end{exemple}
+
+
+\end{document}

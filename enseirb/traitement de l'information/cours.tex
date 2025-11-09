@@ -1,6 +1,6 @@
 \input{../../stock/en-tete_v6.tex}
 
-\newcommand{\titrechapitre}{traitement de l'information}
+\newcommand{\titrechapitre}{Analyse en composantes principales}
 \newcommand{\numerochapitre}{1}
 
 \renewcommand{\headrulewidth}{0.4pt}
@@ -8,7 +8,7 @@
 \fancyfoot[L]{Notes de Raphaël JONTEF}
 \fancyfoot[C]{\thepage}
 \fancyfoot[R]{Enseirb-Matmeca}
-\fancyhead[L]{Cours de Théorie de l'information}
+\fancyhead[L]{Cours de traitement de l'information}
 \fancyhead[R]{\titrechapitre}
 
 \begin{document}
@@ -22,12 +22,13 @@
     {\huge Chapitre \numerochapitre\par}
     {\Huge \bfseries\titrechapitre\par}
     \vspace{2cm}
-    {\Large Notes rédigées par Raphaël JONTEF\par \newline à l'aide du modèle GPT-4 Mini\par}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+{\Large Avec l'aide de Github Copilot\par}
     \vspace{0.5cm}
-    {\normalsize Cours enseigné par Charles Brazier\par}
+    {\normalsize Cours enseigné par Charles BRAZIER\par}
     \vspace{4cm}
     {\small Enseirb-Matmeca\par}
-    {\small filière informatique - première année\par}
+    {\small filière informatique\par}
     \vfill
     {\large \today\par}
 \end{titlepage}
@@ -36,8 +37,142 @@
 \tableofcontents
 \newpage
 
+
 % -----------Corps du document--------------
 
+\section{Comment représenter des données représentées par des vecteurs ?}
+\subsection{Quelles données ?}
+\subsubsection{Données quantitatives}
+\subsubsection{Données qualitatives}
+
+
+
+
+\subsection{Quelle analyse ?}
+
+\subsubsection{Données quantitatives : Analyse en composantes principales}
+\begin{definition}{}{données multidimensionnelles}
+    On apelle \notion{donnée multidimensionnelles} des données auxquelles on associe plusieurs variables quantitatives, chacune représentant une dimension.
+\end{definition}
+
+\begin{exemple}{}{marques de boissons}
+    Pour chaque marque de boisson, on peut avoir un indice mesurant l'acidité, la teneur en sucre, le taux de caféine, etc. Chaque marque de boisson est ainsi représentée par un vecteur dans un espace multidimensionnel~:
+    \[
+        \text{Boisson A} \rightarrow \begin{pmatrix}
+            \text{Acidité} \\
+            \text{Teneur en sucre} \\
+            \text{Taux de caféine} \\
+            \vdots
+        \end{pmatrix}
+    \]
+\end{exemple}
+
+
+\begin{remarque}{}{visualisation}
+    Visualiser un vecteur d'un espace de dimension supérieure à trois est impossible. Il est alos question de bien choisir les dimensions que l'on affiche.
+\end{remarque}
+
+\begin{definition}{}{analyse en composantes principales}
+    L'\notion{analyse en composantes principales} (ACP) est une méthode statistique permettant de réduire la dimensionnalité d'un ensemble de données multidimensionnelles tout en conservant le maximum d'information possible. Elle identifie les directions principales (composantes principales) dans lesquelles les données varient le plus, et projette les données sur un sous-espace de dimension inférieure défini par ces directions.
+\end{definition}
+
+\begin{remarque}{}{pourquoi une telle méthode ?}
+    Le choix de l'analyse en composantes principales permet plusieurs choses~:
+    \begin{itemize}
+        \item Visualiser les données projetées dans un espace de dimension 2 ou 3.
+        \item Réduire le bruit dans les données en éliminant les dimensions moins significatives.
+        \item Faciliter l'analyse et l'interprétation des données en réduisant leur complexité.
+    \end{itemize}
+\end{remarque}
+
+\begin{definition}{}{instance}
+    Une \notion{instance} est un vecteur représentant un élément de données dans un espace multidimensionnel. On note $n$ le nombre d'instances manipulées.
+\end{definition}
+\begin{definition}{}{variable}
+    Une \notion{variable} est une caractéristique mesurable ou observable d'une instance, correspondant à une dimension dans l'espace multidimensionnel. On note $p$ le nombre de variables.
+\end{definition}
+
+\begin{definition}{}{notation}
+    On notera $x_i^j$ la valeur de la variable $j$ pour l'instance $i$, avec $i \in \llbracket 1, n \rrbracket$ et $j \in \llbracket 1, p \rrbracket$.
+\end{definition}
+
+Le but de l'analyse en composantes principales est de construire $k<p$ nouvelles variables combinaisons linéaires des variables initiales, appelées \notion{composantes principales}, qui capturent la majorité de la variance des données, en perdant le moins d'information possible. On dit qu'on cherche à maximiser \notion{l'inertie} des données projetées sur le nouvel espace de dimension $k$.
+
+\begin{definition}{}{centrage des données}
+    Le \notion{centrage des données} consiste à soustraire la moyenne de chaque variable à toutes les valeurs de cette variable, afin que chaque variable ait une moyenne nulle. Cela permet d'éliminer les biais liés aux différentes échelles des variables~:
+    $$x_i^j \leftarrow x_i^j - \frac{1}{n}\sum_{i=1}^n x_i^j$$
+\end{definition}
+
+\begin{definition}{}{échelonnage}
+    L'\notion{échelonnage} (ou normalisation) des données consiste à diviser chaque valeur centrée par l'écart-type de la variable correspondante, afin que chaque variable ait une variance unitaire. Cela permet de donner la même importance à toutes les variables lors de l'analyse~:
+    $$x_i^j \leftarrow \frac{x_i^j}{\sigma_j}$$
+    où $\sigma_j$ est l'écart-type de la variable $j$~:
+    $$\sigma_j = \sqrt{\frac{1}{n}\sum_{i=1}^n (x_i^j)^2}$$
+\end{definition}
+
+\begin{definition}{}{standardisation des données}
+    La \notion{standardisation des données} consiste à centrer puis à échelonner les données, afin que chaque variable ait une moyenne nulle et une variance unitaire. Cela permet de rendre les variables comparables entre elles lors de l'analyse.
+\end{definition}
+
+\begin{definition}{}{inertie}
+    L'\notion{inertie} d'un ensemble de données est une mesure de la dispersion des données autour de leur centre de gravité. Elle est définie comme la somme des carrés des distances entre chaque instance et le centre de gravité des données~:
+    $$I = \frac{1}{n}\sum_{i=1}^n \norme{x_i - \mu}^2$$
+    Pour des données standardisées, l'inertie est égale au nombre de variables $p$.
+\end{definition}
+
+voir poly
+
+\begin{definition}{}{matrice de covariance}
+    La \notion{matrice de covariance} est une matrice carrée qui mesure la covariance entre chaque paire de variables dans un ensemble de données. La covariance entre deux variables $j$ et $k$ est définie comme~:
+    $$\text{Cov}(X_j, X_k) = \frac{1}{n}\sum_{i=1}^n (x_i^j - \bar{x}^j)(x_i^k - \bar{x}^k)$$
+    où $\bar{x}^j$ et $\bar{x}^k$ sont les moyennes des variables $j$ et $k$. La matrice de covariance $C$ est alors définie comme~:
+    $$C = \begin{pmatrix}
+        \text{Cov}(X_1, X_1) & \text{Cov}(X_1, X_2) & \cdots & \text{Cov}(X_1, X_p) \\
+        \text{Cov}(X_2, X_1) & \text{Cov}(X_2, X_2) & \cdots & \text{Cov}(X_2, X_p) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \text{Cov}(X_p, X_1) & \text{Cov}(X_p, X_2) & \cdots & \text{Cov}(X_p, X_p)
+    \end{pmatrix}$$
+\end{definition}
+
+\begin{definition}{}{matrice de corrélation}
+    La \notion{matrice de corrélation} est une matrice carrée qui mesure la corrélation entre chaque paire de variables dans un ensemble de données. La corrélation entre deux variables $j$ et $k$ est définie comme~:
+    $$\text{Corr}(X_j, X_k) = \frac{\text{Cov}(X_j, X_k)}{\sigma_j \sigma_k}$$
+    où $\sigma_j$ et $\sigma_k$ sont les écarts-types des variables $j$ et $k$. La matrice de corrélation $R$ est alors définie comme~:
+    $$R = \begin{pmatrix}
+        \text{Corr}(X_1, X_1) & \text{Corr}(X_1, X_2) & \cdots & \text{Corr}(X_1, X_p) \\
+        \text{Corr}(X_2, X_1) & \text{Corr}(X_2, X_2) & \cdots & \text{Corr}(X_2, X_p) \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \text{Corr}(X_p, X_1) & \text{Corr}(X_p, X_2) & \cdots & \text{Corr}(X_p, X_p)
+    \end{pmatrix}$$
+\end{definition}
+
+En pratique~:
+\begin{enumeratebf}
+    \item standardisation des données
+    \item implémentation de la matrice de covariance
+    \item extractions des valeurs propres et des vecteurs propres
+    \item projection des données sur les composantes principales (l'espace des vecteurs propres trouvés).
+\end{enumeratebf}
+
+Ensuite, vient le choix des critères que l'on conservera. On trie donc les valeurs propres par ordre décroissant de leur module, et on choisit les $k$ premières valeurs propres, jusqu'à contenir 95% de la trace au moins, ainsi que les vecteurs propres associés. On projette ensuite les données initiales sur l'espace engendré par ces $k$ vecteurs propres.
+
+On peut aussi s'aider du cercle de corrélation pour supprimer des variables redondantes.
+
+\begin{definition}{}{cercle de corrélation}
+    Le \notion{cercle de corrélation} est une représentation graphique des variables dans le plan des deux premières composantes principales. Chaque variable est représentée par un vecteur partant de l'origine, dont la direction et la longueur indiquent la contribution de la variable aux composantes principales. Les variables proches les unes des autres sont fortement corrélées, tandis que les variables opposées sont négativement corrélées.
+\end{definition}
+
+
+
+
+
+\subsubsection{Données qualitatives : Analyse des correspondances multiples}
+
+
+
+
+\subsection{Comment visualiser ces données ?}
+\subsection{Réduction de dimension : prétraitement avant visualisation}
 
 
 \end{document}
