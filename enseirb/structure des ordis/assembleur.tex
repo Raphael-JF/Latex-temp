@@ -1,0 +1,88 @@
+\input{../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Assembleur}
+\newcommand{\numerochapitre}{2}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+{\Large Avec l'aide de Github Copilot\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par Amina Guermouche\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Introduction}
+
+L'assembleur est le langage le plus bas niveau qui puisse exister, qui soit lisible par un être humain. 
+
+\begin{definition}{}{Instruction Set Architecture}
+    L'\notion{ensemble des instructions} (ou instruction set architecture, abrégé ISA) constitue l'ensemble des instructions que le programmeur peut utiliser.
+\end{definition}
+
+\subsection{Quand utiliser l'assembleur ?}
+
+\begin{itemize}
+    \item programmation de systèmes d'exploitation
+\end{itemize}
+
+\section{Instructions}
+
+\subsection{Le \code{mov}}
+
+\begin{definition}{}{instruction \code{mov}}
+    \begin{lstASM}
+        mov rax , 0
+    \end{lstASM}
+    Permet d'allouer 0 à la variable \code{x}.
+    
+\end{definition}
+
+\begin{definition}{}{notation crochets}
+    Les crochets \code{[ ]} permettent d'accéder à la valeur stockée à l'adresse mémoire contenue dans un registre. Par exemple~:
+    \begin{lstASM}
+        mov rax , [rbx]
+    \end{lstASM}
+    permet de copier dans \code{rax} la valeur stockée à l'adresse mémoire contenue dans \code{rbx}.
+
+\end{definition}
+
+\subsection{Le \code{add}}
+\begin{definition}{}{instruction \code{add}}
+    \begin{lstASM}
+        add rax , rbx
+    \end{lstASM}
+    Permet d'ajouter la valeur de \code{rbx} à \code{rax} et de stocker le résultat dans \code{rax}.
+
+
+
+
+\end{document}

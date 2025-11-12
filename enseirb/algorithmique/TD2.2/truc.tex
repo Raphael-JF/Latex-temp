@@ -1,0 +1,52 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{titre}
+\newcommand{\numerochapitre}{numéro}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+{\Large Avec l'aide de \par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par \par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\begin{itemize}
+    \item Si \code{augmenter} double la taille, lors d'un appel \code{test(n)}, un nombre de $\lfloor\log_2(n)\rfloor +1$ appels sont effectués, chacun en un temps de l'ordre de $2^k$. Ainsi~:
+    \begin{align*}
+        \#(n) &= \sum{i=1}^{\lfloor\log_2(n)\rfloor +1} 2^k\\
+        &= 2^{\lfloor\log_2(n)\rfloor + 2} - 2
+        &= \Theta n
+    \end{align*}
+\end{itemize}
+
+\end{document}
