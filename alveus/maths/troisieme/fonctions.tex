@@ -1,0 +1,95 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Fonctions}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{Mathématiques : Troisième}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{8cm}
+    {\Large Cours rédigé par Raphaël JONTEF\par}
+    \vspace{2em}
+    {\small \textit{raphaeljontef@hotmail.com}\par}
+    \vspace{2cm}
+
+    {\normalsize pour un enseignement dans le cadre  \par}
+    {\small d'un soutien scolaire encadré par \href{https://www.alveusclub.com/}{Alveus} \par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Notion de fonction}
+\subsection{Définitions et vocabulaire}
+Une fonction est une relation qui associe à chaque élément d'un ensemble de départ (appelé \notion{ensemble de départ}) un unique élément d'un ensemble d'arrivée (appelé \notion{ensemble d'arrivée}). On note $f : A \to B$ une fonction \(f\) qui associe chaque élément de l'ensemble \(A\) à un élément de l'ensemble \(B\).
+
+\begin{definition}{}{antécédent et image}
+    Soit \(f : A \to B\) une fonction.
+    \begin{itemize}
+        \item Pour un élément \(x\) de l'ensemble de départ \(A\), l'élément \(f(x)\) de l'ensemble d'arrivée \(B\) est appelé \notion{image} de \(x\) par la fonction \(f\).
+        \item Pour un élément \(y\) de l'ensemble d'arrivée \(B\), un élément \(x\) de l'ensemble de départ \(A\) tel que \(f(x) = y\) est appelé \notion{antécédent} de \(y\) par la fonction \(f\).
+    \end{itemize}
+\end{definition}
+
+\begin{exemple}{}{de fonction}
+    \fonction{f}{\N}{\N}{n}{2n}
+    est une fonction qui à chaque entier naturel \(n\) associe l'entier naturel \(2n\). Par exemple, l'image de \(3\) par la fonction \(f\) est \(f(3) = 6\). \\
+    Moralement, la fonction \(f\) "double" chaque entier naturel. \\
+\end{exemple}
+
+\begin{exemple}{}{de fonction plus étrange}
+    Il existe aussi des fonctions définies sur des ensembles quelconques. Par exemple, on peut définir la fonction suivante~:
+    \fonction{f}{\{\text{Bernard}, \text{Claude}, \text{Michel}, \text{Patrick}\}}{\{\text{Claudette}, \text{Michèle}, \text{Patrick}, \text{}\}}{x}{\text{[le prénom féminin de $x$]}} \\
+    On a alors~:
+    \begin{itemize}
+        \item $f(\text{Bernard}) = \text{Bernadette}$
+        \item $f(\text{Claude}) = \text{Claudette}$
+    \end{itemize}
+    Mathématiquement, cette fonction est tout à fait déinie, même si elle n'a pas d'utilité mathématique.
+\end{exemple}
+
+\subsection{Fonctions affines}
+
+On appelle \notion{fonction affine} toute fonction \(f : \R \to \R\) qui peut s'écrire sous la forme~:
+$$f : x \mapsto ax + b$$
+où \(a\) et \(b\) sont des nombres réels fixés.
+\begin{itemize}
+    \item Le nombre \(a\) est appelé le \notion{coefficient directeur} de la fonction affine.
+    \item Le nombre \(b\) est appelé l'\notion{ordonnée à l'origine}.
+\end{itemize}
+
+\begin{exemple}{}{fonction affine}
+    La fonction \(f : \R \to \R\) définie par \(f(x) = 2x + 3\) est une fonction affine de coefficient directeur \(2\) et d'ordonnée à l'origine \(3\).
+\end{exemple}
+
+\begin{exemple}{}{}
+    L'antécédent de \(7\) par la fonction $f : \mapsto 2x + 3$ \\ est le nombre \(2\). En effet~:
+    \begin{align*}
+        f(2) & = 2 \times 2 + 3 \\
+             & = 4 + 3 \\
+             & = 7
+    \end{align*}
+\end{exemple}
+
+\end{document}

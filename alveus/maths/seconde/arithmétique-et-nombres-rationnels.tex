@@ -1,0 +1,185 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Arithmétique et nombres rationnels}
+\newcommand{\numerochapitre}{2}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{Mathématiques : Seconde}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{8cm}
+    {\Large Cours rédigé par Raphaël JONTEF\par}
+    \vspace{2em}
+    {\small \textit{raphaeljontef@hotmail.com}\par}
+    \vspace{2cm}
+
+    {\normalsize pour un enseignement dans le cadre  \par}
+    {\small d'un soutien scolaire encadré par \href{https://www.alveusclub.com/}{Alveus} \par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+\section{Arithmétique}
+L'Arithmétique est la branche des mathématiques qui étudie les nombres entiers et leurs propriétés. Elle inclut des concepts tels que la divisibilité, les nombres premiers et les algorithmes pour effectuer des opérations sur les entiers, comme celui de la division euclidienne apprise en école primaire.
+
+\subsection{Rappels sur des ensembles de nombres}
+En arithmétique, on travaill sur les ensembles suivants~:
+\begin{enumeratebf}
+    \item \notion{$\N$ l'ensemble des entiers naturels}, c'est à dire des entiers positifs ($0,\, 1,\, 2,\, \dots$)
+    \item \notion{$\Z$ l'ensemble des entiers relatifs}, c'est à dire des entiers positifs et négatifs ($\dots, -2, -1, 0, 1, 2, \dots$)
+
+\subsection{Divisibilité et parité}
+\begin{definition}{}{divisibilité}
+    Soit \(a\) et \(b\) deux entiers relatifs. On dit que \notion{\(a\) divise \(b\)} si et seulement s'il existe un entier relatif \(k\) tel que \(b = a k\). On note alors \(a \mid b\).
+\end{definition}
+
+\begin{remarque}{}{}
+    Si \(a\) divise \(b\), on dit aussi que \notion{\(b\) est un multiple de \(a\)}. On a d'ailleurs si $a$ et $b$ sont positifs~:
+    $$a \leq b$$
+\end{remarque}
+
+\begin{definition}{}{parité}
+    On appelle \notion{parité} d'un entier relatif $m$ le fait qu'il soit pair ou impair.
+    \begin{itemize}
+        \item Si $2 \mid m$, alors $m$ est \notion{pair}.
+        \item Sinon, $m$ est \notion{impair}.
+    \end{itemize}
+\end{definition}
+
+\subsection{Nombres premiers}
+
+\begin{definition}{}{nombre premier}
+    Un entier naturel \(p\) supérieur ou égal à 2 est un \notion{nombre premier} si et seulement si ses seuls diviseurs positifs sont 1 et \(p\) lui-même.
+\end{definition}
+
+\begin{remarque}{}{premier ou pas premier ?}
+    Savoir si un nombre est premier ou pas est une question fondamentale en arithmétique. \\
+    En général, il est facile de vérifier si un petit nombre est premier en testant la divisibilité par les nombres premiers inférieurs ou égaux à sa racine carrée, mais ça devient rapidement plus compliqué pour les grands nombres.
+\end{remarque}
+
+\begin{remarque}{}{}
+    Les nombres premiers sont au nombre infini. Les premiers entiers naturels qui sont des nombres premiers sont~:
+    \[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, \dots\]
+    \textit{1 n'est pas premier et nous verrons pourquoi très vite !}
+\end{remarque}
+
+\begin{theoreme}{}{décomposition en produit de facteurs premiers}
+    Tout entier naturel supérieur ou égal à 2 peut s'écrire de manière unique comme un produit de nombres premiers.
+\end{theoreme}
+
+\begin{exemple}{}{}
+    \begin{itemize}
+        \item $28 = 2 \times 2 \times 7 = 2^2 \times 7$
+        \item $90 = 2 \times 3 \times 3 \times = 5 = 2 \times 3^2 \times 5$
+        \item $12345 = 3 \times 5 \times 823$ (pas très joli celui-là !)
+    \end{itemize}
+\end{exemple}
+
+De nos jours, les nombres premiers sont utilisés en cryptographie, notamment dans les algorithmes de chiffrement comme RSA (utilisé pour chiffrer les connexions, ou pour sécuriser les transactions bancaires, entre autres), qui reposent sur la difficulté de factoriser de grands nombres en leurs facteurs premiers.
+
+\subsection{Plus grand commun diviseur (PGCD), nombres premiers entre eux}
+
+\begin{definition}{}{plus grand commun diviseur}
+    Soient \(a\) et \(b\) deux entiers relatifs non nuls. Le \notion{plus grand commun diviseur} (PGCD) de \(a\) et \(b\) est le plus grand entier relatif positif qui divise à la fois \(a\) et \(b\). On le note \(\text{pgcd}(a, b)\).
+\end{definition}
+
+\begin{remarque}{}{}
+    Le PGCD a une signification très naturelle~: en lisant les décompositions en produit de facteurs premiers de \(a\) et \(b\), on peut identifier les facteurs premiers communs à \(a\) et \(b\) et prendre le produit de ces facteurs avec leurs plus petites puissances respectives pour obtenir le PGCD. Par exemple, pour \(a = 60\) et \(b = 48\) :
+    \begin{itemize}
+        \item \(60 = 2^2 \times 3^1 \times 5^1\)
+        \item \(48 = 2^4 \times 3^1\)
+    \end{itemize}
+    Les facteurs premiers communs sont \(2\) (deux fois) et \(3\) (une fois). Le PGCD est donc le produit de ces facteurs communs~:
+    $$\mr{pgcd}(a,b) = 2^2 \times 3 = 12$$
+\end{remarque}
+
+\begin{definition}{}{entiers premiers entre eux}
+    Deux entiers relatifs \(a\) et \(b\) sont dits \notion{premiers entre eux} si et seulement si leur PGCD est égal à 1, c'est-à-dire qu'ils n'ont aucun diviseur commun autre que 1.
+\end{definition}
+
+\begin{remarque}{}{}
+    Moralement, $a$ et $b$ sont premiers entre eux si et seulement si dans leurs décompositions en produit de facteurs premiers, ils n'ont aucun facteur premier en commun.
+\end{remarque}
+
+\section{Nombres rationnels}
+
+\begin{definition}{}{nombre rationnel}
+    Les \notion{nombres rationnels} sont des nombres qui peuvent être exprimés comme le quotient de deux entiers. On note \notion{\(\mb{Q}\) l'ensemble des nombres rationnels}.\\\\Formellement, un nombre rationnel peut être écrit sous la forme \(\frac{a}{b}\), où \(a\) et \(b\) sont des entiers relatifs et \(b \neq 0\) pour ne pas diviser par 0.
+\end{definition}
+
+\begin{definition}{}{forme irréductible d'un nombre rationnel}
+    Un nombre rationnel \(\frac{a}{b}\) est dit être en \notion{forme irréductible} si et seulement si \(a\) et \(b\) sont premiers entre eux, c'est-à-dire que \(\text{pgcd}(a, b) = 1\).
+\end{definition}
+
+\begin{exemple}{}{}
+    \begin{itemize}
+        \item Le nombre rationnel \(\frac{4}{8}\) n'est pas en forme irréductible car \(4\) et \(8\) ne sont pas premiers entre eux (\(\text{pgcd}(4, 8) = 4\)). Sa forme irréductible est \(\frac{1}{2}\), obtenue en divisant les numérateurs et dénominateurs par leur PGCD.
+        \item Le nombre rationnel \(\frac{7}{15}\) est en forme irréductible car \(7\) et \(15\) sont premiers entre eux~: \(\text{pgcd}(7, 15) = 1\).
+    \end{itemize}
+\end{exemple}
+
+\begin{theoreme}{}{unicité de la forme irréductible}
+    Tout nombre rationnel peut être exprimé de manière unique en forme irréductible.\\
+    C'est pour cela que l'on parle de \textbf{la} forme irréductible d'un nombre rationnel.
+\end{theoreme}
+
+\section{Exercices}
+\subsection{Exercices de base}
+
+\begin{exercice}{}{décomposition en produit de facteurs premiers}
+    \begin{enumeratebf}
+        \item Donner la décomposition en produit de facteurs premiers des entiers suivants~: 
+        \begin{multicols}{3}
+            \begin{enumerate}[label=\alph*.]
+                \item $56$
+                \item $75$
+                \item $100$
+                \item $121$
+                \item $180$
+                \item $225$
+            \end{enumerate}
+        \end{multicols}
+        \item Calculer les quantités suivantes~:
+        \begin{multicols}{3}
+            \begin{enumerate}[label=\alph*.]
+                \item $\mr{pgcd}(56,225)$
+                \item $\mr{pgcd}(100,121)$
+                \item $\mr{pgcd}(75,180)$
+            \end{enumerate}
+        \end{multicols}
+    \end{enumeratebf}
+\end{exercice}
+
+
+\subsection{Au programme}
+\begin{exercice}{}{somme de multiples}
+    Montrer que la somme de multiples de $n$ est un multiple de $n$.
+\end{exercice}
+
+\begin{exercice}{}{carré d'un nombre impair }
+    Montrer que le carré d'un nombre impair est impair.
+\end{exercice}
+
+
+\end{document}
