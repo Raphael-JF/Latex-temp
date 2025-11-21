@@ -1,0 +1,25 @@
+% images_to_pdf.tex
+\documentclass[a4paper]{article}
+\usepackage[margin=0pt]{geometry} % pas de marge
+\usepackage{graphicx}
+\usepackage{nopageno} % supprime numéros de page
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{figure}[!p]
+  \centering
+  \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{1.jpeg}
+\end{figure}
+
+\begin{figure}[!p]
+  \centering
+  \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{2.jpeg}
+\end{figure}
+
+\begin{figure}[!p]
+  \centering
+  \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{3.jpeg}
+\end{figure}
+
+\end{document}
