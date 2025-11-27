@@ -1,0 +1,58 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{Rappels sur les asymptotes}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{Mathématiques : Terminale Générale}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+\section*{Asymptotes d'une courbe en Terminale}
+
+\subsection*{1. Asymptote horizontale}
+Pour étudier une éventuelle asymptote horizontale en \(-\infty\) ou en \(+\infty\), on calcule :
+\[
+\lim_{x\to +\infty} f(x) \quad \text{ou} \quad \lim_{x\to -\infty} f(x)
+\]
+Si l'une de ces limites existent et vaut un réel \(\ell\), alors la courbe admet l'asymptote horizontale~:
+\[
+y=\ell.
+\]
+Une asymptote horizontale ne peut exister qu'en l'infini.
+
+\subsection*{2. Asymptote verticale}
+La droite \(x=a\) est une asymptote verticale lorsque :
+\[
+\lim_{x\to a^-} f(x)=\pm\infty
+\quad\text{ou}\quad
+\lim_{x\to a^+} f(x)=\pm\infty.
+\]
+Une asymptote verticale ne peut exister qu'en réel $a$.
+
+\subsection*{3. Asymptote oblique (quasiment HP)}
+Pour chercher une asymptote oblique en \(+\infty\) ou en \(-\infty\), on calcule :
+\[
+m = \lim_{x\to \pm\infty} \frac{f(x)}{x}.
+\]
+Si cette limite existe et \(m\neq 0\), alors on calcule :
+\[
+p = \lim_{x\to \pm\infty} \bigl(f(x)-mx\bigr).
+\]
+Si \(p\) est un réel, alors la courbe admet l’asymptote oblique :
+\[
+y = mx + p.
+\]
+
+
+
+
+
+
+\end{document}
