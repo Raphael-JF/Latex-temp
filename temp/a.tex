@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\usepackage{xcolor}
+\usepackage{listings}
+
+% --- Thème listings pour le C ---
+\lstdefinestyle{cstyle}{
+    language=C,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{red!70!black},
+    identifierstyle=\color{black},
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{gray!50},
+    aboveskip=1em,
+    belowskip=1em
+}
+
+\begin{document}
+
+\section*{Test listings en C}
+
+\begin{lstlisting}[style=cstyle]
+#include <stdio.h>
+
+int somme(int a, int b) {
+    // Calcule la somme de deux entiers
+    return a + b;
+}
+
+int main() {
+    printf("%d\n", somme(3, 5));
+    return 0;
+}
+\end{lstlisting}
+
+\end{document}
