@@ -1,0 +1,51 @@
+\input{../../../stock/en-tete_v6.tex}
+
+\newcommand{\titrechapitre}{titre}
+\newcommand{\numerochapitre}{numéro}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours de Mathématiques}
+\fancyhead[R]{\titrechapitre}
+
+\begin{document}
+\input{../../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+{\Large Avec l'aide de \par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par \par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+On construit l'arbre minimal de hauteur $h$ comme dans la question précédente. On rajoute un pour la racine, et on intègre à gauche un sous-arbre minimal de hauteur $h-1$ et à droit un sous-arbre minimal de hauteur $h-2$.On a alors~:
+$$F_h = \begin{cases*}
+    1&si $h = 0$ (cas de l'arbre feuille) \\
+    F_{h-1} + F_{h-2} + 1
+\end{cases*}$$
+
+
+
+\end{document}
