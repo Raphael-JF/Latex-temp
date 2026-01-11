@@ -1,0 +1,28 @@
+\usetikzlibrary{arrows.meta, positioning}
+\begin{tikzpicture}[>=Stealth, node distance=3cm]
+
+    % Noeud original
+    \node (original) {
+        $\begin{array}{l l}
+            \textbf{milk} & \textbf{texture} \\
+            \hline
+            \text{cow} & \text{elastic, firm, open, soft} \\
+            \text{goat} & \text{soft, creamy} \\
+            \text{sheep} & \text{semi-hard, firm}
+        \end{array}$
+    };
+
+    % Noeud dummy variables
+    \node (dummy) [right=of original] {
+        $\begin{array}{c c c c}
+            \textbf{milk\_cow} & \textbf{milk\_goat} & \textbf{milk\_sheep} & \textbf{texture\_soft} \\
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 1 \\
+            0 & 0 & 1 & 0
+        \end{array}$
+    };
+
+    % Flèche entre les deux
+    \draw[->, thick] (original) -- (dummy);
+
+\end{tikzpicture}

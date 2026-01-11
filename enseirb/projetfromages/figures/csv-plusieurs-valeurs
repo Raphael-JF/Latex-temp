@@ -1,0 +1,11 @@
+\[
+\tiny
+\begin{array}{l l l l l l l l}
+\textbf{cheese} & \textbf{milk} & \textbf{family} & \textbf{type} & \textbf{texture} & \textbf{rind} & \textbf{color} & \textbf{flavor} \\
+\hline
+\text{Abbot’s Gold} & \text{cow} & \text{Cheddar} & \text{semi-hard} & \boxed{\text{creamy, crumbly, \dots}} & \text{natural} & \text{pale yellow} & \boxed{\text{mild, sweet, tangy}} \\
+\text{Adelost} & \text{cow} & \text{Blue} & \boxed{\text{semi-soft, blue-veined}} & \text{creamy} & \text{natural} & \text{blue} & \boxed{\text{salty, sharp, tangy}} \\
+\text{ADL Brick Cheese} & \text{cow} & \text{Cheddar} & \text{semi-soft} & \boxed{\text{elastic, firm, open, soft}} & \text{rindless} & \text{ivory} & \boxed{\text{buttery, mild, milky, subtle}} \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots
+\end{array}
+\]

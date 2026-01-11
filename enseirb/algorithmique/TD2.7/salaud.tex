@@ -40,12 +40,37 @@
 
 % -----------Corps du document--------------
 
-On construit l'arbre minimal de hauteur $h$ comme dans la question précédente. On rajoute un pour la racine, et on intègre à gauche un sous-arbre minimal de hauteur $h-1$ et à droit un sous-arbre minimal de hauteur $h-2$.On a alors~:
+On construit l'arbre minimal de hauteur $h$ comme dans la question précédente. On rajoute un pour la racine, et on intègre à gauche un sous-arbre minimal de hauteur $h-1$ et à droite un sous-arbre minimal de hauteur $h-2$. On a alors~:
 $$F_h = \begin{cases*}
     1&si $h = 0$ (cas de l'arbre feuille) \\
-    F_{h-1} + F_{h-2} + 1
+    2&si $h = 1$ \\
+    F_{h-1} + F_{h-2} + 1&sinon\\
 \end{cases*}$$
 
+On utilise la théorie algébrique pour expliciter $F_h$ le nombre de nœuds d’un arbre AVL minimal, en fonction de sa hauteur. Ensuite, pour $T$ un AVL, on aura~:
+$$F_h \leq \abs{T}$$
 
+On notera pour la suite~: 
+$$\varphi = \frac{1 + \sqrt{5}}{2}\qquad \text{et} \qquad \phi = \frac{1 - \sqrt{5}}{2}$$
+Les suites solutions de $u_{h+2} = u_{h+1} + u_n$ sont dans $\text{Vect}\Big((\varphi^h - \phi^h)_{h \in \N},\, (\varphi^{h-1} - \phi^{h-1})_{h \in \N}\Big)$. Puis une solution particulière de $u_{h+2} = u_{h+1} + u_{h} + 1$ est $(\frac{\varphi^{h+1} - \phi^{h+1}}{\sqrt{5}} - 1)_{h \in \N}$.
+En exploitant les conditions imposées par le problème de Cauchy que vérifie $F_h$, on trouve~:
+$$\forall h \in \N,\, F_h = \frac{3}{\sqrt{5}}(\varphi^h - \phi^h) + \frac{2}{\sqrt{5}}(\varphi^{h-1} - \phi^{h-1}) - 1$$
+Comme $\phi^h \symbolelim{h \to + \infty}{}{=} o(\varphi^h)$, car~:
+$$\bigg\vert\frac{\phi}{\varphi}\bigg\vert^h \approx 0,38^h \flechelim{h \to + \infty}{} 0$$
+On obtient~:
+$$F_h \symbolelim{h \to + \infty}{}{=} \Theta(\varphi^h)$$
+Soit, car $\Theta$ est une relation d'équivalence~:
+$$\varphi^h \symbolelim{h \to + \infty}{}{=} \Theta(F_h)$$
+Ainsi il existe $K_1 >0$, $K_2 > 0$ telles que pour $h \in \N$ on ait~:
+$$\forall h \in \N,\, K_1 F_h \leq \varphi^h \leq K_2 F_h $$
+Pour $h \in \N$, on a donc~:
+\begin{align*}
+    \frac{\ln(K_1) + \ln(F_n)}{\ln{\varphi}} \leq h \leq \frac{\ln(K_2) + \ln(F_n)}{\ln{\varphi}}
+\end{align*}
+Il existe donc $K_1' = \frac{\ln(K_1)}{\ln{\varphi}}$ et $K_2' = \frac{\ln(K_2)}{\ln{\varphi}}$ tel qu'on ait~:
+$$\forall h \in \N,\, K_1' \frac{\ln(F_n)}{\ln(\varphi)} \leq h \leq \frac{\ln(F_n)}{\ln(\varphi)}$$
 
+Ainsi $h \symbolelim{h \to + \infty}{}{=} \Theta(\ln(F_n))$
+et comme $F_n \leq \abs{T}$ pour $T$ un arbre AVL, on a~:
+$$h = \bigO\bigg(\ln\big(\abs{T}\big)\bigg)$$
 \end{document}

@@ -1,0 +1,159 @@
+\documentclass[12pt]{article}
+
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc} 
+
+% Set page size and margins
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+%\usepackage{stmaryrd} % pour les intervalles d'entiers
+%\usepackage{amssymb} % pour mathbb
+%\usepackage{graphicx}
+\usepackage{multicol} % colonnes
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{float} % pour que les figures se placent bien
+\usepackage{listings}
+\usepackage{caption} % pour centrer les captions malgré les \\
+\captionsetup{justification=centering}
+
+
+\usepackage{csquotes}
+\usepackage[
+   backend=biber, 
+   sorting=nyt, 
+   citestyle=numeric, 
+   bibstyle=numeric,
+]{biblatex}
+\addbibresource{biblio.bib}
+\lstnewenvironment{lstC}
+{\lstset{
+    language=C,
+    basicstyle=\ttfamily\scriptsize,
+    keywordstyle=\color{keywordcolorC}\bfseries,
+    commentstyle=\color{commentcolorC}\itshape,
+    stringstyle=\color{stringcolorC},
+    backgroundcolor=\color{white},
+    numbers=left,
+    numberstyle=\ttfamily,
+    numbersep=-1.5em,
+    stepnumber=1,
+    frame=l,
+    mathescape=true,
+    framexleftmargin=-2.25em,
+    tabsize=1,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ä}{{\"{a}}}1%
+    {ë}{{\"{e}}}1%
+    {ï}{{\"{i}}}1%
+    {ö}{{\"{o}}}1%
+    {ü}{{\"{u}}}1%
+    {û}{{\^{u}}}1%
+    {â}{{\^{a}}}1%
+    {Â}{{\^{A}}}1%
+    {Î}{{\^{I}}}1
+}}{}
+
+
+\title{Traitement de l'information - projet final}
+\author{Raphael jtf}
+\date{}
+\newpage
+
+%ptites macros
+\newcommand{\code}{\texttt}
+
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\section{Introduction}
+Ce rapport concerne le traitement de données publiques sur les caractéristiques de fromages\cite{1} dont l'appellation est protégée. Pour analyser ces données, qui sont de types qualitatives, nous avons choisi d’utiliser la méthode de l’Analyse des Correspondances Multiples\cite{3}, afin d’étudier s'il existe des relations entre le type du lait utilisé pour confectionner un fromage, et ses caractéristiques organoleptiques~:
+\begin{enumerate}
+    \item sa famille de fromages \code{family} (\textit{Cheddar}, \textit{Blue}, \textit{Mozarella}, \dots)
+    \item son type \code{type} (\textit{soft}, \textit{semi-hard}, \dots)
+    \item sa texture \code{texture} (\textit{springy}, \textit{firm}, \dots)
+    \item son écorce \code{rind} (\textit{natural}, \textit{mold ripened}, \dots)
+    \item sa couleur \code{color} (\textit{yellow}, \textit{cream}, \dots)
+    \item sa saveur \code{flavor} (\textit{mild}, \textit{sweet}, \dots).
+\end{enumerate}
+Insérer un plan.
+
+\section{Présentation des données}
+
+Le jeu de données original\cite{1} que nous étudions possède les champs suivants~:
+\begin{multicols}{2}
+\begin{enumerate}
+    \item le nom du fromage \code{cheese}
+    \item l’URL de référence \code{url}
+    \item le type de lait utilisé \code{milk}
+    \item le pays d’origine \code{country}
+    \item la région d’origine \code{region}
+    \item la famille de fromages \code{family}
+    \item le type de fromage \code{type}
+    \item la teneur en matières grasses \code{fat\_content}
+    \item la teneur en calcium \code{calcium\_content}
+    \item la texture \code{texture}
+    \item le type d’écorce \code{rind}
+    \item la couleur \code{color}
+    \item la saveur \code{flavor}
+    \item l’arôme \code{aroma}
+\end{enumerate}
+\end{multicols}
+
+Parmi ces critères, nous avons choisi de conserver ceux mentionnés dans l'introduction, car ils présentent le moins de cases non remplies, et sont tous du même type : ils sont qualitatifs, et non binaires, ce qui justifie l'utilisation de l'analyse des correspondances multiples. Par la suite, nous avons choisi, dans l'optique de simplifier le cadre d'étude, de se restreindre aux instances de fromage dont le lait est parmi les trois des plus présents dans le jeu de données~:
+\begin{itemize}
+    \item lait de vache
+    \item lait de brebis
+    \item lait de chèvre
+\end{itemize}
+Enfin nous avons omis les lignes présentant au moins une valeur inconnue (valant \code{"NA"}).\\\par
+Comme illustré dans la figure~\ref{fig:csv-plusieurs-valeurs}, nos variables qualitatives sont parfois multiples, c'est-à-dire qu'à une case données du jeu de données, apparaissent plusieurs valeurs de critères. Nous verrons dans la prochaine section un moyen de pallier à une telle spécificité pour construire la table de contingence.
+
+\begin{figure}[H]
+    \input{figures/csv-plusieurs-valeurs}
+    \caption{début du jeu de données (fichier \code{csv})\\\small sont encadrés des cas de multiplicité des variables}
+    \label{fig:csv-plusieurs-valeurs}
+\end{figure}
+
+\section{Présentation de la méthode}
+Nous travaillerons ici sur le critère \code{texture}, mais l'étude des résultats portera sur l'ensemble des critères à comparer avec le lait des fromages (\code{family}, \code{type}, \code{rind}, \code{color}, \code{flavor})
+
+\subsection{Construction de la table de contingence}
+
+Puisque les variables que nous manipulons sont non binaires, nous construisons, dans le cadre de l'analyse des correspondances multiples, un tableau disjonctif complet (dit "Dummy variable table" dans le cours) de sorte d'avoir des paramètres tous binaires, comme montré en figure~\ref{fig:dummy-table}
+
+\begin{figure}[H]
+    \input{figures/dummy-table}
+    \caption{Tableau disjonctif complet}
+    \label{fig:dummy-table}
+\end{figure}
+
+
+\newpage
+\printbibliography
+\end{document} 

@@ -1,0 +1,17 @@
+[1] Config.pm:307> INFO - This is Biber 2.19
+[1] Config.pm:310> INFO - Logfile is 'code.blg'
+[244] biber:340> INFO - === mar. déc. 23, 2025, 15:16:57
+[309] Biber.pm:419> INFO - Reading 'code.bcf'
+[469] Biber.pm:979> INFO - Found 2 citekeys in bib section 0
+[502] Biber.pm:4419> INFO - Processing section 0
+[554] Biber.pm:4610> INFO - Looking for bibtex file 'biblio.bib' for section 0
+[556] bibtex.pm:1713> INFO - LaTeX decoding ...
+[565] bibtex.pm:1519> INFO - Found BibTeX data source 'biblio.bib'
+[710] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[710] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[710] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'fr-FR'
+[710] Biber.pm:4245> INFO - No sort tailoring available for locale 'fr-FR'
+[728] bbl.pm:660> INFO - Writing 'code.bbl' with encoding 'UTF-8'
+[731] bbl.pm:763> INFO - Output to code.bbl
+[731] Biber.pm:131> WARN - BibTeX subsystem: /tmp/biber_tmp_yzgY/a9e03cb3043b9e2c02591da84105bb68_13606.utf8, line 9, warning: 1 characters of junk seen at toplevel
+[732] Biber.pm:133> INFO - WARNINGS: 1
