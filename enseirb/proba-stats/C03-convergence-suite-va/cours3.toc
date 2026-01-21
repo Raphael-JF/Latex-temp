@@ -1,8 +1,8 @@
 \babel@toc {french}{}\relax 
 \contentsline {section}{\numberline {I}Loi des grands nombres}{2}{section.1}%
 \contentsline {section}{\numberline {II}Différents modes de convergentes de suites de variables aléatoires}{3}{section.2}%
-\contentsline {section}{\numberline {III}Loi des grands nombres}{6}{section.3}%
-\contentsline {section}{\numberline {IV}Convergence faible et théorème de la limite centrale}{6}{section.4}%
-\contentsline {subsection}{\numberline {IV.1}Convergence faible}{6}{subsection.4.1}%
-\contentsline {subsection}{\numberline {IV.2}Théorème de la limite centrale}{7}{subsection.4.2}%
-\contentsline {subsection}{\numberline {IV.3}Questions de cours}{7}{subsection.4.3}%
+\contentsline {section}{\numberline {III}Loi des grands nombres}{7}{section.3}%
+\contentsline {section}{\numberline {IV}Convergence faible et théorème de la limite centrale}{7}{section.4}%
+\contentsline {subsection}{\numberline {IV.1}Convergence faible}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {IV.2}Théorème de la limite centrale}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {IV.3}Questions de cours}{8}{subsection.4.3}%

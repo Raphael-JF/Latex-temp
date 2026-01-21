@@ -70,7 +70,7 @@
 \section{Différents modes de convergentes de suites de variables aléatoires}
 Dans cette section, $k$ est un entier naturel non nul.
 \begin{definition}{}{convergence en moyenne d'ordre $k$}
-    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires admettant un moment d'ordre $k$ ($X_n^k$ est sommable ou intégrable, se note $x_n \in L^k$). On dit que $(X_n)_{n \in \N}$ converge vers $X \in L^k$ si 
+    Soit $(X_n)_{n \in \N}$ une suite de variables aléatoires admettant un moment d'ordre $k$ ($X_n^k$ est sommable ou intégrable, se note $X_n \in L^k$). On dit que $(X_n)_{n \in \N}$ converge vers $X \in L^k$ si 
     $$\lim_{n \to +\infty} \esperance{\vert X_n - X \vert^k} = 0$$
     On notera alors~:
     $$X_n \xrightarrow[\;n \to +\infty\;]{L^k} X$$
@@ -131,13 +131,26 @@ On rappelle le théorème de convergence dominée pour les suites de fonctions d
         Puis pour $\varepsilon$ fixé~:
         \begin{align*}
             \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} &= \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert \geq \varepsilon}} + \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert < \varepsilon}}\\
-            &\leq  \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} \\
-            &= \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert \geq \varepsilon}} + \frac{\varepsilon}{1+\varepsilon}
+            &\leq \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert} \indicatrice_{\vert X_n - X \vert \geq \varepsilon}} + \frac{\varepsilon}{1+\varepsilon}\\
+            &\leq \esperance{\indicatrice_{\vert X_n - X \vert \geq \varepsilon}} + \frac{\varepsilon}{1+\varepsilon}\\
+            &= \probaset{\vert X_n - X \vert \geq \varepsilon} + \frac{\varepsilon}{1+\varepsilon}\\
+            &\leq \varepsilon + \frac{\varepsilon}{1+\varepsilon} \qquad(\text{pour } n \text{ suffisamment grand})\\
+            &\leq 2\varepsilon
         \end{align*}
+        Ceci est la définition de limite nulle quand $n$ tend vers l'infini.
 
-        \item 
+        \item $(2) \implies (1)$. On suppose que~:
+        $$\lim_{n \to +\infty} \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} = 0$$
+        Soit $\varepsilon > 0$. On a~:
+        $$\frac{\vert X_n - X \vert}{1 + \vert X_n - X \vert} \geq \frac{\varepsilon}{1+\varepsilon}\indicatrice_{\vert X_n - X \vert \geq \varepsilon}$$
+        Et par croissance de l'espérance~:
+        \begin{align*}
+            \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} &\geq \esperance{\frac{\varepsilon}{1+\varepsilon}\indicatrice_{\vert X_n - X \vert \geq \varepsilon}}\\
+            &= \frac{\varepsilon}{1+\varepsilon}\probaset{\vert X_n - X \vert \geq \varepsilon}
+        \end{align*}
+        Donc, en passant à la limite quand $n$ tend vers l'infini, on obtient~:
+        $$\lim_{n \to +\infty} \probaset{\vert X_n - X \vert \geq \varepsilon} = 0$$
     \end{itemize}
-
 
 \end{demonstration}
 
@@ -147,7 +160,19 @@ On rappelle le théorème de convergence dominée pour les suites de fonctions d
 \end{proposition}
 
 \begin{demonstration}
-    Puisque $X_n \xrightarrow[\;n \to +\infty\;]{\mr{p.s}} X$, alors 
+    Supposons que $(X_n)_{n \in \N}$ converge presque sûrement vers $X$. Soit $\varepsilon > 0$. On a~:
+    $$\proba\Big(\underbrace{\{\omega \in \Omega, \lim_{n \to +\infty} X_n(\omega) = X(\omega)\}}_{:=A}\Big) = 1$$
+    Pour $\omega \in A$, on a par continuité et annulation de $f:x\mapsto \frac{x}{1+x}$ en $0$~:
+    $$\frac{\vert X_n(\omega)-X(\omega)\vert}{1 + \vert X_n(\omega) - X(\omega)\vert} \flechelim{n \to + \infty}{} 0$$
+    Cela signifie que~:
+        $$A = \{\omega \in \Omega, \lim_{n \to +\infty} \vert X_n(\omega) -  X(\omega)\vert = 0\}  \subset \{\omega \in \Omega, \lim_{n \to +\infty} f(\vert X_n(\omega) -  X(\omega)\vert) = 0\}$$
+    En passant aux probabilités, on obtient~:
+    $$1 = \proba(A) \leq \proba\Big(\{\omega \in \Omega, \lim_{n \to +\infty} f(\vert X_n(\omega) -  X(\omega)\vert) = 0\}\Big) = 1$$
+    On a alors que~:
+    $$\frac{\vert X_n-X\vert}{1 + \vert X_n - X\vert} \xrightarrow[\;n \to +\infty\;]{\mr{p.s.}} 0$$
+    D'après le théorème de convergence dominée pour les variables aléatoires (on peut choisir $Y=1$), on a~:
+    $$\lim_{n \to +\infty} \esperance{\frac{\vert X_n - X\vert}{1 + \vert X_n - X\vert}} = 0$$
+    Ceci équivaut à la convergence en probabilité de $(X_n)_{n \in \N}$ vers $X$ d'après la proposition précédente.
 \end{demonstration}
 
 \begin{theoreme}{}{hiérarchie des convergences en moyenne}
