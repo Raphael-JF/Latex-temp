@@ -9,6 +9,7 @@
 \fancyfoot[R]{Enseirb-Matmeca}
 \fancyhead[L]{Cours d'algorithmique numérique}
 \fancyhead[R]{\titrechapitre}
+        \usepackage{hhline}
 
 \begin{document}
 \input{../../stock/commands.tex}
@@ -152,90 +153,9 @@ e_\times(x,y) &= \frac{\abs{(x+\delta x) \times (y + \delta y) - x \times y}}{\a
     Dans la mesure où les ordres de grandeurs s'additionnent également dans un produit, on peut dire que le produit est une opération stable du point de vue des erreurs d'arrondi.
 \end{remarque}
 
-\section{Résolution de systèmes linéaires}
+\subsection{Principes généraux pour réduire les erreurs d'arrondi}
 
-Soit $A \in \matrice{n}(\R)$, $B \in \R^n$
-En pratique, la solution numérique $x + \delta x$ de l'égalité vectorielle $AX = B$ vérifie~:
-$$A\times(x+\delta x) = b + \delta b$$
-On a alors~:
-$$\delta b = A\times(x + \delta x) - b$$
-Le vecteur $x$ étant inconnu, on ne peut pas calculer directement $\delta b$. On cherche donc à majorer $\norme{\delta b}$.\\\par
-
-\subsection{Rappels sur les normes usuelles sur $\R^n$}
-
-\begin{definition}{}{norme infinie}
-    Pour $X \in \R^n$, on définit la norme infinie par~:
-    $$\norme{X}_\infty = \max_{1 \leq i \leq n} |x_i|$$
-    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(X, inf)}.
-\end{definition}
-
-\begin{definition}{}{norme de Mannhattan}
-    Pour $X \in \R^n$, on définit la norme de Manhattan par~:
-    $$\norme{X}_1 = \sum_{i=1}^n |x_i|$$
-    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(X, 1)}.
-\end{definition}
-
-\begin{definition}{}{norme euclidienne}
-    Pour $X \in \R^n$, on définit la norme euclidienne par~:
-    $$\norme{X}_2 = \left(\sum_{i=1}^n |x_i|^2\right)^{1/2}$$
-    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(X)}.
-\end{definition}
-
-\begin{definition}{}{norme subordonnée}
-    Pour $A \in \matrice{n}(\R)$, on définit la norme subordonnée associée à une norme vectorielle $\norme{\cdot}$ par~:
-    $$\norme{A} = \sup_{X \in \R^n, X \neq 0} \frac{\norme{AX}}{\norme{X}}$$
-    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(A, ord)} où \texttt{ord} est l'ordre de la norme vectorielle associée (\code{1}, \code{2} ou \code{inf}).
-    
-\end{definition}
-
-
-\begin{remarque}{}{sur la norme euclidienne d'une matrice}
-    On a $\norme{A}_2 = \sqrt{\rho(AA^\top)}$ où $\rho(M)$ est la valeur propre de $M$ de plus grande valeur absolue.
-    Cette norme est difficile à calculer en pratique. On préfère donc utiliser les normes $\norme{\cdot}_1$ ou $\norme{\cdot}_\infty$. qui sont plus rapides à calculer.
-    
-\end{remarque}
-
-\subsection{Erreur d'approximation et méthode d'estimation de cette erreur}
-
-Si $A$ est inversible, on a~:
-\begin{align*}
-    b &= Ax
-    &\Rightarrow \norme{b} &= \norme{Ax} \leq \norme{A}\norme{x}\\
-\end{align*}
-
-De même~:
-\begin{align*}
-    A \times (x + \delta x) &= b + \delta b \\
-    &\Rightarrow A \delta x = \delta b\\
-    &\Rightarrow \norme{\delta b} = \norme{A \delta x} \leq \norme{A}\norme{\delta x}\\
-    &\Rightarrow \norme{b} \norme{\delta b} \leq \norme{A}\norme{x} \norme{A^{-1}}\norme{\delta x}\\
-    &\Rightarrow \underbrace{\frac{\norme{\delta x}}{\norme{x}}}_{\text{erreur relative sur la solution}} \leq \underbrace{\norme{A}\norme{A^{-1}}}_{\mr{cond}(A)} \underbrace{\frac{\norme{\delta b}}{b}}_\text{erreur que l'on mesure}\\
-\end{align*}
-L'erreur est amplifiée d'un facteur appelé \notion{conditionnement} de la matrice $A$, noté~:
-$$\mr{cond}(A) = \norme{A}\norme{A^{-1}}$$
-En Python, on le calcule avec \code{cond(A, ord)} (\textit{cf.} plus haut).
-
-\begin{definition}{}{mauvais conditionnement}
-    On dit d'une matrice $A \in \matrice{n}(\R)$ qu'elle est \notion{mal conditionnée} si son conditionnement est élevé~:
-    \begin{itemize}
-        \item Si $\mr{cond}(A) = 10^4$, alors $A$ est mal conditionnée
-        \item Si $\mr{cond}(A) = 3$, aors $A$ est bien conditionnée.
-    \end{itemize}
-\end{definition}
-
-Moralement, pour résoudre $Ax = b$~:
-\begin{itemize}
-    \item On trouve $x + \delta x$
-    \item On évalue le \notion{résidu} $\norme{\delta b} = \norme{b - A\times(x + \delta x)}$
-\end{itemize}
-
-\begin{remarque}{}{mauvais conditionnement}
-    Les matrices obtenues en discrétisant des équations physiques sont généralement mal conditionnées.
-\end{remarque}
-
-\section{Principes généraux pour réduire les erreurs d'arrondi}
-
-\subsection{Éviter de soustraire deux quantités absoluements proches}
+\subsubsection{Éviter de soustraire deux quantités absoluements proches}
 
 \begin{exemple}{}{soustraction au cosinus}
     POur calculer $y = 1-\cos(x)$, pour $x$ proche de 0, on peut utiliser la formule~:
@@ -254,36 +174,24 @@ Moralement, pour résoudre $Ax = b$~:
     le calcul de $x2$ est imprécis à cause du dénominateur. Mais via les formules de Viète, $x_2 = \frac{c}{ax_1}$.
 \end{exemple}
 
-\subsection{Sommer d'abord les termes les plus petits}
+\subsubsection{Sommer d'abord les termes les plus petits}
 Sommer un grand nombre avec un petit nombre entraîne la troncature des plus petites décimales du petit nombre.
 \begin{exemple}{}{calcul d'une somme}
     Pour calculer~:
     $$S = \sum_{i=1}^n \frac{1}{i}$$
     bien qu'il soit naturel de sommer les termes dans l'ordre croissant des indices, l'ordre rétrograde est ici à privilégier. On calcule sur quatre décimales~:\\
-    \centering
-    \begin{tabular}{c|c|c|c}
-        $n$ & croissant & rétrograde & exact\\
-        $100$ & $5,187$ & $5,187$ & $5,1873775$\\
-        $1\,000$ & $7,449$ & $7,485$ & $7,485471$\\
-        $10\,000$ & $8,449$ & $9,448$ & $9,787606$\\
-        
-    \end{tabular}
+    \begin{center}
+        \begin{tabular}{c|c|c|c}
+            $n$ & croissant & rétrograde & exact\\
+            \hline
+            $100$ & $5,187$ & $5,187$ & $5,1873775$\\
+            $1\,000$ & $7,449$ & $7,485$ & $7,485471$\\
+            $10\,000$ & $8,449$ & $9,448$ & $9,787606$\\
+            
+        \end{tabular}
+    \end{center}
 \end{exemple}
 
-\section{Calculs de complexité}
-Les additions, soustractions et multiplication ont aujourd'hui des coûts temporels semblables, mais la division est plus complexe. On cherche à s'en passer le plus possible.
-
-\begin{exemple}{}{complexité du produit d'une matrice avec un vecteur}
-    Soit $A \in \matrice{n,p}(\R)$ et $x \in \R^n$
-    Notons $y = Ax$ et $y = (y_1,\, \dots,\, y_n)^\top$. On a~:
-    $$\forall i \in \intint{1}{n},\, y_i = \sum_{j=1}^p a_{i,j} x_j$$.
-    Le calcul de chaque $y_i$ demande donc $2p$ opérations, ainsi le calcul de $y$ demande $2np$ opérations.
-    
-\end{exemple}
-
-\begin{exemple}{}{résoltuion d'un système linéaire triangulaire}
-    Calculons la complexité de la résolution de $Tx = b$. On prend $T$ inférieure
-\end{exemple}
 
 
 \end{document}

@@ -1,0 +1,322 @@
+\input{../../stock/en-tete_v6.tex}
+\newcommand{\titrechapitre}{Erreurs d'arrondi}
+\newcommand{\numerochapitre}{1}
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Enseirb-Matmeca}
+\fancyhead[L]{Cours d'algorithmique numérique}
+\fancyhead[R]{\titrechapitre}
+        \usepackage{hhline}
+
+\begin{document}
+\input{../../stock/commands.tex}
+
+% Page de titre custom
+\setlength{\headheight}{15pt}
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    {\huge Chapitre \numerochapitre\par}
+    {\Huge \bfseries\titrechapitre\par}
+    \vspace{2cm}
+    {\Large Notes rédigées par Raphaël JONTEF\par}
+{\Large Avec l'aide de Github Copilot\par}
+    \vspace{0.5cm}
+    {\normalsize Cours enseigné par Marc Durufle\par}
+    \vspace{4cm}
+    {\small Enseirb-Matmeca\par}
+    {\small filière informatique\par}
+    \vfill
+    {\large \today\par}
+\end{titlepage}
+
+% plan du cours
+\tableofcontents
+\newpage
+
+
+% -----------Corps du document--------------
+
+
+\section{Résolution de systèmes linéaires}
+
+Soit $A \in \matrice{n}(\R)$, $B \in \R^n$
+En pratique, la solution numérique $x + \delta x$ de l'égalité vectorielle $AX = B$ vérifie~:
+$$A\times(x+\delta x) = b + \delta b$$
+On a alors~:
+$$\delta b = A\times(x + \delta x) - b$$
+Le vecteur $x$ étant inconnu, on ne peut pas calculer directement $\delta b$. On cherche donc à majorer $\norme{\delta b}$.\\\par
+
+\subsection{Rappels sur les normes usuelles sur $\R^n$}
+
+\begin{definition}{}{norme infinie}
+    Pour $X \in \R^n$, on définit la norme infinie par~:
+    $$\norme{X}_\infty = \max_{1 \leq i \leq n} |x_i|$$
+    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(X, inf)}.
+\end{definition}
+
+\begin{definition}{}{norme de Mannhattan}
+    Pour $X \in \R^n$, on définit la norme de Manhattan par~:
+    $$\norme{X}_1 = \sum_{i=1}^n |x_i|$$
+    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(X, 1)}.
+\end{definition}
+
+\begin{definition}{}{norme euclidienne}
+    Pour $X \in \R^n$, on définit la norme euclidienne par~:
+    $$\norme{X}_2 = \left(\sum_{i=1}^n |x_i|^2\right)^{1/2}$$
+    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(X)}.
+\end{definition}
+
+\begin{definition}{}{norme subordonnée}
+    Pour $A \in \matrice{n}(\R)$, on définit la norme subordonnée associée à une norme vectorielle $\norme{\cdot}$ par~:
+    $$\norme{A} = \sup_{X \in \R^n, X \neq 0} \frac{\norme{AX}}{\norme{X}}$$
+    En Python, on peut la calculer avec la fonction \texttt{numpy.linalg.norm(A, ord)} où \texttt{ord} est l'ordre de la norme vectorielle associée (\code{1}, \code{2} ou \code{inf}).
+    
+\end{definition}
+
+
+\begin{remarque}{}{sur la norme euclidienne d'une matrice}
+    On a $\norme{A}_2 = \sqrt{\rho(AA^\top)}$ où $\rho(M)$ est la valeur propre de $M$ de plus grande valeur absolue.
+    Cette norme est difficile à calculer en pratique. On préfère donc utiliser les normes $\norme{\cdot}_1$ ou $\norme{\cdot}_\infty$. qui sont plus rapides à calculer.
+    
+\end{remarque}
+
+\subsection{Erreur d'approximation et méthode d'estimation de cette erreur}
+
+Si $A$ est inversible, on a~:
+\begin{align*}
+    b &= Ax
+    &\Rightarrow \norme{b} &= \norme{Ax} \leq \norme{A}\norme{x}\\
+\end{align*}
+
+De même~:
+\begin{align*}
+    A \times (x + \delta x) &= b + \delta b \\
+    &\Rightarrow A \delta x = \delta b\\
+    &\Rightarrow \norme{\delta b} = \norme{A \delta x} \leq \norme{A}\norme{\delta x}\\
+    &\Rightarrow \norme{b} \norme{\delta b} \leq \norme{A}\norme{x} \norme{A^{-1}}\norme{\delta x}\\
+    &\Rightarrow \underbrace{\frac{\norme{\delta x}}{\norme{x}}}_{\text{erreur relative sur la solution}} \leq \underbrace{\norme{A}\norme{A^{-1}}}_{\mr{cond}(A)} \underbrace{\frac{\norme{\delta b}}{\norme{b}}}_{\text{erreur que l'on mesure}}\\
+\end{align*}
+L'erreur est amplifiée d'un facteur appelé \notion{conditionnement} de la matrice $A$, noté~:
+$$\mr{cond}(A) = \norme{A}\norme{A^{-1}}$$
+En Python, on le calcule avec \code{cond(A, ord)} (\textit{cf.} plus haut).
+
+\begin{definition}{}{mauvais conditionnement}
+    On dit d'une matrice $A \in \matrice{n}(\R)$ qu'elle est \notion{mal conditionnée} si son conditionnement est élevé~:
+    \begin{itemize}
+        \item Si $\mr{cond}(A) = 10^4$, alors $A$ est mal conditionnée
+        \item Si $\mr{cond}(A) = 3$, aors $A$ est bien conditionnée.
+    \end{itemize}
+\end{definition}
+
+Moralement, pour résoudre $Ax = b$~:
+\begin{itemize}
+    \item On trouve $x + \delta x$
+    \item On évalue le \notion{résidu} $\norme{\delta b} = \norme{b - A\times(x + \delta x)}$
+\end{itemize}
+
+\begin{remarque}{}{mauvais conditionnement}
+    Les matrices obtenues en discrétisant des équations physiques sont généralement mal conditionnées.
+\end{remarque}
+
+
+
+\subsection{Calculs de complexité}
+Les additions, soustractions et multiplication ont aujourd'hui des coûts temporels semblables, mais la division est plus complexe. On cherche à s'en passer le plus possible.
+
+\begin{exemple}{}{complexité du produit d'une matrice avec un vecteur}
+    Soit $A \in \matrice{n,p}(\R)$ et $x \in \R^n$
+    Notons $y = Ax$ et $y = (y_1,\, \dots,\, y_n)^\top$. On a~:
+    $$\forall i \in \intint{1}{n},\, y_i = \sum_{j=1}^p a_{i,j} x_j$$.
+    Le calcul de chaque $y_i$ demande donc $2p$ opérations, ainsi le calcul de $y$ demande $2np$ opérations.
+    
+\end{exemple}
+
+\begin{exemple}{}{résolution d'un système linéaire triangulaire}
+    Soit $T \in \matrice{n,p}(\R)$ et $b \in \R^n$. Calculons la complexité de la résolution de $Tx = b$. On prend $T$ triangulaire inférieure. Ainsi~:
+    \begin{align*}
+        Tx = b &\Leftrightarrow \begin{cases}
+            t_{1,1}x_1 = b_1\\
+            t_{2,1}x_1 + t_{2,2}x_2 = b_2\\
+            \vdots\\
+            t_{n,1}x_1 + t_{n,2}x_2 + \dots + t_{n,n}x_n = b_n
+        \end{cases}\\
+        &\Leftrightarrow \begin{cases}
+            x_1 = \frac{b_1}{t_{1,1}}\\
+            x_2 = \frac{b_2 - t_{2,1}x_1}{t_{2,2}}\\
+            \vdots\\
+            x_n = \frac{b_n - \sum_{j=1}^{n-1} t_{n,j}x_j}{t_{n,n}}
+        \end{cases}
+    \end{align*}
+    Les coûts opératoires pour chaque ligne vérifient le tableau suivant~:
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|}
+            \textbf{Ligne} & \textbf{additions} & \textbf{soustractions} &\textbf{multiplications} & \textbf{divisions}\\
+            \hline
+            $1$ & $0$ & $0$ & $0$ & $1$\\
+            \hline
+            $2$ & $0$ & $1$ & $1$ & $1$\\
+            \hline
+            $3$ & $0$ & $2$ & $2$ & $1$\\
+            \hline
+            \vdots & \vdots & \vdots & \vdots & \vdots\\
+            \hline
+            $n$ & $0$ & $n-1$ & $n-1$ & $1$\\
+            \hhline{=|=|=|=|=|}
+            \textbf{Somme} & $0$ & $\displaystyle\sum_{i=0}^{n-1} i$ & $\displaystyle\sum_{i=0}^{n-1} i$ & $n$\\
+        \end{tabular}
+    \end{center}
+    On a donc $n^2$ opérations au total.
+    
+    
+\end{exemple}
+
+\subsection{Méthodes de résolution de $Ax = b$}
+
+\subsubsection{Par factorisation de $A$}
+
+\begin{exemple}{}{produit de matrices triangulaires}
+    Si $A = LU$  avec $L$ et $U$ triangulaires, alors pour résoudre $Ax = b$, on résout successivement~:
+    \begin{itemize}
+        \item $Ly = b$ (coût $n^2$)
+        \item $Ux = y$ (coût $n^2$)
+    \end{itemize}
+    Le coût total est donc de $2n^2$ opérations.
+\end{exemple}
+
+\subsection{Par méthode itérative}
+On cherche à construire une suite $(x^{(k)})_{k\in\N}$ telle que~:
+$$\lim_{k \to +\infty} x^{(k)} = x$$
+où $x$ est la solution de $Ax = b$. On arrête le processus itératif lorsque le \notion{résidu relatif} $\frac{\norme{\delta b }}{\norme{b}}= \frac{\norme{b - A x^{(k)}}}{\norme{b}}$ est inférieur à un seuil fixé $\varepsilon$~:
+$$\frac{\norme{x-x_k}}{\norme{x}} = \frac{\norme{\delta x}}{\norme{x}} \leq \mr{Cond}(A)\epsilon$$
+
+\begin{exemple}{}{de choix d'$\varepsilon$}
+    Si on veut une erreur relative sur la solution inférieure à $10^{-6}$ et que le conditionnement de $A$ est de $10^4$, on choisit~:
+    $$\varepsilon = \frac{10^{-6}}{10^4} = 10^{-10}$$
+\end{exemple}
+
+\begin{remarque}{}{avantages de cette méthode}
+    Cette méthode présente plusieurs avantages~:
+    \begin{itemize}
+        \item pas de nécessité de stocker la matrice $A$ en mémoire
+        \item pas de nécessité de calculer une factorisation de $A$ qui pourrait présenter un phénomène de \notion{remplissage} (beaucoup de zéros dans $A$ deviennent des non-zéros dans la factorisation)
+    \end{itemize}
+\end{remarque}
+
+\begin{remarque}{}{désavantages de cette méthode}
+    Cette méthode présente aussi des inconvénients~:
+    \begin{itemize}
+        \item le nombre d'itérations nécessaires pour atteindre la précision souhaitée peut être élevé et il augmente avec le conditionnement de $A$.
+        \item le choix de la méthode itérative et de son paramétrage (ex: préconditionneur) peut être délicat.
+    \end{itemize}
+    Pour éviter ces inconvénients, on peut tenter de précodnitionner la matrice $A$ pour améliorer son conditionnement, ce qui revient à résoudre~:
+    $$M^{-1}Ax = M^{-1}b$$
+    où $M$ est un \notion{préconditionneur} choisi pour que $M^{-1}A$ soit mieux conditionnée que $A$.
+\end{remarque}
+
+\section{Factorisation de Cholensky}
+
+Soit $A \in \matrice{n}(\R)$ une matrice symétrique définie positive. On cherche à factoriser $A$ sous la forme~:
+$$A = LL^\top$$
+où $L$ est une matrice triangulaire inférieure.\\
+
+\begin{remarque}{}{matrices symétriques définies positives usuelles}
+    Une matrice symétrique $A \in S_n(\R)$ à diagonale strictement dominante~:
+    $$\forall i \intint{1}{n},\, a_{ii} > \sum_{j \neq i} \abs{a_{ij}}$$
+    est définie positive. C'est un bon moyen de construire des matrices définies positives en pratique, ou de vérifier l'appartenance à $S_n^+$.
+\end{remarque}
+
+Une telle matrice $L$, on a~:
+
+$$A = \begin{pmatrix}
+    l_{11} & 0 & 0 & \cdots & 0\\
+    l_{21} & l_{22} & 0 & \cdots & 0\\
+    l_{31} & l_{32} & l_{33} & \cdots & 0\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    l_{n1} & l_{n2} & l_{n3} & \cdots & l_{nn}
+\end{pmatrix}\times \begin{pmatrix}
+    l_{11} & l_{21} & l_{31} & \cdots & l_{n1}\\
+    0 & l_{22} & l_{32} & \cdots & l_{n2}\\
+    0 & 0 & l_{33} & \cdots & l_{n3}\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    0 & 0 & 0 & \cdots & l_{nn}
+\end{pmatrix}$$
+
+D'où~:
+$$A = \begin{pmatrix}
+    l_{11}^2 & l_{11}l_{21} & l_{11}l_{31} & \cdots & l_{11}l_{n1}\\
+    l_{11}l_{21} & l_{21}^2 + l_{22}^2 & l_{21}l_{31} + l_{22}l_{32} & \cdots & l_{21}l_{n1} + l_{22}l_{n2}\\
+    l_{11}l_{31} & l_{21}l_{31} + l_{22}l_{32} & l_{31}^2 + l_{32}^2 + l_{33}^2 & \cdots & l_{31}l_{n1} + l_{32}l_{n2} + l_{33}l_{n3}\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    l_{11}l_{n1} & l_{21}l_{n1} + l_{22}l_{n2} & l_{31}l_{n1} + l_{32}l_{n2} + l_{33}l_{n3} & \cdots & \sum_{k=1}^n l_{nk}^2
+\end{pmatrix}$$
+
+En comparant les coefficients de la première colonne, on obtient~:
+$$\begin{cases*}
+    a_{11} = l_{11}^2\\
+    a_{21} = l_{11}l_{21}\\
+    a_{31} = l_{11}l_{31}\\
+    \vdots\\
+    a_{n1} = l_{11}l_{n1}
+\end{cases*} \Rightarrow \begin{cases*}
+    l_{11} = \sqrt{a_{11}}\\
+    l_{i1} = \frac{a_{i1}}{l_{11}} \quad \text{pour } i \in \intint{2}{n}
+\end{cases*}$$
+
+Puis pour la deuxième colonne~:
+$$\begin{cases*}
+    a_{22} = l_{21}^2 + l_{22}^2\\
+    a_{32} = l_{21}l_{31} + l_{22}l_{32}\\
+    \vdots\\
+    a_{n2} = l_{21}l_{n1} + l_{22}l_{n2}
+\end{cases*} \Rightarrow \begin{cases*}
+    l_{22} = \sqrt{a_{22} - l_{21}^2}\\
+    l_{i2} = \frac{a_{i2} - l_{21}l_{i1}}{l_{22}} \quad \text{pour } i \in \intint{3}{n}
+\end{cases*}$$
+
+Puis pour la $i$-ème colonne~:
+$$\begin{cases*}
+    a_{ii} = \sum_{k=1}^i l_{ik}^2\\
+    a_{(i+1)i} = \sum_{k=1}^i l_{(i+1)k}l_{ik}\\
+    \vdots\\
+    a_{ni} = \sum_{k=1}^i l_{nk}l_{ik}
+\end{cases*} \Rightarrow \begin{cases*}
+    l_{ii} = \sqrt{a_{ii} - \sum_{k=1}^{i-1} l_{ik}^2}\\
+    l_{ji} = \frac{a_{ji} - \sum_{k=1}^{i-1} l_{jk}l_{ik}}{l_{ii}} \quad \text{pour } j > i
+\end{cases*}$$
+
+
+\begin{exemple}{}{factorisation de Cholensky}
+    Tentons de calculer la factorisation de Cholensky de la matrice~:
+    $$A = \begin{pmatrix}
+        4 & -2 & -4 \\
+        -2 & 10 & 5 \\
+        -4 & 5 & 6
+    \end{pmatrix}$$
+
+    En travaillant dans l'ordre croissant des colonnes, on trouve~:
+    $$L = \begin{pmatrix}
+        2 & 0 & 0\\
+        -1 & 3 & 0\\
+        -2 & 1 & 1
+    \end{pmatrix}$$
+\end{exemple}
+
+
+\section{Implémentation de $\matrice{n,p}(\R)$}
+
+Dans cette section nous étudions différentes méthodes de stockage des matrices en mémoire.
+
+\subsection{Le plus fréquent : \code{CSR}}
+
+La méthode \notion{Compressed Sparse Row} (\notion{CSR}) consiste à stocker uniquement les éléments non nuls de la matrice, ainsi que leurs indices de ligne et de colonne. On utilise trois tableaux~:
+\begin{enumeratebf}
+    \item \code{data} : tableau des valeurs non nulles
+    \item \code{indices} : tableau des indices de colonnes des valeurs non nulles
+    \item \code{ptr} : tableau des indices dans \code{data} où commence chaque ligne
+\end{enumeratebf}
+
+\end{document}
