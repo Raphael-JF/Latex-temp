@@ -1,5 +1,5 @@
 all:
-	pdflatex main.tex
+	pdflatex rapport.tex
 
 clean:
 	find . \
