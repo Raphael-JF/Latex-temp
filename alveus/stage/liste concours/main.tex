@@ -1,14 +1,7 @@
-% texte indiquant le nom du cours, formulation comprise
-\newcommand{\texteNomCours}{Cours de}  
-
-% texte indiquant le nom du professeur encadrant, formulation comprise
-\newcommand{\texteNomProf}{cours dispensé par } 
-
-% numéro du chapitre
-\newcommand{\numeroChapitre}{0}
 
 % nom du chapitre
-\newcommand{\texteNomChapitre}{} 
+\newcommand{\texteTitre}{Récapitulatif des modalités de concours} 
+\newcommand{\texteSousTitre}{Advance, Puissance Alpha}
 
 \documentclass[12pt]{article}
 
@@ -76,11 +69,11 @@
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
-\fancyfoot[L]{Notes de Raphaël JONTEF}
+\fancyfoot[L]{Raphaël JONTEF}
 \fancyfoot[C]{\thepage}
-\fancyfoot[R]{Enseirb-Matmeca}
-\fancyhead[L]{\texteNomCours}
-\fancyhead[R]{C.\numeroChapitre~:~\texteNomChapitre} 
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{\texteTitre}
+\fancyhead[R]{\texteSousTitre} 
 
 \input{backend/boites_cours.tex}
 \input{backend/listings.tex}
@@ -94,21 +87,23 @@
 \begin{titlepage}
     \centering
     \vspace*{3cm}
-    {\huge Chapitre \numeroChapitre\par}
-    {\Huge \bfseries\texteNomChapitre \par} % nom  du chapitre
-    \vspace{2cm}
-    {\Large Notes rédigées par Raphaël JONTEF\par}
-    \vspace{0.5cm}
-    {\normalsize \texteNomProf \par}
-    \vspace{4cm}
-    {\small Enseirb-Matmeca\par}
-    {\small filière informatique\par}
+    {\Huge \bfseries\texteTitre \par} % nom  du chapitre
+    \vspace{1cm}
+    {\Large \texteSousTitre \par} % nom  du chapitre
+
     \vfill
+
+    {\Large \href{https://www.alveusclub.com/}{Alveus} \par}
+    \vspace{1em}
+    {Rédigé par Raphaël JONTEF\par}
+    \vspace{0.5cm}
+    {\normalsize raphaeljontef@hotmail.com \par}
+    \vspace{1cm}
     {\large \today\par}
 \end{titlepage}
 \hypersetup{pageanchor=true} % réactive pour le reste
 
-\tableofcontentse
+\tableofcontents
 \newpage
 
 \input{sections/introduction}
