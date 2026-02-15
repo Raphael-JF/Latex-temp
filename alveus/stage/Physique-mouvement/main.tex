@@ -1,0 +1,190 @@
+
+% nom du chapitre
+\newcommand{\texteTitre}{Physique, chapitre 1} 
+\newcommand{\texteSousTitre}{Mouvement d’un objet}
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Packages de base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}      % pour personnaliser en-têtes et pieds
+\usepackage[french]{babel}   % <-- gère la langue
+
+% Maths
+\usepackage{amsmath}
+\usepackage{amssymb} % pour mathbb
+\usepackage{mathtools} 
+\usepackage{esint} % intégrale avec un rond
+\usepackage{dsfont} % pour l'indicatrice
+
+
+% Trucs en plus
+\usepackage{xcolor} % gestion des couleurs
+\usepackage{listings} % pour le code source
+\usepackage{enumitem} % pour personnaliser les listes
+\usepackage{multicol} % pour les listes en plusieurs colonnes
+\usepackage{stmaryrd} % pour les intervalles d'entiers
+\usepackage{graphicx} % pour insérer des images
+\graphicspath{ {figures/} }
+
+\usepackage[framemethod=tikz]{mdframed} % les boites jolies
+
+% Les graphiques
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
+% Style des titres de sections et sous-sections
+\usepackage{titlesec}
+
+\usepackage{tocloft} % pour personnaliser la table des matières
+
+
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref} % les liens
+
+\renewcommand{\thesection}{\Roman{section}} 
+\titleformat{\section}
+  {\Large\bfseries} % Style du titre
+  {\thesection} % Numéro de section
+  {0.5cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentaire
+\titleformat{\subsection}
+  {\large\bfseries} % Style du titre
+  {\thesubsection} % Numéro de section
+  {0.4cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentaire
+
+\setlength{\cftsecnumwidth}{3em}   % espace réservé au numéro de section
+\setlength{\cftsubsecnumwidth}{2.5em} % pour les sous-sections
+
+% Réglages fancyhdr
+\pagestyle{fancy}
+\fancyhf{} % vide tout
+
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{\texteTitre}
+\fancyhead[R]{\texteSousTitre} 
+
+\input{backend/boites_cours.tex}
+\input{backend/listings.tex}
+\begin{document}
+\input{backend/commands.tex}
+
+% Page de titre custom
+
+% \hypersetup{pageanchor=false}
+% \setlength{\headheight}{15pt}
+% \begin{titlepage}
+%     \centering
+%     \vspace*{3cm}
+%     {\Huge \bfseries\texteTitre \par} % nom  du chapitre
+%     \vspace{1cm}
+%     {\Large \texteSousTitre \par} % nom  du chapitre
+
+%     \vfill
+
+%     {\Large \href{https://www.alveusclub.com/}{Alveus} \par}
+%     \vspace{1em}
+%     {Rédigé par Raphaël JONTEF\par}
+%     \vspace{0.5cm}
+%     {\normalsize raphaeljontef@hotmail.com \par}
+%     \vspace{1cm}
+%     {\large \today\par}
+% \end{titlepage}
+% \hypersetup{pageanchor=true} % réactive pour le reste
+
+% \tableofcontents
+% \newpage
+
+\section{Mouvement d'un objet}
+\subsection{Caractérisation d’un mouvement}
+\begin{itemize}
+    \item Le mouvement d’un objet dépend du référentiel choisi (du lieu par rapport auquel on étudie le mouvement d’un objet)~:
+    \item Un mouvement peut être caractérisé par sa \notion{trajectoire} et sa \notion{vitesse}.
+    \item La \notion{trajectoire} est le chemin parcouru par un objet en mouvement.
+\end{itemize}
+
+\subsection{Référentiels}
+\begin{itemize}
+        \item Le \notion{référentiel terrestre} est un référentiel lié à la Terre, dans lequel les objets qui sont au repos par rapport à la Terre sont considérés comme immobiles. Par exemple, une voiture qui roule sur une route est en mouvement par rapport au référentiel terrestre.
+        \item Le \notion{référentiel héliocentrique} est un référentiel lié au Soleil, dans lequel les objets qui sont au repos par rapport au Soleil sont considérés comme immobiles. Par exemple, la Terre qui tourne autour du Soleil est en mouvement par rapport au référentiel héliocentrique.
+        \item Le \notion{référentiel géocentrique} est un référentiel lié à la Terre, dans lequel les objets qui sont au repos par rapport à la Terre sont considérés comme immobiles. Par exemple, la Lune qui tourne autour de la Terre est en mouvement par rapport au référentiel géocentrique.
+\end{itemize}
+
+\subsection{Mouvement et trajectoire}
+\begin{itemize}
+    \item Si la trajectoire est une ligne droite, le mouvement est \notion{rectiligne}.
+    \item Si la trajectoire est un arc de cercle, le mouvement est \notion{circulaire}.
+    \item Si la trajectoire est quelconque, le mouvement est \notion{curviligne}.
+\end{itemize}
+
+\subsection{Mouvement et vitesse}
+\begin{itemize}
+    \item La vitesse d’un objet est une grandeur qui mesure la rapidité de son mouvement. Elle s’exprime en mètres par seconde (m/s) ou en kilomètres par heure (km/h).
+    \item Si la vitesse d’un objet change au cours du temps, on dit que le mouvement est \notion{accéléré} ou \notion{décéléré} (ou ralenti).
+    \item Si la vitesse d’un objet est constante au cours du temps, on dit que le mouvement est \notion{uniforme}.
+\end{itemize}
+
+\begin{exemple}{}{}
+    Le mouvement d'un avion qui freine sur la piste d'atterrissage est rectiligne ralenti, tandis que le mouvement de la Terre autour du Soleil est circulaire uniforme.
+\end{exemple}
+
+\section{Exercices}
+\begin{exercice}{}{}
+    Un bille se déplace très vite tout droit. Sa vitesse est de 2 m/s pendant les 5 premières secondes, puis elle devient de 1 m/s pendant les 5 secondes suivantes. Quel est la nature du mouvement de cet objet par rapport au référentiel terrestre ?
+\end{exercice}
+
+\begin{exercice}{}{}
+    Quel référentiel doit-on choisir pour étudier le mouvement de la Lune autour de la Terre ? Quelle est la nature du mouvement de la Lune autour de la Terre ? 
+\end{exercice}
+
+\begin{exercice}{}{}
+    Une voiture roule en ligne droite.
+    \begin{itemize}
+        \item De 0 à 10 s, sa vitesse est constante et égale à 15 m/s.
+        \item De 10 à 20 s, sa vitesse augmente régulièrement de 15 m/s à 25 m/s.
+    \end{itemize}
+    
+    \begin{enumeratebf}
+        \item Quelle est la nature du mouvement pendant les 10 premières secondes ?
+        \item Quelle est la nature du mouvement pendant les 10 secondes suivantes ?
+        \item Dans quel référentiel étudie-t-on généralement le mouvement d’une voiture sur la route ?
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Un train roule à vitesse constante sur une voie rectiligne.
+    
+    \begin{enumeratebf}
+        \item Quelle est la trajectoire d’un passager assis dans le train :
+        \begin{itemize}
+            \item par rapport au train ?
+            \item par rapport au sol ?
+        \end{itemize}
+        
+        \item Même question pour une personne qui marche dans le train dans le sens de la marche.
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    On lâche une balle sans vitesse initiale depuis une certaine hauteur.
+    
+    \begin{enumeratebf}
+        \item Quelle est la trajectoire de la balle ?
+        \item La vitesse est-elle constante pendant la chute ?
+        \item Quelle est la nature du mouvement ?
+        \item Dans quel référentiel étudie-t-on généralement ce mouvement ?
+    \end{enumeratebf}
+\end{exercice}
+
+\end{document}

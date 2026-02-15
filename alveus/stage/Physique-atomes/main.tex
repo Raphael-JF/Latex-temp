@@ -1,0 +1,186 @@
+% nom du chapitre
+\newcommand{\texteTitre}{Physique, chapitre 2} 
+\newcommand{\texteSousTitre}{Atomes et molécules}
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Packages de base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage[french]{babel}
+
+% Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{esint}
+\usepackage{dsfont}
+
+% Trucs en plus
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\graphicspath{ {figures/} }
+
+\usepackage[framemethod=tikz]{mdframed}
+
+% Graphiques
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+\renewcommand{\thesection}{\Roman{section}} 
+
+\titleformat{\section}
+  {\Large\bfseries}
+  {\thesection}
+  {0.5cm}
+  {}
+
+\titleformat{\subsection}
+  {\large\bfseries}
+  {\thesubsection}
+  {0.4cm}
+  {}
+
+\setlength{\cftsecnumwidth}{3em}
+\setlength{\cftsubsecnumwidth}{2.5em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{\texteTitre}
+\fancyhead[R]{\texteSousTitre}
+
+\input{backend/boites_cours.tex}
+\input{backend/listings.tex}
+
+\begin{document}
+\input{backend/commands.tex}
+
+% ======================================================
+\section{Structure de la matière}
+
+\subsection{De quoi est faite la matière ?}
+
+\begin{itemize}
+    \item Toute la matière est constituée de particules extrêmement petites appelées \notion{atomes}.
+    \item Un atome est électriquement neutre.
+    \item Les atomes sont les "briques élémentaires" qui composent toute la matière (air, eau, métaux, êtres vivants…).
+\end{itemize}
+
+\subsection{Structure d’un atome}
+
+\begin{itemize}
+    \item Un atome est constitué :
+    \begin{itemize}
+        \item d’un \notion{noyau} central,
+        \item d’\notion{électrons} qui gravitent autour du noyau.
+    \end{itemize}
+    
+    \item Le noyau contient :
+    \begin{itemize}
+        \item des \notion{protons} (chargés positivement),
+        \item des \notion{neutrons} (sans charge).
+    \end{itemize}
+    
+    \item Les électrons sont chargés négativement.
+\end{itemize}
+
+\subsection{Les éléments chimiques}
+
+\begin{itemize}
+    \item Un \notion{élément chimique} est défini par le nombre de protons dans le noyau.
+    \item Chaque élément possède un \notion{symbole chimique} :
+    \begin{itemize}
+        \item H : hydrogène
+        \item O : oxygène
+        \item C : carbone
+        \item Fe : fer
+    \end{itemize}
+\end{itemize}
+
+\section{Molécules}
+
+\subsection{Définition}
+
+\begin{itemize}
+    \item Une \notion{molécule} est un assemblage de plusieurs atomes liés entre eux.
+    \item Les atomes s’assemblent pour former des substances nouvelles.
+\end{itemize}
+
+\subsection{Exemples de molécules}
+
+\begin{itemize}
+    \item L’eau est constituée de deux atomes d’hydrogène et d’un atome d’oxygène : \(\mathrm{H_2O}\).
+    \item Le dioxygène est constitué de deux atomes d’oxygène : \(\mathrm{O_2}\).
+    \item Le dioxyde de carbone est constitué d’un atome de carbone et de deux atomes d’oxygène : \(\mathrm{CO_2}\).
+\end{itemize}
+
+\begin{exemple}{}{}
+    L’air est un mélange de plusieurs gaz, principalement du dioxygène (\(\mathrm{O_2}\)) et du diazote (\(\mathrm{N_2}\)).
+\end{exemple}
+
+\section{Transformations chimiques}
+
+\subsection{Réaction chimique}
+
+\begin{itemize}
+    \item Lors d’une \notion{réaction chimique}, les atomes se réorganisent.
+    \item Les atomes sont conservés : ils ne disparaissent pas et ne sont pas créés.
+    \item Les molécules changent, mais les atomes restent les mêmes.
+\end{itemize}
+
+\subsection{Conservation de la masse}
+
+\begin{itemize}
+    \item Au cours d’une transformation chimique, la masse totale se conserve.
+\end{itemize}
+
+\section{Exercices}
+
+\begin{exercice}{}{}
+    De quoi est constitué un atome ? Indique le nom et la charge des différentes particules.
+\end{exercice}
+
+\begin{exercice}{}{}
+    Que signifie la formule chimique \(\mathrm{CO_2}\) ?
+\end{exercice}
+
+\begin{exercice}{}{}
+    Indique si les affirmations suivantes sont vraies ou fausses :
+    \begin{enumeratebf}
+        \item Une molécule est constituée d’au moins deux atomes.
+        \item Un atome possède autant de protons que d’électrons.
+        \item Les atomes disparaissent lors d’une réaction chimique.
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Complète :
+    \begin{itemize}
+        \item L’eau est composée de \_\_\_ atomes d’hydrogène et \_\_\_ atome(s) d’oxygène.
+        \item Le dioxygène a pour formule \_\_\_.
+    \end{itemize}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Explique pourquoi on dit que la masse se conserve lors d’une transformation chimique.
+\end{exercice}
+
+\end{document}
