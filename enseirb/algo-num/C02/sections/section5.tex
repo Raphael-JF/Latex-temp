@@ -1,0 +1,16 @@
+Dans cette section nous étudions différentes méthodes de stockage des matrices en mémoire.
+
+\subsection{Le plus fréquent : \code{CSR}}
+
+La méthode \notion{Compressed Sparse Row} (\notion{CSR}) consiste à stocker uniquement les éléments non nuls de la matrice, ainsi que leurs indices de ligne et de colonne. On utilise trois tableaux~:
+\begin{enumeratebf}
+    \item \code{data} : tableau des valeurs non nulles
+    \item \code{indices} : tableau des indices de colonnes des valeurs non nulles
+    \item \code{ptr} : tableau des indices dans \code{data} où commence chaque ligne
+\end{enumeratebf}
+
+\subsection{Partie \code{Python}}
+
+On utilise \code{L = cholesky(A).T} (dans numpy.linalg)
+puis \code{y = solve\_triangular(L, b, lower=True)} (dans scipy.linalg) pour résoudre $Ly = b$.
+Ensuite on utilise \code{x = solve\_triangular(L.T, y, lower=False)} pour résoudre $L^T x = y$.

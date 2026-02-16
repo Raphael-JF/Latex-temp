@@ -1,0 +1,86 @@
+
+Soit $A \in \matrice{n}(\R)$ une matrice symétrique définie positive. On cherche à factoriser $A$ sous la forme~:
+$$A = LL^\top$$
+où $L$ est une matrice triangulaire inférieure.\\
+
+\begin{remarque}{}{matrices symétriques définies positives usuelles}
+    Une matrice symétrique $A \in S_n(\R)$ à diagonale strictement dominante~:
+    $$\forall i \intint{1}{n},\, a_{ii} > \sum_{j \neq i} \abs{a_{ij}}$$
+    est définie positive. C'est un bon moyen de construire des matrices définies positives en pratique, ou de vérifier l'appartenance à $S_n^+$.
+\end{remarque}
+
+Une telle matrice $L$, on a~:
+
+$$A = \begin{pmatrix}
+    l_{11} & 0 & 0 & \cdots & 0\\
+    l_{21} & l_{22} & 0 & \cdots & 0\\
+    l_{31} & l_{32} & l_{33} & \cdots & 0\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    l_{n1} & l_{n2} & l_{n3} & \cdots & l_{nn}
+\end{pmatrix}\times \begin{pmatrix}
+    l_{11} & l_{21} & l_{31} & \cdots & l_{n1}\\
+    0 & l_{22} & l_{32} & \cdots & l_{n2}\\
+    0 & 0 & l_{33} & \cdots & l_{n3}\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    0 & 0 & 0 & \cdots & l_{nn}
+\end{pmatrix}$$
+
+D'où~:
+$$A = \begin{pmatrix}
+    l_{11}^2 & l_{11}l_{21} & l_{11}l_{31} & \cdots & l_{11}l_{n1}\\
+    l_{11}l_{21} & l_{21}^2 + l_{22}^2 & l_{21}l_{31} + l_{22}l_{32} & \cdots & l_{21}l_{n1} + l_{22}l_{n2}\\
+    l_{11}l_{31} & l_{21}l_{31} + l_{22}l_{32} & l_{31}^2 + l_{32}^2 + l_{33}^2 & \cdots & l_{31}l_{n1} + l_{32}l_{n2} + l_{33}l_{n3}\\
+    \vdots & \vdots & \vdots & \ddots & \vdots\\
+    l_{11}l_{n1} & l_{21}l_{n1} + l_{22}l_{n2} & l_{31}l_{n1} + l_{32}l_{n2} + l_{33}l_{n3} & \cdots & \sum_{k=1}^n l_{nk}^2
+\end{pmatrix}$$
+
+En comparant les coefficients de la première colonne, on obtient~:
+$$\begin{cases*}
+    a_{11} = l_{11}^2\\
+    a_{21} = l_{11}l_{21}\\
+    a_{31} = l_{11}l_{31}\\
+    \vdots\\
+    a_{n1} = l_{11}l_{n1}
+\end{cases*} \Rightarrow \begin{cases*}
+    l_{11} = \sqrt{a_{11}}\\
+    l_{i1} = \frac{a_{i1}}{l_{11}} \quad \text{pour } i \in \intint{2}{n}
+\end{cases*}$$
+
+Puis pour la deuxième colonne~:
+$$\begin{cases*}
+    a_{22} = l_{21}^2 + l_{22}^2\\
+    a_{32} = l_{21}l_{31} + l_{22}l_{32}\\
+    \vdots\\
+    a_{n2} = l_{21}l_{n1} + l_{22}l_{n2}
+\end{cases*} \Rightarrow \begin{cases*}
+    l_{22} = \sqrt{a_{22} - l_{21}^2}\\
+    l_{i2} = \frac{a_{i2} - l_{21}l_{i1}}{l_{22}} \quad \text{pour } i \in \intint{3}{n}
+\end{cases*}$$
+
+Puis pour la $i$-ème colonne~:
+$$\begin{cases*}
+    a_{ii} = \sum_{k=1}^i l_{ik}^2\\
+    a_{(i+1)i} = \sum_{k=1}^i l_{(i+1)k}l_{ik}\\
+    \vdots\\
+    a_{ni} = \sum_{k=1}^i l_{nk}l_{ik}
+\end{cases*} \Rightarrow \begin{cases*}
+    l_{ii} = \sqrt{a_{ii} - \sum_{k=1}^{i-1} l_{ik}^2}\\
+    l_{ji} = \frac{a_{ji} - \sum_{k=1}^{i-1} l_{jk}l_{ik}}{l_{ii}} \quad \text{pour } j > i
+\end{cases*}$$
+
+
+\begin{exemple}{}{factorisation de Cholensky}
+    Tentons de calculer la factorisation de Cholensky de la matrice~:
+    $$A = \begin{pmatrix}
+        4 & -2 & -4 \\
+        -2 & 10 & 5 \\
+        -4 & 5 & 6
+    \end{pmatrix}$$
+
+    En travaillant dans l'ordre croissant des colonnes, on trouve~:
+    $$L = \begin{pmatrix}
+        2 & 0 & 0\\
+        -1 & 3 & 0\\
+        -2 & 1 & 1
+    \end{pmatrix}$$
+\end{exemple}

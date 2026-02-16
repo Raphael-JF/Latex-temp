@@ -1,0 +1,46 @@
+\subsection{Entiers}
+Les Entiers sont codés en binaire. On écrit alors pour $n \in \N$~:
+$$n = \sum_{k=0}^{n-1}a_k 2^k$$
+où $a_k \in \{0,1\}$ est appelé \notion{bit}.\\
+On peut représenter les entiers signés en utilisant le bit de poids fort (le bit le plus à gauche) pour représenter le signe~: 0 pour positif, 1 pour négatif.\\\par
+On peut aussi utiliser la représentation en complément à 2 pour représenter les entiers signés. Dans cette représentation, un entier négatif $-n$ est représenté par $2^m - n$ où $m$ est le nombre de bits utilisés pour représenter l'entier.\\\par
+Avec une telle implementation, on peut représenter les entiers de $-2^{m-1}$ à $2^{m-1}-1$ et la somme, la différence, le produit, la division de deux entiers est toujours correcte modulo $2^m$.
+
+\subsection{Représentation des réels}
+Pour $x \in \R^*$, on écrit~:
+$$x = y2^e \qquad \text{avec}\qquad \begin{cases}
+    1 \leq y < 2\\
+    e \in \Z
+\end{cases}$$
+On écrit alors $y$ en binaire~:
+$$y = \sum_{k=0}^{+\infty} y_k 2^{-k}$$
+où $y_k \in \{0,1\}$.\\
+On appelle \notion{mantisse} la partie $y$ et \notion{exposant} la partie $e$.\\\par
+En machine, on ne peut pas représenter un réel avec une précision infinie. On choisit donc de ne garder que $t$ bits pour la mantisse et $L$ bits pour l'exposant.\\
+On note $m$ le nombre de bits total~:
+$$m = 1 + t + L$$
+où 1 bit est utilisé pour le signe.\\\par
+On note $\mathcal{F}$ l'ensemble des réels représentables en machine avec cette précision. On a alors~:
+$$\mathcal{F} = \{0\} \cup \left\{ \pm \left(\sum_{k=0}^{t-1} y_k 2^{-k}\right) 2^e \mid a_0 = 1, y_k \in \{0,1\}, e \in [e_{min}, e_{max}] \right\}$$
+où $e_{min} = 1 - 2^{L-1}$ et $e_{max} = 2^{L-1} - 2$.\\\par
+\begin{definition}{}{nombre dénormalisé}
+    Un nombre est dit dénormalisé lorsque son exposant dans la norme \code{IEEE754} est nul, et sa mantisse est non nulle. Dans ce cas, la mantisse est codée sans le bit implicite $a_0$ : $a_0 = 0$.
+\end{definition}
+On appelle \notion{overflow} le fait qu'un calcul donne un résultat supérieur à $e_{max}$. On appelle \notion{underflow} le fait qu'un calcul donne un résultat inférieur à $e_{min}$. Dans ces deux cas, le résultat est arrondi à $0$.
+
+\begin{exemple}{}{double précision en \code{C}}
+En \code{C}, le type \code{double} utilise 64 bits pour représenter un réel. On a donc~:
+\begin{itemize}
+    \item 1 bit pour le signe
+    \item 11 bits pour l'exposant
+    \item 52 bits pour la mantisse
+\end{itemize}
+La précision est alors de $2^{-52} \approx 2.22 \times 10^{-16}$ (en simple précision, elle est de $2^{-23} \approx 1.19 \times 10^{-7}$).\\
+\end{exemple}
+\begin{remarque}{}{le 0}
+    Pour $x=0$, on prend $y=0$ et $e=e_{min}$. On a donc une représentation unique du 0 en machine, au signe près.
+\end{remarque}
+
+\begin{remarque}{}{les non nuls}
+    Pour $x\neq 0$, on a $y\geq 1$ d'où $a_0 = 1$, sauf si on veut représenter des nombres dénormalisés (inférieurs à  $2^{e_{min}}=2^{-1024}$)
+\end{remarque}

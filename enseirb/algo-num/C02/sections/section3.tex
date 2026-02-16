@@ -1,0 +1,9 @@
+Lorsque $A$ est symétrique, mais pas définie positive, on ne peut pas utiliser la décomposition de Crout~:
+$$A = L D L^\top$$
+
+où $L$ est triangulaire inférieure à diagonale par blocs de taille 1 ou 2, unitaire (remplie de 1), et $D$ est diagonale.\\
+
+
+\begin{remarque}{}{sur la complexité}
+    La complexité de la factorisation de Crout est également de $O(\frac{n^3}{3})$, et la résolution du système linéaire à partir de cette factorisation est de $O(n^2)$, comme pour la factorisation de Cholesky. On néglige dans ces calculs la complexité du calcul des racines carrés, qui est de $O(1)$.
+\end{remarque}
