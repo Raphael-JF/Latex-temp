@@ -1,0 +1,239 @@
+% nom du chapitre
+\newcommand{\texteTitre}{Physique, chapitre 3} 
+\newcommand{\texteSousTitre}{Électricité}
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Packages de base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage[french]{babel}
+
+% Maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{esint}
+\usepackage{dsfont}
+
+% Trucs en plus
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\graphicspath{ {figures/} }
+
+\usepackage[framemethod=tikz]{mdframed}
+
+% Graphiques
+\usepackage{tikz}
+\usetikzlibrary{circuits.ee.IEC, positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
+
+\renewcommand{\thesection}{\Roman{section}} 
+
+\titleformat{\section}
+  {\Large\bfseries}
+  {\thesection}
+  {0.5cm}
+  {}
+
+\titleformat{\subsection}
+  {\large\bfseries}
+  {\thesubsection}
+  {0.4cm}
+  {}
+
+\setlength{\cftsecnumwidth}{3em}
+\setlength{\cftsubsecnumwidth}{2.5em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{\texteTitre}
+\fancyhead[R]{\texteSousTitre}
+
+\input{backend/boites_cours.tex}
+\input{backend/listings.tex}
+
+\begin{document}
+\input{backend/commands.tex}
+
+% ======================================================
+\section{Courant électrique}
+
+\subsection{Qu’est-ce que le courant électrique ?}
+
+\begin{itemize}
+    \item Le \notion{courant électrique} correspond à un déplacement d’électrons dans un circuit.
+    \item Il circule uniquement dans un \notion{circuit fermé}.
+    \item Son intensité se note \(I\).
+    \item L’unité de l’intensité est l’\notion{ampère} (A).
+\end{itemize}
+
+\subsection{Mesurer l’intensité}
+
+
+\begin{itemize}
+    \item L’intensité du courant se mesure avec un \notion{ampèremètre}.
+    \item Un ampèremètre se branche en \notion{série} dans le circuit.
+\end{itemize}
+
+\section{Tension électrique}
+
+\subsection{Définition}
+
+\begin{itemize}
+    \item La \notion{tension} correspond à la différence de potentiel électrique entre deux points du circuit.
+    \item Elle se note \(U\).
+    \item L’unité de la tension est le \notion{volt} (V).
+\end{itemize}
+
+\subsection{Mesurer la tension}
+
+\begin{itemize}
+    \item La tension se mesure avec un \notion{voltmètre}.
+    \item Un voltmètre se branche en \notion{dérivation} (en parallèle).
+\end{itemize}
+
+\section{Loi d’Ohm}
+
+\subsection{Relation entre tension, intensité et résistance}
+
+\begin{center}
+\begin{tikzpicture}[circuit ee IEC, thick]
+
+\draw
+(0,0) to[battery] (0,3)
+      to[resistor] (4,3)
+      -- (4,0)
+      -- (0,0);
+
+\draw (2,3.5) node {\(R\)};
+
+\end{tikzpicture}
+\end{center}
+
+
+\begin{itemize}
+    \item La \notion{résistance} d’un dipôle se note \(R\).
+    \item L’unité de la résistance est l’\notion{ohm} (\(\Omega\)).
+    \item La loi d’Ohm s’écrit :
+\[
+U = R \times I
+\]
+\end{itemize}
+
+\begin{exemple}{}{}
+    Si une résistance vaut \(10\,\Omega\) et que l’intensité est \(0{,}2\,A\), alors :
+\[
+U = 10 \times 0{,}2 = 2\,V
+\]
+\end{exemple}
+
+\section{Puissance électrique}
+
+\subsection{Définition}
+
+\begin{itemize}
+    \item La \notion{puissance électrique} se note \(P\).
+    \item L’unité est le \notion{watt} (W).
+    \item La relation est :
+\[
+P = U \times I
+\]
+\end{itemize}
+
+\section{Montages électriques}
+
+\subsection{Montage en série}
+\begin{center}
+\begin{tikzpicture}[circuit ee IEC, thick]
+
+\draw
+(0,0) to[battery] (0,3)
+      to[bulb] (3,3)
+      to[bulb] (6,3)
+      -- (6,0)
+      -- (0,0);
+
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+    \item L’intensité est la même en tout point du circuit. Si un dipôle est défectueux, le courant ne circule plus du tout.
+    \item La tension se partage entre les dipôles.
+\end{itemize}
+
+\subsection{Montage en dérivation (ou en parallèle)}
+\begin{center}
+\begin{tikzpicture}[circuit ee IEC, thick]
+
+\draw
+  (0,0) to[battery] (0,3)
+  -- (6,3)                 % rail du haut
+  -- (6,0)                 % rail de droite
+  -- (0,0);                % rail du bas (retour)
+
+% Deux branches verticales en dérivation avec une lampe chacune
+\draw (2,3) to[bulb] (2,0);
+\draw (4,3) to[bulb] (4,0);
+
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+    \item La tension est la même aux bornes de chaque dipôle.
+    \item L’intensité se partage entre les branches.
+\end{itemize}
+
+% ======================================================
+\section{Exercices}
+
+\begin{exercice}{}{}
+    Un courant de \(0{,}5\,A\) traverse une résistance de \(20\,\Omega\).
+    
+    \begin{enumeratebf}
+        \item Calcule la tension aux bornes de la résistance.
+        \item Quelle loi utilises-tu ?
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Une lampe fonctionne sous \(6\,V\) avec une intensité de \(0{,}3\,A\).
+    
+    \begin{enumeratebf}
+        \item Calcule sa puissance.
+        \item Quelle est l’unité de la puissance ?
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Indique si les affirmations suivantes sont vraies ou fausses :
+    
+    \begin{enumeratebf}
+        \item Un ampèremètre se branche en dérivation.
+        \item La tension est la même partout dans un montage en dérivation.
+        \item L’intensité est la même partout dans un montage en série.
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Dans quel type de montage les appareils électriques d’une maison sont-ils branchés ? Pourquoi ?
+\end{exercice}
+
+\end{document}
