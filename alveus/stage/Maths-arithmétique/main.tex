@@ -1,0 +1,224 @@
+
+% nom du chapitre
+\newcommand{\texteTitre}{Mathématiques, chapitre 2} 
+\newcommand{\texteSousTitre}{Arithmétique}
+
+\documentclass[12pt]{article}
+
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+% Packages de base
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}      % pour personnaliser en-têtes et pieds
+\usepackage[french]{babel}   % <-- gère la langue
+
+% Maths
+\usepackage{amsmath}
+\usepackage{amssymb} % pour mathbb
+\usepackage{mathtools} 
+\usepackage{esint} % intégrale avec un rond
+\usepackage{dsfont} % pour l'indicatrice
+
+
+% Trucs en plus
+\usepackage{xcolor} % gestion des couleurs
+\usepackage{listings} % pour le code source
+\usepackage{enumitem} % pour personnaliser les listes
+\usepackage{multicol} % pour les listes en plusieurs colonnes
+\usepackage{stmaryrd} % pour les intervalles d'entiers
+\usepackage{graphicx} % pour insérer des images
+\graphicspath{ {figures/} }
+
+\usepackage[framemethod=tikz]{mdframed} % les boites jolies
+
+% Les graphiques
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+
+% Style des titres de sections et sous-sections
+\usepackage{titlesec}
+
+\usepackage{tocloft} % pour personnaliser la table des matières
+
+
+\usepackage[colorlinks=true, urlcolor=blue]{hyperref} % les liens
+
+\renewcommand{\thesection}{\Roman{section}} 
+\titleformat{\section}
+  {\Large\bfseries} % Style du titre
+  {\thesection} % Numéro de section
+  {0.5cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentaire
+\titleformat{\subsection}
+  {\large\bfseries} % Style du titre
+  {\thesubsection} % Numéro de section
+  {0.4cm} % Espacement entre numéro et titre
+  {} % Pas de préfixe supplémentaire
+
+\setlength{\cftsecnumwidth}{3em}   % espace réservé au numéro de section
+\setlength{\cftsubsecnumwidth}{2.5em} % pour les sous-sections
+
+% Réglages fancyhdr
+\pagestyle{fancy}
+\fancyhf{} % vide tout
+
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancyfoot[L]{Raphaël JONTEF}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\href{https://www.alveusclub.com/}{Alveus}}
+\fancyhead[L]{\texteTitre}
+\fancyhead[R]{\texteSousTitre} 
+
+\input{backend/boites_cours.tex}
+\input{backend/listings.tex}
+\begin{document}
+\input{backend/commands.tex}
+
+% Page de titre custom
+
+% \hypersetup{pageanchor=false}
+% \setlength{\headheight}{15pt}
+% \begin{titlepage}
+%     \centering
+%     \vspace*{3cm}
+%     {\Huge \bfseries\texteTitre \par} % nom  du chapitre
+%     \vspace{1cm}
+%     {\Large \texteSousTitre \par} % nom  du chapitre
+
+%     \vfill
+
+%     {\Large \href{https://www.alveusclub.com/}{Alveus} \par}
+%     \vspace{1em}
+%     {Rédigé par Raphaël JONTEF\par}
+%     \vspace{0.5cm}
+%     {\normalsize raphaeljontef@hotmail.com \par}
+%     \vspace{1cm}
+%     {\large \today\par}
+% \end{titlepage}
+% \hypersetup{pageanchor=true} % réactive pour le reste
+
+% \tableofcontents
+% \newpage
+
+\section{Arithmétique}
+L'Arithmétique est la branche des mathématiques qui étudie les nombres entiers et leurs propriétés. Elle inclut des concepts tels que la divisibilité, les nombres premiers et les algorithmes pour effectuer des opérations sur les entiers, comme celui de la division euclidienne apprise en école primaire.
+
+\subsection{Divisibilité et parité}
+\begin{definition}{}{divisibilité}
+    Soit \(a\) et \(b\) deux entiers relatifs. On dit que \notion{\(a\) divise \(b\)} si et seulement s'il est possible de diviser $b$ par $a$ et d'obtenir un reste nul. On note alors \(a \mid b\). On peut aussi dire que \notion{\(b\) est divisible par \(a\)}.
+\end{definition}
+
+\begin{exemple}{}{}
+    Le reste de la division euclidienne de $12$ par $6$ est nul, donc $6$ divise $12$.
+\end{exemple}
+
+\begin{definition}{}{parité}
+    On appelle \notion{parité} d'un entier relatif $m$ le fait qu'il soit pair ou impair.
+    \begin{itemize}
+        \item Si $2 \mid m$, alors $m$ est \notion{pair}.
+        \item Sinon, $m$ est \notion{impair}.
+    \end{itemize}
+\end{definition}
+
+\subsection{Nombres premiers}
+
+\begin{definition}{}{nombre premier}
+    Un entier naturel \(p\) supérieur ou égal à 2 est un \notion{nombre premier} si et seulement si ses seuls diviseurs positifs sont 1 et \(p\) lui-même.
+\end{definition}
+
+\begin{remarque}{}{premier ou pas premier ?}
+    Savoir si un nombre est premier est une question fondamentale en arithmétique. \\
+    En général, il est facile de vérifier si un petit nombre est premier en testant la divisibilité par les nombres premiers inférieurs ou égaux à sa racine carrée, mais ça devient rapidement plus compliqué pour les grands nombres.
+\end{remarque}
+
+\begin{remarque}{}{}
+    Il existe une infinité de nombres premiers. Les plus petits nombres premiers sont~:
+    \[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, \dots\]
+    \textit{1 n'est pas premier par convention !}
+\end{remarque}
+
+\begin{theoreme}{}{décomposition en produit de facteurs premiers}
+    Tout entier supérieur ou égal à 2 peut s'écrire de manière unique comme un produit de nombres premiers.
+\end{theoreme}
+
+\begin{exemple}{}{}
+    \begin{itemize}
+        \item $28 = 2 \times 2 \times 7 = 2^2 \times 7$
+        \item $90 = 2 \times 3 \times 3 \times = 5 = 2 \times 3^2 \times 5$
+        \item $12345 = 3 \times 5 \times 823$ (pas très joli celui-là !)
+    \end{itemize}
+\end{exemple}
+
+De nos jours, les nombres premiers sont très utilisés en cryptographie, notamment dans les algorithmes de chiffrement comme RSA (utilisé pour chiffrer les connexions, ou pour sécuriser les transactions bancaires, entre autres), qui reposent sur la difficulté de décomposer de grands nombres en un produit de facteurs premiers~: c'est justement ce qu'on est en train de faire !
+
+\subsection{Plus grand commun diviseur (PGCD), nombres premiers entre eux}
+
+\begin{definition}{}{plus grand commun diviseur}
+    Soient \(a\) et \(b\) deux entiers relatifs non nuls. Le \notion{plus grand commun diviseur} (PGCD) de \(a\) et \(b\) est le plus grand entier qui divise à la fois \(a\) et \(b\). On le note \(\text{pgcd}(a, b)\).
+\end{definition}
+
+\begin{remarque}{}{}
+    Le PGCD a une signification très naturelle~: en lisant les décompositions en produit de facteurs premiers de \(a\) et \(b\), on peut identifier les facteurs premiers communs à \(a\) et \(b\) et prendre le produit de ces facteurs pour obtenir le PGCD. Par exemple, pour \(a = 60\) et \(b = 48\) :
+    \begin{itemize}
+        \item \(60 = 2^2 \times 3^1 \times 5^1\)
+        \item \(48 = 2^4 \times 3^1\)
+    \end{itemize}
+    Les facteurs premiers communs sont \(2\) (deux fois) et \(3\) (une fois). Le PGCD est donc le produit de ces facteurs communs~:
+    $$\mr{pgcd}(a,b) = 2^2 \times 3 = 12$$
+\end{remarque}
+
+\begin{definition}{}{entiers premiers entre eux}
+    Deux entiers relatifs \(a\) et \(b\) sont dits \notion{premiers entre eux} si et seulement si leur PGCD est égal à 1, c'est-à-dire qu'ils n'ont aucun diviseur commun autre que 1.
+\end{definition}
+
+\begin{remarque}{}{}
+    Moralement, $a$ et $b$ sont premiers entre eux si dans leurs décompositions en produit de facteurs premiers, ils n'ont aucun facteur premier en commun.
+\end{remarque}
+
+\subsection{Outil pratique : les critères de divisibilité}
+Il est possible de déterminer facilement si un nombre est divisible par $2$, $3$ ou $5$~:
+\begin{itemize}
+    \item Un nombre est divisible par $2$ s'il se termine par $0$, $2$, $4$, $6$ ou $8$.
+    \item Un nombre est divisible par $3$ si la somme de ses chiffres est divisible par $3$.
+    \item Un nombre est divisible par $5$ s'il se termine par $0$ ou $5$.
+\end{itemize}
+Des critères existent pour les autres nombres premiers, mais ils sont plus compliqués à utiliser, et il est souvent plus rapide de poser la division euclidienne pour vérifier la divisibilité, en regardant si le reste est nul.
+
+\section{Exercices}
+\begin{multicols}{2}
+    
+\begin{exercice}{}{}
+    Déterminer les PGCD suivantes~:
+    \begin{enumeratebf}
+        \item $\mr{pgcd}(12, 18)$
+        \item $\mr{pgcd}(48, 60)$
+        \item $\mr{pgcd}(500, 300)$
+        \item $\mr{pgcd}(7, 27)$
+    \end{enumeratebf}
+\end{exercice}
+
+\begin{exercice}{}{}
+    Déterminer le PGCD suivant.'
+    \begin{enumeratebf}
+        \item $\mr{pgcd}(220, 340)$
+        
+    \end{enumeratebf}
+\end{exercice}
+\columnbreak
+\begin{exercice}{}{}
+    Les nombres suivants sont-ils premiers entre eux ?
+    \begin{enumeratebf}
+        \item $17$ et $19$
+        \item $12$ et $18$
+        \item $7$ et $48$
+    \end{enumeratebf}
+\end{exercice}
+\end{multicols}
+
+\end{document}
