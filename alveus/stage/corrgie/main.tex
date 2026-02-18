@@ -1,7 +1,7 @@
 
 % nom du chapitre
-\newcommand{\texteTitre}{Mathématiques, chapitre 5} 
-\newcommand{\texteSousTitre}{Développement et factorisation}
+\newcommand{\texteTitre}{Corrigé de contrôle} 
+\newcommand{\texteSousTitre}{Sciences}
 
 \documentclass[12pt]{article}
 
@@ -80,122 +80,77 @@
 \begin{document}
 \input{backend/commands.tex}
 
-% Page de titre custom
+% --- ECRIRE ICI ----
+\section*{Exercice 1}
 
-% \hypersetup{pageanchor=false}
-% \setlength{\headheight}{15pt}
-% \begin{titlepage}
-%     \centering
-%     \vspace*{3cm}
-%     {\Huge \bfseries\texteTitre \par} % nom  du chapitre
-%     \vspace{1cm}
-%     {\Large \texteSousTitre \par} % nom  du chapitre
+\subsection*{1) Tableau}
 
-%     \vfill
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Nom de l’ion & Nombre de charges + & Nombre d’électrons & Charge & Formule \\ \hline
+Ion calcium (Z=20) & 20 & 18 & +2 & Ca$^{2+}$ \\ \hline
+Ion argent (Z=47) & 47 & 46 & +1 & Ag$^{+}$ \\ \hline
+Ion chlorure (Z=17) & 17 & 18 & -1 & Cl$^{-}$ \\ \hline
+Ion fer III (Z=26) & 26 & 23 & +3 & Fe$^{3+}$ \\ \hline
+Ion sulfure (Z=16) & 16 & 18 & -2 & S$^{2-}$ \\ \hline
+Ion hydrogène (Z=1) & 1 & 0 & +1 & H$^{+}$ \\ \hline
+\end{tabular}
+\end{center}
 
-%     {\Large \href{https://www.alveusclub.com/}{Alveus} \par}
-%     \vspace{1em}
-%     {Rédigé par Raphaël JONTEF\par}
-%     \vspace{0.5cm}
-%     {\normalsize raphaeljontef@hotmail.com \par}
-%     \vspace{1cm}
-%     {\large \today\par}
-% \end{titlepage}
-% \hypersetup{pageanchor=true} % réactive pour le reste
+\subsection*{2) Anions et cations}
 
-% \tableofcontents
-% \newpage
+\textbf{Cations (charge positive)} : Ca$^{2+}$, Ag$^{+}$, Fe$^{3+}$, H$^{+}$  
 
-En mathématiques, le développement et la factorisation sont des techniques fondamentales pour manipuler les expressions algébriques.
-\section{Développement}
-\begin{definition}{}{développement}
-    Le développement consiste à transformer un produit en une somme.
-\end{definition}
+\textbf{Anions (charge négative)} : Cl$^{-}$, S$^{2-}$
 
-\begin{exemple}{}{de développement}
-    Développons l'expression $3(x + 4)$.
-    $$3 \times (x + 4) = 3\times x + 3\times 4 = 3x + 12$$
-    On remarque que l'opération de multiplication a été appliquée à chaque terme de la somme multipliée. Cette propriété, appelée \notion{distributivité du produit sur la somme} a permis d'ôter les parenthèses et de passer d'un produit à une somme.
-\end{exemple}
+\bigskip
+\section*{Exercice 2}
 
-\begin{exemple}{}{de développement}
-    Développons l'expression $A = (x + 2)(x - 5)$. On commence par considérer que le premier facteur est une variable $a = (x+2)$. Ainsi~:
-    $$A = a(x - 5)$$
-    En développant, on trouve~:
-    $$A = ax - 5a$$
-    En remplaçant $a$ par sa valeur initiale, on trouve~:
-    \begin{align*}
-        A &= (x + 2)x - 5(x + 2) \\
-        &= x^2 + 2x - 5x - 10 \\
-        &= x^2 - 3x - 10
-    \end{align*}
-    Ici, nous avons eu a distribuer trois fois. Une première fois en ayant posé $a$, puis deux autres fois pour remplacer $a$ par sa valeur initiale.
-\end{exemple}
+1) La borne longue du générateur est la borne \textbf{positive (+)}.  
+La borne courte est la borne \textbf{négative (-)}.  
+
+Le courant électrique circule du \textbf{+ vers le -} dans le circuit extérieur.
+
+2) Les électrons circulent dans le sens inverse du courant, donc du \textbf{- vers le +}.
+
+3) Dans la solution :
+\begin{itemize}
+\item Les ions potassium K$^{+}$ (positifs) se déplacent vers la \textbf{borne négative}.
+\item Les ions permanganate MnO$_4^{-}$ (négatifs) se déplacent vers la \textbf{borne positive}.
+\end{itemize}
+
+\bigskip
+\section*{Exercice 3}
+
+1) Les fragments d’ADN sont des \textbf{molécules}, car l’ADN est une grande molécule constituée d’atomes liés entre eux.
+
+2) Les fragments d’ADN sont \textbf{chargés négativement} car ils migrent vers la borne positive du générateur (les charges opposées s’attirent).
+
+3) Le coupable est le suspect dont le profil (bandes) correspond exactement à celui trouvé sur la scène du crime.
+
+\bigskip
+\section*{Exercice 4}
+
+1) La solution de sulfate de sodium étant incolore, la couleur verte est due à l’ion \textbf{fer(II)} : Fe$^{2+}$.
+
+2) Le précipité vert montre la présence d’ions fer(II) : Fe$^{2+}$.
+
+3) Le précipité de couleur rouille montre la présence d’ions fer(III) : Fe$^{3+}$.
 
 
-\begin{remarque}{}{}
-    Nous connaissons la formule de développement $a\times(b+c) = ab + ac$. Nous avons vu que pour développer $(a+b)(c+d)$, on applique cette formule trois fois. Mais il existe une formule plus générale (et plus rapide) de développement pour ce cas~:
-    $$(a+b)(c+d) = ac + ad + bc + bd$$
-    Moralement, ceci est la somme de tous les produits possibles entre un terme du premier facteur et un terme du second facteur. Il y a donc $2\times 2 = 4$ produits possibles, d'où les quatre termes de la somme.\\\\
-    Si nous avions eu trois termes dans chaque facteur, il y aurait eu $3\times 3 = 9$ produits possibles, et la formule de développement aurait été~:
-    $$(a+b+c)(d+e+f) = ad + ae + af + bd + be + bf + cd + ce + cf$$
-\end{remarque}
+4) Les ions fer(II) Fe$^{2+}$ se sont transformés en ions fer(III) Fe$^{3+}$ 
+au contact du dioxygène de l’air.
 
-\section{Factorisation}
+5) Matériel nécessaire :
+\begin{itemize}
+\item bécher
+\item éprouvette ou pipette
+\item solution de soude
+\item spatule
+\item agitateur
+\end{itemize}
 
-\begin{definition}{}{factorisation}
-    La factorisation consiste à transformer une somme en un produit. Cela se fait en utilisant les propriétés de la distributivité, mais dans le sens inverse du développement. On recherche en général un \notion{facteur commun} à tous les termes de la somme, que l'on met en facteur.
-\end{definition}
-
-La factorisation permet, en simplifant des équations algébriques, de trouver des solutions plus facilement. Par exemple, pour résoudre l'équation $3x + 12 = 0$, il est plus simple de factoriser le membre de gauche en mettant $3$ en facteur~:
-$$3(x + 4) = 0$$
-Il est alors facile de trouver la solution $x = -4$, car un produit est nul si et seulement si au moins un de ses facteurs est nul. Nous savons que $3$ n'est pas nul, donc $x + 4$ doit être nul, d'où $x = -4$.
-
-\begin{exemple}{}{de factorisation}
-    Factorisons l'expression $A = 3x + 12$. On remarque que 3 est un facteur commun à tous les termes de la somme (car $12 = 3 \times 4$). On peut donc écrire~:
-    $$A = 3(x + 4)$$
-    Et en effet, en développant $3(x + 4)$, on retrouve bien l'expression initiale $3x + 12$.
-\end{exemple}
-
-\begin{remarque}{}{}
-    Il est bien entendu extrêmement difficile de factoriser une somme en trouvant un facteur commun, car ce facteur peut être une expression plus complexe. Par exemple, il était relativement facile de distribuer $A = (x + 2)(x - 5)$, mais retrouver cette forme factorisée à partir de $A = x^2 - 3x - 10$ est plus compliqué (niveau première !). Il existe néanmoins des cas particuliers de factorisation, appelées \notion{identités remarquables}.
-\end{remarque}
-
-\begin{exemple}{}{facteur commun plus complexe}
-    Factorisons l'expression $A = (x+3)(x-2) + (x+3)(x+5)$.
-    On remarque que $(x+3)$ est un facteur commun à tous les termes de la somme. On peut donc écrire~:
-    $$A = (x+3)\Big((x-2) + (x+5)\Big)$$
-    En simplifiant l'expression entre crochets, on obtient~:
-    $$A = (x+3)(2x + 3)$$
-    Moralement, un facteur commun, peut être n'importe quoi sous parenthèses.
-\end{exemple}
-
-\section{Identités remarquables}
-
-Les identités remarquables sont des formules abrégeant le développement d'expressions algébriques particulières.
-
-\begin{theoreme}{}{identités remarquables}
-    Soient $a$ et $b$ deux expressions algébriques quelconques. Nous avons les identités remarquables suivantes~:
-    \begin{enumeratebf}
-        \item $(a + b)(a+b) = a^2 + 2ab + b^2$
-        \item $(a - b)(a-b) = a^2 - 2ab + b^2$
-        \item $(a + b)(a - b) = a^2 - b^2$
-    \end{enumeratebf}
-    Pour développer, on lit la formule de gauche à droite, et inversement pour la factoriser.
-\end{theoreme}
-
-\begin{remarque}{}{}
-    Bien sûr ces formules se démontrent très bien en développant par exemple $(a+b)^2$ de façon brutale, comme vu précédemment. Il est toutefois plus rapide de les mémoriser, car elles sont très utilisées.
-\end{remarque}
-
-\begin{remarque}{}{résumé de la méthode pour factoriser}
-    Pour factoriser une expression, on cherche un facteur commun à tous les termes de la somme. Si on ne trouve pas de facteur commun, on peut essayer d'utiliser une identité remarquable, dans le sens de factorisation. On recherche donc l'une des formes suivantes dans l'expression à factoriser~:
-    \begin{itemize}
-        \item $a^2 + 2ab + b^2$
-        \item $a^2 - 2ab + b^2$
-        \item $a^2 - b^2$
-    \end{itemize}
-\end{remarque}
 
 
 \end{document}
