@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+\pagestyle{empty}
+\moderncvstyle{classic} % styles: casual, classic, banking, oldstyle, fancy
+\moderncvcolor{blue}    % colors: blue, orange, green, red, purple, grey, black
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\setlength{\columnsep}{3em}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[a4paper, top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\name{Raphaël}{Jontef}
+\photo[64pt][0.4pt]{../../photo.jpg}
+\phone[mobile]{+33 7 68 14 51 09}
+\email{raphaeljontef@hotmail.com}
+
+\begin{document}
+\makecvtitle
+
+\section{Objectif}
+Postuler à un stage de vulgarisation scientifique à destination d'élèves de seconde, plutôt dans les thématiques de l'intelligence artifielle ou de l'algorithmique.
+
+\section{Formation}
+\cventry{Paris 20\textsuperscript{e} arr.}{sept. 2020 -- juil. 2023}{Lycée Maurice Ravel}{}{}{Spécialités NSI et Mathématiques, mention "bien" au baccalauréat général et technologique.}
+\vspace{1em}
+\cventry{Paris 8\textsuperscript{e} arr.}{sept. 2023 -- juil. 2025}{Lycée Fénelon Sainte-Marie}{CPGE}{}{MP2I puis MPI (Mathématiques, Physique et Informatique)}
+\vspace{1em}
+\cventry{Bordeaux, Talence}{sept. 2025 -- 2028}{Enseirb-Matmeca}{école d'ingénieurs}{}{Filière Informatique}.
+
+\section{Expériences professionnelles et projets}
+\vspace{0.5em}
+\cvitem{Enseignement}{Tutorat présenciel en sciences pour des élèves de collège et lycée, chez \href{https://www.alveusclub.com/}{Alveus}. Une cinquantaine d'heures de cours dispensées de novembre 2025 à aujourd'hui, principalement en physique et en mathématiques.}
+\cvitem{Web}{Création de sites en \texttt{HTML}, \texttt{CSS}, \texttt{Javascript} dans un cadre aussi bien personnel que scolaire.}
+\vspace{0.5em}
+\cvitem{Docs}{Rédaction en \LaTeX\, de multiples documents (rapport et présentation de TIPE en CPGE, ce CV, prises de notes, rapports de projets en école, \textit{etc.}).}
+\vspace{0.5em}
+\cvitem{Autre}{Travail d'Initiative Personnelle Encadrée (TIPE) en CPGE, sur le thème de la reconnaissance de caractère par ordinateur pour retrouver du code source \LaTeX\,à partir d'une image.}
+
+\section{Compétences informatiques}
+\begin{itemize}[left=0pt, label=\textbullet]
+\begin{multicols}{2}
+    \item \texttt{Python}, \texttt{C} et \texttt{OCaml};
+    \item Création de sites web~: \texttt{HTML}, \texttt{CSS} et \texttt{Javascript}, notamment avec \texttt{Vue.js};
+    \item Écriture de documents en \LaTeX;
+    \item utilisation de \texttt{git}.
+\end{multicols}
+\end{itemize}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}  % gauche
+\section{Compétences humaines}
+\begin{itemize}[left=0pt, label=\textbullet]
+    \item Communication bonne, notamment à l'écrit;
+    \item Pédagogie (expérience de tutorat);
+    \item Sens affûté du détail;
+    \item Importante volonté de bien faire.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}  % droite
+\section{Passe-temps}
+\begin{itemize}[left=0pt, label=\textbullet]
+    \item Cuisine et patisserie;
+    \item Cyclisme, aussi bien par besoin que par loisir;
+    \item Algorithmique numérique et théorie algébrique associée;
+\end{itemize}
+\end{minipage}
+
+\end{document}
