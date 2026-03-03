@@ -1,0 +1,31 @@
+\begin{definition}{}{alphabet}
+    On appelle \notion{alphabet} un ensemble fini de symboles appelés \notion{lettres}.
+\end{definition}
+
+\begin{exemple}{}{d'alpahabet}
+    $\Sigma = \{a, b, c\}$ est un alphabet de trois lettres $a$, $b$ et $c$.
+\end{exemple}
+
+\begin{definition}{}{mot}
+    On appelle \notion{mot} une suite finie de lettres d'un alphabet.
+\end{definition}
+
+\begin{exemple}{}{de mot}
+    $w = abac$ est un mot de l'alphabet $\Sigma = \{a, b, c\}$.
+\end{exemple}
+
+\begin{definition}{}{concaténation}
+    On appelle \notion{concaténation} de deux mots $u$ et $v$, notée $uv$, le mot obtenu en juxtaposant les deux mots.
+\end{definition}
+
+\begin{exemple}{}{de concaténation}
+    Soit $u = ab$ et $v = c$, alors $u\cdot v = abc$.
+\end{exemple}
+
+\begin{definition}{}{mot vide, ensemble des mots sur un alphabet}
+    On not e $\Sigma^*$ l'ensemble de tous les mots qui peuvent être formés à partir des lettres de l'alphabet $\Sigma$. Cet ensemble inclut le mot vide, noté $\epsilon$.
+\end{definition}
+
+\begin{remarque}{}{mot vide}
+    Le mot vide est l'élément neutre de la concaténation, munissant $\Sigma^*$ d'une structure de \notion{monoïde}, puisque $\cdot$ est un opérateur associatif.
+\end{remarque}
