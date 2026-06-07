@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper,sans]{moderncv}
+\pagestyle{empty}
+\moderncvstyle{classic} % styles: casual, classic, banking, oldstyle, fancy
+\moderncvcolor{blue}    % colors: blue, orange, green, red, purple, grey, black
+
+\usepackage{enumitem}
+\usepackage{multicol}
+\setlength{\columnsep}{3em}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[a4paper, top=1.5cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+
+\name{Raphaël}{Jontef}
+\photo[64pt][0.4pt]{../../photo.jpg}
+\phone[mobile]{+33 7 68 14 51 09}
+\email{raphaeljontef@hotmail.com}
+
+\begin{document}
+\makecvtitle
+
+\section{Objective}
+Application for international student mobility for semester 8 at Enseirb-Matmeca.
+
+\section{Education}
+\cventry{Paris 20\textsuperscript{th} arr.}{Sept. 2020 -- Jul. 2023}{Lycée Maurice Ravel}{}{}{Majored in Computer Science and Mathematics, graduated with honors from the French General Baccalaureate.}
+\vspace{1em}
+\cventry{Paris 8\textsuperscript{th} arr.}{Sept. 2023 -- Jul. 2025}{Lycée Fénelon Sainte-Marie}{Preparatory Class for Engineering Schools}{}{MP2I then MPI (Mathematics, Physics and Computer Science)}
+\vspace{1em}
+\cventry{Bordeaux, Talence}{Sept. 2025 -- 2028}{Enseirb-Matmeca}{Engineering School}{}{Computer Science major.}
+
+\section{Professional Experience and Projects}
+\vspace{0.5em}
+\cvitem{Teaching}{In-person tutoring in science for middle and high school students at \href{https://www.alveusclub.com/}{Alveus}. About sixty hours of lessons given from November 2025 to present, mainly in physics and mathematics.}
+\cvitem{Web}{Creation of websites using \texttt{HTML}, \texttt{CSS}, and \texttt{JavaScript} for both personal and academic purposes.}
+\vspace{0.5em}
+\cvitem{Workshops}{Internship preparing and leading a workshop "Learning to talk with AI" for high school sophomores, for Enseirb-Matmeca.}
+\vspace{0.5em}
+\cvitem{Other}{Personal Research Project (TIPE) in preparatory class on character recognition to recover \LaTeX{} source code from an image.}
+
+\section{Computer Skills}
+\begin{itemize}[left=0pt, label=\textbullet]
+\begin{multicols}{2}
+    \item \texttt{Python}, \texttt{C}, and \texttt{OCaml};
+    \item Website creation: \texttt{HTML}, \texttt{CSS}, and \texttt{JavaScript}, including with \texttt{Vue.js};
+    \item Writing documents in \LaTeX;
+    \item Use of \texttt{git}.
+\end{multicols}
+\end{itemize}
+
+\noindent
+\begin{minipage}[t]{0.48\textwidth}  % left
+\section{Soft Skills}
+\begin{itemize}[left=0pt, label=\textbullet]
+    \item Good communication, especially in writing;
+    \item Teaching skills (tutoring experience);
+    \item Keen attention to detail;
+    \item Strong desire to do things well.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}  % right
+\section{Hobbies}
+\begin{itemize}[left=0pt, label=\textbullet]
+    \item Cooking and baking;
+    \item Cycling, both for necessity and leisure;
+    \item Numerical algorithms and related algebraic theory;
+\end{itemize}
+\end{minipage}
+
+\end{document}
