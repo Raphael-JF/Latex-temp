@@ -1,0 +1,12 @@
+Après l'analyse syntaxique, on obtient une représentation structurée du programme, sous la fore d'un arbre syntaxique abstrait (AST). Cependant, cette représentation ne garantit pas que le programme est sémantiquement correct. 
+
+
+\begin{exemple}{}{}
+Le programme peut mutliplier un entier par un flottant, ce qui est une opération soit à invalider, soit à convertir implicitement. L'analyse sémantique va donc vérifier la validité des opérations et effectuer les conversions nécessaires.
+\end{exemple}
+
+Il y a donc au cours de cette phase de l'analyse sémantique, deux tâches principales~:
+\begin{itemize}
+  \item analyse de type~: vérifier que les opérations sont valides pour les types d'opérandes donnés, et effectuer les conversions nécessaires si possible.
+  \item analyse de noms~: vérifier que les identificateurs utilisés dans le programme sont déclarés et accessibles dans le contexte actuel.
+\end{itemize}

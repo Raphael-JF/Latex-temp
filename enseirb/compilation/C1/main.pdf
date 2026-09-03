@@ -1,0 +1,23 @@
+# Image Conversion Failed:
+
+## convert
+
+sh: line 1: gs: command not found
+magick: FailedToExecuteCommand `'gs' -sstdout=%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 '-sDEVICE=png16malpha' -dTextAlphaBits=4 -dGraphicsAlphaBits=4 '-r192x192' -dPrinted=false -dFirstPage=1 -dLastPage=1 '-sOutputFile=/tmp/magick-NRFkL7qE8UbwHLLvysPhO8nvm1R6KMl5%d' '-f/tmp/magick-Zq0x3Zdq76wSTbv896GrK-Z7NmNZMYYu' '-f/tmp/magick-VHi2plJmojNWYilXBAfT4JyTYFPiUKgQ'' (32512) @ error/ghostscript-private.h/ExecuteGhostscriptCommand/75.
+
+- **cwd**: ~/Desktop/Latex-Temp/enseirb/compilation/C1
+```sh
+magick -density 192 \ 
+  /home/raph/Desktop/Latex-Temp/enseirb/compilation/C1/main.pdf[0] \ 
+  -background white -alpha remove -trim \ 
+  -write \ 
+  /home/raph/.cache/nvim/snacks/image/a5cf9775-main.png \ 
+  -identify -format \ 
+  '%m %[fx:w]x%[fx:h] %xx%y' \ 
+  /home/raph/.cache/nvim/snacks/image/a5cf9775-main.png.info
+```
+
+# Output
+sh: line 1: gs: command not found
+magick: FailedToExecuteCommand `'gs' -sstdout=%stderr -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 '-sDEVICE=png16malpha' -dTextAlphaBits=4 -dGraphicsAlphaBits=4 '-r192x192' -dPrinted=false -dFirstPage=1 -dLastPage=1 '-sOutputFile=/tmp/magick-NRFkL7qE8UbwHLLvysPhO8nvm1R6KMl5%d' '-f/tmp/magick-Zq0x3Zdq76wSTbv896GrK-Z7NmNZMYYu' '-f/tmp/magick-VHi2plJmojNWYilXBAfT4JyTYFPiUKgQ'' (32512) @ error/ghostscript-private.h/ExecuteGhostscriptCommand/75.
+

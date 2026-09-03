@@ -1,0 +1,12 @@
+L'analyse lexicale consiste en la conversion de l'une suite de caractères en une suite de mots.
+
+\begin{exemple}{}{}
+
+\begin{align*}
+& \code{p} & \code{=} & \code{p0} & \code{+} & \code{v} & \code{*} & \code{t}\\
+& \code{ID} & \code{EQ} & \code{ID} & \code{PLUS} & \code{ID} & \code{TIMES} & \code{ID}
+\end{align*}
+
+\end{exemple}
+
+Pour parvenir à cela, l'analyseur lexical va utiliser un ensemble de règles de reconnaissance de mots, appelées \textit{expressions régulières}. Ces expressions régulières sont des motifs qui décrivent les séquences de caractères qui forment des mots valides dans le langage. On utilise des analyseurs lexicaux comme \textit{flex} ou \textit{lex} pour générer automatiquement le code de l'analyseur lexical à partir de ces expressions régulières.
