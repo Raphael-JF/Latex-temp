@@ -1,0 +1,75 @@
+\section{Prémiliminaires}
+
+Il existe deux types de machines : les machines séquentielles et les machines parallèles.
+
+\begin{definition}{}{Machine séquentielle}
+    Une machine séquentielle est une machine qui ne peut exécuter qu'une seule instruction à la fois.
+\end{definition}
+
+\begin{definition}{}{Machine parallèle}
+    Une machine parallèle est une machine qui peut exécuter plusieurs instructions en même temps.
+\end{definition}
+
+Un système distribué est la combinaison de plusieurs machines séquentielles et/ou parallèles qui communiquent entre elles pour résoudre un problème. Il diffère d'un système parallèle en ce que les machines communiquent en un temps conséquent. Les contraintes de communication sont donc plus importantes que dans un système parallèle.
+
+\begin{remarque}{}{intérêt principal}
+    L'intérêt principal d'un système distribué est de pouvoir résoudre des problèmes plus rapidement qu'une seule machine, non pas en augmentant les performances d'une seule machine, mais en utilisant plusieurs machines dans le but de résoudre un problème plus rapidement et à moindre coût.
+\end{remarque}
+
+\section{Deux modèles de base}
+
+\subsection{Mémoire partagée}
+
+\begin{definition}{}{Mémoire partagée}
+  Dans un système distribué à mémoire partagée, toutes les machines ont accès à une mémoire commune. Les machines ont accès à deux opérations atomiques~:
+  \begin{itemize}
+    \item \texttt{read(x)} : lire la valeur de la variable x dans la mémoire partagée.
+    \item \texttt{write(x, v)} : écrire la valeur v dans la variable x de la mémoire partagée.
+  \end{itemize}
+\end{definition}
+
+\begin{remarque}{}{spécificité}
+    En mémoire partagée, on ne se soucie pas du  temps de communication entre les machine, ni du protocole exploité pour la communication. Cela dit, ce modèle pose les mêmes problèmes relatifs à la programmation concurente que dans un système parallèle.
+\end{remarque}
+
+
+\begin{exemple}{}{le compteur}
+  On souhaite implémenter un compteur partagé entre plusieurs machines. Chaque machine peut incrémenter le compteur de 1. Le compteur est initialisé à 0. On souhaite que le compteur final soit égal au nombre d'incrémentations effectuées par toutes les machines.
+  \begin{lstLNat}
+    INC() {
+      x = read(compteur);
+      write(compteur, x + 1);
+    }
+  \end{lstLNat}
+  On pourrait avoir pour deux fils d'exécution~:
+  $$
+  \begin{array}{c|c}
+  \textbf{Fil 1} & \textbf{Fil 2} \\[0.5em]
+  \hline
+  \texttt{x} = \texttt{read(compteur)} & \texttt{x} = \texttt{read(compteur)} \\[0.3em]
+  \texttt{write(compteur, x + 1)} & \\[0.3em]
+  & \texttt{write(compteur, x + 1)}
+  \end{array}
+  $$
+  Dans ce cas, pour deux incrémentations, le compteur final sera égal à 1 au lieu de 2. 
+\end{exemple}
+
+\begin{exemple}{}{problème du consensus binaire} 
+  Le problème du consensus binaire consiste à faire en sorte que plusieurs machines exécutant le même programme s'accordent sur une même valeur. Chaque machine possède initialement une valeur proposée et peut communiquer  librement avec les autres machines et doit finalement prendre une décision irrévocable : elle choisit soit $0$, soit $1$. Même si certaines machines peuvent cesser de répondre, les machines fonctionnelles restantes doivent  avoir choisi la même valeur. \par
+  Dans un système asynchrone, une machine ne peut pas distinguer une machine qui est tombée en panne d'une machine dont les messages sont simplement retardés. Il est ainsi impossible de garantir que toutes les machines correctes prendront toujours une décision tout en respectant les propriétés du consensus. 
+
+  Bien que ce problème soit impossible à résoudre avec un protocole déterministe\footnote{\textit{cf.} impossiblité FLP}, il existe en pratique des algorithmes probablistes qui permettent de résoudre le problème du consensus binaire dans un système asynchrone, et par extension le problème du consensus multi-valué.
+\end{exemple}
+
+
+\subsection{Communication par messages (message passing)}
+
+
+\begin{definition}{}{Communication par messages}
+  Dans un système distribué à communication par messages, les machines communiquent entre elles en s'envoyant des messages. Chaque machine possède sa propre mémoire et ne peut pas accéder à la mémoire des autres machines. \par 
+Il existe plusieurs types de communication par messages~:
+  \begin{itemize}
+    \item \notion{point-à-point} : une machine envoie un message à machine voisine (dans un système en réseau notamment)
+    \item \notion{diffusion} : une machine envoie un message à toutes les machines du système, éventuellement avec une contrainte (distance, interférences\dots) lui empêchant d'atteindre toutes les machines du système.
+  \end{itemize}
+\end{definition}
