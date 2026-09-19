@@ -1,0 +1,27 @@
+\section{Phases aval de compilation}
+\begin{itemize}
+  \item \textbf{Production de code intermédiaire} : le code intermédiaire est un code qui n'est pas encore du code machine mais qui est plus proche de la machine que le code source. Il est souvent utilisé pour faciliter l'optimisation du code et pour permettre la portabilité du compilateur sur différentes architectures.
+  \item \textbf{Optimisation du code} : cette phase consiste à améliorer le code intermédiaire pour le rendre plus efficace en termes de temps d'exécution et de consommation de mémoire. Les optimisations peuvent inclure la suppression de code mort, la réorganisation des instructions, l'inlining de fonctions, etc.
+  \item \textbf{Production de code machine ou code cible} : cette phase consiste à traduire le code intermédiaire optimisé en code machine spécifique à l'architecture cible. Le code machine est le code exécutable par le processeur de l'ordinateur.
+\end{itemize}
+
+
+
+
+On va utiliser les grammaires hors constexte.
+
+\begin{exemple}{}{fil rouge}
+Sur l'alphabet d'entrée $T = \{\code{(}, \code{)}, \code{+}, \code{*}, \code{id}, \code{cot}\}$, on souhaite définir formellement les expressions arithmétiques bien formées. \par
+Soit $E \subset T^\star$ ledit langage. On a~:
+\begin{align*}
+  \code{id} &\subset E\\ 
+  E \code{+} E &\subset E\\
+  E \code{*} E &\subset E\\
+  \code{(} E \code{)} &\subset E\\
+\end{align*}
+Nous appellerons $\mc{F}(E)$ l'union de ces parties distinctes. L'ensemble recherché est alors~:
+$$E = \bigcup_{n \in \N}\mc{F}^n(\varnothing)$$
+
+
+
+\end{exemple}
