@@ -5,22 +5,19 @@
   \item \textbf{Production de code machine ou code cible} : cette phase consiste à traduire le code intermédiaire optimisé en code machine spécifique à l'architecture cible. Le code machine est le code exécutable par le processeur de l'ordinateur.
 \end{itemize}
 
-
-
-
-On va utiliser les grammaires hors constexte.
-
 \begin{exemple}{}{fil rouge}
 Sur l'alphabet d'entrée $T = \{\code{(}, \code{)}, \code{+}, \code{*}, \code{id}, \code{cot}\}$, on souhaite définir formellement les expressions arithmétiques bien formées. \par
 Soit $E \subset T^\star$ ledit langage. On a~:
 \begin{align*}
   \code{id} &\subset E\\ 
+  \code{cst} &\subset E\\
   E \code{+} E &\subset E\\
   E \code{*} E &\subset E\\
   \code{(} E \code{)} &\subset E\\
 \end{align*}
 Nous appellerons $\mc{F}(E)$ l'union de ces parties distinctes. L'ensemble recherché est alors~:
-$$E = \bigcup_{n \in \N}\mc{F}^n(\varnothing)$$
+$$E = \bigcup_{n \in \N}\mc{F}^n(\varnothing)$$.
+$E$ est alors engendré par une grammaire hors-contexte.
 
 
 
