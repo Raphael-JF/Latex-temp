@@ -8,7 +8,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{xcolor}
-
+\usepackage{float} % pour placer les figures exactement là où on le souhaite
 \usepackage[sfdefault]{ClearSans}
 \renewcommand{\familydefault}{\sfdefault}
 \newcommand{\enseirb}{\textsc{ENSEIRB-Matmeca }}
@@ -74,9 +74,12 @@
   \newpage
 
 \input{sections/1-introduction.tex}
+\newpage
 \input{sections/2-journees-types.tex}
+\newpage
+\input{sections/3-conclusion.tex}
 
 % \clearpage\section*{Annexe~: attestation de stage}\vspace{5mm}
 \newpage
-\noindent\includegraphics[width=\linewidth]{attestation_flat.pdf}\vspace{5mm}
+\includegraphics[width=\linewidth]{attestation_flat.pdf}\vspace{5mm}
 \end{document}
