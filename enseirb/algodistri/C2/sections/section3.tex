@@ -1,0 +1,38 @@
+\section{Rappels sur les graphes}
+
+Soit $G = (V,E)$;
+
+\begin{definition}{}{distance}
+$\mr{dist}_G(u,v)$ est le plus petit nombre d'arêtes d'un chemin connectant $u$ et $v$ dans $G$.
+\end{definition}
+
+\begin{definition}{}{excentricité}
+$\mr{ecc}_G(u)$ = $\max_{v \in V} \mr{dist}_G(u,v)$. C'est sa plus longue distance à un autre sommet du graphe.
+\end{definition}
+
+\begin{definition}{}{diamètre}
+$\mr{diam}(G) = \max_{u \in V} \mr{ecc}_G(u)$. C'est la plus longue distance entre deux sommets du graphe.
+\end{definition}
+
+\begin{exercice}{}{}
+On montre que pour tout $G$ connexe et tout sommet $u$ de $G$~:
+$$\frac{1}{2} \mr{diam}(G) \leq \mr{ecc}_G(u) \leq \mr{diam}(G)$$
+
+Soit $u$ et $v$ deux sommets de $G$ tels que $\mr{dist}_G(u,v) = \mr{diam}(G)$. Soit $w$ un sommet quelconque de $G$. On a alors par inégalité triangulaire~:
+$$\mr{dist}_G(u,v) \leq \mr{dist}_G(u,w) + \mr{dist}_G(w,v)$$
+Donc $\mr{diam}(G) \leq \mr{ecc}_G(w) + \mr{ecc}_G(w)$.
+Ceci est vrai pour tout sommet $w$ de $G$, donc $\mr{diam}(G) \leq 2 \mr{ecc}_G(w)$, ce qui donne la première inégalité. La deuxième est immédiate par définition du diamètre.
+\end{exercice}
+
+\begin{exercice}{}{}
+Soit $G$ connexe, $r$ un certain sommet et $P = (P_i)_{i \in \intint{1}{n-1}}$ l'ensemble des plus courts de $r$ vers $v_i$. On se considère être dans le modèle CONGEST.
+Le problème $\Pi$ étudié consiste à envoyer un message $M_i$ à $v_i$ depuis $r$ sur le chemin $P_i$.
+Trouver le nombre minimal de rondes pour résoudre $\Pi$ est un problème NP-complet. Soit $\mr{OPT}_\Pi$ l'algorithme qui résout $P{_i}$ en un temps optimal. Prouver ou réfuter~:
+\begin{enumerate}
+  \item $\mr{OPT}_\Pi$ est de complexité en temps $\bigO(\mr{diam}(G))$.
+  \item Il existe une instance telle que le complexité en temps est en $\Omega(D)$
+  \item C'est le cas pour toutes les instances.
+  \item Pour toutes les instances, $\mr{OPT}_\Pi$ est de complexité en temps $\bigO(D)$.
+\end{enumerate}
+\end{exercice}
+

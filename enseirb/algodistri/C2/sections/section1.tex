@@ -8,3 +8,20 @@ En algorithmique distribuée, on parle de complexité en \notion{temps} et en \n
 \begin{definition}{}{complexité en temps}
   La complexité en temps d'un algorithme distribué est le nombre de tours de communication nécessaires pour que tous les nœuds du réseau terminent l'exécution de l'algorithme, dans le pire cas.
 \end{definition}
+
+\begin{definition}{}{temps asynchrone}
+  $A$ un aglorithme distribué sur $G$ un graphe d'infrastucture, $\text{TEMPS}(AG)$ est le nombre d'\notion{unités de temps} écoulées jusqu'au dernier message \notion{consommé} dans le pire des cas (sur toutes les entrées et sur \notion{tous les scénarios}). \par
+  L'unité de temps étant la durée maximale pour qu'un message traverse une arête.
+
+\end{definition}
+
+\begin{definition}{}{système synchrone, systèe me asynchrone}
+  Un système est dit \notion{synchrone} si les nœuds disposent d'une horloge globale et que les messages sont transmis en un temps borné. \par
+  Un système est dit \notion{asynchrone} si les nœuds ne disposent pas d'une horloge globale et que les messages peuvent être transmis en un temps non borné.
+\end{definition}
+
+\begin{definition}{}{complexité en messages}
+$A$ un aglorithme distribué sur $G$ un graphe d'infrastucture, $\text{MESSAGES}(AG)$ est le nombre de messages échangés dans le pire des cas (sur toutes les entrées et sur \notion{tous les scénarios}). \par
+
+\end{definition}
+

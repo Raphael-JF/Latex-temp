@@ -1,0 +1,40 @@
+\section{Modèles représentatifs}
+
+Hypothèses communes~:
+\begin{itemize}
+  \item Pas de panne
+  \item Calculs locaux gratuits
+  \item identifiants pour les sommets $u \mapsto \text{id}(u)$ sur $k$ bits où $k \geq \log_2(n)$ où $n$ est le nombre de sommets du graphe d'infrastructure.
+\end{itemize}
+
+\subsection{Modèle LOCAL}
+\begin{itemize}
+  \item hypothèses communes
+  \item Communication synchrone
+  \item taille de messages illimitée
+\end{itemize}
+Ce modèle permet d'étudier la nature locale d'un problème.
+
+\subsection{Modèle CONGEST}
+\begin{itemize}
+  \item hypothèses communes
+  \item Communication synchrone
+  \item taille de messages bornée à $O(\log n)$ bits 
+\end{itemize}
+
+On peut aussi borner à la taille à $b \in \N$ bits. On parlerait alors de $b$-CONGEST.
+
+
+\begin{exemple}
+  Supposons vouloir détecter si deux voisins d'une machines sont voisins.
+  \begin{lstLNat}
+    Code de u
+    Ronde 1 : SENDALL(id(u))
+              L = liste des identifiants reçus par les voisins
+    Ronde 2 : SENDALL(L)
+              L' = union de toutes les L reçues par les voisins.
+              Si id(u) est dans L', alors deux voisins de u sont voisins.
+  \end{lstLNat}
+  Cet algorithme, bien que valide, ne fonctionne pas dans le modèle CONGEST car la taille de L peut être de $O(n \log n)$ bits.
+\end{exemple}
+
