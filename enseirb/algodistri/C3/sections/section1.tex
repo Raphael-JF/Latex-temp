@@ -1,0 +1,20 @@
+\section{Arbre de diffusion}
+
+On suppose qu'on dispose d'un arbre couvrant $T$ enraciné en $r_0$ donné par $\begin{cases*}u \mapsto \mr{parent}(u) \\ u \mapsto \mr{Enfants}(u) \end{cases*}$
+On considre l'algorithme de diffusion suivant~:
+
+\begin{lstLNat}
+    CAST(T, r0):
+      Si $u \neq r_0$: 
+        M := RECEIVE()
+      Pour tout $v$ dans $\mr{Enfants}(u)$:
+        SEND(M,v)
+\end{lstLNat}
+
+\begin{proposition}{}{propriétés de cet algorithme}
+  \begin{itemize}
+    \item $\mr{TEMPS}\Big(CAST(T,r_0),G\Big) = \mr{ecc}_T(r_0) = \mr{hauteur}(T)$
+    \item $\mr{MESSAGE}\Big(CAST(T,r_0),G\Big) = \abs{E(T)} = n-1$
+  \end{itemize}
+
+\end{proposition}

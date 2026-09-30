@@ -1,0 +1,11 @@
+\section{Introduction}
+Supposons vouloir envoyer depuis un sommet distingué $r_0$  le même \textbf{petit} message $M$ à tous les autres sommets d'un graphe $G=(V,E)$.
+
+
+\begin{proposition}{}{}
+  Pour tout graphe $G$ connexe et sommet distingué $r_0$, tout algorithme distribué $A$ de diffusion sur $G$ et quelle que soit la connaissance à priori, on a~:
+\begin{itemize}
+   \item $\mr{MESSAGE}(A,G) \geq n-1$
+   \item  $\mr{TEMPS}(A,G) \geq \mr{ecc}_G(r_0)$
+\end{itemize}
+\end{proposition}

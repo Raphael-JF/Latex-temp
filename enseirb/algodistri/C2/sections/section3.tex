@@ -25,7 +25,7 @@ Ceci est vrai pour tout sommet $w$ de $G$, donc $\mr{diam}(G) \leq 2 \mr{ecc}_G(
 \end{exercice}
 
 \begin{exercice}{}{}
-Soit $G$ connexe, $r$ un certain sommet et $P = (P_i)_{i \in \intint{1}{n-1}}$ l'ensemble des plus courts de $r$ vers $v_i$. On se considère être dans le modèle CONGEST.
+Soit $G$ connexe, $r$ un certain sommet et $P = (P_i)_{i \in \intint{1}{n-1}}$ l'ensemble des plus courts chemins de $r$ vers $v_i$. On se considère être dans le modèle CONGEST.
 Le problème $\Pi$ étudié consiste à envoyer un message $M_i$ à $v_i$ depuis $r$ sur le chemin $P_i$.
 Trouver le nombre minimal de rondes pour résoudre $\Pi$ est un problème NP-complet. Soit $\mr{OPT}_\Pi$ l'algorithme qui résout $P{_i}$ en un temps optimal. Prouver ou réfuter~:
 \begin{enumerate}
@@ -34,5 +34,42 @@ Trouver le nombre minimal de rondes pour résoudre $\Pi$ est un problème NP-com
   \item C'est le cas pour toutes les instances.
   \item Pour toutes les instances, $\mr{OPT}_\Pi$ est de complexité en temps $\bigO(D)$.
 \end{enumerate}
+
+\begin{enumerate}
+  \item Faux. Considérons un graphe en étoile avec $r$ au centre et $v_i$ aux extrémités. La distance entre $r$ et chaque $v_i$ est 1, donc $\mr{diam}(G) = 2$. Cependant, si nous devons envoyer des messages à tous les $v_i$, nous devons le faire séquentiellement, ce qui prend $n-1$ rondes, ce qui n'est pas en $\bigO(\mr{diam}(G))$.
+  
+  \item Vrai. Considérons un graphe en ligne avec $r$ à une extrémité et $v_i$ à l'autre extrémité. La distance entre $r$ et $v_i$ est égale à la longueur de la ligne, donc $\mr{diam}(G) = n-1$. Pour envoyer un message à chaque $v_i$, nous devons traverser toute la ligne, ce qui prend $\Omega(n)$ rondes, ce qui est en $\Omega(D)$.
+  
+  \item Vrai. Pour une instance donnée, et $u$ un somme, la complexité en temps majore l'excentricité de ce sommet $u$, qui majore asymptotiquement le diamètre du graphe. D'où le résultat.
+  \item Faux. Comme démontré dans le point 1, il existe des instances où la complexité en temps n'est pas en $\bigO(D)$. 
+\end{enumerate}
 \end{exercice}
 
+On choisit l'algorithme $A$ suivant~:
+\begin{lstLNat}
+    À la ronde $i$, $r$ envoiee $M_i$ sur $P_i$,
+    et les autres messages déjà envoyés progressent 
+    d'une arête sur leur chemin.
+\end{lstLNat}
+
+Il faut vérifier que deux messages $M_i$ et $M_j$ ne peuvent jamais être bloquées, car autrement, les contraintes de CONGEST vont empêcher l'algorithme de fonctionner correctement. 
+
+On choisit alors d'envoyer d'abord vers les sommets les plus éloignées, puis vers les plus proches. $M_i$ et $M_j$ ne seront alors jamais bloqués. \par
+
+
+Soit $v_i$ le dernier sommet à recevoir son message $M_i$. $M_i$ a été envoyé à la ronde $t$ par $r$. 
+$$\mr{TEMPS}(\mr{OPT}, G) \leq \mr{TEMPS}(A,G) \leq t + (d-1) \leq n-1$$
+Après la ronde $t$, $r$ dispose de $(n-1) - t$ rondes disponibles pour envoyer les messages vers les sommets plus proches. Il faut $(n-1) - t \geq d-1$ puisqu'il y a au moins $d-1$ qui reste à informer. 
+
+
+\begin{proposition}{}{PACKET ROUTING}
+Il existe un algorithme avec une complexité en temps $\bigO(c + d)$ pour résoudre le problème $\Pi$ où~:
+\begin{itemize}
+  \item $c$ est la congestion, \ie le nombre maximal de chemins de $p$ qui passent par une même arête.
+  \item $d$ est la dilatation, \ie la longueur maximale d'un chemin de $p$. 
+
+\end{itemize}
+
+  On  a alors $\begin{cases*}c \leq n \\ d \leq n \end{cases*}$, d'où cet algorithme étant de complexité linéaire en le nombre de sommets de $G$.
+
+\end{proposition}
