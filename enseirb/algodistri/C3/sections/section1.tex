@@ -64,7 +64,7 @@ Il existe également une variante synchrone "amnésique" de FLOOD qui consiste �
       $S$ := l'ensemble des émetteurs de $\mc{M}$
       si $S \neq \varnothing$:
         choisir $M \in \mc{M}$
-\end{LstLNat}
+\end{lstLNat}
 
 \subsection{Message \textit{vs.} connaissance}
 
@@ -81,9 +81,9 @@ Il existe également une variante synchrone "amnésique" de FLOOD qui consiste �
   On dit qu'un sommet $u$ a connaissance à distance $\rho$ si $u$ connaît l'ensemble des sommets à distance $\leq \rho$ de lui, ainsi que les arêtes entre ces sommets.
 \end{definition}
 
-\begin{proposition}(petits messages)
-  $\forall \rho \in \N$, \forall $G$ connexe à $n$ sommets et $r_0$, il existe un algorithme de diffusion $\mr{FLOODK}_\rho$ avec une connaissance $\rho$ tel que~:
-  $$\mr{MESSAGE}\Big(\mr{FLOODK}_\rho(r_0), G\Big) = 2\min(m, n+n^\frac{1}{\rho})$$
+\begin{proposition}{}{petits messages}
+  $\forall \rho \in \N, \forall G$ connexe à $n$ sommets et $r_0$, il existe un algorithme de diffusion $\mr{FLOODK}_\rho$ avec une connaissance $\rho$ tel que~:
+  $$\mr{MESSAGE}\Big(\mr{FLOODK}_\rho(r_0), G\Big) = 2\min(m, n^{1 + \frac{1}{\rho}})$$
 \end{proposition}
 
 
@@ -102,6 +102,5 @@ Ainsi~:
 \begin{itemize}
   \item Localement, chaque sommet décide de désactiver certaines arêtes, et $\tilde{G}$ le graphe résultant.
   \item On applique FLOOD dans $\tilde{G}$, $\mr{MSG} \leq 2\tilde{m} - {n} + 1$
-
 \end{itemize}
 \end{demonstration}
