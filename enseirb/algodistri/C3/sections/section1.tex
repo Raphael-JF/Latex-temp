@@ -16,5 +16,92 @@ On considre l'algorithme de diffusion suivant~:
     \item $\mr{TEMPS}\Big(CAST(T,r_0),G\Big) = \mr{ecc}_T(r_0) = \mr{hauteur}(T)$
     \item $\mr{MESSAGE}\Big(CAST(T,r_0),G\Big) = \abs{E(T)} = n-1$
   \end{itemize}
-
 \end{proposition}
+
+Cet algorithme a le mérite de limiter le nombre de messages à $n-1$ mais il nécessite d'avoir $T$. 
+
+Considérons à présent l'algorithme asynchrone suivant~:
+\begin{lstLNat}
+  FLOOD(T, r0):
+    si $u = r_0$:
+      SENDALL(M) // envoi à tous les voisins
+    sinon:
+      M := receive()
+      v := émetteru du message M
+      SEND(M, w) pour tout $w \in \mr{Voisins}(u) \setminus \{v$
+\end{lstLNat}
+\begin{proposition}{}{propriétés de cet algorithme}
+  On a, en notant $m$ le nombre d'arêtes de $G$, et $n$ son nombre de sommets~:
+  \begin{itemize}
+    \item $\mr{MESSAGE}\Big(FLOOD(r_0),G\Big) = m = \bigO(n^2)$
+    \item $\mr{TEMPS}\Big(FLOOD(r_0),G\Big) = \mr{ecc}_G(r_0)$
+  \end{itemize}
+\end{proposition}
+\begin{demonstration}
+  \begin{enumerate}
+    \item\begin{align*}
+        \mr{MESSAGE}\Big(FLOOD(r_0),G\Big) &= \deg_G(r_0) \sum_{\substack{u \in V\\ u \neq r_0}}\Big(\mr{deg}_G(u) - 1\Big) \\
+        &= \sum_{u \in V} \deg(u) - (n-1) \\
+        &= 2m - n +1
+      \end{align*}
+    \item Montre qu'après $t$ unités de temps, tous les sommets à distances $\leq t$ ont reçu $M$. Il y a donc au plus $\mr{ecc}_G(r_0)$ unités de temps avant que tous les sommets aient reçu $M$. 
+  \end{enumerate}
+\end{demonstration}
+
+
+Il existe également une variante synchrone "amnésique" de FLOOD qui consiste à appliquer FLOOD perpétuellement.
+\begin{lstLNat}
+  AMNESIAC-FLOOD(r0):
+  si $u=r_0$:
+    SENDALL(M)
+  S = $\varnothing$
+  tant que vrai:
+    démarrer une nouvelle ronde
+    si $S = \varnothing$:
+      SEND(M, v) pour tout $v \in \mr{Voisins}(u)\setminus S$
+      // c'est grâce à ça qu'on s'arrête
+      $\mc{M} := RECEIVE_ALL()$ // on reçoit tous les messages des voisins
+      $S$ := l'ensemble des émetteurs de $\mc{M}$
+      si $S \neq \varnothing$:
+        choisir $M \in \mc{M}$
+\end{LstLNat}
+
+\subsection{Message \textit{vs.} connaissance}
+
+\begin{tabular}{c|c|c|c}
+    & TEMPS & MESSAGE & "CONNAISSANCE" \\
+    \hline
+    $\mr{CAST}_T$ & $\mr{ecc}_T(r_0)$ & $n-1 = \bigO(n)$ & $T$ \\
+    \hline
+    $\mr{FLOOD}$ & $\mr{ecc}_G(r_0)$ & $2m-n+1 = \bigO(n^2)$ & $\varnothing$ \\
+    \hline
+\end{tabular}
+
+\begin{definition}{}{connaissance à distance $\rho$}
+  On dit qu'un sommet $u$ a connaissance à distance $\rho$ si $u$ connaît l'ensemble des sommets à distance $\leq \rho$ de lui, ainsi que les arêtes entre ces sommets.
+\end{definition}
+
+\begin{proposition}(petits messages)
+  $\forall \rho \in \N$, \forall $G$ connexe à $n$ sommets et $r_0$, il existe un algorithme de diffusion $\mr{FLOODK}_\rho$ avec une connaissance $\rho$ tel que~:
+  $$\mr{MESSAGE}\Big(\mr{FLOODK}_\rho(r_0), G\Big) = 2\min(m, n+n^\frac{1}{\rho})$$
+\end{proposition}
+
+
+Ainsi~:
+\begin{itemize}
+  \item $\mr{FLOODK}_0$ est en $\bigO(n^2)$ 
+  \item $\mr{FLOODK}_1$ est l'algorithme $\mr{FLOOD}$, également en $\bigO(n^2)$ qui ne nécessite aucune connaissance.
+  \item $\mr{FLOODK}_2$ est en $\bigO(n^{3/2})$
+  \item $\mr{FLOODK}_3$ est en $\bigO(n^{4/3})$
+  \item $\mr{FLOODK}_\infty$ est l'algorithme $\mr{CAST}_T$, en $\bigO(n)$
+\end{itemize}
+
+
+\begin{demonstration}
+  On prend $\rho \geq 1$. Deux idées~:
+\begin{itemize}
+  \item Localement, chaque sommet décide de désactiver certaines arêtes, et $\tilde{G}$ le graphe résultant.
+  \item On applique FLOOD dans $\tilde{G}$, $\mr{MSG} \leq 2\tilde{m} - {n} + 1$
+
+\end{itemize}
+\end{demonstration}
