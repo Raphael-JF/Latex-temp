@@ -104,3 +104,39 @@ Ainsi~:
   \item On applique FLOOD dans $\tilde{G}$, $\mr{MSG} \leq 2\tilde{m} - {n} + 1$
 \end{itemize}
 \end{demonstration}
+
+\newcommand{\id}{\mr{ID}}
+
+On associe un identifiant $\id(u,v)$ à chaque arête $(u,v)$. On impose la contrainte suivante~:
+\begin{proposition}{}{}
+  $u$ désactive $u-v$ s'il existe dans $G$ un cycle $\mc{C}$ de longueur $\leq 2\rho$ contenant $u-v$, d'identifiant minimal dans ce cycle.
+\end{proposition}
+On parle ici de cycles au sens où l'on ne passe pas plusieurs fois par la même arête.
+\begin{remarque}{}{}
+  Chaque sommet peut appliquer la règle localement, mais pas sur le même cycle. On ne peut pas être facilement sûr que le graphe d'arrivée soit connexe, sachant que toutes les arêtes sont enlevées non pas successivement, mais simultanément.
+\end{remarque}
+
+\begin{theoreme}{}{}
+  Si $G$ est connexe, alors $\tilde{G}$ est connexe.
+\end{theoreme}
+
+\begin{demonstration}
+  On montre le résultat par récurrence sur l'indice de l'arête supprimée (on les ordonne arbitrairement). On note $G_i$ le graphe après suppression des $i$ premières arêtes. On suppose que $G_i$ est connexe et on montre que $G_{i+1}$ est connexe. 
+
+  On note $e = (u,v)$ l'arête supprimée à l'étape $i+1$. Par hypothèse, il existe un cycle $\mc{C}$ de longueur $\leq 2\rho$ contenant $e$. Comme $\mc{C}$ est un cycle, il existe un chemin de $u$ à $v$ dans $\mc{C} \setminus \{e\}$. Ce chemin est contenu dans $G_i$, donc $u$ et $v$ sont encore connectés dans $G_{i+1}$. Ainsi, la suppression de l'arête ne déconnecte pas le graphe.
+\end{demonstration}
+
+On peut se questionner sur le majorant $2 \rho$. Il découle du résultat suivant~:
+
+\begin{theoreme}{}{}
+  Si $G$ n'a pas de cycle de longueur $\leq 2\rho$, alors il a au plus $n^{1+\frac{1}{\rho}} + n$
+\end{theoreme}
+
+
+\begin{demonstration}
+  On note $d = \frac{m}{n}$ le degré moyen. On supprime tous les sommets de degré $<d$ de $G$. Ainsi, on obtient un sous-graphe $H$ de $G$, qui contient au moins un arbre $\mc{A}$ complet d'arité $d$, et de profondeur $\rho$. On compte les feuilles de cet arbre $\mc{A}$~: il y en a $(d-1)^\rho$. Or, ces feuilles sont des sommets de $H$, donc de $G$. On a alors~:
+  $$ n \geq (d-1)^\rho $$
+Donc~: 
+$$ n \geq \left(\frac{m}{n} - 1\right)^\rho $$
+D'où le résultat.
+\end{demonstration}
